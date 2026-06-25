@@ -2,6 +2,7 @@
 
 import { useTranslations } from "next-intl";
 import { motion } from "framer-motion";
+import Image from "next/image";
 import { MapPin, Download, ArrowRight } from "lucide-react";
 
 const container = {
@@ -142,16 +143,18 @@ export function Hero() {
         </motion.div>
       </div>
 
-      {/* Photo placeholder — replace with <Image src="/photo.jpg" .../> */}
-      <div className="hidden lg:block absolute right-0 top-1/2 -translate-y-1/2 w-[420px] h-[520px] overflow-hidden">
-        <div className="w-full h-full bg-gradient-to-br from-[#635bff]/10 to-cyan-500/10 dark:from-[#635bff]/20 dark:to-cyan-500/20 flex items-center justify-center rounded-l-3xl border-l border-t border-b border-[#e3e8ee] dark:border-[#1a3a5c]">
-          <div className="text-center">
-            <div className="w-32 h-32 rounded-full bg-[#635bff] flex items-center justify-center text-white text-4xl font-bold mx-auto mb-4">
-              GC
-            </div>
-            <p className="text-[#8898aa] text-sm">← Reemplazar con foto profesional</p>
-          </div>
-        </div>
+      {/* Professional photo */}
+      <div className="hidden lg:block absolute right-0 top-1/2 -translate-y-1/2 w-[420px] h-[560px] overflow-hidden rounded-l-3xl border-l border-t border-b border-[#e3e8ee] dark:border-[#1a3a5c]">
+        <Image
+          src="/photo.jpg"
+          alt="Germán Cárdenas — Financial Analyst & Data Scientist"
+          fill
+          className="object-cover object-center"
+          priority
+          sizes="420px"
+        />
+        {/* Subtle gradient overlay on left edge to blend with bg */}
+        <div className="absolute inset-0 bg-gradient-to-r from-white/60 via-transparent to-transparent dark:from-[#0a2540]/60 dark:via-transparent dark:to-transparent" />
       </div>
     </section>
   );
