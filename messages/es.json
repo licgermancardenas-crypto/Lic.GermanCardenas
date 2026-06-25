@@ -1,0 +1,128 @@
+{
+  "meta": {
+    "title": "Germán Cárdenas | Financial Analyst & Data Scientist",
+    "description": "Portfolio de Germán Cárdenas — Financial Analyst, Data Scientist & AI Engineer en Buenos Aires. 6+ años transformando datos en decisiones de negocio."
+  },
+  "nav": {
+    "projects": "Proyectos",
+    "experience": "Experiencia",
+    "stack": "Stack",
+    "contact": "Contacto",
+    "cv": "Descargar CV",
+    "open_menu": "Abrir menú",
+    "close_menu": "Cerrar menú"
+  },
+  "hero": {
+    "available": "Disponible para proyectos",
+    "title_line1": "Financial Analyst,",
+    "title_line2": "Data Scientist",
+    "title_line3": "& AI Engineer",
+    "subtitle": "Transformo datos en decisiones que mueven negocios.",
+    "location": "Buenos Aires",
+    "remote": "Remote-ready",
+    "cta_primary": "Ver proyectos",
+    "cta_secondary": "Descargar CV",
+    "metrics_years_value": "6+",
+    "metrics_years_label": "años de experiencia",
+    "metrics_dashboards_value": "20+",
+    "metrics_dashboards_label": "dashboards entregados",
+    "metrics_records_value": "1M+",
+    "metrics_records_label": "registros procesados",
+    "metrics_companies_value": "6",
+    "metrics_companies_label": "empresas",
+    "metrics_languages_value": "4",
+    "metrics_languages_label": "idiomas"
+  },
+  "expertise": {
+    "label": "Expertise",
+    "title": "Cuatro pilares de capacidad",
+    "subtitle": "Una combinación única de análisis financiero, ciencia de datos e ingeniería aplicada al negocio.",
+    "analytics_title": "Data Analytics",
+    "analytics_desc": "Dashboards ejecutivos, KPIs estratégicos y pipelines ETL que habilitan decisiones operativas en tiempo real.",
+    "analytics_skills": "Power BI · SQL · Pandas · ETL · Tableau",
+    "finance_title": "Financial Analysis",
+    "finance_desc": "FP&A, modelado de Cash Flow, ROI/IRR/VAN y forecasting financiero para entornos ARG y LatAm.",
+    "finance_skills": "Excel · FP&A · Forecasting · Valuation · BCRA",
+    "ds_title": "Data Science & AI",
+    "ds_desc": "Machine learning, forecasting de series temporales, GenAI y análisis geoespacial para proyectos de alto impacto.",
+    "ds_skills": "Python · scikit-learn · GIS · LangChain · OpenAI API",
+    "strategy_title": "Business Strategy",
+    "strategy_desc": "KPIs estratégicos, optimización operativa y decisiones de negocio respaldadas por evidencia cuantitativa.",
+    "strategy_skills": "OKRs · Unit Economics · Market Sizing · GTM · SaaS"
+  },
+  "case": {
+    "label": "Caso destacado",
+    "live_badge": "Live en producción",
+    "title": "AgroNova",
+    "subtitle": "Plataforma AgriTech con inteligencia geoespacial para el agro argentino",
+    "description": "Sistema modular de 27 capas GIS que cubre las 24 provincias argentinas. Detecta conflictos de uso de suelo, modela redes de distribución de agroquímicos y genera alertas climáticas en tiempo real para más de 3.300 clientes activos.",
+    "metric1_value": "3.387",
+    "metric1_label": "Clientes activos",
+    "metric2_value": "24",
+    "metric2_label": "Provincias",
+    "metric3_value": "27",
+    "metric3_label": "Módulos GIS",
+    "metric4_value": "2.571",
+    "metric4_label": "Conflictos detectados",
+    "metric5_value": "200k",
+    "metric5_label": "Envíos/año modelados",
+    "cta": "Ver proyecto live",
+    "stack_label": "Stack técnico"
+  },
+  "work": {
+    "label": "Proyectos",
+    "title": "Trabajo seleccionado",
+    "subtitle": "De dashboards de crimen a plataformas SaaS B2B — proyectos que resuelven problemas reales.",
+    "filter_all": "Todos",
+    "filter_research": "Research",
+    "filter_enterprise": "Enterprise",
+    "filter_probono": "Pro-bono",
+    "cta": "Ver proyecto",
+    "live": "Live"
+  },
+  "experience": {
+    "label": "Experiencia",
+    "title": "Trayectoria profesional",
+    "subtitle": "6+ años construyendo en la intersección de finanzas, datos y tecnología.",
+    "present": "Presente"
+  },
+  "education": {
+    "label": "Formación",
+    "title": "Educación & Certificaciones",
+    "subtitle": "Base académica complementada con formación técnica continua.",
+    "languages_title": "Idiomas",
+    "native": "Nativo",
+    "advanced": "Avanzado",
+    "intermediate": "Intermedio",
+    "basic": "Básico"
+  },
+  "stack": {
+    "label": "Tech Stack",
+    "title": "Herramientas y tecnologías",
+    "subtitle": "Stack completo desde el análisis exploratorio hasta el deploy en producción.",
+    "cat_languages": "Lenguajes",
+    "cat_analytics": "Analytics & BI",
+    "cat_ml": "ML / AI",
+    "cat_gis": "GIS & Geoespacial",
+    "cat_web": "Web & APIs",
+    "cat_databases": "Bases de datos",
+    "cat_cloud": "Cloud & DevOps"
+  },
+  "wwm": {
+    "label": "Colaboremos",
+    "title": "¿Cómo podemos trabajar juntos?",
+    "enterprise_title": "Para empresas",
+    "enterprise_desc": "Buscás un perfil senior con profundidad en análisis financiero y capacidad de construcción técnica — desde ETL hasta dashboards ejecutivos.",
+    "enterprise_cta": "Ver LinkedIn",
+    "freelance_title": "Para proyectos",
+    "freelance_desc": "Necesitás un dashboard, modelo predictivo, plataforma web o consultoría de datos con entrega ágil y calidad de producción.",
+    "freelance_cta": "Agendar llamada",
+    "contact_title": "Contacto directo",
+    "contact_desc": "Respondés antes de 24 h. Sin bots."
+  },
+  "footer": {
+    "tagline": "Transformando datos en decisiones.",
+    "made_with": "Construido con Next.js · Diseño inspirado en Stripe",
+    "rights": "Germán Cárdenas."
+  }
+}

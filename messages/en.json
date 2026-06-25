@@ -1,0 +1,128 @@
+{
+  "meta": {
+    "title": "Germán Cárdenas | Financial Analyst & Data Scientist",
+    "description": "Portfolio of Germán Cárdenas — Financial Analyst, Data Scientist & AI Engineer based in Buenos Aires. 6+ years turning data into business decisions."
+  },
+  "nav": {
+    "projects": "Projects",
+    "experience": "Experience",
+    "stack": "Stack",
+    "contact": "Contact",
+    "cv": "Download CV",
+    "open_menu": "Open menu",
+    "close_menu": "Close menu"
+  },
+  "hero": {
+    "available": "Available for projects",
+    "title_line1": "Financial Analyst,",
+    "title_line2": "Data Scientist",
+    "title_line3": "& AI Engineer",
+    "subtitle": "Turning data into decisions that move businesses.",
+    "location": "Buenos Aires",
+    "remote": "Remote-ready",
+    "cta_primary": "View projects",
+    "cta_secondary": "Download CV",
+    "metrics_years_value": "6+",
+    "metrics_years_label": "years of experience",
+    "metrics_dashboards_value": "20+",
+    "metrics_dashboards_label": "dashboards delivered",
+    "metrics_records_value": "1M+",
+    "metrics_records_label": "records processed",
+    "metrics_companies_value": "6",
+    "metrics_companies_label": "companies",
+    "metrics_languages_value": "4",
+    "metrics_languages_label": "languages"
+  },
+  "expertise": {
+    "label": "Expertise",
+    "title": "Four pillars of capability",
+    "subtitle": "A unique blend of financial analysis, data science, and applied engineering.",
+    "analytics_title": "Data Analytics",
+    "analytics_desc": "Executive dashboards, strategic KPIs, and ETL pipelines that enable real-time operational decisions.",
+    "analytics_skills": "Power BI · SQL · Pandas · ETL · Tableau",
+    "finance_title": "Financial Analysis",
+    "finance_desc": "FP&A, Cash Flow modeling, ROI/IRR/NPV, and financial forecasting for ARG and LatAm environments.",
+    "finance_skills": "Excel · FP&A · Forecasting · Valuation · BCRA",
+    "ds_title": "Data Science & AI",
+    "ds_desc": "Machine learning, time-series forecasting, GenAI, and geospatial analysis for high-impact projects.",
+    "ds_skills": "Python · scikit-learn · GIS · LangChain · OpenAI API",
+    "strategy_title": "Business Strategy",
+    "strategy_desc": "Strategic KPIs, operational optimization, and business decisions backed by quantitative evidence.",
+    "strategy_skills": "OKRs · Unit Economics · Market Sizing · GTM · SaaS"
+  },
+  "case": {
+    "label": "Featured Case Study",
+    "live_badge": "Live in production",
+    "title": "AgroNova",
+    "subtitle": "AgriTech platform with geospatial intelligence for Argentine agriculture",
+    "description": "Modular system with 27 GIS layers covering all 24 Argentine provinces. Detects land-use conflicts, models agrochemical distribution networks, and generates real-time climate alerts for 3,300+ active clients.",
+    "metric1_value": "3,387",
+    "metric1_label": "Active clients",
+    "metric2_value": "24",
+    "metric2_label": "Provinces",
+    "metric3_value": "27",
+    "metric3_label": "GIS modules",
+    "metric4_value": "2,571",
+    "metric4_label": "Conflicts detected",
+    "metric5_value": "200k",
+    "metric5_label": "Shipments/year modeled",
+    "cta": "View live project",
+    "stack_label": "Tech stack"
+  },
+  "work": {
+    "label": "Projects",
+    "title": "Selected work",
+    "subtitle": "From crime analytics dashboards to B2B SaaS platforms — projects solving real problems.",
+    "filter_all": "All",
+    "filter_research": "Research",
+    "filter_enterprise": "Enterprise",
+    "filter_probono": "Pro-bono",
+    "cta": "View project",
+    "live": "Live"
+  },
+  "experience": {
+    "label": "Experience",
+    "title": "Professional journey",
+    "subtitle": "6+ years at the intersection of finance, data, and technology.",
+    "present": "Present"
+  },
+  "education": {
+    "label": "Education",
+    "title": "Education & Certifications",
+    "subtitle": "Solid academic foundation complemented by continuous technical training.",
+    "languages_title": "Languages",
+    "native": "Native",
+    "advanced": "Advanced",
+    "intermediate": "Intermediate",
+    "basic": "Basic"
+  },
+  "stack": {
+    "label": "Tech Stack",
+    "title": "Tools & technologies",
+    "subtitle": "Full stack from exploratory analysis to production deployment.",
+    "cat_languages": "Languages",
+    "cat_analytics": "Analytics & BI",
+    "cat_ml": "ML / AI",
+    "cat_gis": "GIS & Geospatial",
+    "cat_web": "Web & APIs",
+    "cat_databases": "Databases",
+    "cat_cloud": "Cloud & DevOps"
+  },
+  "wwm": {
+    "label": "Let's work together",
+    "title": "How can we collaborate?",
+    "enterprise_title": "For companies",
+    "enterprise_desc": "Looking for a senior profile with depth in financial analysis and technical build capability — from ETL to executive dashboards.",
+    "enterprise_cta": "View LinkedIn",
+    "freelance_title": "For projects",
+    "freelance_desc": "Need a dashboard, predictive model, web platform, or data consultancy with agile delivery and production quality.",
+    "freelance_cta": "Schedule a call",
+    "contact_title": "Direct contact",
+    "contact_desc": "Response within 24 hours. No bots."
+  },
+  "footer": {
+    "tagline": "Turning data into decisions.",
+    "made_with": "Built with Next.js · Stripe-inspired design",
+    "rights": "Germán Cárdenas."
+  }
+}

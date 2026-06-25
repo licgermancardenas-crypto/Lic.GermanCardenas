@@ -1,0 +1,111 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+  --font-mono: "JetBrains Mono", "Fira Code", monospace;
+
+  --color-stripe-bg: #ffffff;
+  --color-stripe-subtle: #f6f9fc;
+  --color-stripe-primary: #0a2540;
+  --color-stripe-body: #425466;
+  --color-stripe-accent: #635bff;
+  --color-stripe-accent-hover: #4f46e5;
+  --color-stripe-border: #e3e8ee;
+  --color-stripe-dark: #0a2540;
+  --color-stripe-muted: #8898aa;
+
+  --color-dark-bg: #0a2540;
+  --color-dark-subtle: #0d2d50;
+  --color-dark-border: #1a3a5c;
+  --color-dark-body: #a8c0d8;
+
+  --radius-card: 12px;
+  --shadow-card: 0 2px 12px rgba(10, 37, 64, 0.08), 0 0 0 1px rgba(10, 37, 64, 0.05);
+  --shadow-card-hover: 0 8px 32px rgba(10, 37, 64, 0.14), 0 0 0 1px rgba(99, 91, 255, 0.15);
+}
+
+@layer base {
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    background-color: var(--color-stripe-bg);
+    color: var(--color-stripe-primary);
+    font-family: var(--font-sans);
+    font-size: 16px;
+    line-height: 1.6;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  .dark body {
+    background-color: var(--color-dark-bg);
+    color: #e8f1f9;
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    background: linear-gradient(135deg, #635bff 0%, #a78bfa 50%, #06b6d4 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .card-shadow {
+    box-shadow: var(--shadow-card);
+  }
+
+  .card-shadow-hover:hover {
+    box-shadow: var(--shadow-card-hover);
+  }
+
+  .container-custom {
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+
+  @media (min-width: 640px) {
+    .container-custom {
+      padding-left: 32px;
+      padding-right: 32px;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .container-custom {
+      padding-left: 48px;
+      padding-right: 48px;
+    }
+  }
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #e3e8ee;
+  border-radius: 3px;
+}
+.dark ::-webkit-scrollbar-thumb {
+  background: #1a3a5c;
+}
+
+/* Selection */
+::selection {
+  background-color: rgba(99, 91, 255, 0.2);
+  color: #0a2540;
+}
