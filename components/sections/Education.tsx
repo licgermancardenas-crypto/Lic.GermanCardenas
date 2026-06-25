@@ -6,16 +6,18 @@ import { GraduationCap, Award, Globe } from "lucide-react";
 
 const education = [
   {
-    institution: "— Completar con tu universidad —",
-    degree: "Lic. en Economía / Administración / Ciencias de Datos",
-    period: "20XX – 20XX",
+    institution: "UCES",
+    degree: "Lic. en Dirección de Negocios",
+    period: "2019 – 2024",
+    detail: "Graduado",
     icon: GraduationCap,
     accent: "#635bff",
   },
   {
-    institution: "— Completar con formación adicional —",
-    degree: "Posgrado / Diplomatura",
-    period: "20XX",
+    institution: "Instituto de Capacitación Bursátil",
+    degree: "Inversor y Asesor Global de Inversiones",
+    period: "2021 – 2022",
+    detail: "Certificado",
     icon: GraduationCap,
     accent: "#06b6d4",
   },
@@ -23,36 +25,42 @@ const education = [
 
 const certifications = [
   {
-    name: "Google Data Analytics Professional Certificate",
-    issuer: "Google / Coursera",
-    year: "2023",
+    name: "Financial Forecasting with Analytics",
+    issuer: "LinkedIn Learning",
+    year: "2024",
     accent: "#635bff",
   },
   {
-    name: "Machine Learning Specialization",
-    issuer: "Andrew Ng / Coursera",
-    year: "2023",
+    name: "Building KPIs for Data-Driven Strategy",
+    issuer: "LinkedIn Learning",
+    year: "2024",
     accent: "#8b5cf6",
   },
   {
-    name: "Power BI Data Analyst (PL-300)",
-    issuer: "Microsoft",
-    year: "2022",
-    accent: "#f59e0b",
+    name: "Excel and ChatGPT: Data Analysis Power Tips",
+    issuer: "LinkedIn Learning",
+    year: "2024",
+    accent: "#06b6d4",
   },
   {
-    name: "— Agregar certificación —",
-    issuer: "Institución",
-    year: "20XX",
+    name: "The Non-Technical Skills of Effective Data Scientists",
+    issuer: "LinkedIn Learning",
+    year: "2024",
     accent: "#10b981",
+  },
+  {
+    name: "Asesor Global de Inversiones",
+    issuer: "Instituto de Capacitación Bursátil",
+    year: "2022",
+    accent: "#f59e0b",
   },
 ];
 
 const languages = [
   { lang: "Español", level_key: "native", flag: "🇦🇷", pct: 100 },
   { lang: "Inglés", level_key: "advanced", flag: "🇺🇸", pct: 85 },
-  { lang: "Portugués", level_key: "intermediate", flag: "🇧🇷", pct: 60 },
-  { lang: "— Idioma 4 —", level_key: "basic", flag: "🌐", pct: 35 },
+  { lang: "Francés", level_key: "intermediate", flag: "🇫🇷", pct: 55 },
+  { lang: "Italiano", level_key: "basic", flag: "🇮🇹", pct: 30 },
 ];
 
 export function Education() {
@@ -92,6 +100,10 @@ export function Education() {
                     {edu.degree}
                   </h3>
                   <p className="text-sm text-[#425466] dark:text-[#a8c0d8]">{edu.institution}</p>
+                  <span className="inline-block mt-2 px-2 py-0.5 rounded-md text-xs font-medium border"
+                    style={{ color: edu.accent, borderColor: `${edu.accent}40`, backgroundColor: `${edu.accent}10` }}>
+                    {edu.detail}
+                  </span>
                 </div>
               ))}
             </div>
