@@ -51,15 +51,15 @@ export function Hero() {
       />
 
       {/* Gradient blobs */}
-      <div className="absolute top-1/4 right-0 w-[600px] h-[600px] rounded-full bg-[#635bff]/5 blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] rounded-full bg-cyan-500/5 blur-[100px] pointer-events-none" />
+      <div className="absolute top-1/4 left-0 w-[600px] h-[600px] rounded-full bg-[#635bff]/5 blur-[120px] pointer-events-none" />
+      <div className="absolute bottom-0 right-0 w-[400px] h-[400px] rounded-full bg-cyan-500/5 blur-[100px] pointer-events-none" />
 
       <div className="container-custom pt-24 pb-16 relative z-10">
         <motion.div
           variants={container}
           initial="hidden"
           animate="visible"
-          className="max-w-4xl"
+          className="max-w-4xl lg:ml-auto"
         >
           {/* Available badge */}
           <motion.div variants={item} className="mb-8">
@@ -143,8 +143,8 @@ export function Hero() {
         </motion.div>
       </div>
 
-      {/* Professional photo */}
-      <div className="hidden lg:block absolute right-0 top-1/2 -translate-y-1/2 w-[420px] h-[560px] overflow-hidden rounded-l-3xl border-l border-t border-b border-[#e3e8ee] dark:border-[#1a3a5c]">
+      {/* Professional photo — left side */}
+      <div className="hidden lg:block absolute left-0 top-1/2 -translate-y-1/2 w-[420px] h-[560px] overflow-hidden rounded-r-3xl border-r border-t border-b border-[#e3e8ee] dark:border-[#1a3a5c]">
         <Image
           src="/photo.jpg"
           alt="Germán Cárdenas — Financial Analyst & Data Scientist"
@@ -153,8 +153,8 @@ export function Hero() {
           priority
           sizes="420px"
         />
-        {/* Subtle gradient overlay on left edge to blend with bg */}
-        <div className="absolute inset-0 bg-gradient-to-r from-white/60 via-transparent to-transparent dark:from-[#0a2540]/60 dark:via-transparent dark:to-transparent" />
+        {/* Subtle gradient overlay on right edge to blend with bg */}
+        <div className="absolute inset-0 bg-gradient-to-l from-white/60 via-transparent to-transparent dark:from-[#0a2540]/60 dark:via-transparent dark:to-transparent" />
       </div>
     </section>
   );
