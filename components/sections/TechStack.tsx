@@ -1,109 +1,143 @@
 "use client";
 
-import { useTranslations } from "next-intl";
 import { AnimatedSection } from "@/components/AnimatedSection";
 
-const stackData = [
+const levels = [
   {
-    cat_key: "cat_languages",
-    accent: "#635bff",
-    items: ["Python", "TypeScript", "SQL", "R", "JavaScript", "Bash"],
+    label: "CORE",
+    sublabel: "uso diario · dominio profundo",
+    items: [
+      "Power BI", "DAX", "SQL", "Python", "Pandas", "Excel",
+      "FP&A", "Forecasting", "Cash Flow Modeling",
+    ],
   },
   {
-    cat_key: "cat_analytics",
-    accent: "#f59e0b",
-    items: ["Power BI", "Tableau", "Pandas", "NumPy", "Matplotlib", "Seaborn", "Plotly"],
+    label: "STRONG",
+    sublabel: "uso frecuente · productivo",
+    items: [
+      "Next.js", "TypeScript", "FastAPI", "PostgreSQL",
+      "Tableau", "scikit-learn", "Leaflet", "GIS", "React",
+    ],
   },
   {
-    cat_key: "cat_ml",
-    accent: "#8b5cf6",
-    items: ["scikit-learn", "TensorFlow", "LangChain", "OpenAI API", "Hugging Face", "XGBoost"],
+    label: "GROWING",
+    sublabel: "exploración activa con resultados",
+    items: [
+      "LangChain", "OpenAI API", "PostGIS", "TensorFlow",
+      "Three.js", "n8n workflows", "MapLibre", "D3.js",
+    ],
   },
   {
-    cat_key: "cat_gis",
-    accent: "#10b981",
-    items: ["QGIS", "GeoPandas", "PostGIS", "Leaflet", "MapLibre", "Folium", "Contextily"],
-  },
-  {
-    cat_key: "cat_web",
-    accent: "#06b6d4",
-    items: ["Next.js 15", "React 19", "FastAPI", "Node.js", "Tailwind CSS", "Framer Motion"],
-  },
-  {
-    cat_key: "cat_databases",
-    accent: "#ec4899",
-    items: ["PostgreSQL", "Neon", "SQLite", "MongoDB", "Redis"],
-  },
-  {
-    cat_key: "cat_cloud",
-    accent: "#f97316",
-    items: ["Vercel", "Docker", "Git", "GitHub Actions", "Linux", "REST APIs"],
+    label: "METODOLOGÍAS",
+    sublabel: "frameworks de pensamiento",
+    items: [
+      "Storytelling con datos", "Decision intelligence",
+      "KPIs ejecutivos", "ETL design", "Forecasting cuantitativo",
+      "Análisis geoespacial", "Scoring & segmentación",
+    ],
   },
 ];
 
 export function TechStack() {
-  const t = useTranslations("stack");
-
   return (
-    <section id="stack" className="py-24 bg-[#0A0E1A] border-t border-[#1F2937]">
+    <section
+      id="stack"
+      className="py-40"
+      style={{ backgroundColor: "#06080D", borderTop: "1px solid rgba(255,255,255,0.05)" }}
+    >
       <div className="container-custom">
-        {/* Header */}
-        <AnimatedSection className="mb-16 text-center">
-          <span className="inline-block px-3 py-1 rounded-full bg-[#4F7CFF]/10 text-[#4F7CFF] text-xs font-semibold uppercase tracking-widest mb-4">
-            {t("label")}
-          </span>
-          <h2 className="text-4xl md:text-5xl font-bold text-[#F5F7FA] tracking-tight mb-4">
-            {t("title")}
-          </h2>
-          <p className="text-[#B8C1D1] text-lg max-w-2xl mx-auto">
-            {t("subtitle")}
-          </p>
-        </AnimatedSection>
+        <div className="max-w-4xl">
+          <AnimatedSection className="mb-20">
+            <p
+              style={{
+                fontFamily: "var(--font-mono)",
+                fontSize: "12px",
+                letterSpacing: "0.16em",
+                textTransform: "uppercase",
+                color: "#6B7A95",
+                marginBottom: "24px",
+              }}
+            >
+              ─── Stack técnico
+            </p>
+            <h2
+              className="font-serif"
+              style={{
+                fontSize: "clamp(36px, 4vw, 56px)",
+                fontWeight: 400,
+                color: "#F0F4FB",
+                lineHeight: 1.05,
+                letterSpacing: "-0.03em",
+              }}
+            >
+              Las herramientas del trabajo.
+            </h2>
+          </AnimatedSection>
 
-        {/* Categories */}
-        <div className="space-y-6">
-          {stackData.map((cat, i) => (
-            <AnimatedSection key={cat.cat_key} delay={i * 0.06}>
-              <div className="flex flex-col sm:flex-row sm:items-center gap-4 p-6 rounded-2xl bg-[#0F1419] border border-[#1F2937]">
-                {/* Category label */}
-                <div className="flex-shrink-0 sm:w-36">
-                  <span
-                    className="text-xs font-semibold uppercase tracking-widest"
-                    style={{ color: cat.accent }}
-                  >
-                    {t(cat.cat_key as "cat_languages" | "cat_analytics" | "cat_ml" | "cat_gis" | "cat_web" | "cat_databases" | "cat_cloud")}
-                  </span>
-                </div>
-
-                {/* Divider */}
-                <div
-                  className="hidden sm:block w-px h-6 flex-shrink-0"
-                  style={{ backgroundColor: cat.accent + "40" }}
-                />
-
-                {/* Badges */}
-                <div className="flex flex-wrap gap-2">
-                  {cat.items.map((item) => (
-                    <span
-                      key={item}
-                      className="px-3 py-1.5 rounded-lg bg-[#0A0E1A] border border-[#1F2937] text-sm font-medium text-[#B8C1D1] hover:border-current transition-colors cursor-default"
-                      style={{ "--badge-accent": cat.accent } as React.CSSProperties}
-                      onMouseEnter={(e) => {
-                        (e.currentTarget as HTMLElement).style.borderColor = cat.accent;
-                        (e.currentTarget as HTMLElement).style.color = cat.accent;
-                      }}
-                      onMouseLeave={(e) => {
-                        (e.currentTarget as HTMLElement).style.borderColor = "";
-                        (e.currentTarget as HTMLElement).style.color = "";
+          <div className="space-y-14">
+            {levels.map((level, i) => (
+              <AnimatedSection key={level.label} delay={i * 0.07}>
+                <div className="flex flex-col sm:flex-row gap-6 sm:gap-12">
+                  {/* Level label */}
+                  <div className="sm:w-36 flex-shrink-0 pt-1">
+                    <p
+                      style={{
+                        fontFamily: "var(--font-mono)",
+                        fontSize: "11px",
+                        letterSpacing: "0.16em",
+                        textTransform: "uppercase",
+                        color: "#4A8BFF",
+                        marginBottom: "4px",
                       }}
                     >
-                      {item}
-                    </span>
-                  ))}
+                      {level.label}
+                    </p>
+                    <p
+                      style={{
+                        fontFamily: "var(--font-mono)",
+                        fontSize: "10px",
+                        letterSpacing: "0.06em",
+                        color: "#3F4A5F",
+                        lineHeight: 1.5,
+                      }}
+                    >
+                      {level.sublabel}
+                    </p>
+                  </div>
+
+                  {/* Items as editorial text */}
+                  <div
+                    style={{
+                      flex: 1,
+                      fontSize: "17px",
+                      lineHeight: 1.9,
+                      color: "#C5CFE2",
+                    }}
+                  >
+                    {level.items.map((item, j) => (
+                      <span key={item}>
+                        <span
+                          className="group cursor-default transition-colors duration-200"
+                          style={{ display: "inline" }}
+                          onMouseEnter={(e) => {
+                            (e.currentTarget as HTMLElement).style.color = "#F0F4FB";
+                          }}
+                          onMouseLeave={(e) => {
+                            (e.currentTarget as HTMLElement).style.color = "#C5CFE2";
+                          }}
+                        >
+                          {item}
+                        </span>
+                        {j < level.items.length - 1 && (
+                          <span style={{ color: "#3F4A5F", margin: "0 8px" }}>·</span>
+                        )}
+                      </span>
+                    ))}
+                  </div>
                 </div>
-              </div>
-            </AnimatedSection>
-          ))}
+              </AnimatedSection>
+            ))}
+          </div>
         </div>
       </div>
     </section>

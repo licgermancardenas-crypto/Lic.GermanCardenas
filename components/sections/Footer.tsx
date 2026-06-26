@@ -1,6 +1,5 @@
 "use client";
 
-import { useTranslations } from "next-intl";
 import { Mail, MessageCircle } from "lucide-react";
 
 const socialLinks = [
@@ -35,41 +34,88 @@ const socialLinks = [
 ];
 
 const navLinks = [
+  { label: "Casos", id: "casos" },
   { label: "Proyectos", id: "projects" },
   { label: "Experiencia", id: "experience" },
   { label: "Stack", id: "stack" },
   { label: "Contacto", id: "contact" },
 ];
 
-export function Footer() {
-  const t = useTranslations("footer");
+const projectLinks = [
+  { label: "AgroNova", url: "https://agro-nova-plataforma.vercel.app/" },
+  { label: "LAPD Analytics", url: "https://lapd-data-crime.vercel.app/dashboard" },
+  { label: "Atlas One ERP", url: "https://www.atlaones-erp.com" },
+  { label: "Real Estate Intelligence", url: "https://real-state-intelligence.vercel.app/" },
+  { label: "Fundación CIPE", url: "https://www.fundacioncipe.com/" },
+];
 
+export function Footer() {
   function scrollTo(id: string) {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
   }
 
   return (
-    <footer className="bg-[#0A0E1A] text-white border-t border-[#1F2937]">
+    <footer
+      style={{
+        backgroundColor: "#06080D",
+        borderTop: "1px solid rgba(255,255,255,0.05)",
+      }}
+    >
       <div className="container-custom py-16">
         <div className="grid md:grid-cols-3 gap-10 mb-12">
           {/* Brand */}
           <div>
-            <div className="flex items-center gap-2 mb-4">
-              <div className="w-8 h-8 rounded-lg bg-[#4F7CFF] flex items-center justify-center text-white text-sm font-bold">
+            <div className="flex items-center gap-2 mb-5">
+              <div
+                className="w-8 h-8 rounded-lg flex items-center justify-center text-white text-sm font-bold"
+                style={{ backgroundColor: "#2B6FE8" }}
+              >
                 GC
               </div>
-              <span className="font-semibold text-white">Germán Cárdenas</span>
+              <span
+                className="font-semibold"
+                style={{ color: "#F0F4FB" }}
+              >
+                Germán Cárdenas
+              </span>
             </div>
-            <p className="text-[#B8C1D1] text-sm leading-relaxed mb-6">{t("tagline")}</p>
-            <div className="flex gap-3">
+            <p
+              style={{
+                fontSize: "14px",
+                lineHeight: 1.7,
+                color: "#6B7A95",
+                marginBottom: "20px",
+                maxWidth: "260px",
+              }}
+            >
+              Financial Analyst · Data Scientist · AI Engineer. Buenos Aires, Argentina.
+            </p>
+            <div className="flex gap-2">
               {socialLinks.map((s) => (
                 <a
                   key={s.label}
                   href={s.href}
                   target={s.href.startsWith("mailto") ? "_self" : "_blank"}
                   rel="noopener noreferrer"
-                  className="w-9 h-9 rounded-lg bg-white/10 flex items-center justify-center text-white/60 hover:bg-[#4F7CFF] hover:text-white transition-all"
+                  className="w-9 h-9 rounded-lg flex items-center justify-center transition-all duration-200"
+                  style={{
+                    background: "rgba(255,255,255,0.04)",
+                    color: "rgba(255,255,255,0.4)",
+                    border: "1px solid rgba(255,255,255,0.06)",
+                  }}
                   aria-label={s.label}
+                  onMouseEnter={(e) => {
+                    const el = e.currentTarget as HTMLElement;
+                    el.style.background = "#2B6FE8";
+                    el.style.color = "#fff";
+                    el.style.borderColor = "transparent";
+                  }}
+                  onMouseLeave={(e) => {
+                    const el = e.currentTarget as HTMLElement;
+                    el.style.background = "rgba(255,255,255,0.04)";
+                    el.style.color = "rgba(255,255,255,0.4)";
+                    el.style.borderColor = "rgba(255,255,255,0.06)";
+                  }}
                 >
                   {s.icon}
                 </a>
@@ -79,15 +125,31 @@ export function Footer() {
 
           {/* Nav */}
           <div>
-            <h4 className="text-xs font-semibold uppercase tracking-widest text-white/40 mb-4">
+            <h4
+              style={{
+                fontFamily: "var(--font-mono)",
+                fontSize: "11px",
+                letterSpacing: "0.16em",
+                textTransform: "uppercase",
+                color: "#3F4A5F",
+                marginBottom: "16px",
+              }}
+            >
               Navegación
             </h4>
-            <ul className="space-y-2">
+            <ul className="space-y-3">
               {navLinks.map((link) => (
                 <li key={link.id}>
                   <button
                     onClick={() => scrollTo(link.id)}
-                    className="text-sm text-[#a8c0d8] hover:text-white transition-colors"
+                    className="text-sm transition-colors duration-200"
+                    style={{ color: "#6B7A95" }}
+                    onMouseEnter={(e) => {
+                      (e.currentTarget as HTMLElement).style.color = "#C5CFE2";
+                    }}
+                    onMouseLeave={(e) => {
+                      (e.currentTarget as HTMLElement).style.color = "#6B7A95";
+                    }}
                   >
                     {link.label}
                   </button>
@@ -98,23 +160,33 @@ export function Footer() {
 
           {/* Projects */}
           <div>
-            <h4 className="text-xs font-semibold uppercase tracking-widest text-white/40 mb-4">
+            <h4
+              style={{
+                fontFamily: "var(--font-mono)",
+                fontSize: "11px",
+                letterSpacing: "0.16em",
+                textTransform: "uppercase",
+                color: "#3F4A5F",
+                marginBottom: "16px",
+              }}
+            >
               Proyectos
             </h4>
-            <ul className="space-y-2">
-              {[
-                { label: "AgroNova", url: "https://agro-nova-plataforma.vercel.app/" },
-                { label: "LAPD Analytics", url: "https://lapd-data-crime.vercel.app/dashboard" },
-                { label: "Atlas One ERP", url: "https://www.atlaones-erp.com" },
-                { label: "Real Estate Intelligence", url: "https://real-state-intelligence.vercel.app/" },
-                { label: "Fundación CIPE", url: "https://www.fundacioncipe.com/" },
-              ].map((p) => (
+            <ul className="space-y-3">
+              {projectLinks.map((p) => (
                 <li key={p.label}>
                   <a
                     href={p.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-sm text-[#B8C1D1] hover:text-[#4F7CFF] transition-colors"
+                    className="text-sm transition-colors duration-200"
+                    style={{ color: "#6B7A95", textDecoration: "none" }}
+                    onMouseEnter={(e) => {
+                      (e.currentTarget as HTMLElement).style.color = "#4A8BFF";
+                    }}
+                    onMouseLeave={(e) => {
+                      (e.currentTarget as HTMLElement).style.color = "#6B7A95";
+                    }}
                   >
                     {p.label}
                   </a>
@@ -125,11 +197,28 @@ export function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-xs text-white/30">
-            © {new Date().getFullYear()} {t("rights")}
+        <div
+          className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-8"
+          style={{ borderTop: "1px solid rgba(255,255,255,0.05)" }}
+        >
+          <p
+            style={{
+              fontFamily: "var(--font-mono)",
+              fontSize: "12px",
+              color: "#3F4A5F",
+            }}
+          >
+            © {new Date().getFullYear()} Germán Cárdenas
           </p>
-          <p className="text-xs text-white/30">{t("made_with")}</p>
+          <p
+            style={{
+              fontFamily: "var(--font-mono)",
+              fontSize: "12px",
+              color: "#3F4A5F",
+            }}
+          >
+            Hecho con Next.js · Vercel · Framer Motion
+          </p>
         </div>
       </div>
     </footer>
