@@ -45,17 +45,17 @@ export function TechStack() {
   const t = useTranslations("stack");
 
   return (
-    <section id="stack" className="py-24 bg-white dark:bg-[#0a2540]">
+    <section id="stack" className="py-24 bg-[#0A0E1A] border-t border-[#1F2937]">
       <div className="container-custom">
         {/* Header */}
         <AnimatedSection className="mb-16 text-center">
-          <span className="inline-block px-3 py-1 rounded-full bg-[#635bff]/10 text-[#635bff] text-xs font-semibold uppercase tracking-widest mb-4">
+          <span className="inline-block px-3 py-1 rounded-full bg-[#4F7CFF]/10 text-[#4F7CFF] text-xs font-semibold uppercase tracking-widest mb-4">
             {t("label")}
           </span>
-          <h2 className="text-4xl md:text-5xl font-bold text-[#0a2540] dark:text-white tracking-tight mb-4">
+          <h2 className="text-4xl md:text-5xl font-bold text-[#F5F7FA] tracking-tight mb-4">
             {t("title")}
           </h2>
-          <p className="text-[#425466] dark:text-[#a8c0d8] text-lg max-w-2xl mx-auto">
+          <p className="text-[#B8C1D1] text-lg max-w-2xl mx-auto">
             {t("subtitle")}
           </p>
         </AnimatedSection>
@@ -64,7 +64,7 @@ export function TechStack() {
         <div className="space-y-6">
           {stackData.map((cat, i) => (
             <AnimatedSection key={cat.cat_key} delay={i * 0.06}>
-              <div className="flex flex-col sm:flex-row sm:items-center gap-4 p-6 rounded-2xl bg-[#f6f9fc] dark:bg-[#0d2d50] border border-[#e3e8ee] dark:border-[#1a3a5c]">
+              <div className="flex flex-col sm:flex-row sm:items-center gap-4 p-6 rounded-2xl bg-[#0F1419] border border-[#1F2937]">
                 {/* Category label */}
                 <div className="flex-shrink-0 sm:w-36">
                   <span
@@ -86,7 +86,7 @@ export function TechStack() {
                   {cat.items.map((item) => (
                     <span
                       key={item}
-                      className="px-3 py-1.5 rounded-lg bg-white dark:bg-[#0a2540] border border-[#e3e8ee] dark:border-[#1a3a5c] text-sm font-medium text-[#0a2540] dark:text-white hover:border-current transition-colors cursor-default"
+                      className="px-3 py-1.5 rounded-lg bg-[#0A0E1A] border border-[#1F2937] text-sm font-medium text-[#B8C1D1] hover:border-current transition-colors cursor-default"
                       style={{ "--badge-accent": cat.accent } as React.CSSProperties}
                       onMouseEnter={(e) => {
                         (e.currentTarget as HTMLElement).style.borderColor = cat.accent;

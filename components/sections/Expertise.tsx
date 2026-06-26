@@ -24,18 +24,18 @@ export function Expertise() {
   return (
     <section
       id="expertise"
-      className="py-24 bg-[#f6f9fc] dark:bg-[#0d2d50]"
+      className="py-24 bg-[#0F1419] border-t border-[#1F2937]"
     >
       <div className="container-custom">
         {/* Header */}
         <AnimatedSection className="mb-16 text-center">
-          <span className="inline-block px-3 py-1 rounded-full bg-[#635bff]/10 text-[#635bff] text-xs font-semibold uppercase tracking-widest mb-4">
+          <span className="inline-block px-3 py-1 rounded-full bg-[#4F7CFF]/10 text-[#4F7CFF] text-xs font-semibold uppercase tracking-widest mb-4">
             {t("label")}
           </span>
-          <h2 className="text-4xl md:text-5xl font-bold text-[#0a2540] dark:text-white tracking-tight mb-4">
+          <h2 className="text-4xl md:text-5xl font-bold text-[#F5F7FA] tracking-tight mb-4">
             {t("title")}
           </h2>
-          <p className="text-[#425466] dark:text-[#a8c0d8] text-lg max-w-2xl mx-auto">
+          <p className="text-[#B8C1D1] text-lg max-w-2xl mx-auto">
             {t("subtitle")}
           </p>
         </AnimatedSection>
@@ -46,7 +46,7 @@ export function Expertise() {
             const Icon = icons[i];
             return (
               <AnimatedSection key={key} delay={i * 0.1}>
-                <div className="h-full p-8 rounded-2xl bg-white dark:bg-[#0a2540] border border-[#e3e8ee] dark:border-[#1a3a5c] card-shadow card-shadow-hover transition-all duration-300 group cursor-default">
+                <div className="h-full p-8 rounded-2xl bg-[#0A0E1A] border border-[#1F2937] card-shadow card-shadow-hover transition-all duration-300 group cursor-default">
                   {/* Icon */}
                   <div
                     className={`w-12 h-12 rounded-xl bg-gradient-to-br ${accentColors[i]} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform`}
@@ -55,12 +55,11 @@ export function Expertise() {
                   </div>
 
                   {/* Title */}
-                  <h3 className="text-lg font-bold text-[#0a2540] dark:text-white mb-3">
+                  <h3 className="text-lg font-bold text-[#F5F7FA] mb-3">
                     {t(`${key}_title`)}
                   </h3>
 
-                  {/* Description */}
-                  <p className="text-sm text-[#425466] dark:text-[#a8c0d8] leading-relaxed mb-5">
+                  <p className="text-sm text-[#B8C1D1] leading-relaxed mb-5">
                     {t(`${key}_desc`)}
                   </p>
 
@@ -71,7 +70,7 @@ export function Expertise() {
                       .map((skill) => (
                         <span
                           key={skill}
-                          className="px-2 py-0.5 rounded-md bg-[#f6f9fc] dark:bg-[#0d2d50] text-[#635bff] text-xs font-medium border border-[#e3e8ee] dark:border-[#1a3a5c]"
+                          className="px-2 py-0.5 rounded-md bg-[#0F1419] text-[#4F7CFF] text-xs font-medium border border-[#1F2937]"
                         >
                           {skill}
                         </span>

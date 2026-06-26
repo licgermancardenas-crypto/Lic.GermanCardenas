@@ -67,17 +67,17 @@ export function Education() {
   const t = useTranslations("education");
 
   return (
-    <section id="education" className="py-24 bg-[#f6f9fc] dark:bg-[#0d2d50]">
+    <section id="education" className="py-24 bg-[#0F1419] border-t border-[#1F2937]">
       <div className="container-custom">
         {/* Header */}
         <AnimatedSection className="mb-16">
-          <span className="inline-block px-3 py-1 rounded-full bg-[#635bff]/10 text-[#635bff] text-xs font-semibold uppercase tracking-widest mb-4">
+          <span className="inline-block px-3 py-1 rounded-full bg-[#4F7CFF]/10 text-[#4F7CFF] text-xs font-semibold uppercase tracking-widest mb-4">
             {t("label")}
           </span>
-          <h2 className="text-4xl md:text-5xl font-bold text-[#0a2540] dark:text-white tracking-tight mb-4">
+          <h2 className="text-4xl md:text-5xl font-bold text-[#F5F7FA] tracking-tight mb-4">
             {t("title")}
           </h2>
-          <p className="text-[#425466] dark:text-[#a8c0d8] text-lg">{t("subtitle")}</p>
+          <p className="text-[#B8C1D1] text-lg">{t("subtitle")}</p>
         </AnimatedSection>
 
         <div className="grid lg:grid-cols-3 gap-8">
@@ -87,7 +87,7 @@ export function Education() {
               {education.map((edu, i) => (
                 <div
                   key={i}
-                  className="p-6 rounded-2xl bg-white dark:bg-[#0a2540] border border-[#e3e8ee] dark:border-[#1a3a5c] card-shadow"
+                  className="p-6 rounded-2xl bg-[#0A0E1A] border border-[#1F2937] card-shadow"
                 >
                   <div
                     className="w-10 h-10 rounded-xl flex items-center justify-center mb-4"
@@ -95,11 +95,11 @@ export function Education() {
                   >
                     <edu.icon className="w-5 h-5" style={{ color: edu.accent }} />
                   </div>
-                  <p className="text-xs text-[#8898aa] dark:text-[#6b8fa8] mb-1">{edu.period}</p>
-                  <h3 className="text-base font-bold text-[#0a2540] dark:text-white mb-1">
+                  <p className="text-xs text-[#6B7689] mb-1">{edu.period}</p>
+                  <h3 className="text-base font-bold text-[#F5F7FA] mb-1">
                     {edu.degree}
                   </h3>
-                  <p className="text-sm text-[#425466] dark:text-[#a8c0d8]">{edu.institution}</p>
+                  <p className="text-sm text-[#B8C1D1]">{edu.institution}</p>
                   <span className="inline-block mt-2 px-2 py-0.5 rounded-md text-xs font-medium border"
                     style={{ color: edu.accent, borderColor: `${edu.accent}40`, backgroundColor: `${edu.accent}10` }}>
                     {edu.detail}
@@ -115,7 +115,7 @@ export function Education() {
               {certifications.map((cert, i) => (
                 <div
                   key={i}
-                  className="flex items-start gap-4 p-5 rounded-2xl bg-white dark:bg-[#0a2540] border border-[#e3e8ee] dark:border-[#1a3a5c] card-shadow"
+                  className="flex items-start gap-4 p-5 rounded-2xl bg-[#0A0E1A] border border-[#1F2937] card-shadow"
                 >
                   <div
                     className="flex-shrink-0 w-8 h-8 rounded-lg flex items-center justify-center mt-0.5"
@@ -124,10 +124,10 @@ export function Education() {
                     <Award className="w-4 h-4" style={{ color: cert.accent }} />
                   </div>
                   <div className="min-w-0">
-                    <p className="text-sm font-semibold text-[#0a2540] dark:text-white leading-tight mb-0.5">
+                    <p className="text-sm font-semibold text-[#F5F7FA] leading-tight mb-0.5">
                       {cert.name}
                     </p>
-                    <p className="text-xs text-[#8898aa] dark:text-[#6b8fa8]">
+                    <p className="text-xs text-[#6B7689]">
                       {cert.issuer} · {cert.year}
                     </p>
                   </div>
@@ -138,10 +138,10 @@ export function Education() {
 
           {/* Languages */}
           <AnimatedSection delay={0.2} className="lg:col-span-1">
-            <div className="p-6 rounded-2xl bg-white dark:bg-[#0a2540] border border-[#e3e8ee] dark:border-[#1a3a5c] card-shadow h-full">
+            <div className="p-6 rounded-2xl bg-[#0A0E1A] border border-[#1F2937] card-shadow h-full">
               <div className="flex items-center gap-2 mb-6">
-                <Globe className="w-5 h-5 text-[#635bff]" />
-                <h3 className="text-base font-bold text-[#0a2540] dark:text-white">
+                <Globe className="w-5 h-5 text-[#4F7CFF]" />
+                <h3 className="text-base font-bold text-[#F5F7FA]">
                   {t("languages_title")}
                 </h3>
               </div>
@@ -149,17 +149,17 @@ export function Education() {
                 {languages.map((lang) => (
                   <div key={lang.lang}>
                     <div className="flex items-center justify-between mb-1.5">
-                      <span className="flex items-center gap-2 text-sm font-medium text-[#0a2540] dark:text-white">
+                      <span className="flex items-center gap-2 text-sm font-medium text-[#F5F7FA]">
                         <span>{lang.flag}</span>
                         {lang.lang}
                       </span>
-                      <span className="text-xs text-[#8898aa] dark:text-[#6b8fa8]">
+                      <span className="text-xs text-[#6B7689]">
                         {t(lang.level_key as "native" | "advanced" | "intermediate" | "basic")}
                       </span>
                     </div>
-                    <div className="h-1.5 rounded-full bg-[#e3e8ee] dark:bg-[#1a3a5c] overflow-hidden">
+                    <div className="h-1.5 rounded-full bg-[#1F2937] overflow-hidden">
                       <div
-                        className="h-full rounded-full bg-gradient-to-r from-[#635bff] to-[#818cf8] transition-all duration-700"
+                        className="h-full rounded-full bg-gradient-to-r from-[#4F7CFF] to-[#818cf8] transition-all duration-700"
                         style={{ width: `${lang.pct}%` }}
                       />
                     </div>

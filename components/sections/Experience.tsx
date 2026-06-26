@@ -77,23 +77,23 @@ export function Experience() {
   const t = useTranslations("experience");
 
   return (
-    <section id="experience" className="py-24 bg-white dark:bg-[#0a2540]">
+    <section id="experience" className="py-24 bg-[#0A0E1A] border-t border-[#1F2937]">
       <div className="container-custom">
         {/* Header */}
         <AnimatedSection className="mb-16">
-          <span className="inline-block px-3 py-1 rounded-full bg-[#635bff]/10 text-[#635bff] text-xs font-semibold uppercase tracking-widest mb-4">
+          <span className="inline-block px-3 py-1 rounded-full bg-[#4F7CFF]/10 text-[#4F7CFF] text-xs font-semibold uppercase tracking-widest mb-4">
             {t("label")}
           </span>
-          <h2 className="text-4xl md:text-5xl font-bold text-[#0a2540] dark:text-white tracking-tight mb-4">
+          <h2 className="text-4xl md:text-5xl font-bold text-[#F5F7FA] tracking-tight mb-4">
             {t("title")}
           </h2>
-          <p className="text-[#425466] dark:text-[#a8c0d8] text-lg">{t("subtitle")}</p>
+          <p className="text-[#B8C1D1] text-lg">{t("subtitle")}</p>
         </AnimatedSection>
 
         {/* Timeline */}
         <div className="relative">
           {/* Vertical line */}
-          <div className="absolute left-6 top-0 bottom-0 w-px bg-[#e3e8ee] dark:bg-[#1a3a5c] hidden md:block" />
+          <div className="absolute left-6 top-0 bottom-0 w-px bg-[#1F2937] hidden md:block" />
 
           <div className="space-y-6">
             {experiences.map((exp, i) => (
@@ -103,8 +103,8 @@ export function Experience() {
                   <div
                     className={`hidden md:flex absolute left-3.5 top-6 w-5 h-5 rounded-full border-2 items-center justify-center ${
                       exp.highlight
-                        ? "bg-[#635bff] border-[#635bff]"
-                        : "bg-white dark:bg-[#0a2540] border-[#e3e8ee] dark:border-[#1a3a5c]"
+                        ? "bg-[#4F7CFF] border-[#4F7CFF]"
+                        : "bg-[#0A0E1A] border-[#1F2937]"
                     }`}
                   >
                     {exp.highlight && (
@@ -115,8 +115,8 @@ export function Experience() {
                   <div
                     className={`p-6 md:p-8 rounded-2xl border transition-all duration-300 card-shadow-hover ${
                       exp.highlight
-                        ? "bg-gradient-to-br from-[#635bff]/5 to-[#635bff]/10 dark:from-[#635bff]/10 dark:to-[#635bff]/5 border-[#635bff]/20 dark:border-[#635bff]/30"
-                        : "bg-[#f6f9fc] dark:bg-[#0d2d50] border-[#e3e8ee] dark:border-[#1a3a5c]"
+                        ? "bg-gradient-to-br from-[#4F7CFF]/5 to-[#4F7CFF]/10 border-[#4F7CFF]/20"
+                        : "bg-[#0F1419] border-[#1F2937]"
                     }`}
                   >
                     <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3 mb-4">
@@ -124,21 +124,19 @@ export function Experience() {
                         <div
                           className={`flex-shrink-0 w-10 h-10 rounded-xl flex items-center justify-center ${
                             exp.highlight
-                              ? "bg-[#635bff] text-white"
-                              : "bg-[#e3e8ee] dark:bg-[#1a3a5c] text-[#8898aa]"
+                              ? "bg-[#4F7CFF] text-white"
+                              : "bg-[#1F2937] text-[#6B7689]"
                           }`}
                         >
                           <Briefcase className="w-5 h-5" />
                         </div>
                         <div>
-                          <h3 className="text-lg font-bold text-[#0a2540] dark:text-white">
+                          <h3 className="text-lg font-bold text-[#F5F7FA]">
                             {exp.role}
                           </h3>
                           <p
                             className={`text-sm font-semibold ${
-                              exp.highlight
-                                ? "text-[#635bff]"
-                                : "text-[#425466] dark:text-[#a8c0d8]"
+                              exp.highlight ? "text-[#4F7CFF]" : "text-[#B8C1D1]"
                             }`}
                           >
                             {exp.company}
@@ -147,16 +145,16 @@ export function Experience() {
                       </div>
 
                       <div className="sm:text-right flex-shrink-0">
-                        <div className="text-sm font-medium text-[#425466] dark:text-[#a8c0d8]">
+                        <div className="text-sm font-medium text-[#B8C1D1]">
                           {exp.period} — {exp.end === "present" ? t("present") : exp.end}
                         </div>
-                        <div className="text-xs text-[#8898aa] dark:text-[#6b8fa8]">
+                        <div className="text-xs text-[#6B7689]">
                           {exp.location}
                         </div>
                       </div>
                     </div>
 
-                    <p className="text-sm text-[#425466] dark:text-[#a8c0d8] leading-relaxed mb-4">
+                    <p className="text-sm text-[#B8C1D1] leading-relaxed mb-4">
                       {exp.description}
                     </p>
 
@@ -164,7 +162,7 @@ export function Experience() {
                       {exp.tags.map((tag) => (
                         <span
                           key={tag}
-                          className="px-2 py-0.5 rounded-md bg-white dark:bg-[#0a2540] text-[#635bff] text-xs font-medium border border-[#e3e8ee] dark:border-[#1a3a5c]"
+                          className="px-2 py-0.5 rounded-md bg-[#0A0E1A] text-[#4F7CFF] text-xs font-medium border border-[#1F2937]"
                         >
                           {tag}
                         </span>

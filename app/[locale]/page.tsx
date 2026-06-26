@@ -1,7 +1,8 @@
+import { ScrollProgress } from "@/components/ScrollProgress";
+import { CommandPalette } from "@/components/CommandPalette";
 import { Navigation } from "@/components/Navigation";
 import { Hero } from "@/components/sections/Hero";
-import { Expertise } from "@/components/sections/Expertise";
-import { FeaturedCase } from "@/components/sections/FeaturedCase";
+import { FeaturedCases } from "@/components/sections/FeaturedCases";
 import { SelectedWork } from "@/components/sections/SelectedWork";
 import { Experience } from "@/components/sections/Experience";
 import { Education } from "@/components/sections/Education";
@@ -12,11 +13,12 @@ import { Footer } from "@/components/sections/Footer";
 export default function HomePage() {
   return (
     <>
+      <ScrollProgress />
+      <CommandPalette />
       <Navigation />
       <main>
         <Hero />
-        <Expertise />
-        <FeaturedCase />
+        <FeaturedCases />
         <SelectedWork />
         <Experience />
         <Education />

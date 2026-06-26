@@ -1,192 +1,165 @@
 "use client";
 
-import { useTranslations } from "next-intl";
-import { useState } from "react";
+import Image from "next/image";
 import { AnimatedSection } from "@/components/AnimatedSection";
 import { ExternalLink, Lock } from "lucide-react";
 
-type Category = "all" | "research" | "enterprise" | "probono";
+type Tier2Project = {
+  id: string;
+  eyebrow: string;
+  title: string;
+  description: string;
+  stack: string;
+  url: string;
+  live: boolean;
+  screenshot?: string;
+  accent: string;
+};
 
-const projects = [
-  {
-    id: "lapd",
-    title: "LAPD Crime Analytics",
-    subtitle: "Research · 1M+ registros",
-    description:
-      "Dashboard interactivo de análisis de crimen en Los Angeles. Módulos de mapas de calor, análisis temporal, tipos de crimen y módulo Arrests con filtros avanzados.",
-    url: "https://lapd-data-crime.vercel.app/dashboard",
-    tags: ["Next.js", "Mapbox", "D3.js", "REST API"],
-    category: "research" as Category,
-    accent: "#635bff",
-  },
-  {
-    id: "atlas-one",
-    title: "Atlas One ERP",
-    subtitle: "Enterprise · SaaS B2B",
-    description:
-      "ERP modular para PyMEs argentinas con módulos de finanzas, inventario, clientes y reportes BI integrados. Diseño enfocado en UX para equipos no técnicos.",
-    url: "https://www.atlaones-erp.com",
-    tags: ["React", "FastAPI", "PostgreSQL", "Power BI"],
-    category: "enterprise" as Category,
-    accent: "#06b6d4",
-  },
+const projects: Tier2Project[] = [
   {
     id: "rsi",
+    eyebrow: "Research · PropTech",
     title: "Real Estate Intelligence",
-    subtitle: "Research · Alpha Score",
     description:
-      "Plataforma PropTech con Alpha Score por radio censal. Analiza 4 ciudades ARG con datos INDEC, valuaciones fiscales y métricas de liquidez del mercado inmobiliario.",
+      "Alpha Score propietario por radio censal para 4 ciudades argentinas. Integra datos INDEC, valuaciones fiscales y métricas de liquidez de mercado para identificar las zonas con mayor potencial de rentabilidad inmobiliaria.",
+    stack: "Next.js 15 · MapLibre · PostGIS · FastAPI · INDEC API",
     url: "https://real-state-intelligence.vercel.app/",
-    tags: ["Next.js 15", "MapLibre", "PostGIS", "FastAPI"],
-    category: "research" as Category,
-    accent: "#8b5cf6",
-  },
-  {
-    id: "atlas-nexus",
-    title: "Atlas Nexus",
-    subtitle: "Enterprise · Integración pagos",
-    description:
-      "SaaS de integración de pagos para comercios chicos compatible con Clover POS. Tracking de transacciones, reconciliación automática y reportes financieros.",
-    url: "https://trackintegracionpagos.vercel.app/",
-    tags: ["React", "FastAPI", "Neon", "Clover API"],
-    category: "enterprise" as Category,
-    accent: "#10b981",
-  },
-  {
-    id: "electoral",
-    title: "Electoral Analytics",
-    subtitle: "Research · Análisis municipal",
-    description:
-      "Plataforma de inteligencia electoral para municipios del conurbano bonaerense. Análisis por radio censal, mapas coropléticos y segmentación de zonas operativas.",
-    url: "#",
-    tags: ["Python", "QGIS", "GeoPandas", "Leaflet"],
-    category: "research" as Category,
+    live: true,
+    screenshot: "/screenshots/rsi.png",
     accent: "#f59e0b",
   },
   {
-    id: "cipe",
-    title: "Fundación CIPE",
-    subtitle: "Pro-bono · Empleabilidad juvenil",
+    id: "electoral",
+    eyebrow: "Research · Civic Intelligence",
+    title: "Electoral Analytics",
     description:
-      "Sitio institucional para fundación de empleabilidad juvenil con CMS integrado, sistema de donaciones y plataforma de voluntariado. Diseño accesible y mobile-first.",
+      "Plataforma de inteligencia electoral para municipios del conurbano bonaerense. Análisis geoespacial por radio censal, mapas coropléticos de volatilidad y segmentación de zonas operativas para campañas políticas.",
+    stack: "Python · QGIS · GeoPandas · Matplotlib · ReportLab",
+    url: "#",
+    live: false,
+    screenshot: "/screenshots/electoral.png",
+    accent: "#8b5cf6",
+  },
+  {
+    id: "cipe",
+    eyebrow: "Pro-bono · Social Impact",
+    title: "Fundación CIPE",
+    description:
+      "Sitio institucional para fundación de empleabilidad juvenil con CMS integrado, sistema de donaciones y plataforma de voluntariado. Diseño accesible, mobile-first y optimizado para conversión de donantes.",
+    stack: "Next.js · CMS · Tailwind CSS · Vercel",
     url: "https://www.fundacioncipe.com/",
-    tags: ["Next.js", "CMS", "Tailwind", "Vercel"],
-    category: "probono" as Category,
+    live: true,
     accent: "#ec4899",
   },
 ];
 
-type FilterKey = "all" | "research" | "enterprise" | "probono";
-
 export function SelectedWork() {
-  const t = useTranslations("work");
-  const [filter, setFilter] = useState<FilterKey>("all");
-
-  const filters: { key: FilterKey; label: string }[] = [
-    { key: "all", label: t("filter_all") },
-    { key: "research", label: t("filter_research") },
-    { key: "enterprise", label: t("filter_enterprise") },
-    { key: "probono", label: t("filter_probono") },
-  ];
-
-  const filtered =
-    filter === "all" ? projects : projects.filter((p) => p.category === filter);
-
   return (
-    <section id="projects" className="py-24 bg-[#f6f9fc] dark:bg-[#0d2d50]">
+    <section id="projects" className="py-24 bg-[#0F1419] border-t border-[#1F2937]">
       <div className="container-custom">
         {/* Header */}
-        <AnimatedSection className="mb-12">
-          <span className="inline-block px-3 py-1 rounded-full bg-[#635bff]/10 text-[#635bff] text-xs font-semibold uppercase tracking-widest mb-4">
-            {t("label")}
-          </span>
-          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6">
-            <div>
-              <h2 className="text-4xl md:text-5xl font-bold text-[#0a2540] dark:text-white tracking-tight mb-3">
-                {t("title")}
-              </h2>
-              <p className="text-[#425466] dark:text-[#a8c0d8] text-lg max-w-xl">
-                {t("subtitle")}
-              </p>
-            </div>
-
-            {/* Filter pills */}
-            <div className="flex flex-wrap gap-2 flex-shrink-0">
-              {filters.map((f) => (
-                <button
-                  key={f.key}
-                  onClick={() => setFilter(f.key)}
-                  className={`px-4 py-1.5 rounded-full text-sm font-medium transition-all ${
-                    filter === f.key
-                      ? "bg-[#635bff] text-white"
-                      : "bg-white dark:bg-[#0a2540] text-[#425466] dark:text-[#a8c0d8] border border-[#e3e8ee] dark:border-[#1a3a5c] hover:border-[#635bff] dark:hover:border-[#635bff]"
-                  }`}
-                >
-                  {f.label}
-                </button>
-              ))}
-            </div>
+        <AnimatedSection className="mb-16">
+          <div className="flex items-center gap-4 mb-5">
+            <span className="text-[#6B7689] text-xs font-mono select-none">━━━</span>
+            <span className="text-[#6B7689] text-xs font-mono uppercase tracking-widest">
+              Más proyectos
+            </span>
           </div>
+          <h2
+            className="font-serif text-[#F5F7FA] leading-tight"
+            style={{ fontSize: "clamp(28px, 3.5vw, 44px)", fontWeight: 400 }}
+          >
+            Otros experimentos.
+          </h2>
         </AnimatedSection>
 
-        {/* Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filtered.map((project, i) => (
-            <AnimatedSection key={project.id} delay={i * 0.07}>
-              <div className="h-full flex flex-col p-8 rounded-2xl bg-white dark:bg-[#0a2540] border border-[#e3e8ee] dark:border-[#1a3a5c] card-shadow card-shadow-hover transition-all duration-300 group">
-                {/* Accent bar */}
-                <div
-                  className="w-10 h-1 rounded-full mb-6 group-hover:w-16 transition-all duration-300"
-                  style={{ backgroundColor: project.accent }}
-                />
-
-                {/* Category */}
-                <span className="text-xs font-semibold uppercase tracking-widest text-[#8898aa] dark:text-[#6b8fa8] mb-3">
-                  {project.subtitle}
-                </span>
-
-                {/* Title */}
-                <h3 className="text-xl font-bold text-[#0a2540] dark:text-white mb-3 leading-tight">
-                  {project.title}
-                </h3>
-
-                {/* Description */}
-                <p className="text-sm text-[#425466] dark:text-[#a8c0d8] leading-relaxed mb-6 flex-1">
-                  {project.description}
-                </p>
-
-                {/* Tags */}
-                <div className="flex flex-wrap gap-1.5 mb-6">
-                  {project.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="px-2 py-0.5 rounded-md bg-[#f6f9fc] dark:bg-[#0d2d50] text-[#425466] dark:text-[#a8c0d8] text-xs font-medium border border-[#e3e8ee] dark:border-[#1a3a5c]"
+        {/* Alternating horizontal cards */}
+        <div className="space-y-8">
+          {projects.map((p, i) => {
+            const isEven = i % 2 === 0;
+            return (
+              <AnimatedSection key={p.id} delay={i * 0.08}>
+                <div className="grid md:grid-cols-2 gap-0 rounded-xl border border-[#1F2937] overflow-hidden group hover:border-[#2a3a50] transition-colors duration-300">
+                  {/* Screenshot — alternates left/right */}
+                  {p.screenshot && (
+                    <div
+                      className={`relative overflow-hidden ${isEven ? "md:order-last" : ""} bg-[#0A0E1A]`}
+                      style={{ minHeight: "240px" }}
                     >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
+                      <Image
+                        src={p.screenshot}
+                        alt={p.title}
+                        fill
+                        className="object-cover object-top transition-transform duration-500 group-hover:scale-[1.03]"
+                        sizes="(max-width: 768px) 100vw, 50vw"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#0A0E1A]/40 to-transparent" />
+                      {/* Accent line at top */}
+                      <div
+                        className="absolute top-0 inset-x-0 h-[2px]"
+                        style={{ backgroundColor: p.accent }}
+                      />
+                    </div>
+                  )}
 
-                {/* CTA */}
-                {project.url !== "#" ? (
-                  <a
-                    href={project.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 text-sm font-semibold text-[#635bff] hover:gap-3 transition-all group/link"
-                  >
-                    {t("cta")}
-                    <ExternalLink className="w-3.5 h-3.5" />
-                  </a>
-                ) : (
-                  <span className="flex items-center gap-2 text-sm font-semibold text-[#8898aa] dark:text-[#6b8fa8]">
-                    <Lock className="w-3.5 h-3.5" />
-                    Privado / confidencial
-                  </span>
-                )}
-              </div>
-            </AnimatedSection>
-          ))}
+                  {/* No screenshot — placeholder */}
+                  {!p.screenshot && (
+                    <div
+                      className={`relative overflow-hidden ${isEven ? "md:order-last" : ""} flex items-center justify-center`}
+                      style={{
+                        minHeight: "240px",
+                        background: `linear-gradient(135deg, #0A0E1A 0%, ${p.accent}10 100%)`,
+                      }}
+                    >
+                      <div
+                        className="w-16 h-16 rounded-2xl flex items-center justify-center border"
+                        style={{ borderColor: p.accent + "30", backgroundColor: p.accent + "10" }}
+                      >
+                        <span className="text-2xl" style={{ color: p.accent }}>
+                          ✦
+                        </span>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Text content */}
+                  <div className="p-8 md:p-10 flex flex-col justify-center bg-[#0F1419]">
+                    <span
+                      className="text-[11px] font-mono uppercase tracking-widest mb-3"
+                      style={{ color: p.accent }}
+                    >
+                      {p.eyebrow}
+                    </span>
+                    <h3 className="text-xl font-semibold text-[#F5F7FA] mb-3 leading-snug">
+                      {p.title}
+                    </h3>
+                    <p className="text-[#B8C1D1] text-sm leading-relaxed mb-5">{p.description}</p>
+                    <p className="text-[11px] font-mono text-[#6B7689] mb-6 leading-relaxed">
+                      {p.stack}
+                    </p>
+                    {p.live ? (
+                      <a
+                        href={p.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 text-sm font-semibold transition-all self-start"
+                        style={{ color: p.accent }}
+                      >
+                        Ver live
+                        <ExternalLink className="w-3.5 h-3.5" />
+                      </a>
+                    ) : (
+                      <span className="inline-flex items-center gap-2 text-sm text-[#6B7689] self-start">
+                        <Lock className="w-3.5 h-3.5" />
+                        Confidencial
+                      </span>
+                    )}
+                  </div>
+                </div>
+              </AnimatedSection>
+            );
+          })}
         </div>
       </div>
     </section>

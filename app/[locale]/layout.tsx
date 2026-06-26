@@ -2,7 +2,6 @@ import { NextIntlClientProvider } from "next-intl";
 import { getMessages, getTranslations } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
-import { ThemeProvider } from "@/components/ThemeProvider";
 import type { Metadata } from "next";
 
 type Props = {
@@ -25,16 +24,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function LocaleLayout({ children, params }: Props) {
   const { locale } = await params;
-
-  if (!routing.locales.includes(locale as "es" | "en")) {
-    notFound();
-  }
-
+  if (!routing.locales.includes(locale as "es" | "en")) notFound();
   const messages = await getMessages();
 
   return (
     <NextIntlClientProvider messages={messages}>
-      <ThemeProvider>{children}</ThemeProvider>
+      {children}
     </NextIntlClientProvider>
   );
 }

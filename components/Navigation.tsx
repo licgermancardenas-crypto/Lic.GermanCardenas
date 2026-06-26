@@ -1,26 +1,19 @@
 "use client";
 
-import { useTranslations } from "next-intl";
-import { useTheme } from "next-themes";
 import { usePathname, useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
-import { Moon, Sun, Globe, Menu, X, Download } from "lucide-react";
-import { cn } from "@/lib/utils";
+import { Globe, Menu, X, Download, Command } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 export function Navigation() {
-  const t = useTranslations("nav");
-  const { theme, setTheme } = useTheme();
   const pathname = usePathname();
   const router = useRouter();
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  const [mounted, setMounted] = useState(false);
 
   const currentLocale = pathname.startsWith("/en") ? "en" : "es";
 
   useEffect(() => {
-    setMounted(true);
     const handleScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
@@ -35,36 +28,39 @@ export function Navigation() {
 
   function scrollTo(id: string) {
     setMenuOpen(false);
-    const el = document.getElementById(id);
-    if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+    document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+
+  function openPalette() {
+    setMenuOpen(false);
+    window.dispatchEvent(new KeyboardEvent("keydown", { key: "k", metaKey: true, bubbles: true }));
   }
 
   const navLinks = [
-    { label: t("projects"), id: "projects" },
-    { label: t("experience"), id: "experience" },
-    { label: t("stack"), id: "stack" },
-    { label: t("contact"), id: "contact" },
+    { label: "Casos", id: "casos" },
+    { label: "Proyectos", id: "projects" },
+    { label: "Experiencia", id: "experience" },
+    { label: "Contacto", id: "contact" },
   ];
 
   return (
     <header
-      className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
-          ? "bg-white/90 dark:bg-[#0a2540]/90 backdrop-blur-md border-b border-[#e3e8ee] dark:border-[#1a3a5c] shadow-sm"
+          ? "bg-[#0A0E1A]/90 backdrop-blur-md border-b border-[#1F2937]"
           : "bg-transparent"
-      )}
+      }`}
     >
       <div className="container-custom flex items-center justify-between h-16">
         {/* Logo */}
-        <button
-          onClick={() => scrollTo("hero")}
-          className="flex items-center gap-2 group"
-        >
-          <div className="w-8 h-8 rounded-lg bg-[#635bff] flex items-center justify-center text-white text-sm font-bold tracking-tight group-hover:scale-110 transition-transform">
+        <button onClick={() => scrollTo("hero")} className="flex items-center gap-2.5 group">
+          <div
+            className="w-8 h-8 rounded-lg flex items-center justify-center text-white text-sm font-bold tracking-tight group-hover:scale-110 transition-transform"
+            style={{ backgroundColor: "#4F7CFF" }}
+          >
             GC
           </div>
-          <span className="font-semibold text-[#0a2540] dark:text-white hidden sm:block">
+          <span className="font-semibold text-[#F5F7FA] hidden sm:block text-sm">
             Germán Cárdenas
           </span>
         </button>
@@ -75,7 +71,7 @@ export function Navigation() {
             <button
               key={link.id}
               onClick={() => scrollTo(link.id)}
-              className="text-sm text-[#425466] dark:text-[#a8c0d8] hover:text-[#635bff] dark:hover:text-white transition-colors font-medium"
+              className="text-sm text-[#B8C1D1] hover:text-[#F5F7FA] transition-colors font-medium"
             >
               {link.label}
             </button>
@@ -84,46 +80,39 @@ export function Navigation() {
 
         {/* Controls */}
         <div className="flex items-center gap-2">
+          {/* ⌘K */}
+          <button
+            onClick={openPalette}
+            className="hidden md:flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-mono text-[#6B7689] hover:text-[#B8C1D1] border border-[#1F2937] hover:border-[#4F7CFF] transition-colors"
+            title="Command palette"
+          >
+            <Command className="w-3 h-3" />K
+          </button>
+
           {/* Lang toggle */}
           <button
             onClick={toggleLocale}
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold text-[#425466] dark:text-[#a8c0d8] hover:bg-[#f6f9fc] dark:hover:bg-[#0d2d50] border border-[#e3e8ee] dark:border-[#1a3a5c] transition-colors"
-            title="Toggle language"
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold text-[#B8C1D1] hover:text-[#F5F7FA] border border-[#1F2937] hover:border-[#4F7CFF] transition-colors"
           >
             <Globe className="w-3.5 h-3.5" />
             {currentLocale === "es" ? "EN" : "ES"}
           </button>
 
-          {/* Theme toggle */}
-          {mounted && (
-            <button
-              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-              className="w-9 h-9 flex items-center justify-center rounded-full text-[#425466] dark:text-[#a8c0d8] hover:bg-[#f6f9fc] dark:hover:bg-[#0d2d50] border border-[#e3e8ee] dark:border-[#1a3a5c] transition-colors"
-              aria-label="Toggle theme"
-            >
-              {theme === "dark" ? (
-                <Sun className="w-4 h-4" />
-              ) : (
-                <Moon className="w-4 h-4" />
-              )}
-            </button>
-          )}
-
-          {/* CV download - desktop only */}
+          {/* CV download */}
           <a
             href="/cv.pdf"
             download
-            className="hidden md:flex items-center gap-1.5 px-4 py-2 rounded-lg bg-[#635bff] text-white text-sm font-semibold hover:bg-[#4f46e5] transition-colors"
+            className="hidden md:flex items-center gap-1.5 px-4 py-2 rounded-lg text-white text-sm font-semibold hover:opacity-90 transition-opacity"
+            style={{ backgroundColor: "#4F7CFF" }}
           >
             <Download className="w-3.5 h-3.5" />
-            {t("cv")}
+            CV
           </a>
 
           {/* Mobile menu toggle */}
           <button
-            className="md:hidden w-9 h-9 flex items-center justify-center rounded-full text-[#425466] dark:text-[#a8c0d8] hover:bg-[#f6f9fc] dark:hover:bg-[#0d2d50] border border-[#e3e8ee] dark:border-[#1a3a5c] transition-colors"
+            className="md:hidden w-9 h-9 flex items-center justify-center rounded-full text-[#B8C1D1] hover:bg-[#0F1419] border border-[#1F2937] transition-colors"
             onClick={() => setMenuOpen(!menuOpen)}
-            aria-label={menuOpen ? t("close_menu") : t("open_menu")}
           >
             {menuOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
           </button>
@@ -138,26 +127,33 @@ export function Navigation() {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.2 }}
-            className="md:hidden bg-white dark:bg-[#0a2540] border-b border-[#e3e8ee] dark:border-[#1a3a5c] overflow-hidden"
+            className="md:hidden bg-[#0A0E1A] border-b border-[#1F2937] overflow-hidden"
           >
             <div className="container-custom py-4 flex flex-col gap-1">
               {navLinks.map((link) => (
                 <button
                   key={link.id}
                   onClick={() => scrollTo(link.id)}
-                  className="text-left px-3 py-2.5 rounded-lg text-sm font-medium text-[#425466] dark:text-[#a8c0d8] hover:bg-[#f6f9fc] dark:hover:bg-[#0d2d50] hover:text-[#635bff] transition-colors"
+                  className="text-left px-3 py-2.5 rounded-lg text-sm font-medium text-[#B8C1D1] hover:bg-[#0F1419] hover:text-[#F5F7FA] transition-colors"
                 >
                   {link.label}
                 </button>
               ))}
+              <button
+                onClick={openPalette}
+                className="text-left px-3 py-2.5 rounded-lg text-sm font-medium text-[#6B7689] hover:bg-[#0F1419] hover:text-[#B8C1D1] transition-colors font-mono"
+              >
+                ⌘K Búsqueda rápida
+              </button>
               <a
                 href="/cv.pdf"
                 download
-                className="mt-2 flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg bg-[#635bff] text-white text-sm font-semibold hover:bg-[#4f46e5] transition-colors"
+                className="mt-2 flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg text-white text-sm font-semibold"
+                style={{ backgroundColor: "#4F7CFF" }}
                 onClick={() => setMenuOpen(false)}
               >
                 <Download className="w-4 h-4" />
-                {t("cv")}
+                Descargar CV
               </a>
             </div>
           </motion.div>

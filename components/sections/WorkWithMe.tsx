@@ -8,14 +8,14 @@ export function WorkWithMe() {
   const t = useTranslations("wwm");
 
   return (
-    <section id="contact" className="py-24 bg-[#f6f9fc] dark:bg-[#0d2d50]">
+    <section id="contact" className="py-24 bg-[#0F1419] border-t border-[#1F2937]">
       <div className="container-custom">
         {/* Header */}
         <AnimatedSection className="mb-16 text-center">
-          <span className="inline-block px-3 py-1 rounded-full bg-[#635bff]/10 text-[#635bff] text-xs font-semibold uppercase tracking-widest mb-4">
+          <span className="inline-block px-3 py-1 rounded-full bg-[#4F7CFF]/10 text-[#4F7CFF] text-xs font-semibold uppercase tracking-widest mb-4">
             {t("label")}
           </span>
-          <h2 className="text-4xl md:text-5xl font-bold text-[#0a2540] dark:text-white tracking-tight">
+          <h2 className="text-4xl md:text-5xl font-bold text-[#F5F7FA] tracking-tight">
             {t("title")}
           </h2>
         </AnimatedSection>
@@ -24,19 +24,19 @@ export function WorkWithMe() {
         <div className="grid md:grid-cols-2 gap-6 mb-12">
           {/* Enterprise card */}
           <AnimatedSection delay={0.1}>
-            <div className="h-full p-8 md:p-10 rounded-2xl bg-[#0a2540] dark:bg-[#0d2d50] border border-[#1a3a5c] relative overflow-hidden group">
-              <div className="absolute top-0 right-0 w-64 h-64 rounded-full bg-[#635bff]/10 blur-[80px] pointer-events-none" />
+            <div className="h-full p-8 md:p-10 rounded-2xl bg-[#0A0E1A] border border-[#1F2937] relative overflow-hidden group">
+              <div className="absolute top-0 right-0 w-64 h-64 rounded-full bg-[#4F7CFF]/10 blur-[80px] pointer-events-none" />
               <div className="relative z-10">
-                <div className="w-12 h-12 rounded-xl bg-[#635bff]/20 flex items-center justify-center mb-6">
-                  <Building2 className="w-6 h-6 text-[#635bff]" />
+                <div className="w-12 h-12 rounded-xl bg-[#4F7CFF]/20 flex items-center justify-center mb-6">
+                  <Building2 className="w-6 h-6 text-[#4F7CFF]" />
                 </div>
                 <h3 className="text-2xl font-bold text-white mb-4">{t("enterprise_title")}</h3>
                 <p className="text-[#a8c0d8] leading-relaxed mb-8">{t("enterprise_desc")}</p>
                 <a
-                  href="https://www.linkedin.com/in/licgermancardenas"
+                  href="https://www.linkedin.com/in/german-cardenas-070118175/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-[#635bff] text-white font-semibold text-sm hover:bg-[#4f46e5] transition-all hover:shadow-lg hover:shadow-[#635bff]/30 hover:-translate-y-0.5 active:translate-y-0"
+                  className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-[#4F7CFF] text-white font-semibold text-sm hover:opacity-90 transition-all hover:shadow-lg hover:shadow-[#4F7CFF]/30 hover:-translate-y-0.5 active:translate-y-0"
                 >
                   {t("enterprise_cta")}
                   <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
@@ -49,23 +49,23 @@ export function WorkWithMe() {
 
           {/* Freelance card */}
           <AnimatedSection delay={0.15}>
-            <div className="h-full p-8 md:p-10 rounded-2xl bg-white dark:bg-[#0a2540] border border-[#e3e8ee] dark:border-[#1a3a5c] relative overflow-hidden group card-shadow card-shadow-hover transition-all duration-300">
-              <div className="absolute top-0 right-0 w-64 h-64 rounded-full bg-[#635bff]/5 blur-[80px] pointer-events-none" />
+            <div className="h-full p-8 md:p-10 rounded-2xl bg-[#0A0E1A] border border-[#1F2937] relative overflow-hidden group card-shadow card-shadow-hover transition-all duration-300">
+              <div className="absolute top-0 right-0 w-64 h-64 rounded-full bg-[#4F7CFF]/5 blur-[80px] pointer-events-none" />
               <div className="relative z-10">
-                <div className="w-12 h-12 rounded-xl bg-[#635bff]/10 flex items-center justify-center mb-6">
-                  <Lightbulb className="w-6 h-6 text-[#635bff]" />
+                <div className="w-12 h-12 rounded-xl bg-[#4F7CFF]/10 flex items-center justify-center mb-6">
+                  <Lightbulb className="w-6 h-6 text-[#4F7CFF]" />
                 </div>
-                <h3 className="text-2xl font-bold text-[#0a2540] dark:text-white mb-4">
+                <h3 className="text-2xl font-bold text-[#F5F7FA] mb-4">
                   {t("freelance_title")}
                 </h3>
-                <p className="text-[#425466] dark:text-[#a8c0d8] leading-relaxed mb-8">
+                <p className="text-[#B8C1D1] leading-relaxed mb-8">
                   {t("freelance_desc")}
                 </p>
                 <a
                   href="https://calendly.com/lic-germancardenas"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-6 py-3 rounded-xl border-2 border-[#635bff] text-[#635bff] font-semibold text-sm hover:bg-[#635bff] hover:text-white transition-all hover:-translate-y-0.5 active:translate-y-0"
+                  className="inline-flex items-center gap-2 px-6 py-3 rounded-xl border-2 border-[#4F7CFF] text-[#4F7CFF] font-semibold text-sm hover:bg-[#4F7CFF] hover:text-white transition-all hover:-translate-y-0.5 active:translate-y-0"
                 >
                   <Calendar className="w-4 h-4" />
                   {t("freelance_cta")}
@@ -77,27 +77,27 @@ export function WorkWithMe() {
 
         {/* Direct contact bar */}
         <AnimatedSection delay={0.25}>
-          <div className="p-6 md:p-8 rounded-2xl bg-white dark:bg-[#0a2540] border border-[#e3e8ee] dark:border-[#1a3a5c] card-shadow">
+          <div className="p-6 md:p-8 rounded-2xl bg-[#0A0E1A] border border-[#1F2937] card-shadow">
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
               <div>
-                <h3 className="text-lg font-bold text-[#0a2540] dark:text-white mb-1">
+                <h3 className="text-lg font-bold text-[#F5F7FA] mb-1">
                   {t("contact_title")}
                 </h3>
-                <p className="text-sm text-[#8898aa] dark:text-[#6b8fa8]">{t("contact_desc")}</p>
+                <p className="text-sm text-[#6B7689]">{t("contact_desc")}</p>
               </div>
               <div className="flex flex-col sm:flex-row gap-3">
                 <a
                   href="mailto:lic.germancardenas@gmail.com"
-                  className="flex items-center gap-2.5 px-5 py-3 rounded-xl bg-[#f6f9fc] dark:bg-[#0d2d50] border border-[#e3e8ee] dark:border-[#1a3a5c] text-sm font-medium text-[#0a2540] dark:text-white hover:border-[#635bff] dark:hover:border-[#635bff] transition-colors"
+                  className="flex items-center gap-2.5 px-5 py-3 rounded-xl bg-[#0F1419] border border-[#1F2937] text-sm font-medium text-[#B8C1D1] hover:border-[#4F7CFF] transition-colors"
                 >
-                  <Mail className="w-4 h-4 text-[#635bff]" />
+                  <Mail className="w-4 h-4 text-[#4F7CFF]" />
                   lic.germancardenas@gmail.com
                 </a>
                 <a
                   href="https://wa.me/5491158562766"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2.5 px-5 py-3 rounded-xl bg-[#f6f9fc] dark:bg-[#0d2d50] border border-[#e3e8ee] dark:border-[#1a3a5c] text-sm font-medium text-[#0a2540] dark:text-white hover:border-[#25D366] transition-colors"
+                  className="flex items-center gap-2.5 px-5 py-3 rounded-xl bg-[#0F1419] border border-[#1F2937] text-sm font-medium text-[#B8C1D1] hover:border-[#25D366] transition-colors"
                 >
                   <MessageCircle className="w-4 h-4 text-[#25D366]" />
                   +54 11 5856-2766
