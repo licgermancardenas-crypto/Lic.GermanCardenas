@@ -1,8 +1,36 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import Image from "next/image";
 import type { Metadata } from "next";
 import { ArrowLeft, ExternalLink, ArrowRight } from "lucide-react";
+import { ScreenshotGallery } from "@/components/ScreenshotGallery";
+
+const ERP_SHOTS = [
+  "1766963976633.jpg",
+  "exec-overview-v3.png",
+  "dashboard-home.png",
+  "ingresos-wallets-v2.png",
+  "ingresos-tarjetas-v2.png",
+  "comportamiento-v2.png",
+  "desempeno-vendedor-v3.png",
+  "prod-horaria-v3.png",
+  "prod-local-v2.png",
+  "ticket-detail-v2.png",
+  "tickets-v2.png",
+  "cont-balance.png",
+  "cont-cuentas.png",
+  "cont-libromayor.png",
+  "cont-asientos.png",
+  "exec-overview-v2.png",
+  "exec-overview.png",
+  "desempeno-vendedor-v2.png",
+  "desempeno-vendedor.png",
+  "prod-horaria-v2.png",
+  "1768431718219.jpg",
+  "1768431718570.jpg",
+  "1767014183778.jpg",
+  "1767014183865.jpg",
+  "1766963976611.jpg",
+].map((f) => `/screenshots/atlas-erp/${f}`);
 
 type CaseStudy = {
   slug: string;
@@ -12,7 +40,7 @@ type CaseStudy = {
   accent: string;
   isHackathon?: boolean;
   hackathonName?: string;
-  screenshot: string;
+  screenshots: string[];
   url: string;
   context: string;
   challenge: string;
@@ -34,7 +62,7 @@ const cases: Record<string, CaseStudy> = {
     category: "Enterprise · SaaS B2B",
     subtitle: "ERP modular para PyMEs argentinas con inteligencia de negocio integrada.",
     accent: "#06b6d4",
-    screenshot: "/screenshots/atlas-erp.png",
+    screenshots: ERP_SHOTS,
     url: "https://www.atlaones-erp.com",
     context:
       "El mercado de software para PyMEs en Argentina está dominado por soluciones costosas e inflexibles (SAP, Oracle) o por herramientas desconectadas (planillas, WhatsApp, Excel). El 87% de las PyMEs no tiene acceso a Business Intelligence real. Atlas One nació para cerrar esa brecha con un ERP modular pensado para equipos sin perfil técnico.",
@@ -85,7 +113,7 @@ const cases: Record<string, CaseStudy> = {
     accent: "#F59E0B",
     isHackathon: true,
     hackathonName: "[NOMBRE HACKATHON] 2025",
-    screenshot: "/screenshots/atlas-nexus.png",
+    screenshots: ["/screenshots/atlas-nexus.png"],
     url: "https://trackintegracionpagos.vercel.app/",
     context:
       "Los comercios independientes (kioscos, ferreterías, indumentaria, farmacias) generan datos valiosos en cada venta pero no tienen forma de interpretarlos. El POS registra transacciones, pero nadie les dice qué significa que el martes venden 3x más que el lunes, o que el 57% de sus clientes no vuelve después de la primera compra.",
@@ -134,7 +162,7 @@ const cases: Record<string, CaseStudy> = {
     category: "AgriTech · GIS · Enterprise",
     subtitle: "Plataforma geoespacial de escala nacional para la agroindustria argentina.",
     accent: "#10b981",
-    screenshot: "/screenshots/agronova.png",
+    screenshots: ["/screenshots/agronova.png"],
     url: "https://agro-nova-plataforma.vercel.app/",
     context:
       "Argentina es el tercer exportador mundial de soja y uno de los mayores productores agropecuarios del mundo. Sin embargo, el sector opera con una digitalización mínima: los datos están fragmentados en silos (clima, precios, logística, stock de agroquímicos) sin ninguna capa de inteligencia que los conecte. AgroNova nació para cambiar eso.",
@@ -183,7 +211,7 @@ const cases: Record<string, CaseStudy> = {
     category: "Research · Data Analytics",
     subtitle: "Análisis de 1 millón de registros policiales de Los Ángeles con rigor metodológico.",
     accent: "#8b5cf6",
-    screenshot: "/screenshots/lapd.png",
+    screenshots: ["/screenshots/lapd.png"],
     url: "https://lapd-data-crime.vercel.app/dashboard",
     context:
       "El LAPD publica abiertamente sus datos de crimen desde 2020. Son más de 1 millón de registros con fechas, ubicaciones, tipos de delito, información demográfica del sospechoso y estado de resolución. El problema es que están en formato CSV crudo, sin ninguna herramienta para explorarlos.",
@@ -310,22 +338,13 @@ export default async function WorkPage({
           )}
         </div>
 
-        {/* Screenshot */}
-        <div className="mb-16 relative rounded-xl overflow-hidden border border-[#1F2937] shadow-2xl">
-          <div className="bg-[#060B14] px-4 py-2.5 flex items-center gap-3 border-b border-[#1F2937]">
-            <div className="flex gap-1.5">
-              <div className="w-2.5 h-2.5 rounded-full bg-red-500/40" />
-              <div className="w-2.5 h-2.5 rounded-full bg-yellow-500/40" />
-              <div className="w-2.5 h-2.5 rounded-full bg-green-500/40" />
-            </div>
-            <span className="flex-1 bg-white/[0.03] rounded px-3 py-1 text-[11px] text-white/20 font-mono truncate">
-              {c.url}
-            </span>
-          </div>
-          <div className="relative" style={{ aspectRatio: "16/9" }}>
-            <Image src={c.screenshot} alt={c.title} fill className="object-cover object-top" />
-          </div>
-        </div>
+        {/* Screenshots */}
+        <ScreenshotGallery
+          screenshots={c.screenshots}
+          title={c.title}
+          url={c.url}
+          accent={c.accent}
+        />
 
         {/* Metrics */}
         <div className="grid grid-cols-3 gap-6 mb-16 pb-16 border-b border-[#1F2937]">
