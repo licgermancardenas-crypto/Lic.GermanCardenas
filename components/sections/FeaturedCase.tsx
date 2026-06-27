@@ -41,6 +41,7 @@ type Case = {
 };
 
 const ERP_SHOTS = [
+  "1766963976633.jpg",
   "exec-overview-v3.png",
   "dashboard-home.png",
   "ingresos-wallets-v2.png",
@@ -65,7 +66,6 @@ const ERP_SHOTS = [
   "1767014183778.jpg",
   "1767014183865.jpg",
   "1766963976611.jpg",
-  "1766963976633.jpg",
 ].map((f) => `/screenshots/atlas-erp/${f}`);
 
 const cases: Case[] = [
@@ -316,28 +316,18 @@ function Gallery({
         {/* Image */}
         <div
           className="relative cursor-zoom-in"
-          style={{ aspectRatio: "16/10", backgroundColor: "#06080f" }}
+          style={{ height: "280px", backgroundColor: "#06080f" }}
           onClick={() => openLightbox(idx)}
         >
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={idx}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.2 }}
-              className="absolute inset-0"
-            >
-              <Image
-                src={screenshots[idx]}
-                alt={`Dashboard screenshot ${idx + 1}`}
-                fill
-                className="object-contain"
-                sizes="(max-width: 1024px) 100vw, 50vw"
-                quality={90}
-              />
-            </motion.div>
-          </AnimatePresence>
+          <Image
+            key={screenshots[idx]}
+            src={screenshots[idx]}
+            alt={`Dashboard screenshot ${idx + 1}`}
+            fill
+            className="object-contain"
+            sizes="(max-width: 1024px) 100vw, 50vw"
+            quality={90}
+          />
 
           {/* Zoom hint on hover */}
           <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none">
@@ -377,7 +367,10 @@ function Gallery({
 
         {/* Thumbnail strip */}
         {multiple && (
-          <div className="bg-[#06080f] px-3 py-2 flex gap-1.5 overflow-x-auto scrollbar-none border-t border-white/5">
+          <div
+          className="bg-[#06080f] px-3 py-2 flex gap-1.5 overflow-x-auto border-t border-white/5"
+          style={{ scrollbarWidth: "none" }}
+        >
             {screenshots.map((src, i) => (
               <button
                 key={i}
@@ -608,6 +601,7 @@ export function FeaturedCase() {
                     />
                     <div className="relative">
                       <Gallery
+                        key={current.id}
                         screenshots={current.screenshots}
                         accent={current.accent}
                         caseId={current.id}
