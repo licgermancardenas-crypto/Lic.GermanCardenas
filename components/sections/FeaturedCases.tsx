@@ -2,10 +2,18 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useRef } from "react";
+import { useRef, useState, useEffect, useCallback } from "react";
+import { createPortal } from "react-dom";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { AnimatedSection } from "@/components/AnimatedSection";
-import { ExternalLink, ArrowRight } from "lucide-react";
+import {
+  ExternalLink,
+  ArrowRight,
+  ChevronLeft,
+  ChevronRight,
+  X,
+  ZoomIn,
+} from "lucide-react";
 
 const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
@@ -29,9 +37,37 @@ type CaseData = {
   impactLabel: string;
   impact: string;
   metrics: CaseMetric[];
-  screenshot: string;
+  screenshots: string[];
   url: string;
 };
+
+const ERP_SHOTS = [
+  "1766963976633.jpg",
+  "exec-overview-v3.png",
+  "dashboard-home.png",
+  "ingresos-wallets-v2.png",
+  "ingresos-tarjetas-v2.png",
+  "comportamiento-v2.png",
+  "desempeno-vendedor-v3.png",
+  "prod-horaria-v3.png",
+  "prod-local-v2.png",
+  "ticket-detail-v2.png",
+  "tickets-v2.png",
+  "cont-balance.png",
+  "cont-cuentas.png",
+  "cont-libromayor.png",
+  "cont-asientos.png",
+  "exec-overview-v2.png",
+  "exec-overview.png",
+  "desempeno-vendedor-v2.png",
+  "desempeno-vendedor.png",
+  "prod-horaria-v2.png",
+  "1768431718219.jpg",
+  "1768431718570.jpg",
+  "1767014183778.jpg",
+  "1767014183865.jpg",
+  "1766963976611.jpg",
+].map((f) => `/screenshots/atlas-erp/${f}`);
 
 const cases: CaseData[] = [
   {
@@ -59,7 +95,7 @@ const cases: CaseData[] = [
       { value: "68.4%", label: "Tasa de apertura" },
       { value: "−40%", label: "Tiempo análisis" },
     ],
-    screenshot: "/screenshots/atlas-erp.png",
+    screenshots: ERP_SHOTS,
     url: "https://www.atlaones-erp.com",
   },
   {
@@ -91,7 +127,7 @@ const cases: CaseData[] = [
       { value: "57.2%", label: "Retorno clientes" },
       { value: "200+", label: "Equipos superados" },
     ],
-    screenshot: "/screenshots/atlas-nexus.png",
+    screenshots: ["/screenshots/atlas-nexus.png"],
     url: "https://trackintegracionpagos.vercel.app/",
   },
   {
@@ -119,7 +155,7 @@ const cases: CaseData[] = [
       { value: "ARS 14.2B", label: "Revenue modelado" },
       { value: "2.571", label: "Conflictos detectados" },
     ],
-    screenshot: "/screenshots/agronova.png",
+    screenshots: ["/screenshots/agronova.png"],
     url: "https://agro-nova-plataforma.vercel.app/",
   },
   {
@@ -147,18 +183,111 @@ const cases: CaseData[] = [
       { value: "20.1%", label: "Tasa resolución" },
       { value: "10+", label: "Módulos análisis" },
     ],
-    screenshot: "/screenshots/lapd.png",
+    screenshots: ["/screenshots/lapd.png"],
     url: "https://lapd-data-crime.vercel.app/dashboard",
   },
 ];
 
+// ── Lightbox ──────────────────────────────────────────────────────────────────
+
+function Lightbox({
+  screenshots,
+  index,
+  onClose,
+  onPrev,
+  onNext,
+}: {
+  screenshots: string[];
+  index: number;
+  onClose: () => void;
+  onPrev: () => void;
+  onNext: () => void;
+}) {
+  useEffect(() => {
+    const handle = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onClose();
+      if (e.key === "ArrowLeft") onPrev();
+      if (e.key === "ArrowRight") onNext();
+    };
+    document.addEventListener("keydown", handle);
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.removeEventListener("keydown", handle);
+      document.body.style.overflow = "";
+    };
+  }, [onClose, onPrev, onNext]);
+
+  return createPortal(
+    <div
+      className="fixed inset-0 z-[9999] flex items-center justify-center"
+      style={{ backgroundColor: "rgba(0,0,0,0.96)" }}
+      onClick={onClose}
+    >
+      <button
+        onClick={onClose}
+        className="absolute top-4 right-4 z-10 p-2.5 rounded-full text-white transition-colors"
+        style={{ background: "rgba(255,255,255,0.1)" }}
+        aria-label="Cerrar"
+      >
+        <X className="w-5 h-5" />
+      </button>
+
+      <div
+        className="absolute top-4 left-1/2 -translate-x-1/2 z-10 px-3 py-1 rounded-full text-sm tabular-nums"
+        style={{ background: "rgba(255,255,255,0.1)", color: "rgba(255,255,255,0.7)" }}
+      >
+        {index + 1} / {screenshots.length}
+      </div>
+
+      <div
+        className="relative w-full h-full p-12 md:p-16"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <Image
+          key={screenshots[index]}
+          src={screenshots[index]}
+          alt={`Screenshot ${index + 1}`}
+          fill
+          className="object-contain"
+          sizes="100vw"
+          quality={95}
+        />
+      </div>
+
+      {screenshots.length > 1 && (
+        <>
+          <button
+            onClick={(e) => { e.stopPropagation(); onPrev(); }}
+            className="absolute left-3 top-1/2 -translate-y-1/2 z-10 p-3 rounded-full text-white transition-colors"
+            style={{ background: "rgba(255,255,255,0.1)" }}
+            aria-label="Anterior"
+          >
+            <ChevronLeft className="w-6 h-6" />
+          </button>
+          <button
+            onClick={(e) => { e.stopPropagation(); onNext(); }}
+            className="absolute right-3 top-1/2 -translate-y-1/2 z-10 p-3 rounded-full text-white transition-colors"
+            style={{ background: "rgba(255,255,255,0.1)" }}
+            aria-label="Siguiente"
+          >
+            <ChevronRight className="w-6 h-6" />
+          </button>
+        </>
+      )}
+    </div>,
+    document.body
+  );
+}
+
+// ── ParallaxScreenshot ────────────────────────────────────────────────────────
+
 function ParallaxScreenshot({
-  src,
+  screenshots,
   alt,
   url,
   isHackathon,
 }: {
-  src: string;
+  screenshots: string[];
   alt: string;
   url: string;
   isHackathon?: boolean;
@@ -167,13 +296,26 @@ function ParallaxScreenshot({
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
   const y = useTransform(scrollYProgress, [0, 1], [40, -40]);
 
-  const glowColor = isHackathon
-    ? "rgba(245,181,68,0.15)"
-    : "rgba(74,139,255,0.15)";
+  const [idx, setIdx] = useState(0);
+  const [lightbox, setLightbox] = useState(false);
+  const [lbIdx, setLbIdx] = useState(0);
+  const multiple = screenshots.length > 1;
+
+  const prev = useCallback(
+    () => setIdx((i) => (i - 1 + screenshots.length) % screenshots.length),
+    [screenshots.length]
+  );
+  const next = useCallback(
+    () => setIdx((i) => (i + 1) % screenshots.length),
+    [screenshots.length]
+  );
+
+  const glowColor = isHackathon ? "rgba(245,181,68,0.15)" : "rgba(74,139,255,0.15)";
+  const isContain = multiple;
 
   return (
     <div ref={ref} className="relative">
-      {/* Ambient backdrop glow */}
+      {/* Ambient glow */}
       <div
         className="absolute pointer-events-none"
         style={{
@@ -184,18 +326,17 @@ function ParallaxScreenshot({
         }}
       />
 
-      <motion.div style={{ y }} className="relative">
+      <motion.div style={{ y }} className="relative group">
         {/* Browser chrome */}
         <div
           className="overflow-hidden"
           style={{
             borderRadius: "12px",
             border: "1px solid rgba(255,255,255,0.08)",
-            boxShadow:
-              "0 30px 60px -20px rgba(0,0,0,0.6), 0 0 120px -20px " + glowColor,
+            boxShadow: "0 30px 60px -20px rgba(0,0,0,0.6), 0 0 120px -20px " + glowColor,
           }}
         >
-          {/* Bar */}
+          {/* Browser bar */}
           <div
             className="flex items-center gap-3 px-4 py-2.5"
             style={{
@@ -224,23 +365,113 @@ function ParallaxScreenshot({
             >
               {url}
             </div>
+            {multiple && (
+              <span
+                className="flex-shrink-0 tabular-nums"
+                style={{ fontFamily: "var(--font-mono)", fontSize: "11px", color: "rgba(255,255,255,0.3)" }}
+              >
+                {idx + 1}/{screenshots.length}
+              </span>
+            )}
           </div>
 
-          {/* Screenshot */}
-          <div className="relative overflow-hidden" style={{ aspectRatio: "16/10" }}>
+          {/* Image area */}
+          <div
+            className="relative cursor-zoom-in"
+            style={{
+              aspectRatio: "16/10",
+              backgroundColor: "#060810",
+              overflow: "hidden",
+            }}
+            onClick={() => { setLbIdx(idx); setLightbox(true); }}
+          >
             <Image
-              src={src}
+              key={screenshots[idx]}
+              src={screenshots[idx]}
               alt={alt}
               fill
-              className="object-cover object-top"
+              className={isContain ? "object-contain" : "object-cover object-top"}
               sizes="(max-width: 1024px) 100vw, 50vw"
+              quality={90}
             />
+
+            {/* Zoom hint */}
+            <div
+              className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none"
+            >
+              <div className="p-3 rounded-full" style={{ background: "rgba(0,0,0,0.5)", backdropFilter: "blur(8px)", color: "rgba(255,255,255,0.8)" }}>
+                <ZoomIn className="w-6 h-6" />
+              </div>
+            </div>
+
+            {/* Prev arrow */}
+            {multiple && (
+              <button
+                onClick={(e) => { e.stopPropagation(); prev(); }}
+                className="absolute left-2 top-1/2 -translate-y-1/2 p-1.5 rounded-full opacity-0 group-hover:opacity-100 transition-all"
+                style={{ background: "rgba(0,0,0,0.6)", color: "rgba(255,255,255,0.8)" }}
+                aria-label="Anterior"
+              >
+                <ChevronLeft className="w-4 h-4" />
+              </button>
+            )}
+
+            {/* Next arrow */}
+            {multiple && (
+              <button
+                onClick={(e) => { e.stopPropagation(); next(); }}
+                className="absolute right-2 top-1/2 -translate-y-1/2 p-1.5 rounded-full opacity-0 group-hover:opacity-100 transition-all"
+                style={{ background: "rgba(0,0,0,0.6)", color: "rgba(255,255,255,0.8)" }}
+                aria-label="Siguiente"
+              >
+                <ChevronRight className="w-4 h-4" />
+              </button>
+            )}
           </div>
+
+          {/* Thumbnail strip */}
+          {multiple && (
+            <div
+              className="flex gap-1.5 px-3 py-2 overflow-x-auto"
+              style={{ backgroundColor: "#060810", borderTop: "1px solid rgba(255,255,255,0.04)", scrollbarWidth: "none" }}
+            >
+              {screenshots.map((src, i) => (
+                <button
+                  key={i}
+                  onClick={() => setIdx(i)}
+                  className="flex-shrink-0 relative rounded overflow-hidden transition-all"
+                  style={{
+                    width: 52,
+                    height: 34,
+                    outline: i === idx ? "2px solid rgba(74,139,255,0.8)" : "2px solid transparent",
+                    outlineOffset: "1px",
+                    opacity: i === idx ? 1 : 0.4,
+                  }}
+                  aria-label={`Screenshot ${i + 1}`}
+                >
+                  <Image src={src} alt="" fill className="object-cover" sizes="52px" quality={30} />
+                </button>
+              ))}
+            </div>
+          )}
         </div>
       </motion.div>
+
+      {/* Lightbox */}
+      {lightbox && (
+        <Lightbox
+          screenshots={screenshots}
+          index={lbIdx}
+          onClose={() => setLightbox(false)}
+          onPrev={() => setLbIdx((i) => (i - 1 + screenshots.length) % screenshots.length)}
+          onNext={() => setLbIdx((i) => (i + 1) % screenshots.length)}
+        />
+      )}
     </div>
   );
 }
+
+// ── FeaturedCases ─────────────────────────────────────────────────────────────
 
 export function FeaturedCases() {
   return (
@@ -323,7 +554,6 @@ export function FeaturedCases() {
               <div className="grid lg:grid-cols-2 gap-20 items-start">
                 {/* LEFT: narrative */}
                 <AnimatedSection className="space-y-10">
-                  {/* Title */}
                   <div>
                     <h3
                       className="font-serif"
@@ -338,7 +568,6 @@ export function FeaturedCases() {
                     >
                       {c.title}
                     </h3>
-                    {/* Animated underline */}
                     <div
                       style={{
                         height: "2px",
@@ -347,18 +576,11 @@ export function FeaturedCases() {
                         marginBottom: "24px",
                       }}
                     />
-                    <p
-                      style={{
-                        fontSize: "20px",
-                        lineHeight: 1.6,
-                        color: "#C5CFE2",
-                      }}
-                    >
+                    <p style={{ fontSize: "20px", lineHeight: 1.6, color: "#C5CFE2" }}>
                       {c.subtitle}
                     </p>
                   </div>
 
-                  {/* Hackathon badge — only Case 02 */}
                   {c.isHackathon && (
                     <div
                       style={{
@@ -383,23 +605,10 @@ export function FeaturedCases() {
                           >
                             Proyecto Ganador
                           </p>
-                          <p
-                            style={{
-                              fontSize: "16px",
-                              fontWeight: 500,
-                              color: "#F0F4FB",
-                              marginBottom: "4px",
-                            }}
-                          >
+                          <p style={{ fontSize: "16px", fontWeight: 500, color: "#F0F4FB", marginBottom: "4px" }}>
                             {c.hackathonName}
                           </p>
-                          <p
-                            style={{
-                              fontFamily: "var(--font-mono)",
-                              fontSize: "12px",
-                              color: "rgba(245,181,68,0.6)",
-                            }}
-                          >
+                          <p style={{ fontFamily: "var(--font-mono)", fontSize: "12px", color: "rgba(245,181,68,0.6)" }}>
                             {c.hackathonTeams} equipos · Sponsor: {c.hackathonSponsor}
                           </p>
                         </div>
@@ -407,7 +616,6 @@ export function FeaturedCases() {
                     </div>
                   )}
 
-                  {/* Metadata strip */}
                   <div
                     className="grid grid-cols-2 sm:grid-cols-4 gap-5"
                     style={{
@@ -438,20 +646,13 @@ export function FeaturedCases() {
                         >
                           {label}
                         </p>
-                        <p
-                          style={{
-                            fontSize: "14px",
-                            fontWeight: 500,
-                            color: "#C5CFE2",
-                          }}
-                        >
+                        <p style={{ fontSize: "14px", fontWeight: 500, color: "#C5CFE2" }}>
                           {value}
                         </p>
                       </div>
                     ))}
                   </div>
 
-                  {/* 3-act narrative */}
                   <div className="space-y-8">
                     {[
                       { label: "El desafío", text: c.challenge },
@@ -477,26 +678,16 @@ export function FeaturedCases() {
                         >
                           {label}
                         </p>
-                        <p
-                          style={{
-                            fontSize: "16px",
-                            lineHeight: 1.7,
-                            color: "#C5CFE2",
-                          }}
-                        >
+                        <p style={{ fontSize: "16px", lineHeight: 1.7, color: "#C5CFE2" }}>
                           {text}
                         </p>
                       </div>
                     ))}
                   </div>
 
-                  {/* Metrics — editorial */}
                   <div
                     className="grid grid-cols-3 gap-8"
-                    style={{
-                      paddingTop: "32px",
-                      borderTop: "1px solid rgba(255,255,255,0.06)",
-                    }}
+                    style={{ paddingTop: "32px", borderTop: "1px solid rgba(255,255,255,0.06)" }}
                   >
                     {c.metrics.map((m) => (
                       <div key={m.label} className="flex flex-col gap-2">
@@ -536,7 +727,6 @@ export function FeaturedCases() {
                     ))}
                   </div>
 
-                  {/* CTAs */}
                   <div className="flex flex-wrap gap-3 pt-2">
                     <a
                       href={c.url}
@@ -583,10 +773,10 @@ export function FeaturedCases() {
                   </div>
                 </AnimatedSection>
 
-                {/* RIGHT: sticky screenshot */}
+                {/* RIGHT: gallery */}
                 <AnimatedSection delay={0.15} className="lg:sticky lg:top-24 lg:self-start">
                   <ParallaxScreenshot
-                    src={c.screenshot}
+                    screenshots={c.screenshots}
                     alt={`${c.title} dashboard`}
                     url={c.url}
                     isHackathon={c.isHackathon}
