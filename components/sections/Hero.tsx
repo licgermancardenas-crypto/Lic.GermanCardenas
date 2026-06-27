@@ -177,7 +177,7 @@ export function Hero() {
           {/* Body */}
           <motion.p
             variants={item}
-            style={{ fontSize: "19px", color: "#C5CFE2", lineHeight: 1.6, maxWidth: "480px" }}
+            style={{ fontSize: "clamp(15px, 2vw, 19px)", color: "#C5CFE2", lineHeight: 1.6, maxWidth: "480px" }}
           >
             6+ años traduciendo datos en decisiones que mueven millones en
             agroindustria, retail, real estate, fintech y servicios financieros.
@@ -292,7 +292,7 @@ export function Hero() {
             ─── EN PRODUCCIÓN
           </p>
 
-          <div className="grid grid-cols-3 sm:grid-cols-6 gap-x-16 gap-y-10">
+          <div className="grid grid-cols-3 sm:grid-cols-6 gap-x-4 sm:gap-x-8 lg:gap-x-16 gap-y-6 lg:gap-y-10">
             {metrics.map((m, i) => (
               <div key={i} className="flex flex-col gap-2">
                 <span

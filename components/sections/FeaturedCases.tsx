@@ -477,7 +477,7 @@ export function FeaturedCases() {
   return (
     <>
       {/* Section intro */}
-      <section id="casos" className="pt-40 pb-20" style={{ backgroundColor: "#06080D" }}>
+      <section id="casos" className="pt-20 sm:pt-32 lg:pt-40 pb-12 sm:pb-20" style={{ backgroundColor: "#06080D" }}>
         <div className="container-custom">
           <AnimatedSection>
             <p
@@ -528,7 +528,7 @@ export function FeaturedCases() {
           <section
             key={c.id}
             id={c.id}
-            className="py-32"
+            className="py-16 sm:py-24 lg:py-32"
             style={{
               backgroundColor: "#06080D",
               borderTop: "1px solid rgba(255,255,255,0.05)",
@@ -536,7 +536,7 @@ export function FeaturedCases() {
           >
             <div className="container-custom">
               {/* Eyebrow */}
-              <AnimatedSection className="mb-16">
+              <AnimatedSection className="mb-8 sm:mb-16">
                 <p
                   style={{
                     fontFamily: "var(--font-mono)",
@@ -551,7 +551,7 @@ export function FeaturedCases() {
               </AnimatedSection>
 
               {/* 2-col layout */}
-              <div className="grid lg:grid-cols-2 gap-20 items-start">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-20 items-start">
                 {/* LEFT: narrative */}
                 <AnimatedSection className="space-y-10">
                   <div>
@@ -617,7 +617,7 @@ export function FeaturedCases() {
                   )}
 
                   <div
-                    className="grid grid-cols-2 sm:grid-cols-4 gap-5"
+                    className="grid grid-cols-2 lg:grid-cols-4 gap-4"
                     style={{
                       padding: "20px 24px",
                       borderRadius: "12px",
@@ -686,7 +686,7 @@ export function FeaturedCases() {
                   </div>
 
                   <div
-                    className="grid grid-cols-3 gap-8"
+                    className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8"
                     style={{ paddingTop: "32px", borderTop: "1px solid rgba(255,255,255,0.06)" }}
                   >
                     {c.metrics.map((m) => (

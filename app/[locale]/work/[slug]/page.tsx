@@ -318,9 +318,9 @@ export default async function WorkPage({
         </div>
       </div>
 
-      <div className="container-custom py-16 md:py-24 max-w-4xl">
+      <div className="container-custom py-10 md:py-20 w-full max-w-5xl mx-auto">
         {/* Hero */}
-        <div className="mb-16">
+        <div className="mb-10 sm:mb-16">
           <div className="flex items-center gap-4 mb-6">
             <span className="text-[#6B7689] text-xs font-mono select-none">━━━</span>
             <span className="text-[#6B7689] text-xs font-mono uppercase tracking-widest">
@@ -357,7 +357,7 @@ export default async function WorkPage({
         />
 
         {/* Metrics */}
-        <div className="grid grid-cols-3 gap-6 mb-16 pb-16 border-b border-[#1F2937]">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-12 sm:mb-16 pb-12 sm:pb-16 border-b border-[#1F2937]">
           {c.metrics.map((m, i) => (
             <div key={i}>
               <div
@@ -463,7 +463,7 @@ export default async function WorkPage({
               </p>
 
               {/* 2-col grid for context photos */}
-              <div className="grid grid-cols-2 gap-3">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {c.impactImages.slice(1).map((img, i) => (
                   <div key={i} className="space-y-2">
                     <div className="rounded-lg overflow-hidden border border-[#1F2937] relative" style={{ aspectRatio: "4/3" }}>
