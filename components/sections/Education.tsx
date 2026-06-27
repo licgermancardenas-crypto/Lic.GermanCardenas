@@ -1,307 +1,171 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { AnimatedSection } from "@/components/AnimatedSection";
+import { GraduationCap, Award, Globe } from "lucide-react";
 
 const education = [
   {
-    code: "EDU-01",
+    institution: "UCES",
     degree: "Lic. en Dirección de Negocios",
-    institution: "Universidad UCES",
     period: "2019 – 2024",
-    status: "GRADUATED",
+    detail: "Graduado",
+    icon: GraduationCap,
+    accent: "#635bff",
   },
   {
-    code: "EDU-02",
-    degree: "Asesor Global de Inversiones",
     institution: "Instituto de Capacitación Bursátil",
+    degree: "Inversor y Asesor Global de Inversiones",
     period: "2021 – 2022",
-    status: "CERTIFIED",
+    detail: "Certificado",
+    icon: GraduationCap,
+    accent: "#06b6d4",
   },
 ];
 
 const certifications = [
   {
-    code: "CERT-01",
     name: "Financial Forecasting with Analytics",
     issuer: "LinkedIn Learning",
     year: "2024",
+    accent: "#635bff",
   },
   {
-    code: "CERT-02",
     name: "Building KPIs for Data-Driven Strategy",
     issuer: "LinkedIn Learning",
     year: "2024",
+    accent: "#8b5cf6",
   },
   {
-    code: "CERT-03",
     name: "Excel and ChatGPT: Data Analysis Power Tips",
     issuer: "LinkedIn Learning",
     year: "2024",
+    accent: "#06b6d4",
   },
   {
-    code: "CERT-04",
-    name: "Non-Technical Skills of Effective Data Scientists",
+    name: "The Non-Technical Skills of Effective Data Scientists",
     issuer: "LinkedIn Learning",
     year: "2024",
+    accent: "#10b981",
   },
   {
-    code: "CERT-05",
     name: "Asesor Global de Inversiones",
-    issuer: "ICB Argentina",
+    issuer: "Instituto de Capacitación Bursátil",
     year: "2022",
+    accent: "#f59e0b",
   },
 ];
 
 const languages = [
-  { code: "ES", name: "Español",  level: "NATIVE",        filled: 12, total: 12 },
-  { code: "EN", name: "English",  level: "PROFESSIONAL",  filled: 10, total: 12 },
-  { code: "FR", name: "Français", level: "INTERMEDIATE",  filled: 7,  total: 12 },
-  { code: "IT", name: "Italiano", level: "BASIC",         filled: 4,  total: 12 },
+  { lang: "Español", level_key: "native", flag: "🇦🇷", pct: 100 },
+  { lang: "Inglés", level_key: "advanced", flag: "🇺🇸", pct: 85 },
+  { lang: "Francés", level_key: "intermediate", flag: "🇫🇷", pct: 55 },
+  { lang: "Italiano", level_key: "basic", flag: "🇮🇹", pct: 30 },
 ];
 
 export function Education() {
+  const t = useTranslations("education");
+
   return (
-    <section
-      id="education"
-      style={{
-        backgroundColor: "#0A0B0F",
-        paddingTop: "160px",
-        paddingBottom: "160px",
-        borderTop: "1px solid rgba(255,255,255,0.06)",
-      }}
-    >
+    <section id="education" className="py-24 bg-[#0F1419] border-t border-[#1F2937]">
       <div className="container-custom">
         {/* Header */}
-        <AnimatedSection className="mb-20">
-          <p
-            style={{
-              fontFamily: "var(--font-mono)",
-              fontSize: "11px",
-              fontWeight: 500,
-              letterSpacing: "0.14em",
-              color: "#4A8BFF",
-              marginBottom: "20px",
-            }}
-          >
-            ─── CREDENTIALS / REF-07
-          </p>
-          <h2
-            className="font-serif"
-            style={{
-              fontSize: "clamp(36px, 4vw, 56px)",
-              fontWeight: 400,
-              color: "#F0F4FB",
-              lineHeight: 1.05,
-              letterSpacing: "-0.02em",
-            }}
-          >
-            Formation & credentials.
+        <AnimatedSection className="mb-16">
+          <span className="inline-block px-3 py-1 rounded-full bg-[#4F7CFF]/10 text-[#4F7CFF] text-xs font-semibold uppercase tracking-widest mb-4">
+            {t("label")}
+          </span>
+          <h2 className="text-4xl md:text-5xl font-bold text-[#F5F7FA] tracking-tight mb-4">
+            {t("title")}
           </h2>
+          <p className="text-[#B8C1D1] text-lg">{t("subtitle")}</p>
         </AnimatedSection>
 
-        <div className="grid md:grid-cols-3 gap-12">
+        <div className="grid lg:grid-cols-3 gap-8">
           {/* Education */}
-          <AnimatedSection>
-            <p
-              style={{
-                fontFamily: "var(--font-mono)",
-                fontSize: "10px",
-                fontWeight: 500,
-                letterSpacing: "0.14em",
-                color: "#5A6478",
-                marginBottom: "20px",
-              }}
-            >
-              ─── EDUCATION
-            </p>
-            <div className="space-y-8">
-              {education.map((e) => (
+          <AnimatedSection className="lg:col-span-1">
+            <div className="space-y-4">
+              {education.map((edu, i) => (
                 <div
-                  key={e.code}
-                  style={{
-                    paddingBottom: "24px",
-                    borderBottom: "1px solid rgba(255,255,255,0.06)",
-                  }}
+                  key={i}
+                  className="p-6 rounded-2xl bg-[#0A0E1A] border border-[#1F2937] card-shadow"
                 >
-                  <p
-                    style={{
-                      fontFamily: "var(--font-mono)",
-                      fontSize: "10px",
-                      fontWeight: 500,
-                      letterSpacing: "0.12em",
-                      color: "#4A8BFF",
-                      marginBottom: "10px",
-                    }}
+                  <div
+                    className="w-10 h-10 rounded-xl flex items-center justify-center mb-4"
+                    style={{ backgroundColor: `${edu.accent}20` }}
                   >
-                    ─── {e.code}
-                  </p>
-                  <p
-                    style={{
-                      fontSize: "15px",
-                      fontWeight: 500,
-                      color: "#F0F4FB",
-                      marginBottom: "6px",
-                      lineHeight: 1.4,
-                    }}
-                  >
-                    {e.degree}
-                  </p>
-                  <p style={{ fontSize: "13px", color: "#8B95A8", marginBottom: "6px" }}>
-                    {e.institution}
-                  </p>
-                  <div className="flex items-center gap-3">
-                    <span
-                      style={{
-                        fontFamily: "var(--font-mono)",
-                        fontSize: "11px",
-                        letterSpacing: "0.06em",
-                        color: "#5A6478",
-                      }}
-                    >
-                      {e.period}
-                    </span>
-                    <span
-                      style={{
-                        fontFamily: "var(--font-mono)",
-                        fontSize: "10px",
-                        letterSpacing: "0.10em",
-                        color: "#00C781",
-                        border: "1px solid rgba(0,199,129,0.25)",
-                        padding: "2px 8px",
-                        borderRadius: "2px",
-                      }}
-                    >
-                      {e.status}
-                    </span>
+                    <edu.icon className="w-5 h-5" style={{ color: edu.accent }} />
                   </div>
+                  <p className="text-xs text-[#6B7689] mb-1">{edu.period}</p>
+                  <h3 className="text-base font-bold text-[#F5F7FA] mb-1">
+                    {edu.degree}
+                  </h3>
+                  <p className="text-sm text-[#B8C1D1]">{edu.institution}</p>
+                  <span className="inline-block mt-2 px-2 py-0.5 rounded-md text-xs font-medium border"
+                    style={{ color: edu.accent, borderColor: `${edu.accent}40`, backgroundColor: `${edu.accent}10` }}>
+                    {edu.detail}
+                  </span>
                 </div>
               ))}
             </div>
           </AnimatedSection>
 
           {/* Certifications */}
-          <AnimatedSection delay={0.07}>
-            <p
-              style={{
-                fontFamily: "var(--font-mono)",
-                fontSize: "10px",
-                fontWeight: 500,
-                letterSpacing: "0.14em",
-                color: "#5A6478",
-                marginBottom: "20px",
-              }}
-            >
-              ─── CERTIFICATIONS
-            </p>
-            <div className="space-y-5">
-              {certifications.map((c) => (
+          <AnimatedSection delay={0.1} className="lg:col-span-1">
+            <div className="space-y-3">
+              {certifications.map((cert, i) => (
                 <div
-                  key={c.code}
-                  style={{
-                    paddingBottom: "16px",
-                    borderBottom: "1px solid rgba(255,255,255,0.04)",
-                  }}
+                  key={i}
+                  className="flex items-start gap-4 p-5 rounded-2xl bg-[#0A0E1A] border border-[#1F2937] card-shadow"
                 >
-                  <p
-                    style={{
-                      fontFamily: "var(--font-mono)",
-                      fontSize: "10px",
-                      letterSpacing: "0.10em",
-                      color: "#5A6478",
-                      marginBottom: "6px",
-                    }}
+                  <div
+                    className="flex-shrink-0 w-8 h-8 rounded-lg flex items-center justify-center mt-0.5"
+                    style={{ backgroundColor: `${cert.accent}20` }}
                   >
-                    {c.code}
-                  </p>
-                  <p
-                    style={{
-                      fontSize: "13px",
-                      fontWeight: 500,
-                      color: "#C5CFE2",
-                      lineHeight: 1.4,
-                      marginBottom: "4px",
-                    }}
-                  >
-                    {c.name}
-                  </p>
-                  <p
-                    style={{
-                      fontFamily: "var(--font-mono)",
-                      fontSize: "11px",
-                      letterSpacing: "0.04em",
-                      color: "#5A6478",
-                    }}
-                  >
-                    {c.issuer} · {c.year}
-                  </p>
+                    <Award className="w-4 h-4" style={{ color: cert.accent }} />
+                  </div>
+                  <div className="min-w-0">
+                    <p className="text-sm font-semibold text-[#F5F7FA] leading-tight mb-0.5">
+                      {cert.name}
+                    </p>
+                    <p className="text-xs text-[#6B7689]">
+                      {cert.issuer} · {cert.year}
+                    </p>
+                  </div>
                 </div>
               ))}
             </div>
           </AnimatedSection>
 
           {/* Languages */}
-          <AnimatedSection delay={0.14}>
-            <p
-              style={{
-                fontFamily: "var(--font-mono)",
-                fontSize: "10px",
-                fontWeight: 500,
-                letterSpacing: "0.14em",
-                color: "#5A6478",
-                marginBottom: "20px",
-              }}
-            >
-              ─── LANGUAGES
-            </p>
-            <div className="space-y-8">
-              {languages.map((l) => (
-                <div key={l.code}>
-                  <div className="flex items-center justify-between mb-3">
-                    <div className="flex items-center gap-3">
-                      <span
-                        style={{
-                          fontFamily: "var(--font-mono)",
-                          fontSize: "13px",
-                          fontWeight: 600,
-                          color: "#4A8BFF",
-                          letterSpacing: "0.08em",
-                        }}
-                      >
-                        {l.code}
+          <AnimatedSection delay={0.2} className="lg:col-span-1">
+            <div className="p-6 rounded-2xl bg-[#0A0E1A] border border-[#1F2937] card-shadow h-full">
+              <div className="flex items-center gap-2 mb-6">
+                <Globe className="w-5 h-5 text-[#4F7CFF]" />
+                <h3 className="text-base font-bold text-[#F5F7FA]">
+                  {t("languages_title")}
+                </h3>
+              </div>
+              <div className="space-y-5">
+                {languages.map((lang) => (
+                  <div key={lang.lang}>
+                    <div className="flex items-center justify-between mb-1.5">
+                      <span className="flex items-center gap-2 text-sm font-medium text-[#F5F7FA]">
+                        <span>{lang.flag}</span>
+                        {lang.lang}
                       </span>
-                      <span style={{ fontSize: "14px", color: "#C5CFE2" }}>
-                        {l.name}
+                      <span className="text-xs text-[#6B7689]">
+                        {t(lang.level_key as "native" | "advanced" | "intermediate" | "basic")}
                       </span>
                     </div>
-                    <span
-                      style={{
-                        fontFamily: "var(--font-mono)",
-                        fontSize: "10px",
-                        fontWeight: 500,
-                        letterSpacing: "0.10em",
-                        color: "#5A6478",
-                      }}
-                    >
-                      {l.level}
-                    </span>
-                  </div>
-                  {/* Fluency bar — mono blocks */}
-                  <div className="flex gap-1">
-                    {Array.from({ length: l.total }).map((_, j) => (
+                    <div className="h-1.5 rounded-full bg-[#1F2937] overflow-hidden">
                       <div
-                        key={j}
-                        style={{
-                          flex: 1,
-                          height: "6px",
-                          borderRadius: "1px",
-                          backgroundColor:
-                            j < l.filled ? "#4A8BFF" : "rgba(255,255,255,0.06)",
-                        }}
+                        className="h-full rounded-full bg-gradient-to-r from-[#4F7CFF] to-[#818cf8] transition-all duration-700"
+                        style={{ width: `${lang.pct}%` }}
                       />
-                    ))}
+                    </div>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
           </AnimatedSection>
         </div>

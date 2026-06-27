@@ -2,36 +2,37 @@
 
 import { usePathname, useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
+import { Globe, Menu, X, Download } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Download } from "lucide-react";
 
 const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
-
-const navLinks = [
-  { label: "CASES", id: "casos" },
-  { label: "STACK", id: "stack" },
-  { label: "CONTACT", id: "contact" },
-];
 
 export function Navigation() {
   const pathname = usePathname();
   const router = useRouter();
+  const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState<string>("");
 
   const currentLocale = pathname.startsWith("/en") ? "en" : "es";
 
   useEffect(() => {
-    const ids = ["hero", "casos", "stack", "experience", "contact"];
+    const handleScroll = () => setScrolled(window.scrollY > 80);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  useEffect(() => {
+    const sections = ["hero", "casos", "projects", "experience", "contact"];
     const observer = new IntersectionObserver(
       (entries) => {
-        for (const e of entries) {
-          if (e.isIntersecting) setActiveSection(e.target.id);
+        for (const entry of entries) {
+          if (entry.isIntersecting) setActiveSection(entry.target.id);
         }
       },
       { rootMargin: "-40% 0px -40% 0px" }
     );
-    ids.forEach((id) => {
+    sections.forEach((id) => {
       const el = document.getElementById(id);
       if (el) observer.observe(el);
     });
@@ -55,81 +56,78 @@ export function Navigation() {
     window.dispatchEvent(new KeyboardEvent("keydown", { key: "k", metaKey: true, bubbles: true }));
   }
 
+  const navLinks = [
+    { label: "Casos", id: "casos" },
+    { label: "Proyectos", id: "projects" },
+    { label: "Experiencia", id: "experience" },
+    { label: "Contacto", id: "contact" },
+  ];
+
   return (
     <header
-      className="fixed top-0 left-0 right-0 z-50"
+      className="fixed top-0 left-0 right-0 z-50 transition-all duration-400"
       style={{
-        height: "56px",
-        backgroundColor: "rgba(10,11,15,0.90)",
-        backdropFilter: "blur(24px) saturate(180%)",
-        borderBottom: "1px solid rgba(255,255,255,0.06)",
+        backgroundColor: scrolled ? "rgba(6,8,13,0.85)" : "transparent",
+        backdropFilter: scrolled ? "blur(24px) saturate(180%)" : "none",
+        borderBottom: scrolled
+          ? "1px solid rgba(255,255,255,0.05)"
+          : "1px solid transparent",
+        transitionTimingFunction: "cubic-bezier(0.16, 1, 0.3, 1)",
       }}
     >
-      <div className="container-custom h-full flex items-center justify-between gap-8">
-        {/* Logo + status */}
+      <div className="container-custom flex items-center justify-between h-16">
+        {/* Logo */}
         <button
           onClick={() => scrollTo("hero")}
-          className="flex items-center gap-3 flex-shrink-0"
+          className="flex items-center gap-2.5 group"
         >
-          <span
-            style={{
-              fontFamily: "var(--font-mono)",
-              fontSize: "13px",
-              fontWeight: 500,
-              color: "#F0F4FB",
-              letterSpacing: "0.06em",
-            }}
+          <div
+            className="w-8 h-8 rounded-lg flex items-center justify-center text-white text-sm font-bold tracking-tight transition-all duration-200 group-hover:scale-105"
+            style={{ backgroundColor: "#2B6FE8" }}
           >
-            GC · CARDENAS
-          </span>
+            GC
+          </div>
           <span
-            className="hidden sm:flex items-center gap-1.5"
-            style={{
-              fontFamily: "var(--font-mono)",
-              fontSize: "10px",
-              letterSpacing: "0.10em",
-              color: "#00C781",
-            }}
+            className="font-semibold hidden sm:block text-sm"
+            style={{ color: "#F0F4FB" }}
           >
-            <span
-              className="w-1.5 h-1.5 rounded-full"
-              style={{
-                backgroundColor: "#00C781",
-                animation: "pulse-live 2s ease-in-out infinite",
-              }}
-            />
-            AVAILABLE Q1 2026
+            Germán Cárdenas
           </span>
         </button>
 
         {/* Desktop nav */}
-        <nav className="hidden md:flex items-center gap-6">
+        <nav className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => {
             const isActive = activeSection === link.id;
             return (
               <button
                 key={link.id}
                 onClick={() => scrollTo(link.id)}
-                className="relative focus-ring transition-colors duration-200"
+                className="relative text-sm font-medium transition-colors duration-200"
                 style={{
-                  fontFamily: "var(--font-mono)",
-                  fontSize: "11px",
-                  letterSpacing: "0.12em",
-                  color: isActive ? "#F0F4FB" : "#5A6478",
+                  color: isActive ? "#F0F4FB" : "#6B7A95",
+                  fontFamily: "var(--font-sans)",
                 }}
                 onMouseEnter={(e) => {
-                  if (!isActive) (e.currentTarget as HTMLElement).style.color = "#8B95A8";
+                  if (!isActive)
+                    (e.currentTarget as HTMLElement).style.color = "#C5CFE2";
                 }}
                 onMouseLeave={(e) => {
-                  if (!isActive) (e.currentTarget as HTMLElement).style.color = "#5A6478";
+                  if (!isActive)
+                    (e.currentTarget as HTMLElement).style.color = "#6B7A95";
                 }}
               >
                 {link.label}
+                {/* Active underline */}
                 {isActive && (
                   <motion.div
-                    layoutId="nav-line"
-                    className="absolute -bottom-px left-0 right-0"
-                    style={{ height: "1px", backgroundColor: "#4A8BFF" }}
+                    layoutId="nav-indicator"
+                    className="absolute -bottom-1 left-0 right-0"
+                    style={{
+                      height: "1px",
+                      background: "#4A8BFF",
+                    }}
+                    initial={false}
                     transition={{ duration: 0.2, ease: EASE }}
                   />
                 )}
@@ -143,23 +141,21 @@ export function Navigation() {
           {/* ⌘K */}
           <button
             onClick={openPalette}
-            className="hidden md:flex items-center gap-1.5 px-3 py-1.5 focus-ring transition-all duration-200"
+            className="hidden md:flex items-center gap-1.5 px-3 py-1.5 rounded-md transition-all duration-200"
             style={{
               fontFamily: "var(--font-mono)",
-              fontSize: "11px",
-              letterSpacing: "0.08em",
-              color: "#5A6478",
+              fontSize: "12px",
+              color: "#6B7A95",
               border: "1px solid rgba(255,255,255,0.06)",
-              borderRadius: "4px",
             }}
             onMouseEnter={(e) => {
               const el = e.currentTarget as HTMLElement;
-              el.style.color = "#4A8BFF";
-              el.style.borderColor = "rgba(74,139,255,0.30)";
+              el.style.color = "#C5CFE2";
+              el.style.borderColor = "rgba(74,139,255,0.3)";
             }}
             onMouseLeave={(e) => {
               const el = e.currentTarget as HTMLElement;
-              el.style.color = "#5A6478";
+              el.style.color = "#6B7A95";
               el.style.borderColor = "rgba(255,255,255,0.06)";
             }}
           >
@@ -169,65 +165,50 @@ export function Navigation() {
           {/* Lang toggle */}
           <button
             onClick={toggleLocale}
-            className="px-3 py-1.5 focus-ring transition-all duration-200"
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-full transition-all duration-200"
             style={{
               fontFamily: "var(--font-mono)",
-              fontSize: "11px",
-              letterSpacing: "0.12em",
-              color: "#5A6478",
+              fontSize: "12px",
+              fontWeight: 600,
+              color: "#6B7A95",
               border: "1px solid rgba(255,255,255,0.06)",
-              borderRadius: "4px",
             }}
             onMouseEnter={(e) => {
               const el = e.currentTarget as HTMLElement;
-              el.style.color = "#4A8BFF";
-              el.style.borderColor = "rgba(74,139,255,0.30)";
+              el.style.color = "#C5CFE2";
+              el.style.borderColor = "rgba(74,139,255,0.3)";
             }}
             onMouseLeave={(e) => {
               const el = e.currentTarget as HTMLElement;
-              el.style.color = "#5A6478";
+              el.style.color = "#6B7A95";
               el.style.borderColor = "rgba(255,255,255,0.06)";
             }}
           >
+            <Globe className="w-3.5 h-3.5" />
             {currentLocale === "es" ? "EN" : "ES"}
           </button>
 
-          {/* CV */}
+          {/* CV download */}
           <a
             href="/cv.pdf"
             download
-            className="hidden md:flex items-center gap-1.5 px-4 py-1.5 focus-ring transition-all duration-200"
-            style={{
-              fontFamily: "var(--font-mono)",
-              fontSize: "11px",
-              letterSpacing: "0.08em",
-              color: "#4A8BFF",
-              border: "1px solid rgba(74,139,255,0.40)",
-              borderRadius: "4px",
-              textDecoration: "none",
-            }}
-            onMouseEnter={(e) => {
-              (e.currentTarget as HTMLElement).style.backgroundColor = "rgba(74,139,255,0.08)";
-            }}
-            onMouseLeave={(e) => {
-              (e.currentTarget as HTMLElement).style.backgroundColor = "transparent";
-            }}
+            className="hidden md:flex items-center gap-1.5 px-4 py-2 rounded-lg text-white text-sm font-semibold transition-all duration-200 hover:opacity-90 hover:-translate-y-px"
+            style={{ backgroundColor: "#2B6FE8" }}
           >
-            <Download className="w-3 h-3" />
+            <Download className="w-3.5 h-3.5" />
             CV
           </a>
 
           {/* Mobile toggle */}
           <button
-            className="md:hidden w-8 h-8 flex items-center justify-center focus-ring"
+            className="md:hidden w-9 h-9 flex items-center justify-center rounded-lg transition-colors duration-200"
             style={{
-              color: "#8B95A8",
+              color: "#C5CFE2",
               border: "1px solid rgba(255,255,255,0.06)",
-              borderRadius: "4px",
             }}
             onClick={() => setMenuOpen(!menuOpen)}
           >
-            {menuOpen ? <X className="w-3.5 h-3.5" /> : <Menu className="w-3.5 h-3.5" />}
+            {menuOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
           </button>
         </div>
       </div>
@@ -242,8 +223,9 @@ export function Navigation() {
             transition={{ duration: 0.2, ease: EASE }}
             className="md:hidden overflow-hidden"
             style={{
-              backgroundColor: "#0A0B0F",
-              borderBottom: "1px solid rgba(255,255,255,0.06)",
+              backgroundColor: "rgba(6,8,13,0.95)",
+              backdropFilter: "blur(24px)",
+              borderBottom: "1px solid rgba(255,255,255,0.05)",
             }}
           >
             <div className="container-custom py-4 flex flex-col gap-1">
@@ -251,12 +233,13 @@ export function Navigation() {
                 <button
                   key={link.id}
                   onClick={() => scrollTo(link.id)}
-                  className="text-left px-3 py-2.5 rounded text-sm transition-colors"
-                  style={{
-                    fontFamily: "var(--font-mono)",
-                    fontSize: "12px",
-                    letterSpacing: "0.10em",
-                    color: "#8B95A8",
+                  className="text-left px-3 py-3 rounded-lg text-sm font-medium transition-colors duration-200"
+                  style={{ color: "#C5CFE2" }}
+                  onMouseEnter={(e) => {
+                    (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.03)";
+                  }}
+                  onMouseLeave={(e) => {
+                    (e.currentTarget as HTMLElement).style.background = "transparent";
                   }}
                 >
                   {link.label}
@@ -264,32 +247,24 @@ export function Navigation() {
               ))}
               <button
                 onClick={openPalette}
-                className="text-left px-3 py-2.5 rounded transition-colors"
+                className="text-left px-3 py-3 rounded-lg text-sm font-medium transition-colors duration-200"
                 style={{
+                  color: "#6B7A95",
                   fontFamily: "var(--font-mono)",
                   fontSize: "12px",
-                  letterSpacing: "0.10em",
-                  color: "#5A6478",
                 }}
               >
-                ⌘K SEARCH
+                ⌘K Búsqueda rápida
               </button>
               <a
                 href="/cv.pdf"
                 download
-                className="mt-2 flex items-center justify-center gap-2 px-4 py-2.5 rounded"
-                style={{
-                  fontFamily: "var(--font-mono)",
-                  fontSize: "12px",
-                  letterSpacing: "0.08em",
-                  color: "#4A8BFF",
-                  border: "1px solid rgba(74,139,255,0.40)",
-                  textDecoration: "none",
-                }}
+                className="mt-2 flex items-center justify-center gap-2 px-4 py-3 rounded-lg text-white text-sm font-semibold"
+                style={{ backgroundColor: "#2B6FE8" }}
                 onClick={() => setMenuOpen(false)}
               >
-                <Download className="w-3.5 h-3.5" />
-                DOWNLOAD CV
+                <Download className="w-4 h-4" />
+                Descargar CV
               </a>
             </div>
           </motion.div>
