@@ -32,6 +32,14 @@ const ERP_SHOTS = [
   "1766963976611.jpg",
 ].map((f) => `/screenshots/atlas-erp/${f}`);
 
+const ERP_IMPACT_IMAGES = [
+  { src: "/screenshots/atlas-erp/mockup-tablet.png", caption: "Stock & Inventario — módulo de gestión en tiempo real" },
+  { src: "/screenshots/atlas-erp/mockup-farmacia.png", caption: "Deploy en punto de venta — farmacia" },
+  { src: "/screenshots/atlas-erp/mockup-licorera.png", caption: "Gestión de stock — rubro bebidas" },
+  { src: "/screenshots/atlas-erp/mockup-farmacia-2.png", caption: "Resumen ejecutivo en sala de ventas" },
+  { src: "/screenshots/atlas-erp/mockup-farmacia-3.png", caption: "Vista operativa — dashboard en caja" },
+];
+
 type CaseStudy = {
   slug: string;
   title: string;
@@ -51,6 +59,7 @@ type CaseStudy = {
   results: string;
   learned: string;
   metrics: { value: string; description: string }[];
+  impactImages?: { src: string; caption: string }[];
   nextSlug: string;
   nextTitle: string;
 };
@@ -102,6 +111,7 @@ const cases: Record<string, CaseStudy> = {
       { value: "68.4%", description: "Tasa de apertura de campañas" },
       { value: "−40%", description: "Tiempo en análisis gerencial" },
     ],
+    impactImages: ERP_IMPACT_IMAGES,
     nextSlug: "atlas-nexus",
     nextTitle: "Atlas Nexus →",
   },
@@ -429,6 +439,49 @@ export default async function WorkPage({
               <p className="text-[#B8C1D1] leading-relaxed">{content}</p>
             </section>
           ))}
+
+          {/* Impact images */}
+          {c.impactImages && c.impactImages.length > 0 && (
+            <section>
+              <h2 className="text-[#F5F7FA] font-semibold text-base mb-6 flex items-center gap-3">
+                <span className="w-4 h-px inline-block" style={{ backgroundColor: c.accent }} />
+                Impacto y soluciones visuales
+              </h2>
+
+              {/* Tablet hero — full width */}
+              <div className="mb-4 rounded-xl overflow-hidden border border-[#1F2937] relative" style={{ aspectRatio: "16/9" }}>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={c.impactImages[0].src}
+                  alt={c.impactImages[0].caption}
+                  className="w-full h-full object-contain"
+                  style={{ backgroundColor: "#060810" }}
+                />
+              </div>
+              <p className="text-[#6B7689] text-xs font-mono mb-6 text-center tracking-wider">
+                {c.impactImages[0].caption}
+              </p>
+
+              {/* 2-col grid for context photos */}
+              <div className="grid grid-cols-2 gap-3">
+                {c.impactImages.slice(1).map((img, i) => (
+                  <div key={i} className="space-y-2">
+                    <div className="rounded-lg overflow-hidden border border-[#1F2937] relative" style={{ aspectRatio: "4/3" }}>
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src={img.src}
+                        alt={img.caption}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                    <p className="text-[#6B7689] text-[10px] font-mono tracking-wide leading-snug">
+                      {img.caption}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </section>
+          )}
         </div>
 
         {/* Next case */}
