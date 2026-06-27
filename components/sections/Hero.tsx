@@ -54,10 +54,11 @@ export function Hero() {
           alt="Germán Cárdenas"
           fill
           priority
-          className="object-cover object-center"
+          className="object-contain"
           sizes="100vw"
           style={{
-            filter: "brightness(0.72) contrast(1.06) saturate(0.88)",
+            objectPosition: "right center",
+            filter: "brightness(0.80) contrast(1.06) saturate(0.88)",
           }}
         />
         {/* Left-to-right gradient: text readable on left, photo visible on right */}
@@ -65,7 +66,7 @@ export function Hero() {
           className="absolute inset-0"
           style={{
             background:
-              "linear-gradient(to right, rgba(6,8,13,0.96) 0%, rgba(6,8,13,0.88) 35%, rgba(6,8,13,0.55) 60%, rgba(6,8,13,0.20) 80%, rgba(6,8,13,0.08) 100%)",
+              "linear-gradient(to right, rgba(6,8,13,0.98) 0%, rgba(6,8,13,0.92) 30%, rgba(6,8,13,0.60) 52%, rgba(6,8,13,0.15) 72%, rgba(6,8,13,0.05) 100%)",
           }}
         />
         {/* Bottom fade for metrics */}
