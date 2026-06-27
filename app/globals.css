@@ -61,19 +61,17 @@
 
 @layer utilities {
   .container-custom {
-    max-width: 1280px;
-    margin-left: auto;
-    margin-right: auto;
-    padding-left: 24px;
-    padding-right: 24px;
+    width: 100%;
+    padding-left: 16px;
+    padding-right: 16px;
   }
 
   @media (min-width: 640px) {
-    .container-custom { padding-left: 32px; padding-right: 32px; }
+    .container-custom { padding-left: 24px; padding-right: 24px; }
   }
 
   @media (min-width: 1024px) {
-    .container-custom { padding-left: 56px; padding-right: 56px; }
+    .container-custom { padding-left: 32px; padding-right: 32px; }
   }
 
   .font-serif { font-family: var(--font-serif); }
