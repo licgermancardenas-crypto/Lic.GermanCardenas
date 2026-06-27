@@ -1,43 +1,59 @@
 "use client";
 
-import { useEffect, useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { useEffect, useState, useRef } from "react";
+import { motion } from "framer-motion";
 import Image from "next/image";
 
 const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
 const container = {
   hidden: { opacity: 0 },
-  visible: { opacity: 1, transition: { staggerChildren: 0.08, delayChildren: 0.1 } },
+  visible: { opacity: 1, transition: { staggerChildren: 0.07, delayChildren: 0.1 } },
 };
 
 const item = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: EASE } },
+  hidden: { opacity: 0, y: 16 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: EASE } },
 };
 
-const metrics = [
-  { value: "4",    label: "plataformas\nen operación" },
-  { value: "1",    label: "hackathon\nganado" },
-  { value: "1M+",  label: "registros\nprocesados" },
-  { value: "24",   label: "provincias\ncubiertas" },
-  { value: "6",    label: "empresas\ntransformadas" },
-  { value: "4",    label: "idiomas\nprofesionales" },
+const perf = [
+  { label: "PROJECTS",  value: "04",        sub: "▲ IN PROD" },
+  { label: "RECORDS",   value: "1,004,894",  sub: "▲ ETL PIPE" },
+  { label: "REGIONS",   value: "24",         sub: "▲ GIS LAYER" },
+  { label: "CLIENTS",   value: "3,387",      sub: "▲ ACTIVE" },
+  { label: "LANGUAGES", value: "04",         sub: "▲ ES·EN·FR·IT" },
 ];
+
+function LiveTime() {
+  const [time, setTime] = useState("");
+  useEffect(() => {
+    const update = () =>
+      setTime(
+        new Date().toLocaleTimeString("es-AR", {
+          timeZone: "America/Argentina/Buenos_Aires",
+          hour: "2-digit",
+          minute: "2-digit",
+          hour12: false,
+        })
+      );
+    update();
+    const id = setInterval(update, 60_000);
+    return () => clearInterval(id);
+  }, []);
+  return <>{time || "14:00"}</>;
+}
 
 export function Hero() {
   const photoRef = useRef<HTMLDivElement>(null);
-  const { scrollY } = useScroll();
-  const photoY = useTransform(scrollY, [0, 600], [0, -30]);
 
   useEffect(() => {
     console.log(
-      "%cHola.",
-      "color: #4A8BFF; font-size: 24px; font-family: 'Instrument Serif', serif;"
+      "%cGermán Cárdenas",
+      "color: #4A8BFF; font-size: 20px; font-family: 'Instrument Serif', serif;"
     );
     console.log(
-      "%cSi estás leyendo esto, probablemente sepas código.\nEstoy disponible para proyectos serios.\nlic.germancardenas@gmail.com",
-      "color: #C5CFE2; font-size: 14px; font-family: monospace; line-height: 1.6;"
+      "%cFinancial Analyst · Data Scientist · AI Engineer\nlic.germancardenas@gmail.com\ngerman-cardenas-portfolio.vercel.app",
+      "color: #8B95A8; font-size: 12px; font-family: monospace; line-height: 1.8;"
     );
   }, []);
 
@@ -49,349 +65,376 @@ export function Hero() {
     <section
       id="hero"
       className="relative min-h-screen flex flex-col justify-center overflow-hidden"
-      style={{ backgroundColor: "#06080D" }}
+      style={{ backgroundColor: "#0A0B0F", paddingTop: "56px" }}
     >
-      {/* Atmospheric radial gradient */}
+      {/* Radial atmospheric glow */}
       <div
-        className="absolute inset-0 pointer-events-none"
+        className="absolute inset-x-0 top-0 pointer-events-none"
         style={{
+          height: "600px",
           background:
-            "radial-gradient(ellipse at 50% 30%, #1A3A8C 0%, transparent 65%)",
-          opacity: 0.55,
+            "radial-gradient(ellipse 1200px 600px at 50% 0%, rgba(74,139,255,0.08) 0%, transparent 65%)",
         }}
       />
 
-      {/* Subtle grid */}
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          backgroundImage:
-            "linear-gradient(rgba(74,139,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(74,139,255,0.03) 1px, transparent 1px)",
-          backgroundSize: "64px 64px",
-        }}
-      />
+      <div className="container-custom relative z-10 py-20 lg:py-32">
+        <div className="grid lg:grid-cols-12 gap-x-12 gap-y-16 items-center">
 
-      <div className="container-custom pt-28 pb-8 relative z-10">
-        {/* 12-col grid */}
-        <div className="grid lg:grid-cols-12 gap-x-16 items-center min-h-[calc(100vh-200px)]">
-
-          {/* LEFT — 7 cols */}
+          {/* LEFT — col-span-7 */}
           <motion.div
-            className="lg:col-span-7 flex flex-col gap-8"
+            className="lg:col-span-7"
             variants={container}
             initial="hidden"
             animate="visible"
           >
-            {/* Badge pills — glassmorphism */}
-            <motion.div variants={item} className="flex flex-wrap gap-2">
-              <span
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm"
-                style={{
-                  background: "rgba(245,181,68,0.08)",
-                  backdropFilter: "blur(24px) saturate(180%)",
-                  border: "1px solid rgba(245,181,68,0.2)",
-                  color: "#F5B544",
-                  fontFamily: "var(--font-mono)",
-                  fontSize: "12px",
-                  letterSpacing: "0.08em",
-                }}
-              >
-                <span
-                  className="w-1.5 h-1.5 rounded-full"
-                  style={{
-                    backgroundColor: "#F5B544",
-                    animation: "pulse 4s ease-in-out infinite",
-                  }}
-                />
-                HACKATHON WINNER · 2025
-              </span>
-              <span
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm"
-                style={{
-                  background: "rgba(74,139,255,0.06)",
-                  backdropFilter: "blur(24px) saturate(180%)",
-                  border: "1px solid rgba(74,139,255,0.15)",
-                  color: "#4A8BFF",
-                  fontFamily: "var(--font-mono)",
-                  fontSize: "12px",
-                  letterSpacing: "0.08em",
-                }}
-              >
-                <span
-                  className="w-1.5 h-1.5 rounded-full"
-                  style={{
-                    backgroundColor: "#4ADE80",
-                    animation: "pulse 4s ease-in-out infinite 1s",
-                  }}
-                />
-                DISPONIBLE · REMOTO
-              </span>
-            </motion.div>
-
-            {/* H1 — Instrument Serif, no gradient, plain white */}
-            <motion.h1
-              variants={item}
-              className="font-serif leading-[0.95] tracking-[-0.04em]"
-              style={{
-                fontSize: "clamp(52px, 7vw, 108px)",
-                fontWeight: 400,
-                color: "#F0F4FB",
-              }}
-            >
-              Construyo<br />
-              sistemas de{" "}
-              <span style={{ fontStyle: "italic", color: "#F0F4FB" }}>
-                inteligencia
-              </span>
-              <br />
-              para decisiones<br />
-              de negocio.
-            </motion.h1>
-
-            {/* Subtitle — mono uppercase */}
-            <motion.div variants={item} className="flex items-center gap-4">
-              <div className="w-8 h-px" style={{ backgroundColor: "#3F4A5F" }} />
-              <p
-                style={{
-                  fontFamily: "var(--font-mono)",
-                  fontSize: "12px",
-                  letterSpacing: "0.16em",
-                  textTransform: "uppercase",
-                  color: "#6B7A95",
-                }}
-              >
-                Financial Analyst · Data Scientist · AI Engineer
-              </p>
-            </motion.div>
-
-            {/* Body */}
-            <motion.p
-              variants={item}
-              className="leading-relaxed max-w-lg"
-              style={{ fontSize: "20px", color: "#C5CFE2", lineHeight: 1.6 }}
-            >
-              6+ años traduciendo datos en decisiones que mueven millones en
-              agroindustria, retail, real estate, fintech y servicios financieros.
-            </motion.p>
-
-            {/* Location */}
+            {/* REF code */}
             <motion.p
               variants={item}
               style={{
                 fontFamily: "var(--font-mono)",
-                fontSize: "13px",
-                letterSpacing: "0.08em",
-                color: "#6B7A95",
+                fontSize: "11px",
+                fontWeight: 500,
+                letterSpacing: "0.12em",
+                textTransform: "uppercase",
+                color: "#4A8BFF",
+                marginBottom: "24px",
               }}
             >
-              Buenos Aires, Argentina
-              <span style={{ color: "#3F4A5F", margin: "0 12px" }}>|</span>
-              <span style={{ color: "#4A8BFF" }}>Disponible para trabajo remoto</span>
+              REF-001 / SENIOR ANALYST
             </motion.p>
 
-            {/* Glass pill CTAs */}
+            {/* Name — Instrument Serif */}
+            <motion.h1
+              variants={item}
+              className="font-serif"
+              style={{
+                fontSize: "clamp(52px, 7vw, 96px)",
+                fontWeight: 400,
+                color: "#F0F4FB",
+                lineHeight: 0.95,
+                letterSpacing: "-0.04em",
+                marginBottom: "28px",
+              }}
+            >
+              Germán<br />Cárdenas
+            </motion.h1>
+
+            {/* Subtitle — mono stacked */}
+            <motion.div
+              variants={item}
+              className="flex flex-col gap-1 mb-8"
+            >
+              {["Financial Analyst", "Data Scientist", "AI Engineer"].map((role, i) => (
+                <div key={role} className="flex items-center gap-3">
+                  {i > 0 && (
+                    <span style={{ color: "#1A1E2A", fontFamily: "var(--font-mono)", fontSize: "12px" }}>
+                      ───
+                    </span>
+                  )}
+                  <span
+                    style={{
+                      fontFamily: "var(--font-mono)",
+                      fontSize: "13px",
+                      letterSpacing: "0.06em",
+                      color: "#5A6478",
+                    }}
+                  >
+                    {role}
+                  </span>
+                </div>
+              ))}
+            </motion.div>
+
+            {/* Divider */}
+            <motion.div
+              variants={item}
+              style={{
+                height: "1px",
+                backgroundColor: "rgba(255,255,255,0.06)",
+                marginBottom: "28px",
+              }}
+            />
+
+            {/* Bio */}
+            <motion.p
+              variants={item}
+              style={{
+                fontSize: "19px",
+                lineHeight: 1.65,
+                color: "#C5CFE2",
+                maxWidth: "480px",
+                marginBottom: "12px",
+              }}
+            >
+              Building decision intelligence systems for finance, ops, and enterprise platforms.
+            </motion.p>
+            <motion.p
+              variants={item}
+              style={{
+                fontSize: "16px",
+                lineHeight: 1.7,
+                color: "#8B95A8",
+                maxWidth: "480px",
+                marginBottom: "40px",
+              }}
+            >
+              6+ years across 6 industries. Built 4 platforms in production. Hackathon winner.
+            </motion.p>
+
+            {/* CTAs — institutional button style */}
             <motion.div variants={item} className="flex flex-wrap gap-3">
               <button
                 onClick={() => scrollTo("casos")}
-                className="inline-flex items-center gap-2 transition-all duration-200 hover:-translate-y-0.5"
+                className="inline-flex items-center gap-2 transition-all duration-200 group focus-ring"
                 style={{
-                  padding: "14px 28px",
-                  borderRadius: "999px",
-                  background: "#2B6FE8",
-                  color: "#fff",
-                  fontSize: "15px",
-                  fontWeight: 600,
-                  border: "none",
+                  padding: "12px 24px",
+                  borderRadius: "4px",
+                  border: "1px solid #4A8BFF",
+                  background: "transparent",
+                  color: "#4A8BFF",
+                  fontFamily: "var(--font-mono)",
+                  fontSize: "13px",
+                  letterSpacing: "0.08em",
                   cursor: "pointer",
                 }}
                 onMouseEnter={(e) => {
-                  (e.currentTarget as HTMLElement).style.boxShadow =
-                    "0 8px 32px rgba(43,111,232,0.4)";
+                  const el = e.currentTarget as HTMLElement;
+                  el.style.backgroundColor = "rgba(74,139,255,0.08)";
                 }}
                 onMouseLeave={(e) => {
-                  (e.currentTarget as HTMLElement).style.boxShadow = "none";
+                  const el = e.currentTarget as HTMLElement;
+                  el.style.backgroundColor = "transparent";
                 }}
               >
-                Ver casos destacados
+                VIEW CASES
+                <span
+                  className="transition-transform duration-200 group-hover:translate-x-1"
+                  style={{ display: "inline-block" }}
+                >
+                  →
+                </span>
               </button>
 
               <a
                 href="mailto:lic.germancardenas@gmail.com"
-                className="inline-flex items-center gap-2 transition-all duration-200 hover:-translate-y-0.5"
+                className="inline-flex items-center gap-2 transition-all duration-200 group focus-ring"
                 style={{
-                  padding: "14px 28px",
-                  borderRadius: "999px",
-                  background: "rgba(15,22,35,0.6)",
-                  backdropFilter: "blur(24px) saturate(180%)",
-                  border: "1px solid rgba(255,255,255,0.06)",
+                  padding: "12px 24px",
+                  borderRadius: "4px",
+                  border: "1px solid rgba(255,255,255,0.10)",
+                  background: "transparent",
                   color: "#C5CFE2",
-                  fontSize: "15px",
-                  fontWeight: 500,
-                }}
-              >
-                Hablemos
-              </a>
-
-              <a
-                href="/cv.pdf"
-                download
-                className="inline-flex items-center gap-2 transition-all duration-200 hover:-translate-y-0.5"
-                style={{
-                  padding: "14px 22px",
-                  borderRadius: "999px",
-                  background: "rgba(15,22,35,0.6)",
-                  backdropFilter: "blur(24px) saturate(180%)",
-                  border: "1px solid rgba(255,255,255,0.06)",
-                  color: "#6B7A95",
-                  fontSize: "14px",
-                  fontWeight: 500,
+                  fontFamily: "var(--font-mono)",
+                  fontSize: "13px",
+                  letterSpacing: "0.08em",
+                  textDecoration: "none",
                 }}
                 onMouseEnter={(e) => {
-                  (e.currentTarget as HTMLElement).style.color = "#C5CFE2";
-                  (e.currentTarget as HTMLElement).style.borderColor =
-                    "rgba(74,139,255,0.3)";
+                  (e.currentTarget as HTMLElement).style.borderColor = "rgba(255,255,255,0.20)";
                 }}
                 onMouseLeave={(e) => {
-                  (e.currentTarget as HTMLElement).style.color = "#6B7A95";
-                  (e.currentTarget as HTMLElement).style.borderColor =
-                    "rgba(255,255,255,0.06)";
+                  (e.currentTarget as HTMLElement).style.borderColor = "rgba(255,255,255,0.10)";
                 }}
               >
-                Descargar CV
+                HABLEMOS
+                <span
+                  className="transition-transform duration-200 group-hover:translate-x-1"
+                  style={{ display: "inline-block" }}
+                >
+                  →
+                </span>
               </a>
             </motion.div>
           </motion.div>
 
-          {/* RIGHT — 5 cols photo */}
-          <motion.div
-            className="hidden lg:block lg:col-span-5"
-            initial={{ opacity: 0, scale: 0.97 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1, delay: 0.3, ease: EASE }}
-          >
-            <div className="relative" ref={photoRef}>
-              {/* Glow halo behind photo */}
-              <div
-                className="absolute pointer-events-none"
+          {/* RIGHT — col-span-5 */}
+          <div className="hidden lg:flex lg:col-span-5 flex-col gap-4">
+            {/* Photo */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.98 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.9, delay: 0.25, ease: EASE }}
+              ref={photoRef}
+              className="relative overflow-hidden"
+              style={{
+                borderRadius: "8px",
+                border: "1px solid rgba(255,255,255,0.06)",
+                aspectRatio: "4/3",
+              }}
+            >
+              <Image
+                src="/photo.jpg"
+                alt="Germán Cárdenas"
+                fill
+                className="object-cover object-center"
+                priority
+                sizes="40vw"
                 style={{
-                  inset: "-40px",
-                  background:
-                    "radial-gradient(circle at 50% 50%, rgba(74,139,255,0.20) 0%, transparent 60%)",
-                  filter: "blur(40px)",
-                  borderRadius: "24px",
+                  filter: "brightness(0.82) contrast(1.08) saturate(0.85)",
+                }}
+              />
+              {/* Duotone blue overlay */}
+              <div
+                className="absolute inset-0 pointer-events-none"
+                style={{ background: "rgba(43,95,181,0.10)", mixBlendMode: "multiply" }}
+              />
+              <div
+                className="absolute inset-0 pointer-events-none"
+                style={{
+                  background: "linear-gradient(to bottom, transparent 50%, rgba(10,11,15,0.5) 100%)",
                 }}
               />
 
-              {/* Photo container */}
-              <motion.div
-                style={{ y: photoY }}
-                className="relative overflow-hidden"
-                whileHover={{ scale: 1.01 }}
-                transition={{ duration: 0.3, ease: EASE }}
+              {/* Live status — overlaid on photo bottom */}
+              <div
+                className="absolute bottom-3 left-3 right-3"
+                style={{
+                  background: "rgba(14,16,21,0.88)",
+                  backdropFilter: "blur(12px)",
+                  border: "1px solid rgba(255,255,255,0.06)",
+                  borderRadius: "6px",
+                  padding: "12px 16px",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                  gap: "12px",
+                }}
               >
-                <div
-                  className="relative overflow-hidden"
-                  style={{
-                    borderRadius: "16px",
-                    border: "1px solid rgba(255,255,255,0.06)",
-                    aspectRatio: "4/5",
-                  }}
-                >
-                  <Image
-                    src="/photo.jpg"
-                    alt="Germán Cárdenas"
-                    fill
-                    className="object-cover object-center"
-                    priority
-                    sizes="(max-width: 1024px) 0px, 40vw"
+                <div className="flex items-center gap-2">
+                  <span
+                    className="w-2 h-2 rounded-full"
                     style={{
-                      filter: "brightness(0.85) contrast(1.05) saturate(0.9)",
+                      backgroundColor: "#00C781",
+                      animation: "pulse-live 2s ease-in-out infinite",
                     }}
                   />
-                  {/* Duotone blue overlay */}
-                  <div
-                    className="absolute inset-0 pointer-events-none"
+                  <span
                     style={{
-                      background: "rgba(43,111,232,0.08)",
-                      mixBlendMode: "color",
+                      fontFamily: "var(--font-mono)",
+                      fontSize: "11px",
+                      letterSpacing: "0.10em",
+                      color: "#00C781",
                     }}
-                  />
-                  {/* Subtle vignette */}
-                  <div
-                    className="absolute inset-0 pointer-events-none"
-                    style={{
-                      background:
-                        "linear-gradient(to bottom, transparent 60%, rgba(6,8,13,0.4) 100%)",
-                    }}
-                  />
+                  >
+                    AVAILABLE
+                  </span>
                 </div>
-              </motion.div>
-            </div>
-          </motion.div>
-        </div>
-
-        {/* METRICS — editorial, no borders, just typography */}
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.9, ease: EASE }}
-          className="mt-16 pt-10 relative"
-          style={{ borderTop: "1px solid rgba(255,255,255,0.06)" }}
-        >
-          <p
-            className="mb-10"
-            style={{
-              fontFamily: "var(--font-mono)",
-              fontSize: "11px",
-              letterSpacing: "0.16em",
-              textTransform: "uppercase",
-              color: "#3F4A5F",
-            }}
-          >
-            ─── EN PRODUCCIÓN
-          </p>
-
-          <div className="grid grid-cols-3 sm:grid-cols-6 gap-x-16 gap-y-10">
-            {metrics.map((m, i) => (
-              <div key={i} className="flex flex-col gap-2">
-                <span
-                  className="leading-none"
-                  style={{
-                    fontFamily: "var(--font-sans)",
-                    fontSize: "clamp(36px, 4.5vw, 64px)",
-                    fontWeight: 300,
-                    color: "#F0F4FB",
-                    letterSpacing: "-0.04em",
-                    fontVariantNumeric: "tabular-nums",
-                  }}
-                >
-                  {m.value}
-                </span>
                 <span
                   style={{
                     fontFamily: "var(--font-mono)",
                     fontSize: "11px",
                     letterSpacing: "0.08em",
-                    textTransform: "uppercase",
-                    color: "#6B7A95",
-                    lineHeight: 1.5,
-                    whiteSpace: "pre-line",
+                    color: "#5A6478",
                   }}
                 >
-                  {m.label}
+                  BUENOS AIRES · <LiveTime /> ART
                 </span>
               </div>
-            ))}
-          </div>
-        </motion.div>
-      </div>
+            </motion.div>
 
-      <style jsx>{`
-        @keyframes pulse {
-          0%, 100% { opacity: 1; }
-          50% { opacity: 0.4; }
-        }
-      `}</style>
+            {/* Performance panel */}
+            <motion.div
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.45, ease: EASE }}
+              style={{
+                background: "#0E1015",
+                border: "1px solid rgba(255,255,255,0.06)",
+                borderRadius: "8px",
+                padding: "20px 24px",
+              }}
+            >
+              {/* Panel header */}
+              <div
+                className="flex items-center justify-between pb-3 mb-3"
+                style={{ borderBottom: "1px solid rgba(255,255,255,0.06)" }}
+              >
+                <span
+                  style={{
+                    fontFamily: "var(--font-mono)",
+                    fontSize: "10px",
+                    fontWeight: 500,
+                    letterSpacing: "0.14em",
+                    textTransform: "uppercase",
+                    color: "#5A6478",
+                  }}
+                >
+                  PERFORMANCE
+                </span>
+                <span
+                  style={{
+                    fontFamily: "var(--font-mono)",
+                    fontSize: "10px",
+                    letterSpacing: "0.08em",
+                    color: "#5A6478",
+                  }}
+                >
+                  ──
+                </span>
+              </div>
+
+              {/* Metric rows */}
+              <div className="flex flex-col gap-2.5">
+                {perf.map((m) => (
+                  <div key={m.label} className="flex items-center justify-between">
+                    <span
+                      style={{
+                        fontFamily: "var(--font-mono)",
+                        fontSize: "10px",
+                        letterSpacing: "0.12em",
+                        color: "#5A6478",
+                      }}
+                    >
+                      {m.label}
+                    </span>
+                    <div className="flex items-center gap-3">
+                      <span
+                        style={{
+                          fontFamily: "var(--font-mono)",
+                          fontSize: "13px",
+                          fontWeight: 500,
+                          color: "#F0F4FB",
+                          fontVariantNumeric: "tabular-nums",
+                          letterSpacing: "0.04em",
+                        }}
+                      >
+                        {m.value}
+                      </span>
+                      <span
+                        style={{
+                          fontFamily: "var(--font-mono)",
+                          fontSize: "10px",
+                          letterSpacing: "0.08em",
+                          color: "#00C781",
+                        }}
+                      >
+                        {m.sub}
+                      </span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {/* Timestamp */}
+              <div
+                className="pt-3 mt-3"
+                style={{ borderTop: "1px solid rgba(255,255,255,0.04)" }}
+              >
+                <span
+                  style={{
+                    fontFamily: "var(--font-mono)",
+                    fontSize: "10px",
+                    letterSpacing: "0.08em",
+                    color: "#5A6478",
+                  }}
+                >
+                  AS OF 27 JUN 2026
+                </span>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </div>
     </section>
   );
 }

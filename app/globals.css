@@ -1,31 +1,31 @@
 @import "tailwindcss";
 
 @theme {
-  --font-sans: "Geist", system-ui, -apple-system, sans-serif;
-  --font-serif: var(--font-instrument), Georgia, "Times New Roman", serif;
-  --font-mono: "Geist Mono", "JetBrains Mono", monospace;
+  /* Analytical Cathedral — font stack */
+  --font-sans:  "Inter", -apple-system, system-ui, sans-serif;
+  --font-serif: var(--font-instrument), Georgia, serif;
+  --font-mono:  "JetBrains Mono", "SF Mono", Menlo, monospace;
 
-  /* Deep Finance — base surfaces */
-  --color-bg-base:     #06080D;
-  --color-bg-section:  #0A0F1A;
-  --color-bg-card:     #0F1623;
-  --color-bg-elevated: #131B2B;
+  /* Base surfaces */
+  --color-bg-terminal:  #0A0B0F;
+  --color-bg-panel:     #0E1015;
+  --color-bg-elevated:  #14171F;
+  --color-bg-overlay:   #1A1E2A;
 
-  /* Atmospheric blues */
-  --color-blue-deep:     #1A3A8C;
-  --color-blue-primary:  #2B6FE8;
-  --color-blue-electric: #4A8BFF;
+  /* Bloomberg data palette */
+  --color-data-blue:     #4A8BFF;
+  --color-data-blue-dim: #2B5FB5;
+  --color-data-cyan:     #00B8D4;
+  --color-data-positive: #00C781;
+  --color-data-negative: #FF4757;
+  --color-data-warning:  #F5B544;
+  --color-data-neutral:  #8B95A8;
 
-  /* Text */
-  --color-text-display:  #F0F4FB;
-  --color-text-body:     #C5CFE2;
-  --color-text-muted:    #6B7A95;
-  --color-text-disabled: #3F4A5F;
-
-  /* Functional */
-  --color-gold:       #F5B544;
-  --color-green-live: #4ADE80;
-  --color-cta:        #2B6FE8;
+  /* Text scale */
+  --color-text-primary:    #F0F4FB;
+  --color-text-secondary:  #C5CFE2;
+  --color-text-tertiary:   #8B95A8;
+  --color-text-quaternary: #5A6478;
 }
 
 @layer base {
@@ -37,82 +37,113 @@
   }
 
   body {
-    background-color: #06080D;
+    background-color: #0A0B0F;
     color: #C5CFE2;
     font-family: var(--font-sans);
-    font-size: 17px;
+    font-size: 16px;
     line-height: 1.7;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
 
-  /* Grain texture — fixed, pointer-events none */
+  /* Grain overlay — fixed, 9000 z-index */
   body::after {
     content: "";
     position: fixed;
     inset: 0;
     z-index: 9000;
     pointer-events: none;
-    opacity: 0.025;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    opacity: 0.018;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
     background-size: 200px 200px;
+  }
+
+  /* Atmospheric grid overlay */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+    background-size: 64px 64px;
+    opacity: 0.4;
   }
 }
 
 @layer utilities {
   .container-custom {
-    max-width: 1280px;
+    max-width: 1320px;
     margin-left: auto;
     margin-right: auto;
-    padding-left: 24px;
-    padding-right: 24px;
+    padding-left: 32px;
+    padding-right: 32px;
   }
 
   @media (min-width: 640px) {
-    .container-custom { padding-left: 32px; padding-right: 32px; }
+    .container-custom { padding-left: 40px; padding-right: 40px; }
   }
 
   @media (min-width: 1024px) {
-    .container-custom { padding-left: 56px; padding-right: 56px; }
+    .container-custom { padding-left: 64px; padding-right: 64px; }
   }
 
   .font-serif { font-family: var(--font-serif); }
+  .font-mono  { font-family: var(--font-mono); }
 
-  /* Section eyebrow label */
-  .eyebrow {
-    font-family: var(--font-mono);
-    font-size: 12px;
-    font-weight: 500;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: #6B7A95;
-  }
-
-  /* Meta text */
+  /* Terminal text-meta utility */
   .text-meta {
     font-family: var(--font-mono);
-    font-size: 13px;
-    letter-spacing: 0.08em;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: #6B7A95;
+    color: #8B95A8;
+  }
+
+  /* Tabular numbers on all mono content */
+  .font-mono, .tabular {
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* Focus ring */
+  .focus-ring:focus-visible {
+    outline: 2px solid #4A8BFF;
+    outline-offset: 2px;
   }
 }
 
 /* Scrollbar */
 ::-webkit-scrollbar { width: 4px; }
 ::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: #131B2B; border-radius: 2px; }
+::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.08); border-radius: 2px; }
 ::-webkit-scrollbar-thumb:hover { background: #4A8BFF; }
 
 /* Selection */
 ::selection {
-  background-color: rgba(74, 139, 255, 0.2);
+  background-color: rgba(74,139,255,0.25);
   color: #F0F4FB;
+}
+
+/* Pulse animation for live indicators */
+@keyframes pulse-live {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.35; }
 }
 
 /* Print */
 @media print {
   nav, footer, .no-print { display: none !important; }
-  body { color: #000; background: #fff; font-family: Georgia, serif; }
-  a::after { content: " (" attr(href) ")"; font-size: 0.8em; color: #555; }
+  body { color: #000; background: #fff; font-size: 12px; }
+  a::after { content: " (" attr(href) ")"; font-size: 0.75em; color: #555; }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
 }

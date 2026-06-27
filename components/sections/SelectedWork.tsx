@@ -2,51 +2,49 @@
 
 import Image from "next/image";
 import { AnimatedSection } from "@/components/AnimatedSection";
-import { ExternalLink, Lock } from "lucide-react";
 
-type Tier2Project = {
-  id: string;
+type ArchiveItem = {
+  code: string;
   eyebrow: string;
   title: string;
   description: string;
-  stack: string;
+  stack: string[];
   url: string;
-  live: boolean;
+  status: "LIVE" | "PRIVATE" | "RESEARCH";
   screenshot?: string;
 };
 
-const projects: Tier2Project[] = [
+const archive: ArchiveItem[] = [
   {
-    id: "rsi",
-    eyebrow: "Research · PropTech",
+    code: "ARC-01",
+    eyebrow: "PropTech · Argentina",
     title: "Real Estate Intelligence",
     description:
-      "Alpha Score propietario por radio censal para 4 ciudades argentinas. Integra datos INDEC, valuaciones fiscales y métricas de liquidez de mercado para identificar las zonas con mayor potencial de rentabilidad inmobiliaria.",
-    stack: "Next.js 15 · MapLibre · PostGIS · FastAPI · INDEC API",
+      "Alpha Score per census tract for 4 Argentine cities. Integrates INDEC data, fiscal valuations, and market liquidity metrics.",
+    stack: ["Next.js 15", "MapLibre", "PostGIS", "FastAPI"],
     url: "https://real-state-intelligence.vercel.app/",
-    live: true,
+    status: "LIVE",
     screenshot: "/screenshots/rsi.png",
   },
   {
-    id: "electoral",
-    eyebrow: "Research · Civic Intelligence",
+    code: "ARC-02",
+    eyebrow: "Civic Intelligence · GIS",
     title: "Electoral Analytics",
     description:
-      "Plataforma de inteligencia electoral para municipios del conurbano bonaerense. Análisis geoespacial por radio censal, mapas coropléticos de volatilidad y segmentación de zonas operativas para campañas políticas.",
-    stack: "Python · QGIS · GeoPandas · Matplotlib · ReportLab",
+      "Geospatial electoral platform for Buenos Aires municipalities. Choropleth maps by census tract, volatility scoring, and operational zone segmentation.",
+    stack: ["Python", "GeoPandas", "QGIS", "ReportLab"],
     url: "#",
-    live: false,
-    screenshot: "/screenshots/electoral.png",
+    status: "PRIVATE",
   },
   {
-    id: "cipe",
+    code: "ARC-03",
     eyebrow: "Pro-bono · Social Impact",
     title: "Fundación CIPE",
     description:
-      "Sitio institucional para fundación de empleabilidad juvenil con CMS integrado, sistema de donaciones y plataforma de voluntariado. Diseño accesible, mobile-first y optimizado para conversión de donantes.",
-    stack: "Next.js · CMS · Tailwind CSS · Vercel",
+      "Institutional site for youth employment foundation. CMS integration, donation system, volunteer platform, accessible mobile-first design.",
+    stack: ["Next.js", "Tailwind CSS", "Vercel", "CMS"],
     url: "https://www.fundacioncipe.com/",
-    live: true,
+    status: "LIVE",
   },
 ];
 
@@ -54,8 +52,12 @@ export function SelectedWork() {
   return (
     <section
       id="projects"
-      className="py-40"
-      style={{ backgroundColor: "#0A0F1A", borderTop: "1px solid rgba(255,255,255,0.05)" }}
+      style={{
+        backgroundColor: "#0E1015",
+        paddingTop: "160px",
+        paddingBottom: "160px",
+        borderTop: "1px solid rgba(255,255,255,0.06)",
+      }}
     >
       <div className="container-custom">
         {/* Header */}
@@ -63,14 +65,14 @@ export function SelectedWork() {
           <p
             style={{
               fontFamily: "var(--font-mono)",
-              fontSize: "12px",
-              letterSpacing: "0.16em",
-              textTransform: "uppercase",
-              color: "#6B7A95",
-              marginBottom: "24px",
+              fontSize: "11px",
+              fontWeight: 500,
+              letterSpacing: "0.14em",
+              color: "#4A8BFF",
+              marginBottom: "20px",
             }}
           >
-            ─── Otros proyectos
+            ─── ARCHIVE / REF-04
           </p>
           <h2
             className="font-serif"
@@ -79,163 +81,200 @@ export function SelectedWork() {
               fontWeight: 400,
               color: "#F0F4FB",
               lineHeight: 1.05,
-              letterSpacing: "-0.03em",
+              letterSpacing: "-0.02em",
+              marginBottom: "12px",
             }}
           >
-            Research, civic tech,{" "}
-            <span style={{ fontStyle: "italic" }}>impacto social.</span>
+            Research & civic tech.
           </h2>
+          <p style={{ fontSize: "16px", color: "#8B95A8", lineHeight: 1.7 }}>
+            Additional work spanning PropTech, electoral intelligence, and social impact.
+          </p>
         </AnimatedSection>
 
-        {/* Alternating horizontal cards */}
-        <div className="space-y-5">
-          {projects.map((p, i) => {
-            const isEven = i % 2 === 0;
-
-            return (
-              <AnimatedSection key={p.id} delay={i * 0.07}>
+        {/* 3-column grid */}
+        <div className="grid md:grid-cols-3 gap-4">
+          {archive.map((item, i) => (
+            <AnimatedSection key={item.code} delay={i * 0.06}>
+              <div
+                className="flex flex-col h-full transition-all duration-300 group"
+                style={{
+                  background: "#0A0B0F",
+                  border: "1px solid rgba(255,255,255,0.06)",
+                  borderRadius: "8px",
+                  overflow: "hidden",
+                  transitionTimingFunction: "cubic-bezier(0.16, 1, 0.3, 1)",
+                }}
+                onMouseEnter={(e) => {
+                  const el = e.currentTarget as HTMLElement;
+                  el.style.borderColor = "rgba(74,139,255,0.30)";
+                }}
+                onMouseLeave={(e) => {
+                  const el = e.currentTarget as HTMLElement;
+                  el.style.borderColor = "rgba(255,255,255,0.06)";
+                }}
+              >
+                {/* Screenshot area — 60% top */}
                 <div
-                  className="grid md:grid-cols-2 overflow-hidden group transition-all duration-[400ms]"
                   style={{
-                    borderRadius: "24px",
-                    border: "1px solid rgba(255,255,255,0.04)",
-                    background: "#0F1623",
-                    transitionTimingFunction: "cubic-bezier(0.16, 1, 0.3, 1)",
-                  }}
-                  onMouseEnter={(e) => {
-                    const el = e.currentTarget as HTMLElement;
-                    el.style.borderColor = "rgba(74,139,255,0.1)";
-                  }}
-                  onMouseLeave={(e) => {
-                    const el = e.currentTarget as HTMLElement;
-                    el.style.borderColor = "rgba(255,255,255,0.04)";
+                    height: "200px",
+                    background: "#06080D",
+                    position: "relative",
+                    overflow: "hidden",
                   }}
                 >
-                  {/* Screenshot */}
-                  <div
-                    className={`relative overflow-hidden ${isEven ? "md:order-last" : ""}`}
-                    style={{ minHeight: "260px", background: "#06080D" }}
-                  >
-                    {p.screenshot ? (
-                      <Image
-                        src={p.screenshot}
-                        alt={p.title}
-                        fill
-                        className="object-cover object-top transition-transform duration-500 group-hover:scale-[1.02]"
-                        sizes="(max-width: 768px) 100vw, 50vw"
-                      />
-                    ) : (
-                      <div
-                        className="absolute inset-0 flex items-center justify-center"
+                  {item.screenshot ? (
+                    <Image
+                      src={item.screenshot}
+                      alt={item.title}
+                      fill
+                      className="object-cover object-top transition-transform duration-500 group-hover:scale-[1.04]"
+                      sizes="(max-width: 768px) 100vw, 33vw"
+                    />
+                  ) : (
+                    <div
+                      className="absolute inset-0 flex items-center justify-center"
+                      style={{
+                        background: "linear-gradient(135deg, #0A0B0F 0%, rgba(74,139,255,0.06) 100%)",
+                      }}
+                    >
+                      <span
                         style={{
-                          background: "linear-gradient(135deg, #0A0F1A 0%, rgba(43,111,232,0.06) 100%)",
+                          fontFamily: "var(--font-mono)",
+                          fontSize: "10px",
+                          letterSpacing: "0.14em",
+                          color: "#3A404F",
                         }}
                       >
-                        <span style={{ color: "#3F4A5F", fontSize: "32px" }}>✦</span>
-                      </div>
-                    )}
-                    <div
-                      className="absolute inset-0 pointer-events-none"
-                      style={{
-                        background: `linear-gradient(to ${isEven ? "right" : "left"}, rgba(15,22,35,0.3) 0%, transparent 40%)`,
-                      }}
-                    />
-                  </div>
-
-                  {/* Text */}
+                        {item.code}
+                      </span>
+                    </div>
+                  )}
+                  {/* Status badge */}
                   <div
-                    className="flex flex-col justify-center transition-transform duration-[400ms] group-hover:translate-x-2"
                     style={{
-                      padding: "48px 40px",
-                      transitionTimingFunction: "cubic-bezier(0.16, 1, 0.3, 1)",
+                      position: "absolute",
+                      top: "12px",
+                      right: "12px",
                     }}
                   >
-                    <p
+                    <span
+                      style={{
+                        fontFamily: "var(--font-mono)",
+                        fontSize: "10px",
+                        fontWeight: 500,
+                        letterSpacing: "0.10em",
+                        color: item.status === "LIVE" ? "#00C781" : "#5A6478",
+                        background: "rgba(10,11,15,0.80)",
+                        border: `1px solid ${item.status === "LIVE" ? "rgba(0,199,129,0.25)" : "rgba(255,255,255,0.08)"}`,
+                        padding: "3px 8px",
+                        borderRadius: "2px",
+                        backdropFilter: "blur(8px)",
+                      }}
+                    >
+                      {item.status}
+                    </span>
+                  </div>
+                </div>
+
+                {/* Content */}
+                <div className="flex flex-col flex-1 p-6">
+                  {/* Eyebrow */}
+                  <p
+                    style={{
+                      fontFamily: "var(--font-mono)",
+                      fontSize: "10px",
+                      fontWeight: 500,
+                      letterSpacing: "0.12em",
+                      color: "#4A8BFF",
+                      marginBottom: "10px",
+                    }}
+                  >
+                    {item.eyebrow}
+                  </p>
+
+                  {/* Title */}
+                  <p
+                    style={{
+                      fontSize: "17px",
+                      fontWeight: 500,
+                      color: "#F0F4FB",
+                      letterSpacing: "-0.01em",
+                      lineHeight: 1.3,
+                      marginBottom: "10px",
+                    }}
+                  >
+                    {item.title}
+                  </p>
+
+                  {/* Desc */}
+                  <p
+                    style={{
+                      fontSize: "13px",
+                      lineHeight: 1.7,
+                      color: "#8B95A8",
+                      marginBottom: "16px",
+                      flex: 1,
+                    }}
+                  >
+                    {item.description}
+                  </p>
+
+                  {/* Stack mono */}
+                  <p
+                    style={{
+                      fontFamily: "var(--font-mono)",
+                      fontSize: "11px",
+                      letterSpacing: "0.04em",
+                      color: "#5A6478",
+                      lineHeight: 1.6,
+                      marginBottom: "20px",
+                    }}
+                  >
+                    {item.stack.join(" · ")}
+                  </p>
+
+                  {/* CTA */}
+                  {item.status === "LIVE" ? (
+                    <a
+                      href={item.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="transition-colors duration-200"
                       style={{
                         fontFamily: "var(--font-mono)",
                         fontSize: "11px",
-                        letterSpacing: "0.14em",
-                        textTransform: "uppercase",
-                        color: "#4A8BFF",
-                        marginBottom: "12px",
-                      }}
-                    >
-                      {p.eyebrow}
-                    </p>
-
-                    <h3
-                      style={{
-                        fontSize: "24px",
                         fontWeight: 500,
-                        color: "#F0F4FB",
-                        letterSpacing: "-0.01em",
-                        marginBottom: "12px",
-                        lineHeight: 1.2,
+                        letterSpacing: "0.10em",
+                        color: "#4A8BFF",
+                        textDecoration: "none",
+                        alignSelf: "flex-start",
+                      }}
+                      onMouseEnter={(e) => {
+                        (e.currentTarget as HTMLElement).style.color = "#F0F4FB";
+                      }}
+                      onMouseLeave={(e) => {
+                        (e.currentTarget as HTMLElement).style.color = "#4A8BFF";
                       }}
                     >
-                      {p.title}
-                    </h3>
-
-                    <p
-                      style={{
-                        fontSize: "16px",
-                        lineHeight: 1.7,
-                        color: "#C5CFE2",
-                        marginBottom: "16px",
-                      }}
-                    >
-                      {p.description}
-                    </p>
-
-                    <p
+                      VIEW →
+                    </a>
+                  ) : (
+                    <span
                       style={{
                         fontFamily: "var(--font-mono)",
-                        fontSize: "12px",
-                        letterSpacing: "0.06em",
-                        color: "#6B7A95",
-                        marginBottom: "24px",
-                        lineHeight: 1.7,
+                        fontSize: "11px",
+                        letterSpacing: "0.10em",
+                        color: "#3A404F",
                       }}
                     >
-                      {p.stack}
-                    </p>
-
-                    {p.live ? (
-                      <a
-                        href={p.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 transition-colors duration-200 self-start"
-                        style={{
-                          fontSize: "14px",
-                          fontWeight: 600,
-                          color: "#4A8BFF",
-                          textDecoration: "none",
-                        }}
-                        onMouseEnter={(e) => {
-                          (e.currentTarget as HTMLElement).style.color = "#F0F4FB";
-                        }}
-                        onMouseLeave={(e) => {
-                          (e.currentTarget as HTMLElement).style.color = "#4A8BFF";
-                        }}
-                      >
-                        Ver live
-                        <ExternalLink className="w-3.5 h-3.5" />
-                      </a>
-                    ) : (
-                      <span
-                        className="inline-flex items-center gap-2 self-start"
-                        style={{ fontSize: "14px", color: "#3F4A5F" }}
-                      >
-                        <Lock className="w-3.5 h-3.5" />
-                        Confidencial
-                      </span>
-                    )}
-                  </div>
+                      CONFIDENTIAL
+                    </span>
+                  )}
                 </div>
-              </AnimatedSection>
-            );
-          })}
+              </div>
+            </AnimatedSection>
+          ))}
         </div>
       </div>
     </section>

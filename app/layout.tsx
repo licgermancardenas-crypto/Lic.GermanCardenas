@@ -1,17 +1,18 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Instrument_Serif } from "next/font/google";
+import { Inter, JetBrains_Mono, Instrument_Serif } from "next/font/google";
 import "./globals.css";
 
-const geist = Geist({
+const inter = Inter({
   subsets: ["latin"],
   variable: "--font-sans",
   display: "swap",
 });
 
-const geistMono = Geist_Mono({
+const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
   variable: "--font-mono",
   display: "swap",
+  axes: ["wght"],
 });
 
 const instrumentSerif = Instrument_Serif({
@@ -34,6 +35,7 @@ export const metadata: Metadata = {
   keywords: [
     "financial analyst", "data scientist", "AI engineer",
     "Buenos Aires", "portfolio", "AgroNova", "hackathon winner",
+    "FP&A", "Power BI", "Bloomberg",
   ],
   openGraph: {
     type: "website",
@@ -49,7 +51,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html
       lang="es"
-      className={`${geist.variable} ${geistMono.variable} ${instrumentSerif.variable} dark`}
+      className={`${inter.variable} ${jetbrainsMono.variable} ${instrumentSerif.variable} dark`}
       style={{ colorScheme: "dark" }}
     >
       <head>

@@ -9,21 +9,20 @@ import { ExternalLink, ArrowRight } from "lucide-react";
 
 const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
-type CaseMeta = { rol: string; escala: string; stack: string; estado: string };
-type CaseMetric = { value: string; label: string };
+type CaseMetric = { value: string; label: string; sub?: string };
 
 type CaseData = {
-  id: string;
+  code: string;
   slug: string;
-  number: string;
   category: string;
   title: string;
   subtitle: string;
+  statusLabel: string;
   isHackathon?: boolean;
   hackathonName?: string;
   hackathonSponsor?: string;
   hackathonTeams?: string;
-  meta: CaseMeta;
+  meta: { rol: string; escala: string; stack: string; estado: string };
   challenge: string;
   approach: string;
   impactLabel: string;
@@ -35,117 +34,117 @@ type CaseData = {
 
 const cases: CaseData[] = [
   {
-    id: "caso-01",
+    code: "CASE-001",
     slug: "atlas-one-erp",
-    number: "01",
     category: "ENTERPRISE · SAAS B2B",
     title: "Atlas One ERP",
     subtitle: "ERP modular para PyMEs argentinas que necesitan inteligencia de negocio sin complejidad técnica.",
+    statusLabel: "PROD",
     meta: {
-      rol: "Founder & Lead Dev",
-      escala: "B2B · PyMEs ARG",
+      rol: "Founder & Tech Lead",
+      escala: "Multi-tenant · B2B",
       stack: "React · FastAPI · PostgreSQL",
-      estado: "En producción",
+      estado: "Comercial",
     },
     challenge:
-      "Las PyMEs argentinas operan con herramientas dispersas: planillas Excel para finanzas, WhatsApp para clientes, y ninguna visibilidad consolidada de sus KPIs. El 87% no tiene acceso a BI real por costo o complejidad técnica. Los dueños toman decisiones críticas en base a intuición, no a datos.",
+      "Las PyMEs argentinas operan con herramientas dispersas: planillas Excel para finanzas, WhatsApp para clientes, y ninguna visibilidad consolidada de sus KPIs. El 87% no tiene acceso a BI real por costo o complejidad técnica.",
     approach:
-      "Diseñé una arquitectura modular donde cada equipo accede solo a lo que necesita. El módulo CRM con IA integrada genera briefings diarios automáticos, detecta leads en riesgo y sugiere el mejor horario de contacto según comportamiento histórico. Los dashboards ejecutivos consolidan ventas, inventario y finanzas en una vista unificada en tiempo real, sin necesidad de código.",
+      "Arquitectura modular donde cada equipo accede solo a lo que necesita. CRM con IA integrada genera briefings diarios automáticos, detecta leads en riesgo y sugiere horario óptimo de contacto según comportamiento histórico.",
     impactLabel: "IMPACTO",
     impact:
-      "Sistema en uso activo en PyMEs del sector retail y servicios. Los módulos de CRM e inteligencia comercial reducen el tiempo de análisis gerencial en un 40% y mejoran significativamente la tasa de conversión de leads. La arquitectura modular permite escalar por industria sin reescribir el core.",
+      "Sistema en uso activo en PyMEs de retail y servicios. Módulos de CRM e inteligencia comercial reducen el tiempo de análisis gerencial en un 40% y mejoran la tasa de conversión de leads.",
     metrics: [
-      { value: "2.847", label: "Leads gestionados" },
-      { value: "68.4%", label: "Tasa de apertura" },
-      { value: "−40%", label: "Tiempo análisis" },
+      { value: "2,847", label: "LEADS MANAGED",    sub: "▲ CRM ACTIVE" },
+      { value: "68.4%", label: "OPEN RATE",         sub: "▲ CAMPAIGNS" },
+      { value: "−40%",  label: "ANALYSIS TIME",     sub: "▲ EFFICIENCY" },
     ],
     screenshot: "/screenshots/atlas-erp.png",
     url: "https://www.atlaones-erp.com",
   },
   {
-    id: "caso-02",
+    code: "CASE-002",
     slug: "atlas-nexus",
-    number: "02",
     category: "SAAS B2B · HACKATHON WINNER",
     title: "Atlas Nexus",
     subtitle: "Plataforma de inteligencia comercial para comercios independientes con integración POS nativa.",
+    statusLabel: "WINNER",
     isHackathon: true,
     hackathonName: "Hackathon 2025",
     hackathonSponsor: "Clover / Fiserv",
     hackathonTeams: "200+",
     meta: {
       rol: "Lead Developer & Pitch",
-      escala: "SaaS · Comercios chicos",
+      escala: "SaaS · SMB",
       stack: "React · FastAPI · Clover API",
-      estado: "Ganador 2025",
+      estado: "1st Place",
     },
     challenge:
-      "Los comercios pequeños no tienen visibilidad de su negocio más allá de la caja registradora. Usan 3-5 herramientas desconectadas — POS, WhatsApp, Excel — que generan datos sin ninguna inteligencia consolidada. El resultado: decisiones de compra, precio y promoción basadas en intuición, no en comportamiento real de clientes.",
+      "Los comercios pequeños no tienen visibilidad más allá de la caja registradora. Usan 3-5 herramientas desconectadas que generan datos sin inteligencia consolidada. Decisiones de precio y promoción basadas en intuición.",
     approach:
-      "En 72 horas construimos una plataforma que conecta el POS (Clover), el historial de ventas y los datos de clientes en un dashboard unificado. El punto diferencial fue la IA embebida que genera un 'briefing del día' personalizado: alertas de clientes que no vuelven, análisis de medios de pago, proyección de meta mensual y recomendaciones de acción específicas.",
+      "En 72 horas construimos una plataforma que conecta el POS (Clover), historial de ventas y datos de clientes en un dashboard unificado con IA embebida que genera un 'briefing del día' personalizado.",
     impactLabel: "POR QUÉ GANAMOS",
     impact:
-      "El jurado destacó la combinación de profundidad técnica — integración POS real, análisis de cohortes, IA generativa — con una UX diseñada para el comerciante promedio, no para el analista. El demo live con datos reales y el pitch narrativo sellaron la presentación ante 200+ equipos competidores.",
+      "El jurado destacó la combinación de profundidad técnica — integración POS real, análisis de cohortes, IA generativa — con una UX diseñada para el comerciante promedio, no para el analista.",
     metrics: [
-      { value: "$2.5M", label: "Revenue modelado" },
-      { value: "57.2%", label: "Retorno clientes" },
-      { value: "200+", label: "Equipos superados" },
+      { value: "$2.5M",  label: "REVENUE MODELED", sub: "▲ DEMO LIVE" },
+      { value: "57.2%",  label: "RETURN RATE",      sub: "▲ COHORTS" },
+      { value: "200+",   label: "TEAMS BEATEN",     sub: "🏆 1ST PLACE" },
     ],
     screenshot: "/screenshots/atlas-nexus.png",
     url: "https://trackintegracionpagos.vercel.app/",
   },
   {
-    id: "caso-03",
+    code: "CASE-003",
     slug: "agronova",
-    number: "03",
     category: "AGRITECH · GIS · ENTERPRISE",
     title: "AgroNova",
     subtitle: "Plataforma geoespacial de escala nacional para la agroindustria argentina.",
+    statusLabel: "PROD",
     meta: {
-      rol: "Full-stack Developer & GIS",
-      escala: "Enterprise · 24 provincias",
+      rol: "Full-stack · GIS Engineer",
+      escala: "Enterprise · 24 prov.",
       stack: "Next.js 15 · PostGIS · FastAPI",
-      estado: "En producción",
+      estado: "Producción",
     },
     challenge:
-      "El sector agropecuario argentino opera con información fragmentada en silos: datos climáticos en una fuente, precios en otra, logística de agroquímicos sin integración con la geografía real. Más de 3.000 productores y distribuidores toman decisiones críticas con datos desactualizados o sin ninguna capa de inteligencia espacial.",
+      "El sector agropecuario opera con información fragmentada en silos: datos climáticos, precios y logística sin integración con la geografía real. +3.000 productores toman decisiones con datos desactualizados.",
     approach:
-      "Construí un sistema modular de 27 capas GIS sobre PostGIS que integra en tiempo real: alertas climáticas por radio censal, modelado de redes de distribución de agroquímicos, detección automática de conflictos de uso de suelo y visualización choroplética del portfolio comercial por provincia. Cada módulo es independiente pero comparte una capa de datos unificada con actualización continua.",
-    impactLabel: "ESCALA",
+      "Sistema modular de 27 capas GIS sobre PostGIS que integra en tiempo real alertas climáticas por radio censal, modelado de redes de distribución de agroquímicos y detección automática de conflictos de uso de suelo.",
+    impactLabel: "SCALE",
     impact:
-      "La plataforma procesa datos de las 24 provincias argentinas, modela más de 200.000 envíos anuales de agroquímicos y detecta automáticamente conflictos de uso de suelo. Con más de 3.300 clientes activos y ARS 14.2B en revenue modelado, es la plataforma de mayor escala en el portfolio.",
+      "24 provincias argentinas, +200K envíos de agroquímicos modelados anualmente, 2.571 conflictos de uso de suelo detectados automáticamente.",
     metrics: [
-      { value: "3.387", label: "Clientes activos" },
-      { value: "ARS 14.2B", label: "Revenue modelado" },
-      { value: "2.571", label: "Conflictos detectados" },
+      { value: "3,387",    label: "ACTIVE CLIENTS",  sub: "▲ NATIONAL" },
+      { value: "ARS 14.2B",label: "REV. MODELED",    sub: "▲ PORTFOLIO" },
+      { value: "2,571",    label: "CONFLICTS FOUND",  sub: "▲ KNN JOIN" },
     ],
     screenshot: "/screenshots/agronova.png",
     url: "https://agro-nova-plataforma.vercel.app/",
   },
   {
-    id: "caso-04",
+    code: "CASE-004",
     slug: "lapd",
-    number: "04",
     category: "RESEARCH · DATA ANALYTICS",
     title: "LAPD Crime Analytics",
     subtitle: "Análisis de 1 millón de registros policiales de Los Ángeles con rigor metodológico.",
+    statusLabel: "LIVE",
     meta: {
-      rol: "Data Analyst & Developer",
-      escala: "Research · 5 años de datos",
+      rol: "Data Analyst · Developer",
+      escala: "Research · 5-year data",
       stack: "Next.js · Python · D3.js",
-      estado: "Live en producción",
+      estado: "Live público",
     },
     challenge:
-      "Los datos abiertos del LAPD contienen más de 1 millón de registros de crimen entre 2020 y 2024, pero están en formato tabular sin ninguna herramienta de análisis accesible para investigadores, periodistas o ciudadanos. Los patrones espaciales, temporales y demográficos permanecen ocultos en datos brutos.",
+      "+1 millón de registros de crimen LAPD 2020-2024 en formato tabular sin ninguna herramienta de análisis accesible para investigadores, periodistas o ciudadanos.",
     approach:
-      "Construí un pipeline ETL en Python que normaliza, geocodifica y enriquece los registros con categorías unificadas, seguido de un dashboard Next.js con D3.js para visualizaciones interactivas. El sistema incluye mapas de calor geoespaciales, análisis por franja horaria y día de la semana, distribución por tipo de crimen y un módulo de Arrests con filtros avanzados por demografía.",
+      "Pipeline ETL en Python que normaliza, geocodifica y enriquece los registros. Dashboard Next.js con D3.js: mapas de calor, análisis temporal, distribución por tipo de crimen y módulo de Arrests con filtros avanzados.",
     impactLabel: "QUÉ DEMUESTRA",
     impact:
-      "Este proyecto demuestra la capacidad de convertir datos gubernamentales brutos en inteligencia accionable a escala. El rigor metodológico — limpieza de datos, manejo de valores nulos, normalización de 100+ categorías — es tan importante como la visualización final. Dashboard en producción en Vercel con acceso público.",
+      "Capacidad de convertir datos gubernamentales brutos en inteligencia accionable a escala. Rigor metodológico: limpieza, valores nulos, normalización de 100+ categorías. Dashboard en producción con acceso público.",
     metrics: [
-      { value: "1M+", label: "Registros procesados" },
-      { value: "20.1%", label: "Tasa resolución" },
-      { value: "10+", label: "Módulos análisis" },
+      { value: "1M+",   label: "RECORDS",    sub: "▲ ETL PIPELINE" },
+      { value: "20.1%", label: "RESOLUTION",  sub: "▲ 2020–2024" },
+      { value: "10+",   label: "MODULES",     sub: "▲ INDEPENDENT" },
     ],
     screenshot: "/screenshots/lapd.png",
     url: "https://lapd-data-crime.vercel.app/dashboard",
@@ -153,53 +152,44 @@ const cases: CaseData[] = [
 ];
 
 function ParallaxScreenshot({
-  src,
-  alt,
-  url,
-  isHackathon,
+  src, alt, url, isHackathon,
 }: {
-  src: string;
-  alt: string;
-  url: string;
-  isHackathon?: boolean;
+  src: string; alt: string; url: string; isHackathon?: boolean;
 }) {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
   const y = useTransform(scrollYProgress, [0, 1], [40, -40]);
 
-  const glowColor = isHackathon
-    ? "rgba(245,181,68,0.15)"
-    : "rgba(74,139,255,0.15)";
-
   return (
     <div ref={ref} className="relative">
-      {/* Ambient backdrop glow */}
+      {/* Glow behind */}
       <div
         className="absolute pointer-events-none"
         style={{
-          inset: "-60px",
-          background: `radial-gradient(ellipse at 50% 50%, ${glowColor} 0%, transparent 65%)`,
+          inset: "-80px",
+          background: isHackathon
+            ? "radial-gradient(ellipse at 50% 50%, rgba(245,181,68,0.12) 0%, transparent 60%)"
+            : "radial-gradient(ellipse at 50% 50%, rgba(74,139,255,0.15) 0%, transparent 60%)",
           filter: "blur(40px)",
-          opacity: 0.8,
+          opacity: 0.7,
         }}
       />
 
-      <motion.div style={{ y }} className="relative">
-        {/* Browser chrome */}
+      <motion.div style={{ y }}>
         <div
           className="overflow-hidden"
           style={{
-            borderRadius: "12px",
+            borderRadius: "8px",
             border: "1px solid rgba(255,255,255,0.08)",
             boxShadow:
-              "0 30px 60px -20px rgba(0,0,0,0.6), 0 0 120px -20px " + glowColor,
+              "0 40px 80px -20px rgba(0,0,0,0.7), 0 0 160px -20px rgba(74,139,255,0.15)",
           }}
         >
-          {/* Bar */}
+          {/* Browser bar */}
           <div
             className="flex items-center gap-3 px-4 py-2.5"
             style={{
-              background: "#060810",
+              background: "#060709",
               borderBottom: "1px solid rgba(255,255,255,0.05)",
             }}
           >
@@ -208,7 +198,7 @@ function ParallaxScreenshot({
                 <div
                   key={c}
                   className="w-2.5 h-2.5 rounded-full"
-                  style={{ backgroundColor: c, opacity: 0.5 }}
+                  style={{ backgroundColor: c, opacity: 0.45 }}
                 />
               ))}
             </div>
@@ -219,14 +209,12 @@ function ParallaxScreenshot({
                 border: "1px solid rgba(255,255,255,0.04)",
                 fontFamily: "var(--font-mono)",
                 fontSize: "11px",
-                color: "rgba(255,255,255,0.2)",
+                color: "rgba(255,255,255,0.18)",
               }}
             >
               {url}
             </div>
           </div>
-
-          {/* Screenshot */}
           <div className="relative overflow-hidden" style={{ aspectRatio: "16/10" }}>
             <Image
               src={src}
@@ -242,361 +230,404 @@ function ParallaxScreenshot({
   );
 }
 
+function FactSheet({ meta }: { meta: CaseData["meta"] }) {
+  const cells = [
+    { label: "ROLE",   value: meta.rol },
+    { label: "SCALE",  value: meta.escala },
+    { label: "STACK",  value: meta.stack },
+    { label: "STATUS", value: meta.estado },
+  ];
+  return (
+    <div
+      style={{
+        background: "#0E1015",
+        borderTop: "1px solid rgba(255,255,255,0.06)",
+        borderBottom: "1px solid rgba(255,255,255,0.06)",
+      }}
+    >
+      <div className="grid grid-cols-2 sm:grid-cols-4">
+        {cells.map((c, i) => (
+          <div
+            key={c.label}
+            style={{
+              padding: "20px 24px",
+              borderLeft: i > 0 ? "1px solid rgba(255,255,255,0.06)" : "none",
+            }}
+          >
+            <p
+              style={{
+                fontFamily: "var(--font-mono)",
+                fontSize: "10px",
+                fontWeight: 500,
+                letterSpacing: "0.12em",
+                color: "#5A6478",
+                marginBottom: "6px",
+              }}
+            >
+              {c.label}
+            </p>
+            <p style={{ fontSize: "14px", color: "#C5CFE2", lineHeight: 1.4 }}>
+              {c.value}
+            </p>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 export function FeaturedCases() {
   return (
     <>
-      {/* Section intro */}
-      <section id="casos" className="pt-40 pb-20" style={{ backgroundColor: "#06080D" }}>
+      {/* Section opener */}
+      <section
+        id="casos"
+        style={{
+          backgroundColor: "#0A0B0F",
+          paddingTop: "160px",
+          paddingBottom: "80px",
+          borderTop: "1px solid rgba(255,255,255,0.06)",
+        }}
+      >
         <div className="container-custom">
           <AnimatedSection>
             <p
               style={{
                 fontFamily: "var(--font-mono)",
-                fontSize: "12px",
-                letterSpacing: "0.16em",
-                textTransform: "uppercase",
-                color: "#6B7A95",
-                marginBottom: "32px",
+                fontSize: "11px",
+                fontWeight: 500,
+                letterSpacing: "0.14em",
+                color: "#4A8BFF",
+                marginBottom: "20px",
               }}
             >
-              ─── Casos destacados
+              ─── SELECTED CASES / REF-03
             </p>
             <h2
               className="font-serif"
               style={{
-                fontSize: "clamp(40px, 5.5vw, 80px)",
+                fontSize: "clamp(40px, 5vw, 72px)",
                 fontWeight: 400,
                 color: "#F0F4FB",
-                lineHeight: 1.05,
+                lineHeight: 1.0,
                 letterSpacing: "-0.03em",
+                marginBottom: "16px",
               }}
             >
-              Cuatro proyectos.{" "}
-              <span style={{ fontStyle: "italic" }}>Cuatro historias.</span>
+              Four projects. Four proofs.
             </h2>
-            <p
-              style={{
-                marginTop: "16px",
-                fontFamily: "var(--font-mono)",
-                fontSize: "13px",
-                color: "#6B7A95",
-                letterSpacing: "0.04em",
-              }}
-            >
-              Una constelación de evidencia.
+            <p style={{ fontSize: "16px", color: "#8B95A8", lineHeight: 1.7 }}>
+              Each case demonstrates a specific capability tier.
             </p>
           </AnimatedSection>
         </div>
       </section>
 
-      {/* 4 case sections */}
-      {cases.map((c) => {
-        const isGold = c.isHackathon;
+      {/* 4 cases */}
+      {cases.map((c) => (
+        <section
+          key={c.code}
+          id={`caso-${c.code.split("-")[1]}`}
+          style={{
+            backgroundColor: "#0A0B0F",
+            paddingTop: "120px",
+            paddingBottom: "120px",
+            borderTop: "1px solid rgba(255,255,255,0.06)",
+          }}
+        >
+          <div className="container-custom">
+            {/* Eyebrow */}
+            <AnimatedSection className="mb-12">
+              <p
+                style={{
+                  fontFamily: "var(--font-mono)",
+                  fontSize: "11px",
+                  fontWeight: 500,
+                  letterSpacing: "0.14em",
+                  color: "#4A8BFF",
+                }}
+              >
+                {c.code} / {c.category}
+              </p>
+            </AnimatedSection>
 
-        return (
-          <section
-            key={c.id}
-            id={c.id}
-            className="py-32"
-            style={{
-              backgroundColor: "#06080D",
-              borderTop: "1px solid rgba(255,255,255,0.05)",
-            }}
-          >
-            <div className="container-custom">
-              {/* Eyebrow */}
-              <AnimatedSection className="mb-16">
-                <p
-                  style={{
-                    fontFamily: "var(--font-mono)",
-                    fontSize: "12px",
-                    letterSpacing: "0.16em",
-                    textTransform: "uppercase",
-                    color: "#6B7A95",
-                  }}
-                >
-                  CASO {c.number} · {c.category}
-                </p>
-              </AnimatedSection>
-
-              {/* 2-col layout */}
-              <div className="grid lg:grid-cols-2 gap-20 items-start">
-                {/* LEFT: narrative */}
-                <AnimatedSection className="space-y-10">
-                  {/* Title */}
-                  <div>
-                    <h3
-                      className="font-serif"
-                      style={{
-                        fontSize: "clamp(40px, 5vw, 72px)",
-                        fontWeight: 400,
-                        color: "#F0F4FB",
-                        lineHeight: 1.0,
-                        letterSpacing: "-0.03em",
-                        marginBottom: "16px",
-                      }}
-                    >
-                      {c.title}
-                    </h3>
-                    {/* Animated underline */}
-                    <div
-                      style={{
-                        height: "2px",
-                        width: "64px",
-                        background: isGold ? "#F5B544" : "#2B6FE8",
-                        marginBottom: "24px",
-                      }}
-                    />
-                    <p
-                      style={{
-                        fontSize: "20px",
-                        lineHeight: 1.6,
-                        color: "#C5CFE2",
-                      }}
-                    >
-                      {c.subtitle}
-                    </p>
-                  </div>
-
-                  {/* Hackathon badge — only Case 02 */}
-                  {c.isHackathon && (
-                    <div
-                      style={{
-                        borderRadius: "12px",
-                        padding: "20px 24px",
-                        border: "1px dashed rgba(245,181,68,0.3)",
-                        background: "rgba(245,181,68,0.04)",
-                      }}
-                    >
-                      <div className="flex items-start gap-4">
-                        <span style={{ fontSize: "24px" }}>🏆</span>
-                        <div>
-                          <p
-                            style={{
-                              fontFamily: "var(--font-mono)",
-                              fontSize: "11px",
-                              letterSpacing: "0.16em",
-                              textTransform: "uppercase",
-                              color: "#F5B544",
-                              marginBottom: "6px",
-                            }}
-                          >
-                            Proyecto Ganador
-                          </p>
-                          <p
-                            style={{
-                              fontSize: "16px",
-                              fontWeight: 500,
-                              color: "#F0F4FB",
-                              marginBottom: "4px",
-                            }}
-                          >
-                            {c.hackathonName}
-                          </p>
-                          <p
-                            style={{
-                              fontFamily: "var(--font-mono)",
-                              fontSize: "12px",
-                              color: "rgba(245,181,68,0.6)",
-                            }}
-                          >
-                            {c.hackathonTeams} equipos · Sponsor: {c.hackathonSponsor}
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  )}
-
-                  {/* Metadata strip */}
-                  <div
-                    className="grid grid-cols-2 sm:grid-cols-4 gap-5"
+            {/* Title + status */}
+            <AnimatedSection delay={0.04} className="mb-8">
+              <div className="flex flex-wrap items-start justify-between gap-4">
+                <div>
+                  <h3
+                    className="font-serif"
                     style={{
-                      padding: "20px 24px",
-                      borderRadius: "12px",
-                      background: "#0F1623",
-                      border: "1px solid rgba(255,255,255,0.04)",
+                      fontSize: "clamp(40px, 5vw, 64px)",
+                      fontWeight: 400,
+                      color: "#F0F4FB",
+                      lineHeight: 1.0,
+                      letterSpacing: "-0.03em",
+                      marginBottom: "8px",
                     }}
                   >
-                    {(
-                      [
-                        ["ROL", c.meta.rol],
-                        ["ESCALA", c.meta.escala],
-                        ["STACK", c.meta.stack],
-                        ["ESTADO", c.meta.estado],
-                      ] as [string, string][]
-                    ).map(([label, value]) => (
-                      <div key={label}>
-                        <p
-                          style={{
-                            fontFamily: "var(--font-mono)",
-                            fontSize: "10px",
-                            letterSpacing: "0.12em",
-                            textTransform: "uppercase",
-                            color: "#6B7A95",
-                            marginBottom: "6px",
-                          }}
-                        >
-                          {label}
-                        </p>
-                        <p
-                          style={{
-                            fontSize: "14px",
-                            fontWeight: 500,
-                            color: "#C5CFE2",
-                          }}
-                        >
-                          {value}
-                        </p>
-                      </div>
-                    ))}
-                  </div>
+                    {c.title}
+                  </h3>
+                  <div style={{ height: "2px", width: "48px", backgroundColor: c.isHackathon ? "#F5B544" : "#4A8BFF" }} />
+                </div>
+                <div
+                  className="flex items-center gap-2 mt-1"
+                  style={{
+                    padding: "6px 12px",
+                    border: "1px solid rgba(255,255,255,0.06)",
+                    borderRadius: "4px",
+                    background: "#0E1015",
+                  }}
+                >
+                  <span
+                    className="w-1.5 h-1.5 rounded-full"
+                    style={{
+                      backgroundColor: c.isHackathon ? "#F5B544" : "#00C781",
+                      animation: "pulse-live 2s ease-in-out infinite",
+                    }}
+                  />
+                  <span
+                    style={{
+                      fontFamily: "var(--font-mono)",
+                      fontSize: "11px",
+                      letterSpacing: "0.10em",
+                      color: c.isHackathon ? "#F5B544" : "#00C781",
+                    }}
+                  >
+                    {c.statusLabel}
+                  </span>
+                </div>
+              </div>
+              <p style={{ fontSize: "18px", color: "#C5CFE2", lineHeight: 1.65, marginTop: "20px", maxWidth: "640px" }}>
+                {c.subtitle}
+              </p>
+            </AnimatedSection>
 
-                  {/* 3-act narrative */}
-                  <div className="space-y-8">
-                    {[
-                      { label: "El desafío", text: c.challenge },
-                      { label: "Mi aproximación", text: c.approach },
-                      { label: c.impactLabel, text: c.impact },
-                    ].map(({ label, text }) => (
+            {/* Hackathon badge — CASE-002 only */}
+            {c.isHackathon && (
+              <AnimatedSection delay={0.06} className="mb-10">
+                <div
+                  style={{
+                    padding: "20px 32px",
+                    border: "1px solid rgba(245,181,68,0.30)",
+                    borderRadius: "4px",
+                    background: "rgba(245,181,68,0.04)",
+                    display: "inline-block",
+                  }}
+                >
+                  <p
+                    style={{
+                      fontFamily: "var(--font-mono)",
+                      fontSize: "11px",
+                      fontWeight: 500,
+                      letterSpacing: "0.14em",
+                      color: "#F5B544",
+                      marginBottom: "6px",
+                    }}
+                  >
+                    🏆 1ST PLACE
+                  </p>
+                  <p
+                    style={{
+                      fontFamily: "var(--font-mono)",
+                      fontSize: "13px",
+                      letterSpacing: "0.08em",
+                      color: "#F5B544",
+                      marginBottom: "4px",
+                    }}
+                  >
+                    {c.hackathonName}
+                  </p>
+                  <p
+                    style={{
+                      fontFamily: "var(--font-mono)",
+                      fontSize: "11px",
+                      letterSpacing: "0.08em",
+                      color: "rgba(245,181,68,0.55)",
+                    }}
+                  >
+                    {c.hackathonTeams} TEAMS · SPONSOR: {c.hackathonSponsor}
+                  </p>
+                </div>
+              </AnimatedSection>
+            )}
+
+            {/* Fact sheet */}
+            <AnimatedSection delay={0.08} className="mb-16">
+              <FactSheet meta={c.meta} />
+            </AnimatedSection>
+
+            {/* 2-col layout */}
+            <div className="grid lg:grid-cols-2 gap-20 items-start">
+              {/* LEFT: narrative */}
+              <AnimatedSection delay={0.1} className="space-y-12">
+                {[
+                  { label: "01 / CHALLENGE",   text: c.challenge },
+                  { label: "02 / APPROACH",    text: c.approach },
+                  { label: `03 / ${c.impactLabel}`, text: c.impact },
+                ].map(({ label, text }) => (
+                  <div key={label}>
+                    <p
+                      style={{
+                        fontFamily: "var(--font-mono)",
+                        fontSize: "11px",
+                        fontWeight: 500,
+                        letterSpacing: "0.12em",
+                        color: "#5A6478",
+                        marginBottom: "14px",
+                      }}
+                    >
+                      ─── {label}
+                    </p>
+                    <p
+                      style={{
+                        fontSize: "17px",
+                        lineHeight: 1.7,
+                        color: "#C5CFE2",
+                        maxWidth: "560px",
+                      }}
+                    >
+                      {text}
+                    </p>
+                  </div>
+                ))}
+
+                {/* Outcome metrics */}
+                <div
+                  style={{
+                    background: "#0E1015",
+                    border: "1px solid rgba(255,255,255,0.06)",
+                    borderRadius: "8px",
+                    overflow: "hidden",
+                  }}
+                >
+                  <div className="grid grid-cols-3">
+                    {c.metrics.map((m, i) => (
                       <div
-                        key={label}
+                        key={m.label}
                         style={{
-                          paddingLeft: "20px",
-                          borderLeft: `2px solid ${isGold ? "rgba(245,181,68,0.3)" : "rgba(43,111,232,0.3)"}`,
+                          padding: "24px 20px",
+                          borderLeft: i > 0 ? "1px solid rgba(255,255,255,0.06)" : "none",
                         }}
                       >
                         <p
                           style={{
                             fontFamily: "var(--font-mono)",
-                            fontSize: "10px",
-                            letterSpacing: "0.14em",
-                            textTransform: "uppercase",
-                            color: isGold ? "#F5B544" : "#4A8BFF",
-                            marginBottom: "10px",
-                          }}
-                        >
-                          {label}
-                        </p>
-                        <p
-                          style={{
-                            fontSize: "16px",
-                            lineHeight: 1.7,
-                            color: "#C5CFE2",
-                          }}
-                        >
-                          {text}
-                        </p>
-                      </div>
-                    ))}
-                  </div>
-
-                  {/* Metrics — editorial */}
-                  <div
-                    className="grid grid-cols-3 gap-8"
-                    style={{
-                      paddingTop: "32px",
-                      borderTop: "1px solid rgba(255,255,255,0.06)",
-                    }}
-                  >
-                    {c.metrics.map((m) => (
-                      <div key={m.label} className="flex flex-col gap-2">
-                        <span
-                          style={{
-                            fontSize: "clamp(24px, 3vw, 40px)",
-                            fontWeight: 300,
+                            fontSize: "clamp(20px, 2.5vw, 32px)",
+                            fontWeight: 400,
                             color: "#F0F4FB",
-                            letterSpacing: "-0.04em",
                             fontVariantNumeric: "tabular-nums",
-                            fontFamily: "var(--font-sans)",
+                            letterSpacing: "-0.02em",
+                            lineHeight: 1,
+                            marginBottom: "8px",
                           }}
                         >
                           {m.value}
-                        </span>
+                        </p>
                         <div
                           style={{
                             height: "1px",
-                            width: "40px",
-                            background: isGold ? "#F5B544" : "#2B6FE8",
+                            width: "32px",
+                            backgroundColor: "#4A8BFF",
                             marginBottom: "8px",
                           }}
                         />
-                        <span
+                        <p
                           style={{
                             fontFamily: "var(--font-mono)",
-                            fontSize: "11px",
-                            letterSpacing: "0.08em",
-                            textTransform: "uppercase",
-                            color: "#6B7A95",
-                            lineHeight: 1.5,
+                            fontSize: "10px",
+                            fontWeight: 500,
+                            letterSpacing: "0.12em",
+                            color: "#5A6478",
+                            marginBottom: "4px",
                           }}
                         >
                           {m.label}
-                        </span>
+                        </p>
+                        {m.sub && (
+                          <p
+                            style={{
+                              fontFamily: "var(--font-mono)",
+                              fontSize: "10px",
+                              letterSpacing: "0.08em",
+                              color: "#00C781",
+                            }}
+                          >
+                            {m.sub}
+                          </p>
+                        )}
                       </div>
                     ))}
                   </div>
+                </div>
 
-                  {/* CTAs */}
-                  <div className="flex flex-wrap gap-3 pt-2">
-                    <a
-                      href={c.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 transition-all duration-200 hover:-translate-y-0.5"
-                      style={{
-                        padding: "12px 24px",
-                        borderRadius: "8px",
-                        background: isGold ? "#F5B544" : "#2B6FE8",
-                        color: isGold ? "#06080D" : "#fff",
-                        fontSize: "14px",
-                        fontWeight: 600,
-                      }}
-                    >
-                      Ver en producción
-                      <ExternalLink className="w-3.5 h-3.5" />
-                    </a>
-                    <Link
-                      href={`/es/work/${c.slug}`}
-                      className="inline-flex items-center gap-2 transition-all duration-200 hover:-translate-y-0.5"
-                      style={{
-                        padding: "12px 24px",
-                        borderRadius: "8px",
-                        background: "rgba(15,22,35,0.6)",
-                        backdropFilter: "blur(24px)",
-                        border: "1px solid rgba(255,255,255,0.06)",
-                        color: "#C5CFE2",
-                        fontSize: "14px",
-                        fontWeight: 500,
-                      }}
-                      onMouseEnter={(e) => {
-                        (e.currentTarget as HTMLElement).style.borderColor = "rgba(74,139,255,0.3)";
-                        (e.currentTarget as HTMLElement).style.color = "#F0F4FB";
-                      }}
-                      onMouseLeave={(e) => {
-                        (e.currentTarget as HTMLElement).style.borderColor = "rgba(255,255,255,0.06)";
-                        (e.currentTarget as HTMLElement).style.color = "#C5CFE2";
-                      }}
-                    >
-                      Caso completo
-                      <ArrowRight className="w-3.5 h-3.5" />
-                    </Link>
-                  </div>
-                </AnimatedSection>
+                {/* CTAs */}
+                <div className="flex flex-wrap gap-3">
+                  <a
+                    href={c.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 group transition-all duration-200 focus-ring"
+                    style={{
+                      padding: "12px 24px",
+                      borderRadius: "4px",
+                      border: `1px solid ${c.isHackathon ? "rgba(245,181,68,0.40)" : "rgba(74,139,255,0.40)"}`,
+                      color: c.isHackathon ? "#F5B544" : "#4A8BFF",
+                      fontFamily: "var(--font-mono)",
+                      fontSize: "12px",
+                      letterSpacing: "0.08em",
+                      textDecoration: "none",
+                    }}
+                    onMouseEnter={(e) => {
+                      (e.currentTarget as HTMLElement).style.backgroundColor =
+                        c.isHackathon ? "rgba(245,181,68,0.06)" : "rgba(74,139,255,0.06)";
+                    }}
+                    onMouseLeave={(e) => {
+                      (e.currentTarget as HTMLElement).style.backgroundColor = "transparent";
+                    }}
+                  >
+                    VIEW IN PRODUCTION
+                    <ExternalLink className="w-3 h-3" />
+                  </a>
+                  <Link
+                    href={`/es/work/${c.slug}`}
+                    className="inline-flex items-center gap-2 group transition-all duration-200 focus-ring"
+                    style={{
+                      padding: "12px 24px",
+                      borderRadius: "4px",
+                      border: "1px solid rgba(255,255,255,0.10)",
+                      color: "#C5CFE2",
+                      fontFamily: "var(--font-mono)",
+                      fontSize: "12px",
+                      letterSpacing: "0.08em",
+                      textDecoration: "none",
+                    }}
+                    onMouseEnter={(e) => {
+                      (e.currentTarget as HTMLElement).style.borderColor = "rgba(255,255,255,0.20)";
+                    }}
+                    onMouseLeave={(e) => {
+                      (e.currentTarget as HTMLElement).style.borderColor = "rgba(255,255,255,0.10)";
+                    }}
+                  >
+                    FULL CASE STUDY
+                    <ArrowRight className="w-3 h-3" />
+                  </Link>
+                </div>
+              </AnimatedSection>
 
-                {/* RIGHT: sticky screenshot */}
-                <AnimatedSection delay={0.15} className="lg:sticky lg:top-24 lg:self-start">
-                  <ParallaxScreenshot
-                    src={c.screenshot}
-                    alt={`${c.title} dashboard`}
-                    url={c.url}
-                    isHackathon={c.isHackathon}
-                  />
-                </AnimatedSection>
-              </div>
+              {/* RIGHT: sticky screenshot */}
+              <AnimatedSection delay={0.14} className="lg:sticky lg:top-24 lg:self-start">
+                <ParallaxScreenshot
+                  src={c.screenshot}
+                  alt={`${c.title} dashboard`}
+                  url={c.url}
+                  isHackathon={c.isHackathon}
+                />
+              </AnimatedSection>
             </div>
-          </section>
-        );
-      })}
+          </div>
+        </section>
+      ))}
     </>
   );
 }
