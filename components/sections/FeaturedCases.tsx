@@ -11,6 +11,7 @@ import {
   ArrowRight,
   ChevronLeft,
   ChevronRight,
+  ChevronDown,
   X,
   ZoomIn,
 } from "lucide-react";
@@ -39,6 +40,8 @@ type CaseData = {
   metrics: CaseMetric[];
   screenshots: string[];
   url: string;
+  pitchPhoto?: string;
+  pitchPhotoCaption?: string;
 };
 
 const ERP_SHOTS = [
@@ -129,6 +132,8 @@ const cases: CaseData[] = [
     ],
     screenshots: ["/screenshots/atlas-nexus.png"],
     url: "https://trackintegracionpagos.vercel.app/",
+    pitchPhoto: "/atlas-nexus-fiserv-pitch.jpg",
+    pitchPhotoCaption: "Presentación ante Fiserv × Clover · Buenos Aires · 2025",
   },
   {
     id: "caso-03",
@@ -471,6 +476,108 @@ function ParallaxScreenshot({
   );
 }
 
+// ── PitchHero ─────────────────────────────────────────────────────────────────
+
+function PitchHero({
+  photo,
+  title,
+  category,
+  caption,
+  nextId,
+}: {
+  photo: string;
+  title: string;
+  category: string;
+  caption: string;
+  nextId: string;
+}) {
+  const scrollToCase = () => {
+    document.getElementById(nextId)?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  return (
+    <section className="relative" style={{ height: "100svh", minHeight: "600px" }}>
+      <Image
+        src={photo}
+        alt={`${title} — pitch`}
+        fill
+        className="object-cover"
+        quality={90}
+        sizes="100vw"
+      />
+
+      {/* Gradient overlay: light on top, heavy on bottom */}
+      <div
+        className="absolute inset-0"
+        style={{
+          background:
+            "linear-gradient(to bottom, rgba(6,8,13,0.25) 0%, rgba(6,8,13,0.35) 50%, rgba(6,8,13,0.88) 85%, rgba(6,8,13,1) 100%)",
+        }}
+      />
+
+      {/* Text: bottom-left */}
+      <motion.div
+        initial={{ opacity: 0, y: 24 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, ease: EASE, delay: 0.2 }}
+        className="absolute bottom-0 left-0 right-0 px-6 pb-24 md:px-16 lg:px-24"
+      >
+        <p
+          style={{
+            fontFamily: "var(--font-mono)",
+            fontSize: "11px",
+            letterSpacing: "0.18em",
+            textTransform: "uppercase",
+            color: "rgba(255,255,255,0.45)",
+            marginBottom: "14px",
+          }}
+        >
+          CASO 02 · {category}
+        </p>
+        <h3
+          style={{
+            fontSize: "clamp(44px, 6.5vw, 96px)",
+            fontWeight: 400,
+            color: "#F0F4FB",
+            lineHeight: 1.0,
+            letterSpacing: "-0.03em",
+            fontFamily: "var(--font-serif)",
+            marginBottom: "16px",
+          }}
+        >
+          {title}
+        </h3>
+        <p
+          style={{
+            fontFamily: "var(--font-mono)",
+            fontSize: "12px",
+            letterSpacing: "0.08em",
+            color: "rgba(255,255,255,0.35)",
+          }}
+        >
+          {caption}
+        </p>
+      </motion.div>
+
+      {/* Scroll indicator */}
+      <button
+        onClick={scrollToCase}
+        aria-label="Ver caso"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 group"
+      >
+        <motion.div
+          animate={{ y: [0, 6, 0] }}
+          transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}
+          style={{ color: "rgba(255,255,255,0.4)" }}
+          className="group-hover:text-white transition-colors duration-200"
+        >
+          <ChevronDown className="w-5 h-5" />
+        </motion.div>
+      </button>
+    </section>
+  );
+}
+
 // ── FeaturedCases ─────────────────────────────────────────────────────────────
 
 export function FeaturedCases() {
@@ -525,8 +632,17 @@ export function FeaturedCases() {
         const isGold = c.isHackathon;
 
         return (
+          <div key={c.id}>
+          {c.pitchPhoto && (
+            <PitchHero
+              photo={c.pitchPhoto}
+              title={c.title}
+              category={c.category}
+              caption={c.pitchPhotoCaption ?? ""}
+              nextId={c.id}
+            />
+          )}
           <section
-            key={c.id}
             id={c.id}
             className="py-16 sm:py-24 lg:py-32"
             style={{
@@ -785,6 +901,7 @@ export function FeaturedCases() {
               </div>
             </div>
           </section>
+          </div>
         );
       })}
     </>
