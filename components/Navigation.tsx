@@ -112,7 +112,13 @@ export function Navigation() {
       <div className="container-custom flex items-center justify-between h-16">
         {/* Logo */}
         <button
-          onClick={() => scrollTo("hero")}
+          onClick={() => {
+            const isHome =
+              pathname === `/${currentLocale}` ||
+              pathname === `/${currentLocale}/`;
+            if (isHome) scrollTo("hero");
+            else router.push(`/${currentLocale}`);
+          }}
           className="flex items-center gap-2.5 group"
         >
           <div
