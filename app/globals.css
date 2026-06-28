@@ -4,6 +4,7 @@
   --font-sans: "Geist", system-ui, -apple-system, sans-serif;
   --font-serif: "Geist", system-ui, -apple-system, sans-serif;
   --font-mono: "Geist", system-ui, -apple-system, sans-serif;
+  --font-display: "Archivo Black", system-ui, sans-serif;
 
   /* Deep Finance — base surfaces */
   --color-bg-base:     #06080D;
