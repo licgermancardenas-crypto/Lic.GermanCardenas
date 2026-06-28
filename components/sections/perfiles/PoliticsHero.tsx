@@ -93,14 +93,14 @@ export function PoliticsHero() {
         className="absolute inset-0 pointer-events-none"
         style={{
           background:
-            "linear-gradient(to top, #050505 0%, rgba(5,5,5,0.9) 25%, rgba(5,5,5,0.4) 58%, rgba(5,5,5,0.08) 100%)",
+            "linear-gradient(to top, #050505 0%, rgba(5,5,5,0.82) 22%, rgba(5,5,5,0.2) 50%, rgba(5,5,5,0.04) 100%)",
         }}
       />
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
           background:
-            "linear-gradient(to right, rgba(5,5,5,0.6) 0%, rgba(5,5,5,0.1) 55%, transparent 100%)",
+            "linear-gradient(to right, rgba(5,5,5,0.55) 0%, rgba(5,5,5,0.08) 40%, transparent 100%)",
         }}
       />
 
@@ -169,13 +169,14 @@ export function PoliticsHero() {
           transition={{ duration: 0.75, ease: EASE, delay: 0.45 }}
           style={{
             fontFamily: "var(--font-display)",
-            fontSize: "clamp(50px, 9.5vw, 136px)",
+            fontSize: "clamp(28px, 3.8vw, 58px)",
             fontWeight: 400,
             color: "#FFFFFF",
-            lineHeight: 0.93,
-            letterSpacing: "0.03em",
+            lineHeight: 1.05,
+            letterSpacing: "0.04em",
             textTransform: "uppercase",
-            marginBottom: "22px",
+            marginBottom: "18px",
+            maxWidth: "480px",
           }}
         >
           POLITICAL
