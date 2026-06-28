@@ -1,11 +1,20 @@
 "use client";
 
 import { usePathname, useRouter } from "next/navigation";
-import { useState, useEffect } from "react";
-import { Globe, Menu, X, Download } from "lucide-react";
+import { useState, useEffect, useRef } from "react";
+import { Globe, Menu, X, Download, ChevronDown } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
+
+const PROFILES = [
+  { id: "perfil-fpa", label: "Financial Planning & Analysis (FP&A) Specialist", category: "Finance", color: "#2B6FE8" },
+  { id: "perfil-bi", label: "Corporate BI & Data Analyst", category: "BI", color: "#10b981" },
+  { id: "perfil-data-science", label: "Data Scientist", category: "Data Science", color: "#8b5cf6" },
+  { id: "perfil-ai", label: "AI Solutions Engineer", category: "AI", color: "#f59e0b" },
+  { id: "perfil-bizdev", label: "Market Intelligence & Business Development", category: "Business", color: "#ef4444" },
+  { id: "perfil-politics", label: "Political Intelligence & Analytics", category: "Politics", color: "#06b6d4" },
+];
 
 export function Navigation() {
   const pathname = usePathname();
@@ -13,6 +22,9 @@ export function Navigation() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState<string>("");
+  const [profilesOpen, setProfilesOpen] = useState(false);
+  const [profilesMobileOpen, setProfilesMobileOpen] = useState(false);
+  const profilesTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const currentLocale = pathname.startsWith("/en") ? "en" : "es";
 
@@ -49,6 +61,23 @@ export function Navigation() {
   function scrollTo(id: string) {
     setMenuOpen(false);
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+
+  function openProfilesMenu() {
+    if (profilesTimer.current) clearTimeout(profilesTimer.current);
+    setProfilesOpen(true);
+  }
+
+  function closeProfilesMenu() {
+    profilesTimer.current = setTimeout(() => setProfilesOpen(false), 140);
+  }
+
+  function scrollToProfile(profileId: string) {
+    setMenuOpen(false);
+    setProfilesOpen(false);
+    setProfilesMobileOpen(false);
+    const el = document.getElementById(profileId) ?? document.getElementById("perfiles");
+    el?.scrollIntoView({ behavior: "smooth", block: "start" });
   }
 
   function openPalette() {
@@ -100,6 +129,120 @@ export function Navigation() {
         <nav className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => {
             const isActive = activeSection === link.id;
+
+            if (link.id === "perfiles") {
+              return (
+                <div
+                  key={link.id}
+                  className="relative"
+                  onMouseEnter={openProfilesMenu}
+                  onMouseLeave={closeProfilesMenu}
+                >
+                  <button
+                    onClick={() => scrollTo(link.id)}
+                    className="relative flex items-center gap-1 text-sm font-medium transition-colors duration-200"
+                    style={{
+                      color: isActive || profilesOpen ? "#F0F4FB" : "#6B7A95",
+                      fontFamily: "var(--font-sans)",
+                    }}
+                  >
+                    {link.label}
+                    <motion.span
+                      animate={{ rotate: profilesOpen ? 180 : 0 }}
+                      transition={{ duration: 0.2 }}
+                      style={{ display: "flex" }}
+                    >
+                      <ChevronDown className="w-3.5 h-3.5" />
+                    </motion.span>
+                    {isActive && (
+                      <motion.div
+                        layoutId="nav-indicator"
+                        className="absolute -bottom-1 left-0 right-0"
+                        style={{ height: "1px", background: "#4A8BFF" }}
+                        initial={false}
+                        transition={{ duration: 0.2, ease: EASE }}
+                      />
+                    )}
+                  </button>
+
+                  {/* Dropdown */}
+                  <AnimatePresence>
+                    {profilesOpen && (
+                      <motion.div
+                        initial={{ opacity: 0, y: -6, scale: 0.97 }}
+                        animate={{ opacity: 1, y: 0, scale: 1 }}
+                        exit={{ opacity: 0, y: -4, scale: 0.97 }}
+                        transition={{ duration: 0.18, ease: EASE }}
+                        className="absolute top-full left-1/2 -translate-x-1/2 pt-3"
+                        style={{ zIndex: 100 }}
+                        onMouseEnter={openProfilesMenu}
+                        onMouseLeave={closeProfilesMenu}
+                      >
+                        <div
+                          style={{
+                            minWidth: "300px",
+                            padding: "6px",
+                            borderRadius: "12px",
+                            background: "rgba(6,8,13,0.96)",
+                            backdropFilter: "blur(24px) saturate(180%)",
+                            border: "1px solid rgba(255,255,255,0.07)",
+                            boxShadow: "0 20px 48px rgba(0,0,0,0.55)",
+                          }}
+                        >
+                          {PROFILES.map((p, i) => (
+                            <button
+                              key={p.id}
+                              onClick={() => scrollToProfile(p.id)}
+                              className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-left transition-colors duration-150 group"
+                              style={{ background: "transparent" }}
+                              onMouseEnter={(e) => {
+                                (e.currentTarget as HTMLElement).style.background =
+                                  "rgba(255,255,255,0.04)";
+                              }}
+                              onMouseLeave={(e) => {
+                                (e.currentTarget as HTMLElement).style.background =
+                                  "transparent";
+                              }}
+                            >
+                              <span
+                                className="flex-shrink-0 w-1.5 h-1.5 rounded-full"
+                                style={{ backgroundColor: p.color }}
+                              />
+                              <span
+                                style={{
+                                  fontSize: "13px",
+                                  color: "#C5CFE2",
+                                  fontFamily: "var(--font-sans)",
+                                  lineHeight: 1.3,
+                                  flex: 1,
+                                }}
+                                className="group-hover:text-white transition-colors duration-150"
+                              >
+                                {p.label}
+                              </span>
+                              <span
+                                style={{
+                                  fontFamily: "var(--font-mono)",
+                                  fontSize: "9px",
+                                  letterSpacing: "0.1em",
+                                  textTransform: "uppercase",
+                                  color: p.color,
+                                  opacity: 0.7,
+                                  flexShrink: 0,
+                                }}
+                              >
+                                {p.category}
+                              </span>
+                            </button>
+                          ))}
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              );
+            }
+
             return (
               <button
                 key={link.id}
@@ -119,15 +262,11 @@ export function Navigation() {
                 }}
               >
                 {link.label}
-                {/* Active underline */}
                 {isActive && (
                   <motion.div
                     layoutId="nav-indicator"
                     className="absolute -bottom-1 left-0 right-0"
-                    style={{
-                      height: "1px",
-                      background: "#4A8BFF",
-                    }}
+                    style={{ height: "1px", background: "#4A8BFF" }}
                     initial={false}
                     transition={{ duration: 0.2, ease: EASE }}
                   />
@@ -230,22 +369,74 @@ export function Navigation() {
             }}
           >
             <div className="container-custom py-4 flex flex-col gap-1">
-              {navLinks.map((link) => (
-                <button
-                  key={link.id}
-                  onClick={() => scrollTo(link.id)}
-                  className="text-left px-3 py-3 rounded-lg text-sm font-medium transition-colors duration-200"
-                  style={{ color: "#C5CFE2" }}
-                  onMouseEnter={(e) => {
-                    (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.03)";
-                  }}
-                  onMouseLeave={(e) => {
-                    (e.currentTarget as HTMLElement).style.background = "transparent";
-                  }}
-                >
-                  {link.label}
-                </button>
-              ))}
+              {navLinks.map((link) => {
+                if (link.id === "perfiles") {
+                  return (
+                    <div key={link.id}>
+                      <button
+                        onClick={() => setProfilesMobileOpen((v) => !v)}
+                        className="w-full text-left flex items-center justify-between px-3 py-3 rounded-lg text-sm font-medium transition-colors duration-200"
+                        style={{ color: "#C5CFE2" }}
+                      >
+                        {link.label}
+                        <motion.span
+                          animate={{ rotate: profilesMobileOpen ? 180 : 0 }}
+                          transition={{ duration: 0.2 }}
+                          style={{ display: "flex" }}
+                        >
+                          <ChevronDown className="w-4 h-4 opacity-50" />
+                        </motion.span>
+                      </button>
+                      <AnimatePresence>
+                        {profilesMobileOpen && (
+                          <motion.div
+                            initial={{ opacity: 0, height: 0 }}
+                            animate={{ opacity: 1, height: "auto" }}
+                            exit={{ opacity: 0, height: 0 }}
+                            transition={{ duration: 0.2, ease: EASE }}
+                            className="overflow-hidden"
+                          >
+                            <div className="pl-4 pb-1 flex flex-col gap-0.5">
+                              {PROFILES.map((p) => (
+                                <button
+                                  key={p.id}
+                                  onClick={() => scrollToProfile(p.id)}
+                                  className="flex items-center gap-2.5 px-3 py-2.5 rounded-lg text-left"
+                                  style={{ color: "#8A9BB5" }}
+                                >
+                                  <span
+                                    className="w-1.5 h-1.5 rounded-full flex-shrink-0"
+                                    style={{ backgroundColor: p.color }}
+                                  />
+                                  <span style={{ fontSize: "13px", lineHeight: 1.3 }}>
+                                    {p.label}
+                                  </span>
+                                </button>
+                              ))}
+                            </div>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </div>
+                  );
+                }
+                return (
+                  <button
+                    key={link.id}
+                    onClick={() => scrollTo(link.id)}
+                    className="text-left px-3 py-3 rounded-lg text-sm font-medium transition-colors duration-200"
+                    style={{ color: "#C5CFE2" }}
+                    onMouseEnter={(e) => {
+                      (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.03)";
+                    }}
+                    onMouseLeave={(e) => {
+                      (e.currentTarget as HTMLElement).style.background = "transparent";
+                    }}
+                  >
+                    {link.label}
+                  </button>
+                );
+              })}
               <button
                 onClick={openPalette}
                 className="text-left px-3 py-3 rounded-lg text-sm font-medium transition-colors duration-200"

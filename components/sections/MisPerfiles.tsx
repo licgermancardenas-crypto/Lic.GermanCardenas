@@ -7,7 +7,7 @@ import RadialOrbitalTimeline, { type OrbitalNode } from "@/components/ui/radial-
 const profileData: OrbitalNode[] = [
   {
     id: 1,
-    title: "FP&A Specialist",
+    title: "Financial Planning & Analysis (FP&A) Specialist",
     date: "Core Business",
     content:
       "Financial Planning & Analysis. Modelos de proyección financiera, valuación de proyectos de inversión (Private Equity), flujos de fondos y análisis de portafolios bursátiles.",
@@ -55,7 +55,7 @@ const profileData: OrbitalNode[] = [
   },
   {
     id: 5,
-    title: "Market Intelligence & BizDev",
+    title: "Market Intelligence & Business Development",
     date: "Growth Strategy",
     content:
       "Estrategias de crecimiento basadas en datos, análisis de competidores, funnels de conversión B2B/E-commerce y automatización de retargeting masivo.",
