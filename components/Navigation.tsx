@@ -13,7 +13,7 @@ const PROFILES = [
   { id: "perfil-data-science", label: "Data Scientist", category: "Data Science", color: "#8b5cf6", href: null },
   { id: "perfil-ai", label: "AI Solutions Engineer", category: "AI", color: "#f59e0b", href: null },
   { id: "perfil-bizdev", label: "Market Intelligence & Business Development", category: "Business", color: "#ef4444", href: null },
-  { id: "perfil-politics", label: "Political Intelligence & Analytics", category: "Politics", color: "#06b6d4", href: null },
+  { id: "perfil-politics", label: "Political Intelligence & Analytics", category: "Politics", color: "#06b6d4", href: "/perfiles/politics" },
 ];
 
 export function Navigation() {
