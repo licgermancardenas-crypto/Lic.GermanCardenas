@@ -2,6 +2,7 @@ import { ScrollProgress } from "@/components/ScrollProgress";
 import { CommandPalette } from "@/components/CommandPalette";
 import { Navigation } from "@/components/Navigation";
 import { Hero } from "@/components/sections/Hero";
+import { MisPerfiles } from "@/components/sections/MisPerfiles";
 import { FeaturedCases } from "@/components/sections/FeaturedCases";
 import { SelectedWork } from "@/components/sections/SelectedWork";
 import { Experience } from "@/components/sections/Experience";
@@ -18,6 +19,7 @@ export default function HomePage() {
       <Navigation />
       <main>
         <Hero />
+        <MisPerfiles />
         <FeaturedCases />
         <SelectedWork />
         <Experience />

@@ -23,7 +23,7 @@ export function Navigation() {
   }, []);
 
   useEffect(() => {
-    const sections = ["hero", "casos", "projects", "experience", "contact"];
+    const sections = ["hero", "perfiles", "casos", "projects", "experience", "contact"];
     const observer = new IntersectionObserver(
       (entries) => {
         for (const entry of entries) {
@@ -57,6 +57,7 @@ export function Navigation() {
   }
 
   const navLinks = [
+    { label: "Perfiles", id: "perfiles" },
     { label: "Casos", id: "casos" },
     { label: "Proyectos", id: "projects" },
     { label: "Experiencia", id: "experience" },
