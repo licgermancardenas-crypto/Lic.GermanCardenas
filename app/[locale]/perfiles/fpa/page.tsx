@@ -17,7 +17,6 @@ export default function FpaPage() {
       <main>
         <FpaHero />
 
-        {/* Cards con lightbox — evidencia técnica */}
         <section
           style={{
             backgroundColor: "#06080D",
@@ -65,7 +64,6 @@ export default function FpaPage() {
           <FinancialStackCards />
         </section>
 
-        {/* Detalle por pilar — layout alternado */}
         <FpaContent />
       </main>
       <Footer />

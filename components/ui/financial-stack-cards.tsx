@@ -20,7 +20,7 @@ const financialStack = [
       "Arquitectura de modelos de proyección financiera flexibles y escalables a medida de la estructura del negocio, permitiendo simular múltiples horizontes operativos con solidez matemática.",
     icon: TrendingUp,
     badge: "Core Mastery",
-    image: "/Captura de pantalla 2026-06-28 003817.png",
+    image: "/fpa-balance-situacion.png",
     imageLabel: "Modelado de Estructura de Balance de Situación (Horizontes 2020-2027)",
   },
   {
@@ -30,7 +30,7 @@ const financialStack = [
       "Dominio avanzado de hojas de cálculo complejas, funciones lógicas anidadas, macros complejas y optimización de flujos mediante código para eliminar tareas manuales repetitivas.",
     icon: FileSpreadsheet,
     badge: "Expert Level",
-    image: "/Captura de pantalla 2026-06-28 005639.png",
+    image: "/fpa-excel-vba-heatmap.png",
     imageLabel: "Control de Gestión Avanzado, Mapas de Calor Estadísticos y Sparklines Integrados",
   },
   {
@@ -40,7 +40,7 @@ const financialStack = [
       "Evaluación técnica de unidades de negocio y proyectos mediante Flujos de Fondos Descontados (DCF), costo de capital (WACC) y múltiplos de mercado para la toma de decisiones.",
     icon: Building2,
     badge: "Advanced Valuation",
-    image: "/Captura de pantalla 2026-06-28 004053.png",
+    image: "/fpa-dcf-cocacola.png",
     imageLabel: "Valuación Corporativa mediante Free Cash Flow Yield — Caso Analítico Coca-Cola Co.",
   },
   {
@@ -50,7 +50,7 @@ const financialStack = [
       "Vinculación dinámica de los tres estados contables fundamentales: Income Statement (P&L), Balance Sheet y Cash Flow. Sincronización perfecta de lógica financiera corporativa.",
     icon: Layers,
     badge: "Industry Standard",
-    image: "/Captura de pantalla 2026-06-28 005159.png",
+    image: "/fpa-three-statement.png",
     imageLabel: "Integración Dinámica de Estados Contables Fundamentales (Sincronización P&L y Balance)",
   },
   {
@@ -60,7 +60,7 @@ const financialStack = [
       "Traducción de métricas financieras densas en dashboards ejecutivos de alta fidelidad, uniendo la precisión de los números contables con la agilidad de la inteligencia de datos.",
     icon: BarChart3,
     badge: "Data Driven",
-    image: "/Captura de pantalla 2026-06-28 005541.png",
+    image: "/fpa-reporting-bi.png",
     imageLabel: "Predictive Analytics — Modelo de Pronóstico Lineal Algorítmico de Demanda",
   },
   {
@@ -70,7 +70,7 @@ const financialStack = [
       "Modelado de escenarios estresados (Bull/Bear cases) mediante tablas de datos y herramientas de simulación para evaluar el impacto instantáneo de variables macro en el flujo libre de caja.",
     icon: AlertTriangle,
     badge: "Stress Testing",
-    image: "/Captura de pantalla 2026-06-28 005817.png",
+    image: "/fpa-sensibilidad-escenarios.png",
     imageLabel: "Simulación de Escenarios Mensuales Estresados (Optimista/Base) e Impacto Fiscal Local",
   },
 ];
