@@ -25,20 +25,21 @@ export function FpaHero() {
       className="relative"
       style={{ height: "100svh", minHeight: "640px" }}
     >
-      {/* Ken Burns image — slow forward + upward drift */}
+      {/* Drone flyover — multi-keyframe path across the financial district */}
       <div className="absolute inset-0 overflow-hidden">
         <motion.div
           className="absolute inset-0"
           animate={{
-            scale: [1, 1.07],
-            x: ["0%", "-1.5%"],
-            y: ["0%", "-1%"],
+            scale:  [1.0,  1.06, 1.14, 1.18, 1.12, 1.06, 1.0],
+            x:      ["3%", "1%", "-1%", "-3%", "-1.5%", "1%", "3%"],
+            y:      ["2%", "0.5%", "-0.5%", "-2%", "-1.5%", "0%", "2%"],
           }}
           transition={{
-            duration: 20,
+            duration: 32,
             ease: "easeInOut",
+            times: [0, 0.15, 0.35, 0.55, 0.72, 0.88, 1],
             repeat: Infinity,
-            repeatType: "reverse",
+            repeatType: "loop",
           }}
         >
           <Image
