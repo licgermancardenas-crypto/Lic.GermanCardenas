@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { Terminal, Eye } from "lucide-react";
+import { Eye } from "lucide-react";
 
 const visionItems = [
   {
@@ -32,30 +32,17 @@ export function AboutMeBento() {
     >
       {/* Section header */}
       <div className="flex flex-col mb-12">
-        <span
-          style={{
-            fontFamily: "var(--font-mono)",
-            fontSize: "11px",
-            letterSpacing: "0.18em",
-            textTransform: "uppercase",
-            color: "#2B6FE8",
-          }}
-        >
-          // IDENTITY &amp; SYSTEM PROFILE
-        </span>
         <h2
           className="font-serif"
           style={{
-            fontSize: "clamp(28px, 4vw, 52px)",
+            fontSize: "clamp(34px, 4.5vw, 64px)",
             fontWeight: 400,
             color: "#F0F4FB",
             letterSpacing: "-0.03em",
-            marginTop: "8px",
-            lineHeight: 1.08,
+            lineHeight: 1.05,
           }}
         >
-          Building the future of{" "}
-          <span style={{ fontStyle: "italic" }}>Decision Intelligence.</span>
+          Sobre mí
         </h2>
       </div>
 
@@ -79,22 +66,6 @@ export function AboutMeBento() {
           }}
         >
           <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                gap: "8px",
-                fontFamily: "var(--font-mono)",
-                fontSize: "10px",
-                letterSpacing: "0.14em",
-                textTransform: "uppercase",
-                color: "#6B7A95",
-              }}
-            >
-              <Terminal style={{ width: "14px", height: "14px", color: "#2B6FE8", flexShrink: 0 }} />
-              SYSTEM_INIT // MANIFIESTO
-            </div>
-
             <h3
               className="font-serif"
               style={{
