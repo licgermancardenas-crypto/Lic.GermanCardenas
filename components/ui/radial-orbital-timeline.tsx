@@ -293,10 +293,10 @@ export default function RadialOrbitalTimeline({ timelineData }: Props) {
                 <div
                   className="absolute pointer-events-none select-none text-center"
                   style={{
-                    top: ly - 18,
-                    left: lx - 55,
-                    width: 110,
-                    height: 36,
+                    top: ly - 26,
+                    left: lx - 68,
+                    width: 136,
+                    minHeight: 52,
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
@@ -307,8 +307,8 @@ export default function RadialOrbitalTimeline({ timelineData }: Props) {
                   <p
                     style={{
                       fontFamily: "var(--font-mono)",
-                      fontSize: "9.5px",
-                      letterSpacing: "0.1em",
+                      fontSize: "9px",
+                      letterSpacing: "0.08em",
                       textTransform: "uppercase",
                       color: isActive
                         ? color
@@ -316,11 +316,11 @@ export default function RadialOrbitalTimeline({ timelineData }: Props) {
                         ? `rgba(${rgb},0.85)`
                         : "rgba(255,255,255,0.35)",
                       fontWeight: isActive ? 700 : 400,
-                      lineHeight: 1.4,
+                      lineHeight: 1.5,
                       transition: "color 0.25s",
                     }}
                   >
-                    {node.date}
+                    {node.title}
                   </p>
                 </div>
               </div>
