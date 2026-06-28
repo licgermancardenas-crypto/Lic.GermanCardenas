@@ -4,6 +4,7 @@ import { Navigation } from "@/components/Navigation";
 import { Hero } from "@/components/sections/Hero";
 import { MisPerfiles } from "@/components/sections/MisPerfiles";
 import { FeaturedCases } from "@/components/sections/FeaturedCases";
+import { AboutMeBento } from "@/components/ui/about-me-bento";
 import { SelectedWork } from "@/components/sections/SelectedWork";
 import { Experience } from "@/components/sections/Experience";
 import { Education } from "@/components/sections/Education";
@@ -20,6 +21,7 @@ export default function HomePage() {
       <main>
         <Hero />
         <MisPerfiles />
+        <AboutMeBento />
         <FeaturedCases />
         <SelectedWork />
         <Experience />
