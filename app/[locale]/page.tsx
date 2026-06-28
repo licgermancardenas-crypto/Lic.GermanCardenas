@@ -21,7 +21,9 @@ export default function HomePage() {
       <main>
         <Hero />
         <MisPerfiles />
-        <AboutMeBento />
+        <section id="sobre-mi">
+          <AboutMeBento />
+        </section>
         <FeaturedCases />
         <SelectedWork />
         <Experience />
