@@ -8,12 +8,12 @@ import { motion, AnimatePresence } from "framer-motion";
 const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
 const PROFILES = [
-  { id: "perfil-fpa", label: "Financial Planning & Analysis (FP&A) Specialist", category: "Finance", color: "#2B6FE8" },
-  { id: "perfil-bi", label: "Corporate BI & Data Analyst", category: "BI", color: "#10b981" },
-  { id: "perfil-data-science", label: "Data Scientist", category: "Data Science", color: "#8b5cf6" },
-  { id: "perfil-ai", label: "AI Solutions Engineer", category: "AI", color: "#f59e0b" },
-  { id: "perfil-bizdev", label: "Market Intelligence & Business Development", category: "Business", color: "#ef4444" },
-  { id: "perfil-politics", label: "Political Intelligence & Analytics", category: "Politics", color: "#06b6d4" },
+  { id: "perfil-fpa", label: "Financial Planning & Analysis (FP&A) Specialist", category: "Finance", color: "#2B6FE8", href: "/perfiles/fpa" },
+  { id: "perfil-bi", label: "Corporate BI & Data Analyst", category: "BI", color: "#10b981", href: null },
+  { id: "perfil-data-science", label: "Data Scientist", category: "Data Science", color: "#8b5cf6", href: null },
+  { id: "perfil-ai", label: "AI Solutions Engineer", category: "AI", color: "#f59e0b", href: null },
+  { id: "perfil-bizdev", label: "Market Intelligence & Business Development", category: "Business", color: "#ef4444", href: null },
+  { id: "perfil-politics", label: "Political Intelligence & Analytics", category: "Politics", color: "#06b6d4", href: null },
 ];
 
 export function Navigation() {
@@ -72,12 +72,16 @@ export function Navigation() {
     profilesTimer.current = setTimeout(() => setProfilesOpen(false), 140);
   }
 
-  function scrollToProfile(profileId: string) {
+  function handleProfileClick(p: typeof PROFILES[number]) {
     setMenuOpen(false);
     setProfilesOpen(false);
     setProfilesMobileOpen(false);
-    const el = document.getElementById(profileId) ?? document.getElementById("perfiles");
-    el?.scrollIntoView({ behavior: "smooth", block: "start" });
+    if (p.href) {
+      router.push(`/${currentLocale}${p.href}`);
+    } else {
+      const el = document.getElementById(p.id) ?? document.getElementById("perfiles");
+      el?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
   }
 
   function openPalette() {
@@ -192,7 +196,7 @@ export function Navigation() {
                           {PROFILES.map((p, i) => (
                             <button
                               key={p.id}
-                              onClick={() => scrollToProfile(p.id)}
+                              onClick={() => handleProfileClick(p)}
                               className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-left transition-colors duration-150 group"
                               style={{ background: "transparent" }}
                               onMouseEnter={(e) => {
@@ -400,7 +404,7 @@ export function Navigation() {
                               {PROFILES.map((p) => (
                                 <button
                                   key={p.id}
-                                  onClick={() => scrollToProfile(p.id)}
+                                  onClick={() => handleProfileClick(p)}
                                   className="flex items-center gap-2.5 px-3 py-2.5 rounded-lg text-left"
                                   style={{ color: "#8A9BB5" }}
                                 >
