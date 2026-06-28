@@ -163,19 +163,20 @@ export function AboutMeBento() {
           <img
             src="/lace-blockchain-lab.jpg"
             alt="Germán Cárdenas en LACE Blockchain Lab"
-            className="absolute inset-0 w-full h-full object-cover object-center transition-all duration-700"
+            className="absolute inset-0 w-full h-full object-cover transition-all duration-700"
             style={{
-              filter: "grayscale(100%) contrast(1.15)",
-              opacity: 0.55,
+              objectPosition: "60% center",
+              filter: "grayscale(100%) contrast(1.1)",
+              opacity: 0.6,
             }}
             onMouseEnter={(e) => {
-              (e.currentTarget as HTMLImageElement).style.filter = "grayscale(0%) contrast(1.05)";
-              (e.currentTarget as HTMLImageElement).style.opacity = "0.85";
-              (e.currentTarget as HTMLImageElement).style.transform = "scale(1.05)";
+              (e.currentTarget as HTMLImageElement).style.filter = "grayscale(0%) contrast(1.0)";
+              (e.currentTarget as HTMLImageElement).style.opacity = "0.9";
+              (e.currentTarget as HTMLImageElement).style.transform = "scale(1.04)";
             }}
             onMouseLeave={(e) => {
-              (e.currentTarget as HTMLImageElement).style.filter = "grayscale(100%) contrast(1.15)";
-              (e.currentTarget as HTMLImageElement).style.opacity = "0.55";
+              (e.currentTarget as HTMLImageElement).style.filter = "grayscale(100%) contrast(1.1)";
+              (e.currentTarget as HTMLImageElement).style.opacity = "0.6";
               (e.currentTarget as HTMLImageElement).style.transform = "scale(1)";
             }}
           />
