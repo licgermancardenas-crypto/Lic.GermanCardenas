@@ -62,102 +62,7 @@ export function AboutMeBento() {
       {/* Bento grid */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
 
-        {/* Block 1: Full-width photo — 3 cols */}
-        <div
-          className="md:col-span-3 rounded-2xl overflow-hidden flex flex-col group transition-all duration-300"
-          style={{
-            border: "1px solid rgba(255,255,255,0.08)",
-            background: "#09090b",
-            boxShadow: "0 24px 48px rgba(0,0,0,0.5)",
-          }}
-          onMouseEnter={(e) => {
-            (e.currentTarget as HTMLElement).style.borderColor = "rgba(255,255,255,0.16)";
-          }}
-          onMouseLeave={(e) => {
-            (e.currentTarget as HTMLElement).style.borderColor = "rgba(255,255,255,0.08)";
-          }}
-        >
-          {/* Image — full color, portrait photo with smart crop */}
-          <div
-            className="w-full relative overflow-hidden"
-            style={{ height: "clamp(320px, 45vw, 520px)" }}
-          >
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="/german-skyline-night.jpg"
-              alt="Germán Cárdenas — Chicago skyline at night"
-              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.02]"
-              style={{ objectPosition: "center 20%" }}
-            />
-            {/* Bottom fade */}
-            <div
-              className="absolute inset-x-0 bottom-0 pointer-events-none"
-              style={{
-                height: "120px",
-                background: "linear-gradient(to top, #09090b, transparent)",
-              }}
-            />
-          </div>
-
-          {/* Editorial footer */}
-          <div
-            style={{
-              padding: "32px",
-              background: "#09090b",
-              borderTop: "1px solid rgba(255,255,255,0.05)",
-              display: "flex",
-              flexDirection: "column",
-              gap: "12px",
-            }}
-          >
-            <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", justifyContent: "space-between", gap: "12px" }}>
-              <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-                <span
-                  className="animate-pulse"
-                  style={{ width: "8px", height: "8px", borderRadius: "50%", background: "#2B6FE8", flexShrink: 0 }}
-                />
-                <span
-                  style={{
-                    fontFamily: "var(--font-mono)",
-                    fontSize: "11px",
-                    letterSpacing: "0.14em",
-                    textTransform: "uppercase",
-                    color: "#2B6FE8",
-                  }}
-                >
-                  Decision Intelligence · Builder
-                </span>
-              </div>
-              <span
-                style={{
-                  fontFamily: "var(--font-mono)",
-                  fontSize: "10px",
-                  color: "#52525b",
-                  background: "rgba(255,255,255,0.03)",
-                  border: "1px solid rgba(255,255,255,0.06)",
-                  padding: "4px 10px",
-                  borderRadius: "6px",
-                  letterSpacing: "0.08em",
-                }}
-              >
-                GERMÁN CÁRDENAS · BUENOS AIRES
-              </span>
-            </div>
-            <p
-              style={{
-                fontSize: "14px",
-                color: "#6B7A95",
-                lineHeight: 1.7,
-                maxWidth: "760px",
-              }}
-            >
-              Diseño plataformas inteligentes donde convergen inteligencia artificial, datos y
-              análisis geoespacial para transformar información en decisiones.
-            </p>
-          </div>
-        </div>
-
-        {/* Block 2: Manifesto — 2 cols */}
+        {/* Block 1: Manifesto — 2 cols */}
         <div
           className="md:col-span-2 rounded-2xl flex flex-col justify-between transition-all duration-300"
           style={{
@@ -228,14 +133,55 @@ export function AboutMeBento() {
           </div>
         </div>
 
-        {/* Block 3: Vision / Philosophy — 1 col */}
+        {/* Block 2: Photo — 1 col, full image no crop */}
         <div
-          className="rounded-2xl flex flex-col justify-between transition-all duration-300"
+          className="rounded-2xl overflow-hidden flex flex-col group transition-all duration-300"
+          style={{
+            border: "1px solid rgba(255,255,255,0.08)",
+            background: "#09090b",
+          }}
+          onMouseEnter={(e) => {
+            (e.currentTarget as HTMLElement).style.borderColor = "rgba(255,255,255,0.18)";
+          }}
+          onMouseLeave={(e) => {
+            (e.currentTarget as HTMLElement).style.borderColor = "rgba(255,255,255,0.08)";
+          }}
+        >
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/german-skyline-night.jpg"
+            alt="Germán Cárdenas — Chicago skyline at night"
+            className="w-full transition-transform duration-700 group-hover:scale-[1.02]"
+            style={{ display: "block", height: "auto" }}
+          />
+          <div
+            style={{
+              padding: "16px 20px",
+              borderTop: "1px solid rgba(255,255,255,0.05)",
+            }}
+          >
+            <span
+              style={{
+                fontFamily: "var(--font-mono)",
+                fontSize: "10px",
+                letterSpacing: "0.12em",
+                textTransform: "uppercase",
+                color: "#52525b",
+              }}
+            >
+              Chicago · 360° NORTH
+            </span>
+          </div>
+        </div>
+
+        {/* Block 3: Vision / Philosophy — full width */}
+        <div
+          className="md:col-span-3 rounded-2xl transition-all duration-300"
           style={{
             border: "1px solid rgba(255,255,255,0.08)",
             background: "rgba(9,9,11,0.5)",
             backdropFilter: "blur(12px)",
-            padding: "28px",
+            padding: "28px 36px",
           }}
           onMouseEnter={(e) => {
             (e.currentTarget as HTMLElement).style.borderColor = "rgba(255,255,255,0.16)";
@@ -244,45 +190,44 @@ export function AboutMeBento() {
             (e.currentTarget as HTMLElement).style.borderColor = "rgba(255,255,255,0.08)";
           }}
         >
-          <div style={{ display: "flex", flexDirection: "column", gap: "18px" }}>
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                gap: "8px",
-                fontFamily: "var(--font-mono)",
-                fontSize: "10px",
-                letterSpacing: "0.14em",
-                textTransform: "uppercase",
-                color: "#6B7A95",
-              }}
-            >
-              <Eye style={{ width: "14px", height: "14px", color: "#8b5cf6", flexShrink: 0 }} />
-              VISION // FILOSOFÍA
-            </div>
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: "8px",
+              fontFamily: "var(--font-mono)",
+              fontSize: "10px",
+              letterSpacing: "0.14em",
+              textTransform: "uppercase",
+              color: "#6B7A95",
+              marginBottom: "20px",
+            }}
+          >
+            <Eye style={{ width: "14px", height: "14px", color: "#8b5cf6", flexShrink: 0 }} />
+            VISION // FILOSOFÍA
+          </div>
 
-            <ul style={{ display: "flex", flexDirection: "column", gap: "18px" }}>
-              {visionItems.map((item) => (
-                <li key={item.label} style={{ display: "flex", alignItems: "flex-start", gap: "12px" }}>
-                  <span
-                    style={{
-                      width: "6px",
-                      height: "6px",
-                      borderRadius: "50%",
-                      background: item.color,
-                      flexShrink: 0,
-                      marginTop: "6px",
-                    }}
-                  />
-                  <span style={{ fontSize: "12px", color: "#6B7A95", lineHeight: 1.72 }}>
-                    <strong style={{ color: "#C5CFE2", fontWeight: 600, display: "block", marginBottom: "2px" }}>
-                      {item.label}
-                    </strong>
-                    {item.detail}
-                  </span>
-                </li>
-              ))}
-            </ul>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {visionItems.map((item) => (
+              <div key={item.label} style={{ display: "flex", alignItems: "flex-start", gap: "12px" }}>
+                <span
+                  style={{
+                    width: "6px",
+                    height: "6px",
+                    borderRadius: "50%",
+                    background: item.color,
+                    flexShrink: 0,
+                    marginTop: "7px",
+                  }}
+                />
+                <span style={{ fontSize: "13px", color: "#6B7A95", lineHeight: 1.72 }}>
+                  <strong style={{ color: "#C5CFE2", fontWeight: 600, display: "block", marginBottom: "4px" }}>
+                    {item.label}
+                  </strong>
+                  {item.detail}
+                </span>
+              </div>
+            ))}
           </div>
         </div>
 
