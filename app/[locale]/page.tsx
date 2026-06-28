@@ -9,6 +9,7 @@ import { SelectedWork } from "@/components/sections/SelectedWork";
 import { Experience } from "@/components/sections/Experience";
 import { Education } from "@/components/sections/Education";
 import { TechStack } from "@/components/sections/TechStack";
+import { ExperienceSection } from "@/components/sections/ExperienceSection";
 import { WorkWithMe } from "@/components/sections/WorkWithMe";
 import { Footer } from "@/components/sections/Footer";
 
@@ -24,6 +25,7 @@ export default function HomePage() {
         <section id="sobre-mi">
           <AboutMeBento />
         </section>
+        <ExperienceSection />
         <FeaturedCases />
         <SelectedWork />
         <Experience />
