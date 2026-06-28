@@ -134,7 +134,7 @@ export function PoliticsHero() {
       </motion.div>
 
       {/* ── HERO CONTENT — bottom-anchored ── */}
-      <div className="relative z-10 mt-auto px-6 md:px-16 lg:px-24">
+      <div className="relative z-10 mt-auto px-6 md:px-8 lg:px-12">
         {/* Eyebrow */}
         <motion.div
           initial={{ opacity: 0, y: 14 }}
@@ -192,11 +192,12 @@ export function PoliticsHero() {
           style={{
             fontFamily: "var(--font-mono)",
             fontSize: "clamp(11px, 1.3vw, 14px)",
+            fontWeight: 700,
             lineHeight: 1.75,
-            color: "rgba(255,255,255,0.5)",
-            maxWidth: "600px",
+            color: "rgba(255,255,255,0.82)",
+            maxWidth: "560px",
             marginBottom: "36px",
-            letterSpacing: "0.025em",
+            letterSpacing: "0.02em",
           }}
         >
           El análisis de datos transformado en poder estratégico. Traduzco la
