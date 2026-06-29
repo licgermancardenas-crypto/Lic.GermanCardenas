@@ -1,7 +1,11 @@
 "use client";
 
+import Image from "next/image";
+import { motion } from "framer-motion";
 import { AnimatedSection } from "@/components/AnimatedSection";
 import { ExperienceCard, type ExperienceData } from "./ExperienceCard";
+
+const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
 const experiences: ExperienceData[] = [
   {
@@ -87,73 +91,108 @@ export function ExperienceSection() {
   return (
     <section
       id="experiencias"
-      className="py-20 sm:py-32 lg:py-40"
-      style={{
-        backgroundColor: "#06080D",
-        borderTop: "1px solid rgba(255,255,255,0.05)",
-      }}
+      style={{ backgroundColor: "#06080D", borderTop: "1px solid rgba(255,255,255,0.05)" }}
     >
-      <div className="container-custom">
-        {/* Header */}
-        <AnimatedSection className="mb-16 sm:mb-24 max-w-3xl">
-          <p
-            style={{
-              fontFamily: "var(--font-mono)",
-              fontSize: "12px",
-              letterSpacing: "0.16em",
-              textTransform: "uppercase",
-              color: "#6B7A95",
-              marginBottom: "32px",
-            }}
-          >
-            ─── Experiencias
-          </p>
-          <h2
-            className="font-serif"
-            style={{
-              fontSize: "clamp(40px, 5.5vw, 80px)",
-              fontWeight: 400,
-              color: "#F0F4FB",
-              lineHeight: 1.05,
-              letterSpacing: "-0.03em",
-              marginBottom: "28px",
-            }}
-          >
-            Donde las ideas{" "}
-            <span style={{ fontStyle: "italic" }}>toman forma.</span>
-          </h2>
-          <p
-            style={{
-              fontSize: "17px",
-              lineHeight: 1.78,
-              color: "#C5CFE2",
-              maxWidth: "600px",
-              marginBottom: "16px",
-            }}
-          >
-            Los proyectos más importantes no nacen trabajando en solitario. Creo
-            en el aprendizaje continuo, la colaboración y el intercambio de ideas
-            como motores de la innovación. Por eso participo activamente en
-            hackatones, eventos tecnológicos, comunidades de innovación,
-            capacitaciones y encuentros donde la inteligencia artificial, los
-            datos y el desarrollo de software se transforman en soluciones con
-            impacto.
-          </p>
-          <p
-            style={{
-              fontSize: "15px",
-              lineHeight: 1.72,
-              color: "#6B7A95",
-              maxWidth: "560px",
-            }}
-          >
-            Cada experiencia representa una oportunidad para aprender, compartir
-            conocimiento, construir equipos y convertir ideas en proyectos
-            reales.
-          </p>
-        </AnimatedSection>
+      {/* ── PHOTO HEADER ── */}
+      <div className="relative overflow-hidden" style={{ minHeight: "480px" }}>
+        {/* Background photo */}
+        <div className="absolute inset-0">
+          <Image
+            src="/experiences/exp-header-bg.jpg"
+            alt="Donde las ideas toman forma — hackathon workspace"
+            fill
+            className="object-cover object-center"
+            quality={90}
+            sizes="100vw"
+          />
+        </div>
 
-        {/* Cards */}
+        {/* Overlays: heavy bottom + left bias so text reads perfectly */}
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              "linear-gradient(to top, rgba(6,8,13,1) 0%, rgba(6,8,13,0.88) 35%, rgba(6,8,13,0.45) 65%, rgba(6,8,13,0.15) 100%)",
+          }}
+        />
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              "linear-gradient(to right, rgba(6,8,13,0.75) 0%, rgba(6,8,13,0.3) 50%, transparent 100%)",
+          }}
+        />
+
+        {/* Text over photo */}
+        <div className="relative container-custom pt-20 sm:pt-32 pb-16 sm:pb-24 flex flex-col justify-end" style={{ minHeight: "480px" }}>
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ duration: 0.7, ease: EASE }}
+            className="max-w-3xl"
+          >
+            <p
+              style={{
+                fontFamily: "var(--font-mono)",
+                fontSize: "12px",
+                letterSpacing: "0.16em",
+                textTransform: "uppercase",
+                color: "#6B7A95",
+                marginBottom: "28px",
+              }}
+            >
+              ─── Experiencias
+            </p>
+            <h2
+              className="font-serif"
+              style={{
+                fontSize: "clamp(40px, 5.5vw, 80px)",
+                fontWeight: 400,
+                color: "#F0F4FB",
+                lineHeight: 1.05,
+                letterSpacing: "-0.03em",
+                marginBottom: "24px",
+              }}
+            >
+              Donde las ideas{" "}
+              <span style={{ fontStyle: "italic" }}>toman forma.</span>
+            </h2>
+            <p
+              style={{
+                fontSize: "17px",
+                lineHeight: 1.78,
+                color: "#C5CFE2",
+                maxWidth: "600px",
+                marginBottom: "14px",
+              }}
+            >
+              Los proyectos más importantes no nacen trabajando en solitario. Creo
+              en el aprendizaje continuo, la colaboración y el intercambio de ideas
+              como motores de la innovación. Por eso participo activamente en
+              hackatones, eventos tecnológicos, comunidades de innovación,
+              capacitaciones y encuentros donde la inteligencia artificial, los
+              datos y el desarrollo de software se transforman en soluciones con
+              impacto.
+            </p>
+            <p
+              style={{
+                fontSize: "15px",
+                lineHeight: 1.72,
+                color: "#6B7A95",
+                maxWidth: "560px",
+              }}
+            >
+              Cada experiencia representa una oportunidad para aprender, compartir
+              conocimiento, construir equipos y convertir ideas en proyectos
+              reales.
+            </p>
+          </motion.div>
+        </div>
+      </div>
+
+      {/* ── CARDS ── */}
+      <div className="container-custom py-20 sm:py-28 lg:py-36">
         <div className="flex flex-col gap-20 sm:gap-28 lg:gap-36">
           {experiences.map((exp, index) => (
             <ExperienceCard key={exp.id} exp={exp} index={index} />
