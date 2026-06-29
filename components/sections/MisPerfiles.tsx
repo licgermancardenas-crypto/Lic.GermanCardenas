@@ -16,6 +16,7 @@ const profileData: OrbitalNode[] = [
     relatedIds: [2, 5],
     status: "completed",
     energy: 100,
+    href: "/es/perfiles/fpa",
   },
   {
     id: 2,
@@ -40,6 +41,7 @@ const profileData: OrbitalNode[] = [
     relatedIds: [2, 4],
     status: "in-progress",
     energy: 85,
+    href: "/es/perfiles/data-science",
   },
   {
     id: 4,
@@ -76,6 +78,7 @@ const profileData: OrbitalNode[] = [
     relatedIds: [5, 2],
     status: "completed",
     energy: 95,
+    href: "/es/perfiles/politics",
   },
 ];
 

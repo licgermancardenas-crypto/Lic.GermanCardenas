@@ -1,8 +1,9 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
+import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
-import { X } from "lucide-react";
+import { X, ArrowRight } from "lucide-react";
 
 const SIZE = 700;
 const CENTER = 350;
@@ -22,6 +23,7 @@ export interface OrbitalNode {
   relatedIds: number[];
   status: OrbitalStatus;
   energy: number;
+  href?: string;
 }
 
 interface Props {
@@ -480,6 +482,25 @@ export default function RadialOrbitalTimeline({ timelineData }: Props) {
                 />
               </div>
             </div>
+
+            {/* Ver perfil link */}
+            {activeNode.href && (
+              <Link
+                href={activeNode.href}
+                className="flex items-center gap-2 mb-5 w-fit transition-opacity duration-200 hover:opacity-70"
+                style={{
+                  fontFamily: "var(--font-mono)",
+                  fontSize: "11px",
+                  letterSpacing: "0.12em",
+                  textTransform: "uppercase",
+                  color: CATEGORY_COLORS[activeNode.category] ?? "#2B6FE8",
+                  fontWeight: 600,
+                }}
+              >
+                Ver perfil completo
+                <ArrowRight className="w-3.5 h-3.5" />
+              </Link>
+            )}
 
             {/* Footer */}
             <div className="flex items-center justify-between flex-wrap gap-3">
