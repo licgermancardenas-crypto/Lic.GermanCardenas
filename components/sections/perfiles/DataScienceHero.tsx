@@ -164,20 +164,38 @@ export function DataScienceHero() {
             lineHeight: 1.0,
             letterSpacing: "-0.02em",
             textTransform: "uppercase",
-            marginBottom: "20px",
+            marginBottom: "10px",
             userSelect: "none",
           }}
         >
-          PREDICTIVE
+          DATA
           <br />
-          ENGINES
+          SCIENTIST
         </motion.h1>
+
+        {/* Subtitle */}
+        <motion.p
+          initial={{ opacity: 0, y: 14 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.55, ease: EASE, delay: 0.56 }}
+          style={{
+            fontFamily: "var(--font-mono)",
+            fontSize: "clamp(11px, 1.2vw, 14px)",
+            fontWeight: 600,
+            letterSpacing: "0.18em",
+            textTransform: "uppercase",
+            color: BLUE,
+            marginBottom: "18px",
+          }}
+        >
+          Predictive Engines
+        </motion.p>
 
         {/* Manifesto */}
         <motion.p
           initial={{ opacity: 0, y: 14 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: EASE, delay: 0.62 }}
+          transition={{ duration: 0.6, ease: EASE, delay: 0.72 }}
           style={{
             fontFamily: "var(--font-sans)",
             fontSize: "clamp(12px, 1.4vw, 16px)",
