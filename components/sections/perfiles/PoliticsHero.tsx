@@ -10,6 +10,10 @@ import { useState } from "react";
 const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
 const CYAN = "#00A3C4";
 
+// Drone approach: 13s cinematic zoom, crossfade between 62%-82%
+const DRONE_DURATION = 13;
+const CROSSFADE_TIMES: [number, number, number] = [0, 0.62, 0.82];
+
 const GRID = [
   {
     label: "01 / GEOSPATIAL",
@@ -36,7 +40,7 @@ const GRID = [
 export function PoliticsHero() {
   const params = useParams();
   const locale = (params?.locale as string) ?? "es";
-  const [imgError, setImgError] = useState(false);
+  const [arrived, setArrived] = useState(false);
 
   return (
     <section
@@ -45,7 +49,7 @@ export function PoliticsHero() {
     >
       {/* ── BACKGROUND ── */}
       <div className="absolute inset-0 overflow-hidden">
-        {/* Sunset gradient — always visible, Congress photo enhances it */}
+        {/* Sunset gradient — base layer */}
         <div
           className="absolute inset-0"
           style={{
@@ -53,6 +57,81 @@ export function PoliticsHero() {
               "linear-gradient(to bottom, #1a0800 0%, #3d1400 14%, #7a2e00 28%, #c45200 42%, #e07000 48%, #c45200 54%, #4a1a00 70%, #150800 84%, #050505 100%)",
           }}
         />
+
+        {/* IMAGE 1 — Wide aerial panorama (drone start position)
+            Zooms in with easeIn (slow → fast, like a drone accelerating).
+            transform-origin: 50% 42% keeps the Congress dome centered during zoom. */}
+        <motion.div
+          className="absolute inset-0"
+          style={{ transformOrigin: "50% 42%" }}
+          initial={{ scale: 1, opacity: 1 }}
+          animate={{ scale: 2.8, opacity: [1, 1, 0] }}
+          transition={{
+            duration: DRONE_DURATION,
+            scale: { ease: [0.4, 0, 0.9, 1], duration: DRONE_DURATION },
+            opacity: { times: CROSSFADE_TIMES, ease: "linear", duration: DRONE_DURATION },
+          }}
+          onAnimationComplete={() => setArrived(true)}
+        >
+          <Image
+            src="/perfiles/congreso-wide.jpg"
+            alt="Buenos Aires — vista aérea panorámica al anochecer"
+            fill
+            className="object-cover"
+            style={{
+              objectPosition: "center 42%",
+              filter: "saturate(0.75) contrast(1.08) brightness(0.8)",
+            }}
+            priority
+            quality={90}
+            sizes="100vw"
+          />
+        </motion.div>
+
+        {/* IMAGE 2 — Close-up Congress (drone arrival position)
+            Fades in during the crossfade window, then hovers with a gentle breathe. */}
+        <motion.div
+          className="absolute inset-0"
+          style={{ transformOrigin: "50% 48%" }}
+          initial={{ scale: 1.2, opacity: 0 }}
+          animate={
+            arrived
+              ? { scale: [1.44, 1.5, 1.44], opacity: 1 }
+              : { scale: 1.44, opacity: [0, 0, 1] }
+          }
+          transition={
+            arrived
+              ? {
+                  scale: {
+                    duration: 20,
+                    repeat: Infinity,
+                    repeatType: "reverse",
+                    ease: "easeInOut",
+                  },
+                  opacity: { duration: 0 },
+                }
+              : {
+                  duration: DRONE_DURATION,
+                  scale: { ease: [0.6, 0, 0.35, 1], duration: DRONE_DURATION },
+                  opacity: { times: CROSSFADE_TIMES, ease: "linear", duration: DRONE_DURATION },
+                }
+          }
+        >
+          <Image
+            src="/perfiles/congreso-close.jpg"
+            alt="Congreso de la Nación Argentina al atardecer"
+            fill
+            className="object-cover"
+            style={{
+              objectPosition: "center 48%",
+              filter: "saturate(0.68) contrast(1.12) brightness(0.8)",
+            }}
+            quality={90}
+            sizes="100vw"
+          />
+        </motion.div>
+
+        {/* Radial warm glow */}
         <div
           className="absolute inset-0"
           style={{
@@ -60,32 +139,6 @@ export function PoliticsHero() {
               "radial-gradient(ellipse 80% 50% at 50% 55%, rgba(200,90,0,0.28) 0%, transparent 70%)",
           }}
         />
-
-        {/* Congress photo — replace /public/perfiles/congreso-sunset.jpg to activate */}
-        {!imgError && (
-          <motion.div
-            className="absolute inset-0"
-            animate={{ scale: [1.0, 1.05] }}
-            transition={{
-              duration: 22,
-              ease: "linear",
-              repeat: Infinity,
-              repeatType: "reverse",
-            }}
-          >
-            <Image
-              src="/perfiles/congreso-sunset.jpg"
-              alt="Congreso de la Nación Argentina al atardecer"
-              fill
-              className="object-cover object-center"
-              priority
-              quality={95}
-              sizes="100vw"
-              style={{ filter: "saturate(0.72) contrast(1.1) brightness(0.85)" }}
-              onError={() => setImgError(true)}
-            />
-          </motion.div>
-        )}
       </div>
 
       {/* ── GRADIENT OVERLAYS ── */}
@@ -162,7 +215,7 @@ export function PoliticsHero() {
           </span>
         </motion.div>
 
-        {/* Title — ARCHIVO BLACK */}
+        {/* Title */}
         <motion.h1
           initial={{ opacity: 0, y: 26 }}
           animate={{ opacity: 1, y: 0 }}
@@ -208,7 +261,7 @@ export function PoliticsHero() {
           escenarios de alta complejidad.
         </motion.p>
 
-        {/* ── SPACEX DATA GRID ── */}
+        {/* ── DATA GRID ── */}
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
