@@ -36,7 +36,7 @@ const capabilities: Capability[] = [
   {
     number: "02",
     category: "NLP & SOCIAL INTELLIGENCE",
-    title: "Procesamiento de Lenguaje Natural",
+    title: "Social Listening",
     subtitle: "Social Listening & Narrative Engineering",
     description:
       "La conversación digital es un flujo de señal entre el ruido. Extraigo patrones de agenda, mido sentimiento en tiempo real y detecto anomalías antes de que se conviertan en crisis. El testeo de narrativas elimina la intuición del proceso.",
@@ -52,7 +52,7 @@ const capabilities: Capability[] = [
   {
     number: "03",
     category: "BI & WAR ROOM SYSTEMS",
-    title: "Business Intelligence Electoral",
+    title: "Intelligence Electoral",
     subtitle: "Sistemas de Comando y Control",
     description:
       "Un War Room sin datos en tiempo real es una sala de reuniones con mapas viejos. Diseño sistemas de BI que integran múltiples fuentes en un dashboard operativo único, permitiendo decisiones en horas, no en días.",
