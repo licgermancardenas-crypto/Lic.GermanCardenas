@@ -5,11 +5,26 @@ import { ArrowUpRight } from "lucide-react";
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/sections/Footer";
 
-export const metadata: Metadata = {
-  title: "Work — Germán Cárdenas",
-  description:
-    "Casos de estudio completos: Atlas One ERP, Atlas Nexus, AgroNova y LAPD Crime Analytics.",
-};
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  return locale === "en"
+    ? {
+        title: "Work — Germán Cárdenas",
+        description:
+          "Full case studies: Atlas One ERP, Atlas Nexus, AgroNova, and LAPD Crime Analytics.",
+      }
+    : {
+        title: "Work — Germán Cárdenas",
+        description:
+          "Casos de estudio completos: Atlas One ERP, Atlas Nexus, AgroNova y LAPD Crime Analytics.",
+      };
+}
+
+type Locale = "es" | "en";
 
 type CaseCard = {
   slug: string;
@@ -21,51 +36,98 @@ type CaseCard = {
   thumbnail: string;
 };
 
-const cases: CaseCard[] = [
-  {
-    slug: "atlas-one-erp",
-    number: "01",
-    category: "Enterprise · SaaS B2B",
-    title: "Atlas One ERP",
-    subtitle: "ERP modular para PyMEs argentinas con inteligencia de negocio integrada.",
-    accent: "#06b6d4",
-    thumbnail: "/screenshots/atlas-erp/1766963976633.jpg",
-  },
-  {
-    slug: "atlas-nexus",
-    number: "02",
-    category: "SaaS B2B · Hackathon Winner 🏆",
-    title: "Atlas Nexus",
-    subtitle: "Plataforma de inteligencia comercial para comercios independientes con POS nativo.",
-    accent: "#F59E0B",
-    thumbnail: "/screenshots/atlas-nexus.png",
-  },
-  {
-    slug: "agronova",
-    number: "03",
-    category: "AgriTech · GIS · Enterprise",
-    title: "AgroNova",
-    subtitle: "Plataforma geoespacial de escala nacional para la agroindustria argentina.",
-    accent: "#10b981",
-    thumbnail: "/screenshots/agronova.png",
-  },
-  {
-    slug: "lapd",
-    number: "04",
-    category: "Research · Data Analytics",
-    title: "LAPD Crime Analytics",
-    subtitle: "Análisis de 1 millón de registros policiales de Los Ángeles con rigor metodológico.",
-    accent: "#8b5cf6",
-    thumbnail: "/screenshots/lapd.png",
-  },
-];
+const cases: Record<Locale, CaseCard[]> = {
+  es: [
+    {
+      slug: "atlas-one-erp",
+      number: "01",
+      category: "Enterprise · SaaS B2B",
+      title: "Atlas One ERP",
+      subtitle: "ERP modular para PyMEs argentinas con inteligencia de negocio integrada.",
+      accent: "#06b6d4",
+      thumbnail: "/screenshots/atlas-erp/1766963976633.jpg",
+    },
+    {
+      slug: "atlas-nexus",
+      number: "02",
+      category: "SaaS B2B · Hackathon Winner 🏆",
+      title: "Atlas Nexus",
+      subtitle: "Plataforma de inteligencia comercial para comercios independientes con POS nativo.",
+      accent: "#F59E0B",
+      thumbnail: "/screenshots/atlas-nexus.png",
+    },
+    {
+      slug: "agronova",
+      number: "03",
+      category: "AgriTech · GIS · Enterprise",
+      title: "AgroNova",
+      subtitle: "Plataforma geoespacial de escala nacional para la agroindustria argentina.",
+      accent: "#10b981",
+      thumbnail: "/screenshots/agronova.png",
+    },
+    {
+      slug: "lapd",
+      number: "04",
+      category: "Research · Data Analytics",
+      title: "LAPD Crime Analytics",
+      subtitle: "Análisis de 1 millón de registros policiales de Los Ángeles con rigor metodológico.",
+      accent: "#8b5cf6",
+      thumbnail: "/screenshots/lapd.png",
+    },
+  ],
+  en: [
+    {
+      slug: "atlas-one-erp",
+      number: "01",
+      category: "Enterprise · SaaS B2B",
+      title: "Atlas One ERP",
+      subtitle: "Modular ERP for Argentine SMEs with built-in business intelligence.",
+      accent: "#06b6d4",
+      thumbnail: "/screenshots/atlas-erp/1766963976633.jpg",
+    },
+    {
+      slug: "atlas-nexus",
+      number: "02",
+      category: "SaaS B2B · Hackathon Winner 🏆",
+      title: "Atlas Nexus",
+      subtitle: "Commercial intelligence platform for independent retailers with native POS integration.",
+      accent: "#F59E0B",
+      thumbnail: "/screenshots/atlas-nexus.png",
+    },
+    {
+      slug: "agronova",
+      number: "03",
+      category: "AgriTech · GIS · Enterprise",
+      title: "AgroNova",
+      subtitle: "Nationwide geospatial platform for Argentina's agribusiness sector.",
+      accent: "#10b981",
+      thumbnail: "/screenshots/agronova.png",
+    },
+    {
+      slug: "lapd",
+      number: "04",
+      category: "Research · Data Analytics",
+      title: "LAPD Crime Analytics",
+      subtitle: "Analysis of 1 million Los Angeles police records with methodological rigor.",
+      accent: "#8b5cf6",
+      thumbnail: "/screenshots/lapd.png",
+    },
+  ],
+};
+
+const headerText: Record<Locale, { eyebrow: string; title: string; titleItalic: string }> = {
+  es: { eyebrow: "─── Trabajo", title: "Casos de estudio.", titleItalic: "De punta a punta." },
+  en: { eyebrow: "─── Work", title: "Case studies.", titleItalic: "End to end." },
+};
 
 export default async function WorkIndexPage({
   params,
 }: {
   params: Promise<{ locale: string }>;
 }) {
-  const { locale } = await params;
+  const { locale: rawLocale } = await params;
+  const locale: Locale = rawLocale === "en" ? "en" : "es";
+  const t = headerText[locale];
 
   return (
     <>
@@ -86,7 +148,7 @@ export default async function WorkIndexPage({
                 marginBottom: "24px",
               }}
             >
-              ─── Work
+              {t.eyebrow}
             </p>
             <h1
               className="font-serif"
@@ -100,12 +162,12 @@ export default async function WorkIndexPage({
                 maxWidth: "720px",
               }}
             >
-              Casos de estudio.{" "}
-              <span style={{ fontStyle: "italic" }}>De punta a punta.</span>
+              {t.title}{" "}
+              <span style={{ fontStyle: "italic" }}>{t.titleItalic}</span>
             </h1>
 
             <div className="grid sm:grid-cols-2 gap-5">
-              {cases.map((c) => (
+              {cases[locale].map((c) => (
                 <Link
                   key={c.slug}
                   href={`/${locale}/work/${c.slug}`}
