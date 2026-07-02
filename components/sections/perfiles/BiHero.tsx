@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowLeft } from "lucide-react";
@@ -42,7 +43,7 @@ export function BiHero() {
     >
       {/* ── BACKGROUND ── */}
       <div className="absolute inset-0 overflow-hidden">
-        {/* Placeholder: swap for /perfiles/bi-hero.jpg (Power BI workstation photo) once available */}
+        {/* Ken Burns — slow continuous camera glide */}
         <motion.div
           className="absolute inset-0"
           animate={{ scale: [1, 1.06] }}
@@ -53,24 +54,37 @@ export function BiHero() {
             repeatType: "reverse",
           }}
         >
-          <div
-            className="absolute inset-0"
+          <Image
+            src="/perfiles/bi-hero.jpg"
+            alt="Dashboard ejecutivo de KPIs financieros en workstation"
+            fill
+            className="object-cover"
             style={{
-              background:
-                "radial-gradient(ellipse 70% 60% at 70% 35%, rgba(16,185,129,0.14) 0%, transparent 60%), linear-gradient(160deg, #0a1420 0%, #0d1b2a 45%, #050708 100%)",
+              objectPosition: "center 35%",
+              filter: "saturate(0.45) contrast(1.15) brightness(0.5) hue-rotate(-8deg)",
             }}
-          />
-          <div
-            className="absolute inset-0"
-            style={{
-              backgroundImage:
-                "linear-gradient(rgba(16,185,129,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(16,185,129,0.05) 1px, transparent 1px)",
-              backgroundSize: "56px 56px",
-              maskImage:
-                "radial-gradient(ellipse 80% 70% at 65% 40%, black 0%, transparent 75%)",
-            }}
+            priority
+            quality={90}
+            sizes="100vw"
           />
         </motion.div>
+
+        {/* Cool slate-blue tint to unify with site's dark theme */}
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              "linear-gradient(160deg, rgba(10,20,32,0.55) 0%, rgba(13,27,42,0.35) 45%, rgba(5,7,8,0.55) 100%)",
+            mixBlendMode: "multiply",
+          }}
+        />
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              "radial-gradient(ellipse 70% 60% at 70% 30%, rgba(16,185,129,0.16) 0%, transparent 60%)",
+          }}
+        />
       </div>
 
       {/* ── GRADIENT OVERLAYS ── */}
