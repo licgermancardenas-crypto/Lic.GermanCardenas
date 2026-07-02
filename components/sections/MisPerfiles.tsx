@@ -29,6 +29,7 @@ const profileData: OrbitalNode[] = [
     relatedIds: [1, 3],
     status: "completed",
     energy: 95,
+    href: "/es/perfiles/bi",
   },
   {
     id: 3,

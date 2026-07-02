@@ -9,7 +9,7 @@ const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
 const PROFILES = [
   { id: "perfil-fpa", label: "Financial Planning & Analysis (FP&A) Specialist", category: "Finance", color: "#2B6FE8", href: "/perfiles/fpa" },
-  { id: "perfil-bi", label: "Corporate BI & Data Analyst", category: "BI", color: "#10b981", href: null },
+  { id: "perfil-bi", label: "Corporate BI & Data Analyst", category: "BI", color: "#10b981", href: "/perfiles/bi" },
   { id: "perfil-data-science", label: "Data Scientist", category: "Data Science", color: "#8b5cf6", href: "/perfiles/data-science" },
   { id: "perfil-ai", label: "AI Solutions Engineer", category: "AI", color: "#f59e0b", href: null },
   { id: "perfil-bizdev", label: "Market Intelligence & Business Development", category: "Business", color: "#ef4444", href: null },
