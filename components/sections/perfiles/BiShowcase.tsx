@@ -126,9 +126,7 @@ function SystemRow({ system, index }: { system: System; index: number }) {
         className={`grid gap-4 ${
           system.images.length === 1
             ? "grid-cols-1"
-            : system.images.length === 2
-            ? "grid-cols-1 sm:grid-cols-2"
-            : "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
+            : "grid-cols-1 sm:grid-cols-2"
         }`}
       >
         {system.images.map((src, i) => (
@@ -146,8 +144,9 @@ function SystemRow({ system, index }: { system: System; index: number }) {
                 src={src}
                 alt={`${system.name} — dashboard ${i + 1}`}
                 fill
+                quality={90}
                 className="object-cover object-top transition-transform duration-500 group-hover:scale-[1.03]"
-                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                sizes="(max-width: 640px) 100vw, 50vw"
               />
             </div>
             <div
@@ -241,7 +240,10 @@ export function BiShowcase() {
       </div>
 
       {/* Full-bleed atmospheric band */}
-      <div className="relative w-full" style={{ height: "44vh", minHeight: "320px" }}>
+      <div
+        className="relative w-full"
+        style={{ height: "26vh", minHeight: "220px", maxHeight: "380px" }}
+      >
         <Image
           src="/perfiles/bi/bi-interstitial.jpg"
           alt="Workstation multi-monitor con dashboards de datos en tiempo real"
