@@ -1,6 +1,7 @@
 import { Navigation } from "@/components/Navigation";
 import { BiHero } from "@/components/sections/perfiles/BiHero";
 import { BiContent } from "@/components/sections/perfiles/BiContent";
+import { BiShowcase } from "@/components/sections/perfiles/BiShowcase";
 import { Footer } from "@/components/sections/Footer";
 
 export const metadata = {
@@ -16,6 +17,7 @@ export default function BiPage() {
       <main>
         <BiHero />
         <BiContent />
+        <BiShowcase />
       </main>
       <Footer />
     </>
