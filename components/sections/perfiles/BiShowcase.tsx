@@ -146,7 +146,7 @@ function SystemRow({ system, index }: { system: System; index: number }) {
                 fill
                 quality={90}
                 className="object-cover object-top transition-transform duration-500 group-hover:scale-[1.03]"
-                sizes="(max-width: 640px) 100vw, 50vw"
+                sizes="(max-width: 640px) 100vw, 490px"
               />
             </div>
             <div
@@ -239,10 +239,10 @@ export function BiShowcase() {
         </motion.div>
       </div>
 
-      {/* Full-bleed atmospheric band */}
+      {/* Atmospheric band */}
       <div
-        className="relative w-full"
-        style={{ height: "26vh", minHeight: "220px", maxHeight: "380px" }}
+        className="relative w-full mx-auto"
+        style={{ height: "22vh", minHeight: "180px", maxHeight: "280px", maxWidth: "1000px" }}
       >
         <Image
           src="/perfiles/bi/bi-interstitial.jpg"
@@ -250,7 +250,7 @@ export function BiShowcase() {
           fill
           className="object-cover"
           style={{ objectPosition: "center 40%" }}
-          sizes="100vw"
+          sizes="(max-width: 1000px) 100vw, 1000px"
         />
         <div
           className="absolute inset-0"
@@ -276,9 +276,11 @@ export function BiShowcase() {
 
       {/* Systems */}
       <div className="container-custom pt-4 pb-24">
-        {systems.map((system, i) => (
-          <SystemRow key={system.name} system={system} index={i} />
-        ))}
+        <div style={{ maxWidth: "1000px", margin: "0 auto" }}>
+          {systems.map((system, i) => (
+            <SystemRow key={system.name} system={system} index={i} />
+          ))}
+        </div>
       </div>
     </section>
   );
