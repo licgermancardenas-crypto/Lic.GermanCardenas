@@ -202,6 +202,97 @@ export function AboutMeBento() {
           </div>
         </div>
 
+        {/* Block 4: Beyond software — manifesto + Forbes Summit photo */}
+        <div
+          className="md:col-span-3 rounded-2xl transition-all duration-300"
+          style={{
+            border: "1px solid rgba(255,255,255,0.08)",
+            background: "rgba(9,9,11,0.5)",
+            backdropFilter: "blur(12px)",
+            padding: "36px",
+          }}
+          onMouseEnter={(e) => {
+            (e.currentTarget as HTMLElement).style.borderColor = "rgba(255,255,255,0.16)";
+          }}
+          onMouseLeave={(e) => {
+            (e.currentTarget as HTMLElement).style.borderColor = "rgba(255,255,255,0.08)";
+          }}
+        >
+          <h3
+            className="font-serif"
+            style={{
+              fontSize: "clamp(16px, 1.8vw, 21px)",
+              fontWeight: 400,
+              color: "#F0F4FB",
+              letterSpacing: "-0.02em",
+              lineHeight: 1.35,
+              marginBottom: "20px",
+            }}
+          >
+            <span style={{ fontStyle: "italic", color: "#7BA8F5" }}>Más allá</span> de desarrollar software
+          </h3>
+
+          <div style={{ display: "flex", flexDirection: "column", gap: "14px", marginBottom: "32px" }}>
+            <p style={{ fontSize: "13.5px", color: "#6B7A95", lineHeight: 1.78 }}>
+              Creo que el aprendizaje no termina cuando cierro el editor de código.
+            </p>
+            <p style={{ fontSize: "13.5px", color: "#6B7A95", lineHeight: 1.78 }}>
+              Disfruto participar en conferencias, hackatones, comunidades tecnológicas y espacios
+              donde se reúnen emprendedores, investigadores, empresas y profesionales para
+              compartir ideas, debatir tendencias y explorar el futuro de la tecnología.
+            </p>
+            <p style={{ fontSize: "13.5px", color: "#6B7A95", lineHeight: 1.78 }}>
+              Cada evento representa una oportunidad para descubrir nuevas perspectivas, conocer
+              personas que están construyendo soluciones innovadoras y desafiar mi propia forma de
+              pensar.
+            </p>
+            <p style={{ fontSize: "13.5px", color: "#6B7A95", lineHeight: 1.78 }}>
+              Busco rodearme de personas curiosas, con ganas de crear, aprender y generar impacto.
+              Estoy convencido de que las mejores oportunidades nacen de una conversación, una
+              colaboración o una idea compartida.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+            <div
+              className="rounded-2xl overflow-hidden group"
+              style={{ border: "1px solid rgba(255,255,255,0.08)", background: "#09090b" }}
+            >
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/forbes-sostenibilidad-summit.jpg"
+                alt="Germán Cárdenas en el Forbes Sostenibilidad Summit"
+                className="w-full transition-transform duration-700 group-hover:scale-[1.02]"
+                style={{ display: "block", height: "auto" }}
+              />
+            </div>
+
+            <div>
+              <span
+                style={{
+                  fontFamily: "var(--font-mono)",
+                  fontSize: "10px",
+                  letterSpacing: "0.14em",
+                  textTransform: "uppercase",
+                  color: "#7BA8F5",
+                  display: "block",
+                  marginBottom: "10px",
+                }}
+              >
+                Forbes Sostenibilidad Summit
+              </span>
+              <p style={{ fontSize: "13.5px", color: "#6B7A95", lineHeight: 1.78 }}>
+                Participé en el Forbes Sostenibilidad Summit, un espacio donde líderes de
+                empresas, organizaciones y especialistas compartieron cómo la innovación y la
+                tecnología están transformando el desarrollo sostenible. Asistir a este tipo de
+                encuentros me permite comprender hacia dónde evolucionan las industrias y cómo la
+                inteligencia artificial puede convertirse en una herramienta para generar impacto
+                real.
+              </p>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
   );
