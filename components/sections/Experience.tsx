@@ -56,6 +56,30 @@ const experiences: ExpItem[] = [
     methodology: ["Agile Analytics", "FP&A", "Scenario Analysis", "BI Reporting"],
   },
   {
+    company: "RP de Went S.A.",
+    role: "Data & BI Analyst",
+    period: "Ene 2025",
+    end: "Presente",
+    location: "Buenos Aires, Argentina · Freelance",
+    bullets: [
+      "Relevamiento y estructuración del catálogo digital completo de la cadena (1.479 productos, 125 categorías en 3 niveles jerárquicos) mediante scripts automatizados en Python, con cobertura del 98% en marcas y 99,9% en imágenes.",
+      "Scripts de inteligencia competitiva de mercado para relevar precios y catálogos de farmacias competidoras, supermercados y e-commerce, generando benchmarks de pricing por categoría (perfumería, dermocosméticos, cuidado personal).",
+      "Pipelines de extracción, limpieza y consolidación de datos transaccionales del POS de 12 sucursales, automatizando ingesta y validación de integridad de datos.",
+      "Definición de KPIs comerciales — rotación por SKU y categoría, ticket promedio, ventas por sucursal, estacionalidad, mix de marcas — consolidados en dashboards ejecutivos.",
+      "Análisis de rotación de inventario por SKU, sucursal y categoría, identificando productos de movimiento lento y riesgo de vencimiento, con dashboards de control de stock y alertas operativas.",
+      "En desarrollo: modelo predictivo de demanda por categoría × sucursal (horizonte 7 y 30 días) para automatizar la planificación de pedidos a droguería.",
+    ],
+    impacts: [
+      { metric: "1.479", label: "Productos catalogados" },
+      { metric: "98%", label: "Cobertura de marcas" },
+      { metric: "99,9%", label: "Cobertura de imágenes" },
+      { metric: "12", label: "Sucursales integradas" },
+    ],
+    technologies: ["Python", "Pandas", "SQL", "Power BI", "Web Scraping"],
+    core_stack: ["Catalog Data Engineering", "Competitive Intelligence", "Inventory Analytics", "POS Data Pipelines"],
+    methodology: ["Market Benchmarking", "Demand Forecasting", "Data Quality Assurance", "Retail Analytics"],
+  },
+  {
     company: "Atomik",
     role: "Analista Comercial & Business Intelligence",
     period: "Ago 2025",
@@ -469,7 +493,7 @@ export function Experience() {
             ─── Experiencia profesional
           </p>
           <h2 className="font-serif" style={{ fontSize: "clamp(36px, 4vw, 60px)", fontWeight: 400, color: "#F0F4FB", lineHeight: 1.05, letterSpacing: "-0.03em" }}>
-            6 años.{" "}<span style={{ fontStyle: "italic" }}>6 empresas.</span>
+            5+ años.{" "}<span style={{ fontStyle: "italic" }}>7 empresas.</span>
           </h2>
         </div>
 

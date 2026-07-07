@@ -3,7 +3,7 @@
 import { AnimatedSection } from "@/components/AnimatedSection";
 
 const metrics = [
-  { value: "06+",  label: "YEARS",    sub: "▲ ACTIVE",        color: "#00C781" },
+  { value: "05+",  label: "YEARS",    sub: "▲ ACTIVE",        color: "#00C781" },
   { value: "04",   label: "PLAT.",    sub: "▲ 100% LIVE",     color: "#00C781" },
   { value: "01",   label: "AWARD",    sub: "🏆 1Q 2025",      color: "#F5B544" },
   { value: "1.0M", label: "RECORDS",  sub: "▲ ETL PIPELINE",  color: "#00C781" },
