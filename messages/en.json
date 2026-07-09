@@ -94,7 +94,9 @@
     "native": "Native",
     "advanced": "Advanced",
     "intermediate": "Intermediate",
-    "basic": "Basic"
+    "basic": "Basic",
+    "certifications_title": "Certifications",
+    "certifications_count": "{count} certificates"
   },
   "stack": {
     "label": "Tech Stack",

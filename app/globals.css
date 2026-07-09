@@ -97,6 +97,34 @@
   }
 }
 
+/* Diploma marquee */
+@keyframes marquee-left {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+@keyframes marquee-right {
+  from { transform: translateX(-50%); }
+  to { transform: translateX(0); }
+}
+@keyframes card-float {
+  0%, 100% { transform: translateY(0) rotate(var(--tilt, 0deg)); }
+  50% { transform: translateY(-10px) rotate(var(--tilt, 0deg)); }
+}
+.animate-marquee-left { animation: marquee-left 90s linear infinite; }
+.animate-marquee-right { animation: marquee-right 100s linear infinite; }
+.diploma-float {
+  transform: rotate(var(--tilt, 0deg));
+  animation: card-float 6s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee-left,
+  .animate-marquee-right,
+  .diploma-float {
+    animation: none;
+  }
+}
+
 /* Scrollbar */
 ::-webkit-scrollbar { width: 4px; }
 ::-webkit-scrollbar-track { background: transparent; }
