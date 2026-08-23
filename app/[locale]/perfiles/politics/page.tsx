@@ -1,15 +1,40 @@
+import { setRequestLocale } from "next-intl/server";
+import { routing } from "@/i18n/routing";
 import { Navigation } from "@/components/Navigation";
 import { PoliticsHero } from "@/components/sections/perfiles/PoliticsHero";
 import { PoliticsContent } from "@/components/sections/perfiles/PoliticsContent";
 import { Footer } from "@/components/sections/Footer";
 
-export const metadata = {
-  title: "Political Intelligence & Analytics — Germán Cárdenas",
-  description:
-    "Inteligencia electoral basada en datos. Cartografía geoespacial, NLP, War Room BI y segmentación científica del electorado para campaña de alta complejidad.",
-};
+import { pageMetadata } from "@/lib/seo";
+import { profileCopy } from "@/lib/profiles";
 
-export default function PoliticsPage() {
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  const copy = profileCopy(locale, "politics");
+  return pageMetadata({
+    locale,
+    path: "/perfiles/politics",
+    title: copy.title,
+    description: copy.description,
+  });
+}
+
+export function generateStaticParams() {
+  return routing.locales.map((locale) => ({ locale }));
+}
+
+export default async function PoliticsPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  setRequestLocale(locale);
+
   return (
     <>
       <Navigation />

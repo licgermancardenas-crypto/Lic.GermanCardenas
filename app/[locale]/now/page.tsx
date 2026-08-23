@@ -2,10 +2,36 @@ import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import type { Metadata } from "next";
 
-export const metadata: Metadata = {
-  title: "Ahora — Germán Cárdenas",
-  description: "Qué estoy haciendo en este momento",
-};
+import { pageMetadata } from "@/lib/seo";
+import { setRequestLocale } from "next-intl/server";
+import { routing } from "@/i18n/routing";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  return locale === "en"
+    ? pageMetadata({
+        locale,
+        path: "/now",
+        title: "Now — Germán Cárdenas",
+        description:
+          "What I am working on right now: active projects, current focus and what I am learning.",
+      })
+    : pageMetadata({
+        locale,
+        path: "/now",
+        title: "Ahora — Germán Cárdenas",
+        description:
+          "En qué estoy trabajando ahora mismo: proyectos activos, foco actual y qué estoy aprendiendo.",
+      });
+}
+
+export function generateStaticParams() {
+  return routing.locales.map((locale) => ({ locale }));
+}
 
 export default async function NowPage({
   params,
@@ -13,6 +39,7 @@ export default async function NowPage({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
+  setRequestLocale(locale);
 
   return (
     <div className="min-h-screen bg-[#0A0E1A]">

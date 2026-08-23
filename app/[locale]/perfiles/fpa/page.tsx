@@ -1,16 +1,41 @@
+import { setRequestLocale } from "next-intl/server";
+import { routing } from "@/i18n/routing";
 import { Navigation } from "@/components/Navigation";
 import { FpaHero } from "@/components/sections/perfiles/FpaHero";
 import { FpaContent } from "@/components/sections/perfiles/FpaContent";
 import { FinancialStackCards } from "@/components/ui/financial-stack-cards";
 import { Footer } from "@/components/sections/Footer";
 
-export const metadata = {
-  title: "FP&A Specialist — Germán Cárdenas",
-  description:
-    "Financial Planning & Analysis Specialist. Modelos de proyección financiera, Private Equity, portafolios bursátiles y valuación de proyectos de inversión.",
-};
+import { pageMetadata } from "@/lib/seo";
+import { profileCopy } from "@/lib/profiles";
 
-export default function FpaPage() {
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  const copy = profileCopy(locale, "fpa");
+  return pageMetadata({
+    locale,
+    path: "/perfiles/fpa",
+    title: copy.title,
+    description: copy.description,
+  });
+}
+
+export function generateStaticParams() {
+  return routing.locales.map((locale) => ({ locale }));
+}
+
+export default async function FpaPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  setRequestLocale(locale);
+
   return (
     <>
       <Navigation />

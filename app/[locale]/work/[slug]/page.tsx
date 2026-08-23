@@ -1,6 +1,9 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
+import { setRequestLocale } from "next-intl/server";
+import { routing } from "@/i18n/routing";
 import { ArrowLeft, ExternalLink, ArrowRight } from "lucide-react";
 import { ScreenshotGallery } from "@/components/ScreenshotGallery";
 
@@ -520,7 +523,9 @@ function resolveLocale(locale: string): Locale {
 }
 
 export async function generateStaticParams() {
-  return Object.keys(content.es).map((slug) => ({ slug }));
+  return routing.locales.flatMap((locale) =>
+    Object.keys(content.es).map((slug) => ({ locale, slug })),
+  );
 }
 
 export async function generateMetadata({
@@ -531,10 +536,12 @@ export async function generateMetadata({
   const { slug, locale } = await params;
   const c = content[resolveLocale(locale)][slug];
   if (!c) return {};
-  return {
+  return pageMetadata({
+    locale,
+    path: `/work/${slug}`,
     title: c.title,
     description: c.subtitle,
-  };
+  });
 }
 
 export default async function WorkPage({
@@ -543,6 +550,7 @@ export default async function WorkPage({
   params: Promise<{ slug: string; locale: string }>;
 }) {
   const { slug, locale: rawLocale } = await params;
+  setRequestLocale(rawLocale);
   const locale = resolveLocale(rawLocale);
   const c = content[locale][slug];
   const t = labels[locale];

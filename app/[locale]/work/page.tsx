@@ -1,4 +1,7 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
+import { setRequestLocale } from "next-intl/server";
+import { routing } from "@/i18n/routing";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
@@ -12,16 +15,20 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   return locale === "en"
-    ? {
+    ? pageMetadata({
+        locale,
+        path: "/work",
         title: "Work — Germán Cárdenas",
         description:
           "Full case studies: Atlas One ERP, Atlas Nexus, AgroNova, and LAPD Crime Analytics.",
-      }
-    : {
+      })
+    : pageMetadata({
+        locale,
+        path: "/work",
         title: "Work — Germán Cárdenas",
         description:
           "Casos de estudio completos: Atlas One ERP, Atlas Nexus, AgroNova y LAPD Crime Analytics.",
-      };
+      });
 }
 
 type Locale = "es" | "en";
@@ -120,12 +127,17 @@ const headerText: Record<Locale, { eyebrow: string; title: string; titleItalic: 
   en: { eyebrow: "─── Work", title: "Case studies.", titleItalic: "End to end." },
 };
 
+export function generateStaticParams() {
+  return routing.locales.map((locale) => ({ locale }));
+}
+
 export default async function WorkIndexPage({
   params,
 }: {
   params: Promise<{ locale: string }>;
 }) {
   const { locale: rawLocale } = await params;
+  setRequestLocale(rawLocale);
   const locale: Locale = rawLocale === "en" ? "en" : "es";
   const t = headerText[locale];
 
