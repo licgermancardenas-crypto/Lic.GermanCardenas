@@ -15,13 +15,19 @@ const COPY = {
     eyebrow: "Galería completa",
     title: "Dashboards en producción",
     lead: `${DASHBOARD_STATS.dashboards} tableros de Power BI sobre datos reales de operación y fuentes públicas argentinas — exportaciones, patentamientos, retail, mayorista, farmacia y conciliación de cobros con tarjeta.`,
-    cta: "Ver los 8 tableros",
+    cta: `Ver los ${DASHBOARD_STATS.dashboards} tableros`,
+    more: (n: number) =>
+      `Hay ${n} tableros más en la galería completa — patentamientos, mayorista, forma de pago, créditos personales y farmacia`,
+    moreCta: "Abrir galería completa",
   },
   en: {
     eyebrow: "Full gallery",
     title: "Dashboards in production",
     lead: `${DASHBOARD_STATS.dashboards} Power BI dashboards built on real operating data and Argentine open data — exports, vehicle registrations, retail, wholesale, pharmacy and card settlement reconciliation.`,
-    cta: "See all 8 dashboards",
+    cta: `See all ${DASHBOARD_STATS.dashboards} dashboards`,
+    more: (n: number) =>
+      `${n} more dashboards in the full gallery — vehicle registrations, wholesale, payment mix, personal credit and pharmacy`,
+    moreCta: "Open the full gallery",
   },
 };
 
@@ -93,20 +99,22 @@ export function BiDashboardsTeaser({ locale }: { locale: string }) {
 
           <Link
             href={`/${locale}/perfiles/bi/dashboards`}
-            className="inline-flex items-center gap-2 shrink-0 transition-opacity hover:opacity-70"
+            className="inline-flex items-center gap-2.5 shrink-0 transition-transform hover:scale-[1.03]"
             style={{
               fontFamily: "var(--font-mono)",
-              fontSize: "11px",
-              letterSpacing: "0.14em",
+              fontSize: "14px",
+              fontWeight: 600,
+              letterSpacing: "0.1em",
               textTransform: "uppercase",
-              color: EMERALD,
-              border: `1px solid ${EMERALD}`,
+              color: "#04120c",
+              background: EMERALD,
               borderRadius: "999px",
-              padding: "12px 22px",
+              padding: "18px 34px",
+              boxShadow: "0 0 0 6px rgba(16,185,129,0.12)",
             }}
           >
             {t.cta}
-            <ArrowUpRight className="w-3.5 h-3.5" />
+            <ArrowUpRight className="w-4 h-4" />
           </Link>
         </div>
 
@@ -164,6 +172,43 @@ export function BiDashboardsTeaser({ locale }: { locale: string }) {
             );
           })}
         </div>
+
+        {/* Cierre: deja explícito que hay más tableros detrás del link */}
+        <Link
+          href={`/${locale}/perfiles/bi/dashboards`}
+          className="group flex flex-wrap items-center justify-between gap-6 mt-8 transition-colors"
+          style={{
+            border: "1px solid rgba(16,185,129,0.28)",
+            borderRadius: "14px",
+            background: "rgba(16,185,129,0.05)",
+            padding: "26px 30px",
+          }}
+        >
+          <span
+            className="max-w-xl"
+            style={{
+              fontSize: "15px",
+              lineHeight: 1.6,
+              color: "rgba(255,255,255,0.7)",
+            }}
+          >
+            {t.more(DASHBOARDS.length - featured.length)}
+          </span>
+          <span
+            className="inline-flex items-center gap-2.5 shrink-0 transition-transform group-hover:translate-x-1"
+            style={{
+              fontFamily: "var(--font-mono)",
+              fontSize: "13px",
+              fontWeight: 600,
+              letterSpacing: "0.1em",
+              textTransform: "uppercase",
+              color: EMERALD,
+            }}
+          >
+            {t.moreCta}
+            <ArrowUpRight className="w-4 h-4" />
+          </span>
+        </Link>
       </div>
     </section>
   );
