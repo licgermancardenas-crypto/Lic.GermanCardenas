@@ -4,6 +4,7 @@ import { Navigation } from "@/components/Navigation";
 import { BiHero } from "@/components/sections/perfiles/BiHero";
 import { BiContent } from "@/components/sections/perfiles/BiContent";
 import { BiShowcase } from "@/components/sections/perfiles/BiShowcase";
+import { BiDashboardsTeaser } from "@/components/sections/perfiles/BiDashboardsTeaser";
 import { Footer } from "@/components/sections/Footer";
 
 import { pageMetadata } from "@/lib/seo";
@@ -43,6 +44,7 @@ export default async function BiPage({
         <BiHero />
         <BiContent />
         <BiShowcase />
+        <BiDashboardsTeaser locale={locale} />
       </main>
       <Footer />
     </>

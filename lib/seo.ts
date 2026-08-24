@@ -21,6 +21,7 @@ export const ROUTES = [
   { path: "/perfiles/fpa", priority: 0.9, changeFrequency: "monthly" },
   { path: "/perfiles/data-science", priority: 0.9, changeFrequency: "monthly" },
   { path: "/perfiles/bi", priority: 0.9, changeFrequency: "monthly" },
+  { path: "/perfiles/bi/dashboards", priority: 0.8, changeFrequency: "monthly" },
   { path: "/perfiles/politics", priority: 0.9, changeFrequency: "monthly" },
   { path: "/now", priority: 0.5, changeFrequency: "weekly" },
 ] as const;
