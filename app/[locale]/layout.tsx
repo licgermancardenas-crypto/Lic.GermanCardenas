@@ -1,7 +1,7 @@
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages, getTranslations, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
-import { Geist, Archivo_Black } from "next/font/google";
+import { Geist } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { Metadata } from "next";
@@ -12,13 +12,6 @@ import "../globals.css";
 const geist = Geist({
   subsets: ["latin"],
   variable: "--font-sans",
-  display: "swap",
-});
-
-const archivoBlack = Archivo_Black({
-  weight: "400",
-  subsets: ["latin"],
-  variable: "--font-display",
   display: "swap",
 });
 
@@ -79,7 +72,7 @@ export default async function LocaleLayout({ children, params }: Props) {
   return (
     <html
       lang={locale}
-      className={`${geist.variable} ${archivoBlack.variable} dark`}
+      className={`${geist.variable} dark`}
       style={{ colorScheme: "dark" }}
       suppressHydrationWarning
     >

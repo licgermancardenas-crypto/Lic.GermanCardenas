@@ -223,7 +223,7 @@ export function PoliticsHero() {
           style={{
             fontFamily: "var(--font-display)",
             fontSize: "clamp(28px, 3.8vw, 58px)",
-            fontWeight: 400,
+            fontWeight: 800,
             color: "#FFFFFF",
             lineHeight: 1.05,
             letterSpacing: "0.04em",

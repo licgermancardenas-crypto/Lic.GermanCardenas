@@ -124,7 +124,7 @@ export default async function BiDashboardsPage({
             style={{
               fontFamily: "var(--font-display)",
               fontSize: "clamp(32px, 5vw, 56px)",
-              fontWeight: 400,
+              fontWeight: 800,
               lineHeight: 1.05,
               letterSpacing: "-0.02em",
               color: "#FFFFFF",
@@ -165,6 +165,7 @@ export default async function BiDashboardsPage({
                 <div
                   style={{
                     fontFamily: "var(--font-display)",
+                    fontWeight: 800,
                     fontSize: "32px",
                     lineHeight: 1,
                     color: EMERALD,

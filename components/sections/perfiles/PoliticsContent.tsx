@@ -108,7 +108,7 @@ function CapabilityBlock({ cap, index }: { cap: Capability; index: number }) {
             style={{
               fontFamily: "var(--font-display)",
               fontSize: "clamp(72px, 8vw, 112px)",
-              fontWeight: 400,
+              fontWeight: 800,
               lineHeight: 1,
               letterSpacing: "-0.02em",
               color: "rgba(255,255,255,0.04)",
@@ -153,7 +153,7 @@ function CapabilityBlock({ cap, index }: { cap: Capability; index: number }) {
               style={{
                 fontFamily: "var(--font-display)",
                 fontSize: "clamp(28px, 3.5vw, 52px)",
-                fontWeight: 400,
+                fontWeight: 800,
                 color: "#FFFFFF",
                 lineHeight: 1.05,
                 letterSpacing: "0.02em",
@@ -273,7 +273,7 @@ export function PoliticsContent() {
             style={{
               fontFamily: "var(--font-display)",
               fontSize: "clamp(36px, 5vw, 72px)",
-              fontWeight: 400,
+              fontWeight: 800,
               color: "#FFFFFF",
               lineHeight: 1.0,
               letterSpacing: "0.03em",

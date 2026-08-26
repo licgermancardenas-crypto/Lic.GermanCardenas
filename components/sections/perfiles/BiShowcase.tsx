@@ -88,7 +88,7 @@ function SystemRow({ system, index }: { system: System; index: number }) {
           style={{
             fontFamily: "var(--font-display)",
             fontSize: "clamp(20px, 2.2vw, 28px)",
-            fontWeight: 500,
+            fontWeight: 800,
             color: "#FFFFFF",
             letterSpacing: "0.01em",
           }}
@@ -208,7 +208,7 @@ export function BiShowcase() {
             style={{
               fontFamily: "var(--font-display)",
               fontSize: "clamp(36px, 5vw, 72px)",
-              fontWeight: 400,
+              fontWeight: 800,
               color: "#FFFFFF",
               lineHeight: 1.0,
               letterSpacing: "0.03em",

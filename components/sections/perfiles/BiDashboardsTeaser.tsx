@@ -77,7 +77,7 @@ export function BiDashboardsTeaser({ locale }: { locale: string }) {
               style={{
                 fontFamily: "var(--font-display)",
                 fontSize: "clamp(26px, 3.4vw, 40px)",
-                fontWeight: 400,
+                fontWeight: 800,
                 lineHeight: 1.1,
                 letterSpacing: "-0.015em",
                 color: "#FFFFFF",

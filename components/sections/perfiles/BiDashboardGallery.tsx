@@ -210,7 +210,7 @@ export function BiDashboardGallery({ locale }: { locale: string }) {
                 style={{
                   fontFamily: "var(--font-display)",
                   fontSize: "clamp(20px, 2.2vw, 28px)",
-                  fontWeight: 500,
+                  fontWeight: 800,
                   color: "#FFFFFF",
                 }}
               >

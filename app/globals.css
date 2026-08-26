@@ -4,7 +4,7 @@
   --font-sans: "Geist", system-ui, -apple-system, sans-serif;
   --font-serif: "Geist", system-ui, -apple-system, sans-serif;
   --font-mono: "Geist", system-ui, -apple-system, sans-serif;
-  --font-display: "Archivo Black", system-ui, sans-serif;
+  --font-display: var(--font-sans);
 
   /* Deep Finance — base surfaces */
   --color-bg-base:     #06080D;
@@ -140,6 +140,6 @@
 /* Print */
 @media print {
   nav, footer, .no-print { display: none !important; }
-  body { color: #000; background: #fff; font-family: Georgia, serif; }
+  body { color: #000; background: #fff; font-family: var(--font-sans); }
   a::after { content: " (" attr(href) ")"; font-size: 0.8em; color: #555; }
 }
