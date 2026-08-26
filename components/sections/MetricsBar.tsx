@@ -67,7 +67,7 @@ export function MetricsBar() {
                   style={{
                     fontFamily: "var(--font-mono)",
                     fontSize: "clamp(28px, 3vw, 42px)",
-                    fontWeight: 400,
+                    fontWeight: 800,
                     letterSpacing: "-0.02em",
                     color: "#F0F4FB",
                     fontVariantNumeric: "tabular-nums",

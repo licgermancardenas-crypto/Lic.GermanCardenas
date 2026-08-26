@@ -55,7 +55,7 @@ const SectionWithMockup: React.FC<SectionWithMockupProps> = ({
                 style={{
                   color: "#F0F4FB",
                   fontSize: "clamp(28px, 3.5vw, 40px)",
-                  fontWeight: 400,
+                  fontWeight: 800,
                   lineHeight: 1.15,
                   letterSpacing: "-0.02em",
                 }}

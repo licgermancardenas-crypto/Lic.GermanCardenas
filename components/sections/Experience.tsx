@@ -492,7 +492,7 @@ export function Experience() {
           <p style={{ fontFamily: "var(--font-mono)", fontSize: "12px", letterSpacing: "0.16em", textTransform: "uppercase", color: "#6B7A95", marginBottom: "20px" }}>
             ─── Experiencia profesional
           </p>
-          <h2 className="font-serif" style={{ fontSize: "clamp(36px, 4vw, 60px)", fontWeight: 400, color: "#F0F4FB", lineHeight: 1.05, letterSpacing: "-0.03em" }}>
+          <h2 className="font-serif" style={{ fontSize: "clamp(36px, 4vw, 60px)", fontWeight: 800, color: "#F0F4FB", lineHeight: 1.05, letterSpacing: "-0.03em" }}>
             5+ años.{" "}<span style={{ fontStyle: "italic" }}>7 empresas.</span>
           </h2>
         </div>

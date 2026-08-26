@@ -592,7 +592,7 @@ export default async function WorkPage({
           </div>
           <h1
             className="font-serif text-[#F5F7FA] leading-tight mb-4"
-            style={{ fontSize: "clamp(36px, 5vw, 64px)", fontWeight: 400 }}
+            style={{ fontSize: "clamp(36px, 5vw, 64px)", fontWeight: 800, textTransform: "uppercase", letterSpacing: "0.02em" }}
           >
             {c.title}
           </h1>
@@ -625,7 +625,7 @@ export default async function WorkPage({
             <div key={i}>
               <div
                 className="font-mono leading-none mb-3"
-                style={{ fontSize: "clamp(24px, 3.5vw, 48px)", color: c.accent }}
+                style={{ fontSize: "clamp(24px, 3.5vw, 48px)", fontWeight: 800, color: c.accent }}
               >
                 {m.value}
               </div>

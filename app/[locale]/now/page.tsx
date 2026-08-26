@@ -67,7 +67,7 @@ export default async function NowPage({
           </div>
           <h1
             className="font-serif text-[#F5F7FA] leading-tight mb-4"
-            style={{ fontSize: "clamp(32px, 4vw, 52px)", fontWeight: 400 }}
+            style={{ fontSize: "clamp(32px, 4vw, 52px)", fontWeight: 800, textTransform: "uppercase", letterSpacing: "0.02em" }}
           >
             ¿Qué estoy haciendo{" "}
             <span className="italic text-[#4F7CFF]">ahora</span>?

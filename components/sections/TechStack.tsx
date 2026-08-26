@@ -63,11 +63,12 @@ export function TechStack() {
             <h2
               className="font-serif"
               style={{
+                textTransform: "uppercase",
                 fontSize: "clamp(36px, 4vw, 56px)",
-                fontWeight: 400,
+                fontWeight: 800,
                 color: "#F0F4FB",
                 lineHeight: 1.05,
-                letterSpacing: "-0.03em",
+                letterSpacing: "0.02em",
               }}
             >
               Las herramientas del trabajo.

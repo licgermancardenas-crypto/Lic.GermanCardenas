@@ -536,11 +536,12 @@ function PitchHero({
         </p>
         <h3
           style={{
+            textTransform: "uppercase",
             fontSize: "clamp(44px, 6.5vw, 96px)",
-            fontWeight: 400,
+            fontWeight: 800,
             color: "#F0F4FB",
             lineHeight: 1.0,
-            letterSpacing: "-0.03em",
+            letterSpacing: "0.02em",
             fontFamily: "var(--font-serif)",
             marginBottom: "16px",
           }}
@@ -602,11 +603,12 @@ export function FeaturedCases() {
             <h2
               className="font-serif"
               style={{
+                textTransform: "uppercase",
                 fontSize: "clamp(40px, 5.5vw, 80px)",
-                fontWeight: 400,
+                fontWeight: 800,
                 color: "#F0F4FB",
                 lineHeight: 1.05,
-                letterSpacing: "-0.03em",
+                letterSpacing: "0.02em",
               }}
             >
               Cuatro proyectos.{" "}
@@ -674,11 +676,12 @@ export function FeaturedCases() {
                     <h3
                       className="font-serif"
                       style={{
+                        textTransform: "uppercase",
                         fontSize: "clamp(40px, 5vw, 72px)",
-                        fontWeight: 400,
+                        fontWeight: 800,
                         color: "#F0F4FB",
                         lineHeight: 1.0,
-                        letterSpacing: "-0.03em",
+                        letterSpacing: "0.02em",
                         marginBottom: "16px",
                       }}
                     >
@@ -810,7 +813,7 @@ export function FeaturedCases() {
                         <span
                           style={{
                             fontSize: "clamp(24px, 3vw, 40px)",
-                            fontWeight: 300,
+                            fontWeight: 800,
                             color: "#F0F4FB",
                             letterSpacing: "-0.04em",
                             fontVariantNumeric: "tabular-nums",

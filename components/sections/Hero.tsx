@@ -144,11 +144,12 @@ export function Hero() {
           <motion.h1
             variants={item}
             style={{
+              textTransform: "uppercase",
               fontSize: "clamp(48px, 6.5vw, 100px)",
-              fontWeight: 300,
+              fontWeight: 800,
               color: "#F0F4FB",
               lineHeight: 0.97,
-              letterSpacing: "-0.04em",
+              letterSpacing: "-0.015em",
             }}
           >
             Construyo<br />
@@ -298,10 +299,11 @@ export function Hero() {
                 <span
                   className="leading-none"
                   style={{
+                    textTransform: "uppercase",
                     fontSize: "clamp(36px, 4.5vw, 64px)",
-                    fontWeight: 300,
+                    fontWeight: 800,
                     color: "#F0F4FB",
-                    letterSpacing: "-0.04em",
+                    letterSpacing: "0.02em",
                     fontVariantNumeric: "tabular-nums",
                   }}
                 >

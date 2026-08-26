@@ -15,11 +15,12 @@ export function WorkWithMe() {
           <h2
             className="font-serif"
             style={{
+              textTransform: "uppercase",
               fontSize: "clamp(56px, 7vw, 96px)",
-              fontWeight: 400,
+              fontWeight: 800,
               color: "#F0F4FB",
               lineHeight: 0.95,
-              letterSpacing: "-0.04em",
+              letterSpacing: "-0.015em",
             }}
           >
             Hablemos.

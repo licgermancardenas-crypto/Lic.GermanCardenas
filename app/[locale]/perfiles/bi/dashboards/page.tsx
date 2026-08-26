@@ -123,10 +123,11 @@ export default async function BiDashboardsPage({
           <h1
             style={{
               fontFamily: "var(--font-display)",
+              textTransform: "uppercase",
               fontSize: "clamp(32px, 5vw, 56px)",
               fontWeight: 800,
               lineHeight: 1.05,
-              letterSpacing: "-0.02em",
+              letterSpacing: "0.02em",
               color: "#FFFFFF",
               marginBottom: "24px",
             }}

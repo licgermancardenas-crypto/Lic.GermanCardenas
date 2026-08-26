@@ -109,11 +109,12 @@ export function MisPerfiles() {
           <h2
             className="font-serif"
             style={{
+              textTransform: "uppercase",
               fontSize: "clamp(40px, 5.5vw, 80px)",
-              fontWeight: 400,
+              fontWeight: 800,
               color: "#F0F4FB",
               lineHeight: 1.05,
-              letterSpacing: "-0.03em",
+              letterSpacing: "0.02em",
             }}
           >
             Seis dimensiones.{" "}

@@ -137,11 +137,12 @@ export function FpaHero() {
           transition={{ duration: 0.75, ease: EASE, delay: 0.5 }}
           className="font-serif"
           style={{
+            textTransform: "uppercase",
             fontSize: "clamp(48px, 7.5vw, 110px)",
-            fontWeight: 400,
+            fontWeight: 800,
             color: "#F0F4FB",
             lineHeight: 1.0,
-            letterSpacing: "-0.03em",
+            letterSpacing: "-0.015em",
             marginBottom: "20px",
           }}
         >

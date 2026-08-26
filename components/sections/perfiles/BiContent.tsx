@@ -107,10 +107,11 @@ function CapabilityBlock({ cap }: { cap: Capability }) {
           <p
             style={{
               fontFamily: "var(--font-display)",
+              textTransform: "uppercase",
               fontSize: "clamp(72px, 8vw, 112px)",
               fontWeight: 800,
               lineHeight: 1,
-              letterSpacing: "-0.02em",
+              letterSpacing: "-0.015em",
               color: "rgba(255,255,255,0.04)",
               marginBottom: "24px",
             }}
