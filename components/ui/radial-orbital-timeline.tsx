@@ -80,17 +80,19 @@ export default function RadialOrbitalTimeline({ timelineData }: Props) {
   const n = timelineData.length;
   const rotRad = (rotDeg * Math.PI) / 180;
 
+  // Round to 2 decimals: server (Node) and browser trig can differ in the last
+  // float digits, which breaks hydration of the inline top/left styles.
+  const r2 = (v: number) => Math.round(v * 100) / 100;
+
   const positions = timelineData.map((node, i) => {
     const angle = (2 * Math.PI * i) / n + rotRad;
-    const x = CENTER + RADIUS * Math.cos(angle);
-    const y = CENTER + RADIUS * Math.sin(angle);
     return {
       node,
-      x,
-      y,
+      x: r2(CENTER + RADIUS * Math.cos(angle)),
+      y: r2(CENTER + RADIUS * Math.sin(angle)),
       // label center: outward from center
-      lx: CENTER + (RADIUS + LABEL_OFFSET) * Math.cos(angle),
-      ly: CENTER + (RADIUS + LABEL_OFFSET) * Math.sin(angle),
+      lx: r2(CENTER + (RADIUS + LABEL_OFFSET) * Math.cos(angle)),
+      ly: r2(CENTER + (RADIUS + LABEL_OFFSET) * Math.sin(angle)),
     };
   });
 
