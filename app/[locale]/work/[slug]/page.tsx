@@ -596,7 +596,7 @@ export default async function WorkPage({
           >
             {c.title}
           </h1>
-          <div className="text-[#1F2937] text-xs mb-5 font-mono select-none">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</div>
+          <div className="text-[#1F2937] text-xs mb-5 font-mono select-none overflow-hidden whitespace-nowrap">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</div>
           <p className="text-[#B8C1D1] text-lg md:text-xl leading-relaxed max-w-2xl">{c.subtitle}</p>
           {c.isHackathon && (
             <div

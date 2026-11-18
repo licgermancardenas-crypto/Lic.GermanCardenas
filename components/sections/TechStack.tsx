@@ -130,7 +130,10 @@ export function TechStack() {
                           {item}
                         </span>
                         {j < level.items.length - 1 && (
-                          <span style={{ color: "#3F4A5F", margin: "0 8px" }}>·</span>
+                          <>
+                            {" "}
+                            <span style={{ color: "#3F4A5F", margin: "0 4px" }}>·</span>{" "}
+                          </>
                         )}
                       </span>
                     ))}

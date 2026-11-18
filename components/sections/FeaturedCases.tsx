@@ -324,7 +324,9 @@ function ParallaxScreenshot({
       <div
         className="absolute pointer-events-none"
         style={{
-          inset: "-60px",
+          // Solo vertical: un inset lateral negativo generaba scroll horizontal en móvil.
+          // El blur ya expande el brillo hacia los costados.
+          inset: "-60px 0",
           background: `radial-gradient(ellipse at 50% 50%, ${glowColor} 0%, transparent 65%)`,
           filter: "blur(40px)",
           opacity: 0.8,

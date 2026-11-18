@@ -54,11 +54,18 @@ export function Hero() {
           alt="Germán Cárdenas"
           fill
           priority
-          className="object-contain"
+          className="object-contain object-[center_bottom] md:object-[right_center]"
           sizes="100vw"
           style={{
-            objectPosition: "right center",
             filter: "brightness(0.80) contrast(1.06) saturate(0.88)",
+          }}
+        />
+        {/* Mobile only: top-to-bottom fade so the text never sits on the face */}
+        <div
+          className="absolute inset-0 md:hidden"
+          style={{
+            background:
+              "linear-gradient(to bottom, rgba(6,8,13,0.96) 0%, rgba(6,8,13,0.90) 55%, rgba(6,8,13,0.55) 80%, rgba(6,8,13,0.35) 100%)",
           }}
         />
         {/* Left-to-right gradient: text readable on left, photo visible on right */}

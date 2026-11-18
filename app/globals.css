@@ -45,6 +45,9 @@
     line-height: 1.7;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    /* Decorative glows (inset negativo) no deben generar scroll lateral.
+       clip, no hidden: no rompe position: sticky. */
+    overflow-x: clip;
   }
 
   /* Grain texture — fixed, pointer-events none */
