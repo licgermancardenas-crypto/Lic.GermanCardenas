@@ -43,7 +43,7 @@ export function Education() {
           <span className="inline-block px-3 py-1 rounded-full bg-[#4F7CFF]/10 text-[#4F7CFF] text-xs font-semibold uppercase tracking-widest mb-4">
             {t("label")}
           </span>
-          <h2 className="text-4xl md:text-5xl font-bold text-[#F5F7FA] tracking-tight mb-4">
+          <h2 className="text-4xl md:text-5xl font-semibold text-[#F5F7FA] tracking-tight mb-4">
             {t("title")}
           </h2>
           <p className="text-[#B8C1D1] text-lg">{t("subtitle")}</p>

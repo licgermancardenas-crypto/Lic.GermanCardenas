@@ -139,7 +139,7 @@ export function FpaHero() {
           style={{
             textTransform: "uppercase",
             fontSize: "clamp(48px, 7.5vw, 110px)",
-            fontWeight: 800,
+            fontWeight: 600,
             color: "#F0F4FB",
             lineHeight: 1.0,
             letterSpacing: "-0.015em",

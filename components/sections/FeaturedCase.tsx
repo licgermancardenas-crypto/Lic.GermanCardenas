@@ -427,7 +427,7 @@ export function FeaturedCase() {
           <span className="inline-block px-3 py-1 rounded-full bg-[#635bff]/10 text-[#635bff] text-xs font-semibold uppercase tracking-widest mb-4">
             Casos destacados
           </span>
-          <h2 className="text-4xl md:text-5xl font-bold text-[#0a2540] dark:text-white tracking-tight">
+          <h2 className="text-4xl md:text-5xl font-semibold text-[#0a2540] dark:text-white tracking-tight">
             Proyectos en producción
           </h2>
         </AnimatedSection>
@@ -525,7 +525,7 @@ export function FeaturedCase() {
                       <span className="text-white/40 text-xs font-medium">{current.category}</span>
                     </div>
 
-                    <h3 className="text-4xl md:text-5xl font-bold text-white mb-3 tracking-tight">
+                    <h3 className="text-4xl md:text-5xl font-semibold text-white mb-3 tracking-tight">
                       {current.title}
                     </h3>
                     <p className="font-medium mb-5" style={{ color: current.accent }}>

@@ -17,7 +17,7 @@ export function WorkWithMe() {
             style={{
               textTransform: "uppercase",
               fontSize: "clamp(56px, 7vw, 96px)",
-              fontWeight: 800,
+              fontWeight: 600,
               color: "#F0F4FB",
               lineHeight: 0.95,
               letterSpacing: "-0.015em",

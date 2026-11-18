@@ -109,7 +109,7 @@ function CapabilityBlock({ cap }: { cap: Capability }) {
               fontFamily: "var(--font-display)",
               textTransform: "uppercase",
               fontSize: "clamp(72px, 8vw, 112px)",
-              fontWeight: 800,
+              fontWeight: 600,
               lineHeight: 1,
               letterSpacing: "-0.015em",
               color: "rgba(255,255,255,0.04)",
@@ -154,7 +154,7 @@ function CapabilityBlock({ cap }: { cap: Capability }) {
               style={{
                 fontFamily: "var(--font-display)",
                 fontSize: "clamp(28px, 3.5vw, 52px)",
-                fontWeight: 800,
+                fontWeight: 600,
                 color: "#FFFFFF",
                 lineHeight: 1.05,
                 letterSpacing: "0.02em",
@@ -274,7 +274,7 @@ export function BiContent() {
             style={{
               fontFamily: "var(--font-display)",
               fontSize: "clamp(36px, 5vw, 72px)",
-              fontWeight: 800,
+              fontWeight: 600,
               color: "#FFFFFF",
               lineHeight: 1.0,
               letterSpacing: "0.03em",

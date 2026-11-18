@@ -37,7 +37,7 @@ export function AboutMeBento() {
           style={{
             textTransform: "uppercase",
             fontSize: "clamp(34px, 4.5vw, 64px)",
-            fontWeight: 800,
+            fontWeight: 600,
             color: "#F0F4FB",
             letterSpacing: "0.02em",
             lineHeight: 1.05,

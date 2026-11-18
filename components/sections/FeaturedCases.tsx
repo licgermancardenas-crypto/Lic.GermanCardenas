@@ -538,7 +538,7 @@ function PitchHero({
           style={{
             textTransform: "uppercase",
             fontSize: "clamp(44px, 6.5vw, 96px)",
-            fontWeight: 800,
+            fontWeight: 600,
             color: "#F0F4FB",
             lineHeight: 1.0,
             letterSpacing: "0.02em",
@@ -605,7 +605,7 @@ export function FeaturedCases() {
               style={{
                 textTransform: "uppercase",
                 fontSize: "clamp(40px, 5.5vw, 80px)",
-                fontWeight: 800,
+                fontWeight: 600,
                 color: "#F0F4FB",
                 lineHeight: 1.05,
                 letterSpacing: "0.02em",
@@ -678,7 +678,7 @@ export function FeaturedCases() {
                       style={{
                         textTransform: "uppercase",
                         fontSize: "clamp(40px, 5vw, 72px)",
-                        fontWeight: 800,
+                        fontWeight: 600,
                         color: "#F0F4FB",
                         lineHeight: 1.0,
                         letterSpacing: "0.02em",
@@ -813,7 +813,7 @@ export function FeaturedCases() {
                         <span
                           style={{
                             fontSize: "clamp(24px, 3vw, 40px)",
-                            fontWeight: 800,
+                            fontWeight: 600,
                             color: "#F0F4FB",
                             letterSpacing: "-0.04em",
                             fontVariantNumeric: "tabular-nums",

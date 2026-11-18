@@ -176,7 +176,7 @@ export function BiHero() {
           style={{
             fontFamily: "var(--font-display)",
             fontSize: "clamp(36px, 7vw, 96px)",
-            fontWeight: 800,
+            fontWeight: 600,
             color: "#FFFFFF",
             lineHeight: 1.0,
             letterSpacing: "-0.02em",

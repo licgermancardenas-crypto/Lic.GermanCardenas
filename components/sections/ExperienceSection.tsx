@@ -149,7 +149,7 @@ export function ExperienceSection() {
               style={{
                 textTransform: "uppercase",
                 fontSize: "clamp(40px, 5.5vw, 80px)",
-                fontWeight: 800,
+                fontWeight: 600,
                 color: "#F0F4FB",
                 lineHeight: 1.05,
                 letterSpacing: "0.02em",

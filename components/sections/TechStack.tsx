@@ -65,7 +65,7 @@ export function TechStack() {
               style={{
                 textTransform: "uppercase",
                 fontSize: "clamp(36px, 4vw, 56px)",
-                fontWeight: 800,
+                fontWeight: 600,
                 color: "#F0F4FB",
                 lineHeight: 1.05,
                 letterSpacing: "0.02em",

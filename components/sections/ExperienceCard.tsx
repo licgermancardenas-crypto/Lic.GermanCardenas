@@ -126,7 +126,7 @@ export function ExperienceCard({ exp, index }: { exp: ExperienceData; index: num
           className="font-serif"
           style={{
             fontSize: "clamp(26px, 3vw, 44px)",
-            fontWeight: 800,
+            fontWeight: 600,
             color: "#F0F4FB",
             lineHeight: 1.1,
             letterSpacing: "-0.02em",

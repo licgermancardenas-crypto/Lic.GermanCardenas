@@ -66,7 +66,7 @@ export default async function FpaPage({
               style={{
                 textTransform: "uppercase",
                 fontSize: "clamp(34px, 4.5vw, 64px)",
-                fontWeight: 800,
+                fontWeight: 600,
                 color: "#F0F4FB",
                 lineHeight: 1.05,
                 letterSpacing: "0.02em",

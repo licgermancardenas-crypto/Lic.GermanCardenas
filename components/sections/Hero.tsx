@@ -146,10 +146,10 @@ export function Hero() {
             style={{
               textTransform: "uppercase",
               fontSize: "clamp(48px, 6.5vw, 100px)",
-              fontWeight: 800,
+              fontWeight: 600,
               color: "#F0F4FB",
               lineHeight: 0.97,
-              letterSpacing: "-0.015em",
+              letterSpacing: "-0.02em",
             }}
           >
             Construyo<br />
@@ -301,7 +301,7 @@ export function Hero() {
                   style={{
                     textTransform: "uppercase",
                     fontSize: "clamp(36px, 4.5vw, 64px)",
-                    fontWeight: 800,
+                    fontWeight: 600,
                     color: "#F0F4FB",
                     letterSpacing: "0.02em",
                     fontVariantNumeric: "tabular-nums",

@@ -167,7 +167,7 @@ export default async function WorkIndexPage({
               style={{
                 textTransform: "uppercase",
                 fontSize: "clamp(36px, 5vw, 64px)",
-                fontWeight: 800,
+                fontWeight: 600,
                 color: "#F0F4FB",
                 lineHeight: 1.05,
                 letterSpacing: "0.02em",
