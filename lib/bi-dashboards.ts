@@ -493,6 +493,76 @@ export const DASHBOARDS: Dashboard[] = [
         },
       },
     ],
+  },  {
+    id: "california-gobernador",
+    number: "13",
+    name: {
+      es: "California 2026 · Gobernador",
+      en: "California 2026 · Governor",
+    },
+    tagline: {
+      es: "17 páginas y 243 medidas DAX para la elección de gobernador de California: de los 58 condados a 385 mil manzanas, con minería de datos, simulador y noche electoral en vivo. Acertó el ganador y 51 de 58 condados; el post-mortem muestra que subestimó a Becerra donde más pesa el voto latino (correlación del error 0,84).",
+      en: "17 pages and 243 DAX measures for California's governor race: from 58 counties down to 385,000 census blocks, with data mining, a simulator and live election-night tracking. It called the winner and 51 of 58 counties; the post-mortem shows it underestimated Becerra where the Latino vote weighs most (error correlation 0.84).",
+    },
+    dataSource: "public",
+    period: "2002–2026",
+    tags: ["Power BI", "243 medidas DAX", "385 mil manzanas", "Post-mortem"],
+    shots: [
+      {
+        src: "/perfiles/bi/dashboards/california-inicio.jpg",
+        width: 1920,
+        height: 1080,
+        caption: {
+          es: "Inicio — el pronóstico del 03/11: Becerra 61,8% con 99,9% de probabilidad. Ganó Becerra con 65,6% (no oficial al 19/11)",
+          en: "Home — the 3/11 forecast: Becerra 61.8% at 99.9% probability. Becerra won with 65.6% (unofficial as of 19/11)",
+        },
+      },
+      {
+        src: "/perfiles/bi/dashboards/california-condados.jpg",
+        width: 1920,
+        height: 1080,
+        caption: {
+          es: "Mapa de condados — voto demócrata de los 58 condados con el ranking por la métrica elegida",
+          en: "County map — Democratic vote across all 58 counties with a ranking by the selected metric",
+        },
+      },
+      {
+        src: "/perfiles/bi/dashboards/california-orange.jpg",
+        width: 1920,
+        height: 1080,
+        caption: {
+          es: "Atlas por condado — Orange, el condado swing, precinto por precinto",
+          en: "County atlas — Orange, the swing county, precinct by precinct",
+        },
+      },
+      {
+        src: "/perfiles/bi/dashboards/california-cuadra.jpg",
+        width: 1920,
+        height: 1080,
+        caption: {
+          es: "Cuadra por cuadra — Fresno en manzanas del censo con coordenadas",
+          en: "Block by block — Fresno at census-block level, with coordinates",
+        },
+      },
+      {
+        src: "/perfiles/bi/dashboards/california-mineria.jpg",
+        width: 1920,
+        height: 1080,
+        caption: {
+          es: "Minería de datos — gradient boosting (R² 0,63), correlaciones ponderadas y perfiles k-means",
+          en: "Data mining — gradient boosting (R² 0.63), weighted correlations and k-means profiles",
+        },
+      },
+      {
+        src: "/perfiles/bi/dashboards/california-proyeccion.jpg",
+        width: 1920,
+        height: 1080,
+        caption: {
+          es: "Proyección y confianza — 20.000 simulaciones y backtest 2022 con 58 de 58 ganadores",
+          en: "Projection and confidence — 20,000 simulations and a 2022 backtest with 58 of 58 winners",
+        },
+      },
+    ],
   },
 ];
 

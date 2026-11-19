@@ -14,7 +14,7 @@ const COPY = {
   es: {
     eyebrow: "Power BI y web · Galería de tableros",
     title: "Dashboards en producción",
-    lead: "Once tableros de Power BI y una plataforma web de inteligencia de mercado, construidos sobre datos reales de operación y fuentes públicas de Argentina, Brasil y EE.UU. Cada uno resuelve una pregunta de negocio concreta: dónde se pierde margen, qué se cobró de más, qué mercado se está enfriando.",
+    lead: "Doce tableros de Power BI y una plataforma web de inteligencia de mercado, construidos sobre datos reales de operación y fuentes públicas de Argentina, Brasil y EE.UU. Cada uno resuelve una pregunta de negocio concreta: dónde se pierde margen, qué se cobró de más, qué mercado se está enfriando.",
     note: "Las capturas se muestran a su tamaño nativo, sin escalar ni recortar. Hacé clic en cualquiera para abrirla a 1:1.",
     back: "Volver a Corporate BI",
     stats: [
@@ -25,13 +25,13 @@ const COPY = {
     meta: {
       title: "Dashboards Power BI — Germán Cárdenas",
       description:
-        "Galería de 12 dashboards en producción, en Power BI y web: balotaje de Brasil, YPF y Vaca Muerta, puntualidad aérea de EE.UU., mercado yerbatero, exportaciones argentinas, patentamientos, conciliación de cobros con tarjeta, retail, mayorista y farmacia.",
+        "Galería de 13 dashboards en producción, en Power BI y web: gobernador de California, balotaje de Brasil, YPF y Vaca Muerta, puntualidad aérea de EE.UU., mercado yerbatero, exportaciones argentinas, patentamientos, conciliación de cobros con tarjeta, retail, mayorista y farmacia.",
     },
   },
   en: {
     eyebrow: "Power BI & web · Dashboard gallery",
     title: "Dashboards in production",
-    lead: "Eleven Power BI dashboards and one web market-intelligence platform, built on real operating data and Argentine, Brazilian and US open data sources. Each one answers a concrete business question: where margin leaks, what was over-collected, which market is cooling down.",
+    lead: "Twelve Power BI dashboards and one web market-intelligence platform, built on real operating data and Argentine, Brazilian and US open data sources. Each one answers a concrete business question: where margin leaks, what was over-collected, which market is cooling down.",
     note: "Screenshots are shown at their native size, never upscaled or cropped. Click any of them to open it at 1:1.",
     back: "Back to Corporate BI",
     stats: [
@@ -42,7 +42,7 @@ const COPY = {
     meta: {
       title: "Power BI Dashboards — Germán Cárdenas",
       description:
-        "A gallery of 12 production dashboards, in Power BI and on the web: Brazil's runoff, YPF and Vaca Muerta, US airline punctuality, yerba mate market, Argentine exports, vehicle registrations, card settlement reconciliation, retail, wholesale and pharmacy.",
+        "A gallery of 13 production dashboards, in Power BI and on the web: California's governor race, Brazil's runoff, YPF and Vaca Muerta, US airline punctuality, yerba mate market, Argentine exports, vehicle registrations, card settlement reconciliation, retail, wholesale and pharmacy.",
     },
   },
 };
