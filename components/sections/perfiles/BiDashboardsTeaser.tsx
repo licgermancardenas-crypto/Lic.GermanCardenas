@@ -14,19 +14,19 @@ const COPY = {
   es: {
     eyebrow: "Galería completa",
     title: "Dashboards en producción",
-    lead: `${DASHBOARD_STATS.dashboards} tableros —en Power BI y en web— sobre datos reales de operación y fuentes públicas argentinas: YPF, yerba mate, exportaciones, patentamientos, retail, mayorista, farmacia y conciliación de cobros con tarjeta.`,
+    lead: `${DASHBOARD_STATS.dashboards} tableros —en Power BI y en web— sobre datos reales de operación y fuentes públicas de Argentina y EE.UU.: YPF, vuelos de EE.UU., yerba mate, exportaciones, patentamientos, retail, mayorista, farmacia y conciliación de cobros con tarjeta.`,
     cta: `Ver los ${DASHBOARD_STATS.dashboards} tableros`,
     more: (n: number) =>
-      `Hay ${n} tableros más en la galería completa — YPF, patentamientos, kioscos, mayorista, forma de pago, créditos personales y farmacia`,
+      `Hay ${n} tableros más en la galería completa — YPF, vuelos de EE.UU., patentamientos, kioscos, mayorista, forma de pago, créditos personales y farmacia`,
     moreCta: "Abrir galería completa",
   },
   en: {
     eyebrow: "Full gallery",
     title: "Dashboards in production",
-    lead: `${DASHBOARD_STATS.dashboards} dashboards —in Power BI and on the web— built on real operating data and Argentine open data: YPF, yerba mate, exports, vehicle registrations, retail, wholesale, pharmacy and card settlement reconciliation.`,
+    lead: `${DASHBOARD_STATS.dashboards} dashboards —in Power BI and on the web— built on real operating data and Argentine and US open data: YPF, US flights, yerba mate, exports, vehicle registrations, retail, wholesale, pharmacy and card settlement reconciliation.`,
     cta: `See all ${DASHBOARD_STATS.dashboards} dashboards`,
     more: (n: number) =>
-      `${n} more dashboards in the full gallery — YPF, vehicle registrations, convenience stores, wholesale, payment mix, personal credit and pharmacy`,
+      `${n} more dashboards in the full gallery — YPF, US flights, vehicle registrations, convenience stores, wholesale, payment mix, personal credit and pharmacy`,
     moreCta: "Open the full gallery",
   },
 };
