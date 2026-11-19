@@ -423,6 +423,76 @@ export const DASHBOARDS: Dashboard[] = [
         },
       },
     ],
+  },  {
+    id: "brasil-balotaje",
+    number: "12",
+    name: {
+      es: "Brasil 2026 · Balotaje presidencial",
+      en: "Brazil 2026 · Presidential Runoff",
+    },
+    tagline: {
+      es: "17 páginas y 130 medidas DAX para el balotaje de Brasil: del país al radio censal (472 mil), con simulador, 33 encuestas y seguimiento en vivo de la noche electoral. El pronóstico falló —daba ganador a Flávio y ganó Lula con 51,79%—. El post-mortem muestra que el mapa acertó el orden de los estados (correlación 0,996) y que el error vino de un supuesto nacional.",
+      en: "17 pages and 130 DAX measures for Brazil's runoff: from the whole country down to 472,000 census tracts, with a simulator, 33 polls and live election-night tracking. The forecast missed — it called Flávio and Lula won with 51.79%. The post-mortem shows the map got the ranking of states right (0.996 correlation) and the error came from a national assumption.",
+    },
+    dataSource: "public",
+    period: "2026",
+    tags: ["Power BI", "130 medidas DAX", "472 mil radios censales", "Post-mortem"],
+    shots: [
+      {
+        src: "/perfiles/bi/dashboards/brasil-inicio.jpg",
+        width: 1978,
+        height: 1138,
+        caption: {
+          es: "Inicio — el pronóstico previo al 25/10 (Lula 47,3%). El resultado oficial fue Lula 51,79%: el pronóstico falló",
+          en: "Home — the forecast ahead of 25/10 (Lula 47.3%). The official result was Lula 51.79%: the forecast missed",
+        },
+      },
+      {
+        src: "/perfiles/bi/dashboards/brasil-resumen.jpg",
+        width: 1978,
+        height: 1138,
+        caption: {
+          es: "Resumen nacional — pronóstico por estado y región, termómetro del 50% y escenarios del modelo",
+          en: "National summary — forecast by state and region, the 50% gauge and model scenarios",
+        },
+      },
+      {
+        src: "/perfiles/bi/dashboards/brasil-minas-gerais.jpg",
+        width: 1978,
+        height: 1138,
+        caption: {
+          es: "Atlas por estado — Minas Gerais municipio por municipio, con la capital y las ciudades principales",
+          en: "State atlas — Minas Gerais municipality by municipality, with the capital and main cities",
+        },
+      },
+      {
+        src: "/perfiles/bi/dashboards/brasil-sao-paulo.jpg",
+        width: 1978,
+        height: 1138,
+        caption: {
+          es: "Mapa fino — São Paulo en 27 mil radios censales, la escala más chica del país",
+          en: "Fine-grained map — São Paulo across 27,000 census tracts, the country's smallest unit",
+        },
+      },
+      {
+        src: "/perfiles/bi/dashboards/brasil-municipios.jpg",
+        width: 1978,
+        height: 1138,
+        caption: {
+          es: "Los 5.571 municipios coloreados por la métrica elegida, con ficha de cada uno",
+          en: "All 5,571 municipalities coloured by the selected metric, each with its own detail card",
+        },
+      },
+      {
+        src: "/perfiles/bi/dashboards/brasil-simulador.jpg",
+        width: 1978,
+        height: 1138,
+        caption: {
+          es: "Simulador — cambia los supuestos de transferencia y movilización y recalcula el resultado nacional",
+          en: "Simulator — change the transfer and turnout assumptions and the national result recalculates",
+        },
+      },
+    ],
   },
 ];
 

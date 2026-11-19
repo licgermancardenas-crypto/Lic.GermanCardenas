@@ -3,6 +3,7 @@ import { routing } from "@/i18n/routing";
 import { Navigation } from "@/components/Navigation";
 import { PoliticsHero } from "@/components/sections/perfiles/PoliticsHero";
 import { PoliticsContent } from "@/components/sections/perfiles/PoliticsContent";
+import { PoliticsProject } from "@/components/sections/perfiles/PoliticsProject";
 import { Footer } from "@/components/sections/Footer";
 
 import { pageMetadata } from "@/lib/seo";
@@ -41,6 +42,7 @@ export default async function PoliticsPage({
       <main>
         <PoliticsHero />
         <PoliticsContent />
+        <PoliticsProject locale={locale} />
       </main>
       <Footer />
     </>
