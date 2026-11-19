@@ -96,11 +96,14 @@ export function ScreenshotGallery({
   title,
   url,
   accent,
+  privateLabel = "Proyecto para cliente · acceso privado",
 }: {
   screenshots: string[];
   title: string;
-  url: string;
+  url?: string;
   accent: string;
+  /** Texto en la barra cuando no hay url pública */
+  privateLabel?: string;
 }) {
   const [idx, setIdx] = useState(0);
   const [lightbox, setLightbox] = useState(false);
@@ -134,7 +137,7 @@ export function ScreenshotGallery({
             <div className="w-2.5 h-2.5 rounded-full bg-green-500/40" />
           </div>
           <span className="flex-1 bg-white/[0.03] rounded px-3 py-1 text-[11px] text-white/20 font-mono truncate">
-            {url}
+            {url ?? privateLabel}
           </span>
           {multiple && (
             <span className="flex-shrink-0 text-[11px] font-mono tabular-nums" style={{ color: "rgba(255,255,255,0.3)" }}>

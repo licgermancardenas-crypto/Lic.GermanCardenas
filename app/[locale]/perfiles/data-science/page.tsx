@@ -2,6 +2,7 @@ import { setRequestLocale } from "next-intl/server";
 import { routing } from "@/i18n/routing";
 import { Navigation } from "@/components/Navigation";
 import { DataScienceHero } from "@/components/sections/perfiles/DataScienceHero";
+import { DataScienceProjects } from "@/components/sections/perfiles/DataScienceProjects";
 import { Footer } from "@/components/sections/Footer";
 
 import { pageMetadata } from "@/lib/seo";
@@ -39,6 +40,7 @@ export default async function DataSciencePage({
       <Navigation />
       <main>
         <DataScienceHero />
+        <DataScienceProjects locale={locale} />
       </main>
       <Footer />
     </>

@@ -12,9 +12,9 @@ const EMERALD = "#10b981";
 
 const COPY = {
   es: {
-    eyebrow: "Power BI · Galería de tableros",
+    eyebrow: "Power BI y web · Galería de tableros",
     title: "Dashboards en producción",
-    lead: "Ocho tableros de Power BI construidos sobre datos reales de operación y fuentes públicas argentinas. Cada uno resuelve una pregunta de negocio concreta: dónde se pierde margen, qué se cobró de más, qué mercado se está enfriando.",
+    lead: "Ocho tableros de Power BI y una plataforma web de inteligencia de mercado, construidos sobre datos reales de operación y fuentes públicas argentinas. Cada uno resuelve una pregunta de negocio concreta: dónde se pierde margen, qué se cobró de más, qué mercado se está enfriando.",
     note: "Las capturas se muestran a su tamaño nativo, sin escalar ni recortar. Hacé clic en cualquiera para abrirla a 1:1.",
     back: "Volver a Corporate BI",
     stats: [
@@ -25,13 +25,13 @@ const COPY = {
     meta: {
       title: "Dashboards Power BI — Germán Cárdenas",
       description:
-        "Galería de 8 dashboards de Power BI en producción: exportaciones argentinas, patentamientos, conciliación de cobros con tarjeta, retail, mayorista y farmacia.",
+        "Galería de 9 dashboards en producción, en Power BI y web: mercado yerbatero, exportaciones argentinas, patentamientos, conciliación de cobros con tarjeta, retail, mayorista y farmacia.",
     },
   },
   en: {
-    eyebrow: "Power BI · Dashboard gallery",
+    eyebrow: "Power BI & web · Dashboard gallery",
     title: "Dashboards in production",
-    lead: "Eight Power BI dashboards built on real operating data and Argentine open data sources. Each one answers a concrete business question: where margin leaks, what was over-collected, which market is cooling down.",
+    lead: "Eight Power BI dashboards and one web market-intelligence platform, built on real operating data and Argentine open data sources. Each one answers a concrete business question: where margin leaks, what was over-collected, which market is cooling down.",
     note: "Screenshots are shown at their native size, never upscaled or cropped. Click any of them to open it at 1:1.",
     back: "Back to Corporate BI",
     stats: [
@@ -42,7 +42,7 @@ const COPY = {
     meta: {
       title: "Power BI Dashboards — Germán Cárdenas",
       description:
-        "A gallery of 8 production Power BI dashboards: Argentine exports, vehicle registrations, card settlement reconciliation, retail, wholesale and pharmacy.",
+        "A gallery of 9 production dashboards, in Power BI and on the web: yerba mate market, Argentine exports, vehicle registrations, card settlement reconciliation, retail, wholesale and pharmacy.",
     },
   },
 };

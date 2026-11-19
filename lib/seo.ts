@@ -18,6 +18,7 @@ export const ROUTES = [
   { path: "/work/atlas-nexus", priority: 0.8, changeFrequency: "monthly" },
   { path: "/work/agronova", priority: 0.8, changeFrequency: "monthly" },
   { path: "/work/lapd", priority: 0.8, changeFrequency: "monthly" },
+  { path: "/work/yerba-mate-ml", priority: 0.8, changeFrequency: "monthly" },
   { path: "/perfiles/fpa", priority: 0.9, changeFrequency: "monthly" },
   { path: "/perfiles/data-science", priority: 0.9, changeFrequency: "monthly" },
   { path: "/perfiles/bi", priority: 0.9, changeFrequency: "monthly" },

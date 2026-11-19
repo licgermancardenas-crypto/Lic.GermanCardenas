@@ -20,14 +20,14 @@ export async function generateMetadata({
         path: "/work",
         title: "Work — Germán Cárdenas",
         description:
-          "Full case studies: Atlas One ERP, Atlas Nexus, AgroNova, and LAPD Crime Analytics.",
+          "Full case studies: Atlas One ERP, Atlas Nexus, AgroNova, LAPD Crime Analytics, and Yerba Mate Intelligence.",
       })
     : pageMetadata({
         locale,
         path: "/work",
         title: "Work — Germán Cárdenas",
         description:
-          "Casos de estudio completos: Atlas One ERP, Atlas Nexus, AgroNova y LAPD Crime Analytics.",
+          "Casos de estudio completos: Atlas One ERP, Atlas Nexus, AgroNova, LAPD Crime Analytics y Yerba Mate Intelligence.",
       });
 }
 
@@ -81,6 +81,15 @@ const cases: Record<Locale, CaseCard[]> = {
       accent: "#8b5cf6",
       thumbnail: "/screenshots/lapd.png",
     },
+    {
+      slug: "yerba-mate-ml",
+      number: "05",
+      category: "Data Science · Agroindustria · Freelance",
+      title: "Yerba Mate Intelligence",
+      subtitle: "Inteligencia de mercado para un cliente del sector yerbatero, con 3 modelos de ML validados.",
+      accent: "#22c55e",
+      thumbnail: "/screenshots/yerba-mate/mapa-gis.jpg",
+    },
   ],
   en: [
     {
@@ -118,6 +127,15 @@ const cases: Record<Locale, CaseCard[]> = {
       subtitle: "Analysis of 1 million Los Angeles police records with methodological rigor.",
       accent: "#8b5cf6",
       thumbnail: "/screenshots/lapd.png",
+    },
+    {
+      slug: "yerba-mate-ml",
+      number: "05",
+      category: "Data Science · Agribusiness · Freelance",
+      title: "Yerba Mate Intelligence",
+      subtitle: "Market intelligence for a yerba mate industry client, with 3 validated ML models.",
+      accent: "#22c55e",
+      thumbnail: "/screenshots/yerba-mate/mapa-gis.jpg",
     },
   ],
 };

@@ -54,6 +54,17 @@ const ERP_IMPACT_IMAGES: Record<Locale, { src: string; caption: string }[]> = {
   ],
 };
 
+const YERBA_SHOTS = [
+  "mapa-gis.jpg",
+  "mapa-coropletico.jpg",
+  "produccion.jpg",
+  "consumo-heatmap.jpg",
+  "exportaciones.jpg",
+  "competencia.jpg",
+  "cadena-productiva.jpg",
+  "estacionalidad.jpg",
+].map((f) => `/screenshots/yerba-mate/${f}`);
+
 type CaseStudy = {
   slug: string;
   title: string;
@@ -63,7 +74,8 @@ type CaseStudy = {
   isHackathon?: boolean;
   hackathonName?: string;
   screenshots: string[];
-  url: string;
+  /** Sin url = proyecto de cliente sin link público */
+  url?: string;
   context: string;
   challenge: string;
   role: string;
@@ -276,6 +288,59 @@ const content: Record<Locale, Record<string, CaseStudy>> = {
         { value: "20.1%", description: "Tasa de resolución de casos LAPD" },
         { value: "26.2%", description: "Proporción de crímenes violentos" },
       ],
+      nextSlug: "yerba-mate-ml",
+      nextTitle: "Yerba Mate Intelligence →",
+    },
+    "yerba-mate-ml": {
+      slug: "yerba-mate-ml",
+      title: "Yerba Mate Intelligence",
+      category: "Data Science · Agroindustria · Freelance",
+      subtitle: "Plataforma de inteligencia de mercado para un cliente del sector yerbatero: datos que no se estiman, se verifican.",
+      accent: "#22c55e",
+      screenshots: YERBA_SHOTS,
+      context:
+        "Un cliente del sector yerbatero necesitaba una visión consolidada del mercado: producción, consumo, exportaciones, importaciones, precios, competencia y cadena productiva. Los datos públicos existen, pero dispersos entre INYM, INDEC, BCRA y relevamientos de precios, en PDFs mensuales, geoservidores y planillas con cortes incompatibles entre sí.",
+      challenge:
+        "Construir una única fuente confiable sin caer en el error típico de rellenar huecos para que los gráficos se vean completos. Las trampas eran concretas: el INYM no publica producción por departamento, solo por zona; el consumo per cápita es un dato anual aunque se publique mes a mes; y las exportaciones están tan concentradas que tres destinos explican el 86,3% del volumen.",
+      role:
+        "Trabajo freelance de punta a punta, en solitario: relevamiento de fuentes, diseño del esquema en PostGIS, 19 pipelines ETL (incluido un scraper de los reportes PDF del INYM), API en FastAPI, frontend Next.js con 12 vistas y mapa GIS, modelos de ML y auditoría automática de datos en CI.",
+      approach:
+        "Tres capas: (1) Ingesta — scrapers y APIs que cargan series y capas geoespaciales en PostgreSQL/PostGIS, con la fuente registrada por tabla y visible en cada vista; (2) Auditoría — un script en CI valida cada serie nueva antes de mergear: un dato faltante queda como NULL, nunca como relleno, y todo valor estimado se marca visualmente; (3) Análisis — tres modelos desarrollados y validados (SARIMA de producción por zona, SARIMA de consumo interno y un modelo gravitacional de exportaciones) más una segmentación K-means de municipios por perfil productivo.",
+      stack: [
+        { name: "Next.js + TypeScript", why: "12 vistas con filtros compartidos y Server Components que leen la API sin exponer la base al navegador" },
+        { name: "FastAPI", why: "API de datos separada del frontend: el cliente puede consumirla desde otras herramientas sin pasar por la web" },
+        { name: "PostgreSQL + PostGIS (Supabase)", why: "Series temporales y capas geoespaciales del INYM en una misma base, con consultas espaciales como ST_Contains" },
+        { name: "MapLibre GL", why: "Mapas coropléticos, clusters de 203 secaderos y bases topográfica o satelital sin costo de licencia" },
+        { name: "statsmodels + scikit-learn", why: "SARIMA y regresión de panel para los pronósticos; K-means con silhouette para la segmentación de municipios" },
+        { name: "GitHub Actions", why: "La auditoría de datos corre sola en cada cambio que toca un ETL: ningún dato inventado llega a producción" },
+      ],
+      decisions: [
+        {
+          decision: "\"Sin dato\" antes que un relleno",
+          reasoning: "Interpolar o clonar el período anterior hace que un gráfico se vea completo, pero miente. Definí una regla que no se negocia: si falta el dato, la celda dice \"sin dato\". Los valores realmente estimados llevan una marca visual, y cada vista declara de qué fuente sale.",
+        },
+        {
+          decision: "Cambiar el objetivo del modelo cuando el dato no existe",
+          reasoning: "La producción por departamento no se publica: el modelo se hizo por zona (6 zonas), después de verificar que cada uno de los 19 departamentos cae entero dentro de una sola. El consumo per cápita es anual, así que el modelo de consumo usa la salida de molino al mercado interno, el único dato mensual real de ese lado de la cadena.",
+        },
+        {
+          decision: "Quedarse con el modelo simple",
+          reasoning: "Probé sumar NDVI satelital, lluvia, tipo de cambio y salario real como variables explicativas. Ninguna mejoró el pronóstico. En vez de forzar un modelo más complejo, me quedé con el más simple y documenté los resultados negativos para que nadie los repita.",
+        },
+        {
+          decision: "K-means con 4 grupos, no 3",
+          reasoning: "Con 3 grupos el silhouette era apenas mayor (0,48 contra 0,47), pero juntaba en un mismo grupo municipios con perfiles productivos distintos. Elegí 4 porque cada grupo se puede explicar y usar, que es lo que necesita el cliente.",
+        },
+      ],
+      results:
+        "Plataforma de 12 vistas sobre 24 años de datos reales y tres modelos desarrollados y validados. El modelo de consumo interno pronostica con un 6,3% de error medio. El de producción por zona queda entre 20% y 30% de error según la zona, razonable para una base puramente estacional. El gravitacional explica el 42% de la variación del comercio entre 20 destinos: sirve para entender la estructura del mercado, no para proyectar volúmenes. Los municipios productores quedaron segmentados en 4 perfiles.",
+      learned:
+        "Con datos públicos, lo más valioso es decir con precisión qué no se sabe. Los resultados negativos también son resultados: saber que el clima no mejora el pronóstico mensual le ahorra al cliente meses de búsqueda. Y la confianza en un tablero se gana mostrando la fuente y el nivel de certeza de cada número.",
+      metrics: [
+        { value: "19", description: "Pipelines ETL sobre INYM, INDEC y BCRA" },
+        { value: "6,3%", description: "Error medio del modelo de consumo interno" },
+        { value: "87", description: "Destinos de exportación analizados" },
+      ],
       nextSlug: "atlas-one-erp",
       nextTitle: "Atlas One ERP →",
     },
@@ -477,6 +542,59 @@ const content: Record<Locale, Record<string, CaseStudy>> = {
         { value: "20.1%", description: "LAPD case resolution rate" },
         { value: "26.2%", description: "Share of violent crime" },
       ],
+      nextSlug: "yerba-mate-ml",
+      nextTitle: "Yerba Mate Intelligence →",
+    },
+    "yerba-mate-ml": {
+      slug: "yerba-mate-ml",
+      title: "Yerba Mate Intelligence",
+      category: "Data Science · Agribusiness · Freelance",
+      subtitle: "Market intelligence platform for a yerba mate industry client: data that isn't estimated, it's verified.",
+      accent: "#22c55e",
+      screenshots: YERBA_SHOTS,
+      context:
+        "A client in the Argentine yerba mate industry needed a consolidated view of the market: production, consumption, exports, imports, prices, competition and the supply chain. The public data exists, but it is scattered across INYM, INDEC, the central bank and retail price surveys — monthly PDFs, geoservers and spreadsheets with incompatible breakdowns.",
+      challenge:
+        "Build a single trustworthy source without falling into the usual trap of filling gaps so the charts look complete. The pitfalls were concrete: INYM doesn't publish production by department, only by zone; per-capita consumption is an annual figure even though it's published monthly; and exports are so concentrated that three destinations account for 86.3% of volume.",
+      role:
+        "End-to-end freelance work, solo: source research, PostGIS schema design, 19 ETL pipelines (including a scraper for INYM's PDF reports), a FastAPI backend, a Next.js frontend with 12 views and a GIS map, ML models, and automated data auditing in CI.",
+      approach:
+        "Three layers: (1) Ingestion — scrapers and APIs load time series and geospatial layers into PostgreSQL/PostGIS, with the source recorded per table and shown on every view; (2) Auditing — a CI script validates every new series before merge: a missing value stays NULL, never a fill-in, and every estimated value is visually flagged; (3) Analysis — three models developed and validated (SARIMA for production by zone, SARIMA for domestic consumption, and a gravity model for exports) plus a K-means segmentation of municipalities by production profile.",
+      stack: [
+        { name: "Next.js + TypeScript", why: "12 views with shared filters and Server Components that read the API without exposing the database to the browser" },
+        { name: "FastAPI", why: "A data API decoupled from the frontend, so the client can consume it from other tools" },
+        { name: "PostgreSQL + PostGIS (Supabase)", why: "Time series and INYM geospatial layers in one database, with spatial queries such as ST_Contains" },
+        { name: "MapLibre GL", why: "Choropleth maps, clusters of 203 drying plants and topographic or satellite basemaps with no licensing cost" },
+        { name: "statsmodels + scikit-learn", why: "SARIMA and panel regression for forecasting; K-means with silhouette scoring for municipality segmentation" },
+        { name: "GitHub Actions", why: "The data audit runs automatically on every change to an ETL: no invented value reaches production" },
+      ],
+      decisions: [
+        {
+          decision: "\"No data\" over a fill-in",
+          reasoning: "Interpolating or copying the previous period makes a chart look complete, but it lies. I set a non-negotiable rule: if the value is missing, the cell says \"no data\". Genuinely estimated values carry a visual flag, and every view states its source.",
+        },
+        {
+          decision: "Change the model's target when the data doesn't exist",
+          reasoning: "Production by department isn't published, so the model works by zone (6 zones), after verifying that each of the 19 departments falls entirely within a single zone. Per-capita consumption is annual, so the consumption model uses mill output to the domestic market — the only real monthly series on that side of the chain.",
+        },
+        {
+          decision: "Keep the simple model",
+          reasoning: "I tested adding satellite NDVI, rainfall, the exchange rate and real wages as explanatory variables. None improved the forecast. Instead of forcing a more complex model, I kept the simplest one and documented the negative results so nobody repeats them.",
+        },
+        {
+          decision: "K-means with 4 clusters, not 3",
+          reasoning: "Three clusters scored a marginally higher silhouette (0.48 vs 0.47) but lumped together municipalities with different production profiles. I chose 4 because every cluster can be explained and acted on, which is what the client needs.",
+        },
+      ],
+      results:
+        "A 12-view platform built on 24 years of real data, plus three models developed and validated. The domestic consumption model forecasts with a 6.3% mean error. Production by zone lands between 20% and 30% error depending on the zone — reasonable for a purely seasonal baseline. The gravity model explains 42% of the variation in trade across 20 destinations: useful for understanding market structure, not for projecting volumes. Producing municipalities were segmented into 4 profiles.",
+      learned:
+        "With public data, the most valuable thing is stating precisely what isn't known. Negative results are results too: knowing that weather doesn't improve the monthly forecast saves the client months of searching. And trust in a dashboard is earned by showing the source and the level of certainty behind every number.",
+      metrics: [
+        { value: "19", description: "ETL pipelines across INYM, INDEC and the central bank" },
+        { value: "6.3%", description: "Mean error of the domestic consumption model" },
+        { value: "87", description: "Export destinations analysed" },
+      ],
       nextSlug: "atlas-one-erp",
       nextTitle: "Atlas One ERP →",
     },
@@ -568,16 +686,18 @@ export default async function WorkPage({
             <ArrowLeft className="w-4 h-4" />
             {t.backToPortfolio}
           </Link>
-          <a
-            href={c.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-2 text-sm font-semibold transition-colors"
-            style={{ color: c.accent }}
-          >
-            {t.viewLive}
-            <ExternalLink className="w-3.5 h-3.5" />
-          </a>
+          {c.url && (
+            <a
+              href={c.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 text-sm font-semibold transition-colors"
+              style={{ color: c.accent }}
+            >
+              {t.viewLive}
+              <ExternalLink className="w-3.5 h-3.5" />
+            </a>
+          )}
         </div>
       </div>
 
@@ -617,6 +737,7 @@ export default async function WorkPage({
           title={c.title}
           url={c.url}
           accent={c.accent}
+          privateLabel={locale === "en" ? "Client project · private access" : "Proyecto para cliente · acceso privado"}
         />
 
         {/* Metrics */}

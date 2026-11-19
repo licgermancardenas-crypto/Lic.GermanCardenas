@@ -44,6 +44,15 @@ const CASES: Record<
     },
     chips: ["Python", "Machine Learning", "MapLibre", "Next.js"],
   },
+  "yerba-mate-ml": {
+    title: "Yerba Mate Intelligence",
+    accent: "#22c55e",
+    subtitle: {
+      es: "Inteligencia de mercado para un cliente del sector yerbatero: datos que no se estiman, se verifican",
+      en: "Market intelligence for a yerba mate industry client: data that isn't estimated, it's verified",
+    },
+    chips: ["Data Science", "SARIMA", "PostGIS", "Freelance"],
+  },
 };
 
 export default async function Image({

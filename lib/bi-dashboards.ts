@@ -258,13 +258,66 @@ export const DASHBOARDS: Dashboard[] = [
       },
     ],
   },
+  {
+    id: "yerba-mate",
+    number: "09",
+    name: {
+      es: "Inteligencia de mercado yerbatero",
+      en: "Yerba Mate Market Intelligence",
+    },
+    tagline: {
+      es: "Plataforma web para un cliente del sector yerbatero: producción, consumo, exportaciones, competencia y cadena productiva sobre 24 años de datos oficiales (INYM, INDEC), donde un dato faltante se muestra como \"sin dato\" y nunca se rellena.",
+      en: "Web platform for a yerba mate industry client: production, consumption, exports, competition and supply chain across 24 years of official data (INYM, INDEC), where a missing value shows as \"no data\" and is never filled in.",
+    },
+    dataSource: "public",
+    period: "2002–2026",
+    tags: ["Next.js", "PostGIS", "Series temporales", "Freelance"],
+    shots: [
+      {
+        src: "/screenshots/yerba-mate/competencia.jpg",
+        width: 1894,
+        height: 910,
+        caption: {
+          es: "Competencia — el top 4 concentra el 56% del mercado, HHI 1.073, líder Playadito con 21,2%",
+          en: "Competition — top 4 hold 56% of the market, HHI 1,073, Playadito leads with 21.2%",
+        },
+      },
+      {
+        src: "/screenshots/yerba-mate/cadena-productiva.jpg",
+        width: 1884,
+        height: 912,
+        caption: {
+          es: "Cadena productiva — hoja verde a secadero y salida de molino interna y externa",
+          en: "Supply chain — green leaf to dryers and mill output to domestic and export markets",
+        },
+      },
+      {
+        src: "/screenshots/yerba-mate/exportaciones.jpg",
+        width: 1881,
+        height: 906,
+        caption: {
+          es: "Exportaciones — 57,98 M kg en 2025 a 15 destinos, Siria concentra el 80,1%",
+          en: "Exports — 57.98 M kg in 2025 to 15 destinations, Syria takes 80.1%",
+        },
+      },
+      {
+        src: "/screenshots/yerba-mate/consumo.jpg",
+        width: 1900,
+        height: 909,
+        caption: {
+          es: "Consumo — 5,59 kg por persona en 2025 y mix de envases del mercado interno",
+          en: "Consumption — 5.59 kg per person in 2025 and packaging mix in the domestic market",
+        },
+      },
+    ],
+  },
 ];
 
 /** Los que se muestran como adelanto en /perfiles/bi */
 export const FEATURED_DASHBOARD_IDS = [
+  "yerba-mate",
   "exportaciones",
   "ingresos-tarjeta",
-  "kiosco",
 ];
 
 export const DASHBOARD_STATS = {

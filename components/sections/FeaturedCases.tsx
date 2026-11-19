@@ -39,7 +39,8 @@ type CaseData = {
   impact: string;
   metrics: CaseMetric[];
   screenshots: string[];
-  url: string;
+  /** Sin url = proyecto de cliente sin link público: se oculta "Ver en producción". */
+  url?: string;
   pitchPhoto?: string;
   pitchPhotoCaption?: string;
 };
@@ -191,6 +192,42 @@ const cases: CaseData[] = [
     screenshots: ["/screenshots/lapd.png"],
     url: "https://lapd-data-crime.vercel.app/dashboard",
   },
+  {
+    id: "caso-05",
+    slug: "yerba-mate-ml",
+    number: "05",
+    category: "DATA SCIENCE · AGROINDUSTRIA · FREELANCE",
+    title: "Yerba Mate Intelligence",
+    subtitle: "Plataforma de inteligencia de mercado para un cliente del sector yerbatero: datos que no se estiman, se verifican.",
+    meta: {
+      rol: "Freelance Data Scientist & Full-stack",
+      escala: "12 vistas · 24 años de datos",
+      stack: "Next.js · FastAPI · PostGIS",
+      estado: "Entregado al cliente",
+    },
+    challenge:
+      "Los datos de la yerba mate están dispersos entre INYM, INDEC y BCRA, en PDFs, geoservidores y planillas con cortes distintos. No existe producción oficial por departamento y el consumo per cápita es anual aunque se publique mes a mes. Un tablero armado a ojo termina mezclando datos reales con rellenos inventados.",
+    approach:
+      "Construí 19 pipelines ETL que extraen y cruzan esas fuentes con una regla no negociable: si falta un dato queda como \"sin dato\", nunca se rellena. Una auditoría automática en CI valida cada serie nueva antes de publicarla. Sobre esa base desarrollé y validé 3 modelos de ML —producción por zona, consumo interno y un modelo gravitacional de exportaciones— y una segmentación K-means de municipios por perfil productivo, todo sobre un mapa GIS.",
+    impactLabel: "QUÉ DEMUESTRA",
+    impact:
+      "Rigor antes que apariencia: en los modelos, la versión más simple le ganó a la compleja —clima, NDVI y tipo de cambio no mejoraron el pronóstico— y esos resultados negativos se documentaron en lugar de esconderse. El modelo de consumo interno alcanza un 6,3% de error medio. Cada vista declara su fuente y su nivel de confianza.",
+    metrics: [
+      { value: "3", label: "Modelos ML validados" },
+      { value: "6,3%", label: "Error modelo consumo" },
+      { value: "87", label: "Destinos de exportación" },
+    ],
+    screenshots: [
+      "mapa-gis.jpg",
+      "mapa-coropletico.jpg",
+      "produccion.jpg",
+      "consumo-heatmap.jpg",
+      "exportaciones.jpg",
+      "competencia.jpg",
+      "cadena-productiva.jpg",
+      "estacionalidad.jpg",
+    ].map((f) => `/screenshots/yerba-mate/${f}`),
+  },
 ];
 
 // ── Lightbox ──────────────────────────────────────────────────────────────────
@@ -294,7 +331,7 @@ function ParallaxScreenshot({
 }: {
   screenshots: string[];
   alt: string;
-  url: string;
+  url?: string;
   isHackathon?: boolean;
 }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -370,7 +407,7 @@ function ParallaxScreenshot({
                 color: "rgba(255,255,255,0.2)",
               }}
             >
-              {url}
+              {url ?? "Proyecto para cliente · acceso privado"}
             </div>
             {multiple && (
               <span
@@ -613,8 +650,8 @@ export function FeaturedCases() {
                 letterSpacing: "0.02em",
               }}
             >
-              Cuatro proyectos.{" "}
-              <span>Cuatro historias.</span>
+              Cinco proyectos.{" "}
+              <span>Cinco historias.</span>
             </h2>
             <p
               style={{
@@ -849,6 +886,7 @@ export function FeaturedCases() {
                   </div>
 
                   <div className="flex flex-wrap gap-3 pt-2">
+                    {c.url && (
                     <a
                       href={c.url}
                       target="_blank"
@@ -866,6 +904,7 @@ export function FeaturedCases() {
                       Ver en producción
                       <ExternalLink className="w-3.5 h-3.5" />
                     </a>
+                    )}
                     <Link
                       href={`/es/work/${c.slug}`}
                       className="inline-flex items-center gap-2 transition-all duration-200 hover:-translate-y-0.5"
