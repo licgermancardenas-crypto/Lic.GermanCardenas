@@ -45,6 +45,7 @@ const projectLinks = [
   { label: "AgroNova", url: "https://agro-nova-plataforma.vercel.app/" },
   { label: "LAPD Analytics", url: "https://lapd-data-crime.vercel.app/dashboard" },
   { label: "Atlas One ERP", url: "https://www.atlaones-erp.com" },
+  { label: "ATLAS-YPF", url: "https://atlas-ypf.vercel.app/ypf-project" },
   { label: "Real Estate Intelligence", url: "https://real-state-intelligence.vercel.app/" },
   { label: "Fundación CIPE", url: "https://www.fundacioncipe.com/" },
 ];

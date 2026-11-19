@@ -20,14 +20,14 @@ export async function generateMetadata({
         path: "/work",
         title: "Work — Germán Cárdenas",
         description:
-          "Full case studies: Atlas One ERP, Atlas Nexus, AgroNova, LAPD Crime Analytics, and Yerba Mate Intelligence.",
+          "Full case studies: Atlas One ERP, Atlas Nexus, AgroNova, LAPD Crime Analytics, Yerba Mate Intelligence, and ATLAS-YPF.",
       })
     : pageMetadata({
         locale,
         path: "/work",
         title: "Work — Germán Cárdenas",
         description:
-          "Casos de estudio completos: Atlas One ERP, Atlas Nexus, AgroNova, LAPD Crime Analytics y Yerba Mate Intelligence.",
+          "Casos de estudio completos: Atlas One ERP, Atlas Nexus, AgroNova, LAPD Crime Analytics, Yerba Mate Intelligence y ATLAS-YPF.",
       });
 }
 
@@ -90,6 +90,15 @@ const cases: Record<Locale, CaseCard[]> = {
       accent: "#22c55e",
       thumbnail: "/screenshots/yerba-mate/mapa-gis.jpg",
     },
+    {
+      slug: "atlas-ypf",
+      number: "06",
+      category: "Finanzas · Energía · Research",
+      title: "ATLAS-YPF",
+      subtitle: "Por qué el mercado castigó el mejor balance de la historia de YPF: web, Power BI y Excel sobre un mismo pipeline.",
+      accent: "#38bdf8",
+      thumbnail: "/screenshots/ypf/web-caso.jpg",
+    },
   ],
   en: [
     {
@@ -136,6 +145,15 @@ const cases: Record<Locale, CaseCard[]> = {
       subtitle: "Market intelligence for a yerba mate industry client, with 3 validated ML models.",
       accent: "#22c55e",
       thumbnail: "/screenshots/yerba-mate/mapa-gis.jpg",
+    },
+    {
+      slug: "atlas-ypf",
+      number: "06",
+      category: "Finance · Energy · Research",
+      title: "ATLAS-YPF",
+      subtitle: "Why the market punished YPF's best-ever results: web, Power BI and Excel on a single pipeline.",
+      accent: "#38bdf8",
+      thumbnail: "/screenshots/ypf/web-caso.jpg",
     },
   ],
 };

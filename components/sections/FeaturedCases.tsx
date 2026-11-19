@@ -227,6 +227,41 @@ const cases: CaseData[] = [
       "estacionalidad.jpg",
     ].map((f) => `/screenshots/yerba-mate/${f}`),
   },
+  {
+    id: "caso-06",
+    slug: "atlas-ypf",
+    number: "06",
+    category: "FINANZAS · ENERGÍA · RESEARCH",
+    title: "ATLAS-YPF",
+    subtitle: "YPF publicó el mejor trimestre de su historia y el mercado lo vendió. Este caso reconstruye por qué.",
+    meta: {
+      rol: "Analista financiero & Full-stack",
+      escala: "5.089 pozos · datos desde 2009",
+      stack: "Python · Next.js · Power BI",
+      estado: "En producción",
+    },
+    challenge:
+      "En el 2T26 YPF reportó un EBITDA ajustado de US$ 2.804M, 149% arriba del año anterior, con la deuda en mínimos y el shale creciendo 47%. Ese mismo día la acción cayó 3,6%. La lectura fácil es que el mercado se equivocó; para sostener cualquier respuesta había que cruzar los estados contables con la producción pozo por pozo, el crudo, la deuda y los comparables.",
+    approach:
+      "Un pipeline en Python que ingiere cada fuente por separado —20-F y 6-K de la SEC, producción de la Secretaría de Energía, relieve de Copernicus, ADR, Brent, riesgo país— y calcula todo en un solo lugar, con 14 chequeos automáticos que frenan el proceso si algo no cierra. Los mismos datos alimentan tres superficies: una web con mapa 3D de la cuenca, un tablero de Power BI y un Excel sin macros auditable celda por celda.",
+    impactLabel: "LA RESPUESTA",
+    impact:
+      "De los US$ 1.680M de aumento interanual del EBITDA, US$ 851M son precio del crudo: un récord que se explica por el ciclo y no por la compañía. Además, el castigo no fue la excepción: 16 de los últimos 22 balances tuvieron reacción anormal negativa, y cada 100 puntos básicos de riesgo país le restan 3,3% a la acción.",
+    metrics: [
+      { value: "US$ 851M", label: "Del aumento es precio" },
+      { value: "91%", label: "EBITDA explicado (4 drivers)" },
+      { value: "16 de 22", label: "Balances castigados" },
+    ],
+    screenshots: [
+      "web-caso.jpg",
+      "web-mapa.jpg",
+      "web-produccion.jpg",
+      "powerbi-tablero.jpg",
+      "powerbi-puente.jpg",
+      "excel-resumen.jpg",
+    ].map((f) => `/screenshots/ypf/${f}`),
+    url: "https://atlas-ypf.vercel.app/ypf-project",
+  },
 ];
 
 // ── Lightbox ──────────────────────────────────────────────────────────────────
@@ -649,8 +684,8 @@ export function FeaturedCases() {
                 letterSpacing: "0.02em",
               }}
             >
-              Cinco proyectos.{" "}
-              <span>Cinco historias.</span>
+              Seis proyectos.{" "}
+              <span>Seis historias.</span>
             </h2>
             <p
               style={{

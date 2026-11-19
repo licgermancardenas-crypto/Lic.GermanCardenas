@@ -3,6 +3,7 @@ import { routing } from "@/i18n/routing";
 import { Navigation } from "@/components/Navigation";
 import { FpaHero } from "@/components/sections/perfiles/FpaHero";
 import { FpaContent } from "@/components/sections/perfiles/FpaContent";
+import { FpaProject } from "@/components/sections/perfiles/FpaProject";
 import { FinancialStackCards } from "@/components/ui/financial-stack-cards";
 import { Footer } from "@/components/sections/Footer";
 
@@ -89,6 +90,8 @@ export default async function FpaPage({
           </div>
           <FinancialStackCards />
         </section>
+
+        <FpaProject locale={locale} />
 
         <FpaContent />
       </main>

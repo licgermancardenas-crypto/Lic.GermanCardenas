@@ -53,6 +53,15 @@ const CASES: Record<
     },
     chips: ["Data Science", "SARIMA", "PostGIS", "Freelance"],
   },
+  "atlas-ypf": {
+    title: "ATLAS-YPF",
+    accent: "#38bdf8",
+    subtitle: {
+      es: "YPF publicó el mejor trimestre de su historia y el mercado lo vendió: por qué",
+      en: "YPF posted its best-ever quarter and the market sold it: here's why",
+    },
+    chips: ["Python", "Power BI", "Excel", "Next.js"],
+  },
 };
 
 export default async function Image({

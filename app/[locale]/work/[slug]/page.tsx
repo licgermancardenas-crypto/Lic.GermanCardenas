@@ -54,6 +54,17 @@ const ERP_IMPACT_IMAGES: Record<Locale, { src: string; caption: string }[]> = {
   ],
 };
 
+const YPF_SHOTS = [
+  "web-caso.jpg",
+  "web-mapa.jpg",
+  "web-produccion.jpg",
+  "powerbi-tablero.jpg",
+  "powerbi-puente.jpg",
+  "powerbi-deuda.jpg",
+  "excel-resumen.jpg",
+  "excel-puente.jpg",
+].map((f) => `/screenshots/ypf/${f}`);
+
 const YERBA_SHOTS = [
   "mapa-gis.jpg",
   "mapa-coropletico.jpg",
@@ -340,6 +351,60 @@ const content: Record<Locale, Record<string, CaseStudy>> = {
         { value: "6,3%", description: "Error medio del modelo de consumo interno" },
         { value: "87", description: "Destinos de exportación analizados" },
       ],
+      nextSlug: "atlas-ypf",
+      nextTitle: "ATLAS-YPF →",
+    },
+    "atlas-ypf": {
+      slug: "atlas-ypf",
+      title: "ATLAS-YPF",
+      category: "Finanzas · Energía · Research",
+      subtitle: "YPF publicó el mejor trimestre de su historia y el mercado lo vendió. Este caso reconstruye por qué.",
+      accent: "#38bdf8",
+      screenshots: YPF_SHOTS,
+      url: "https://atlas-ypf.vercel.app/ypf-project",
+      context:
+        "En el segundo trimestre de 2026 YPF reportó su mejor balance: EBITDA ajustado de US$ 2.804M (+149% interanual), margen de 42,7%, shale oil en 212,7 mil barriles diarios y la deuda neta en el mínimo de la serie. Ese mismo día la acción cayó 3,6%.",
+      challenge:
+        "\"El mercado se equivocó\" es una respuesta cómoda que no resiste los datos. Para explicar el precio había que cruzar fuentes que nunca vienen juntas: los estados contables de la SEC, la producción pozo por pozo de la Secretaría de Energía, el Brent, el riesgo país, la deuda y los balances de Vista y Pampa como comparables, sin que un solo número quedara escrito a mano.",
+      role:
+        "Proyecto propio de punta a punta: diseño de la pregunta, ingesta de 8 fuentes públicas, modelado financiero y econométrico, y las tres salidas: la web en Next.js, el tablero de Power BI y el libro de Excel.",
+      approach:
+        "Un pipeline en Python con tres capas separadas: ingesta (una fuente por script, nunca mezcladas), transformación (todo cálculo vive ahí y solo ahí) y exportación (las salidas leen, no calculan). Catorce invariantes revisan cada corrida: que las partes sumen el total, que ningún operador produzca más que el país, que el puente del EBITDA cierre contra lo publicado. Sobre esa base, un modelo de cuatro drivers para el EBITDA, un estudio de eventos para la reacción del mercado y una regresión del riesgo país.",
+      stack: [
+        { name: "Python + pandas + geopandas", why: "Ingesta y cálculo en un solo lugar; los 14 chequeos frenan el pipeline si algo no cierra" },
+        { name: "Next.js + Recharts", why: "La web cuenta el caso en 7 capítulos, con filtros que se guardan en el link para poder compartir una vista exacta" },
+        { name: "deck.gl + DEM Copernicus", why: "Mapa 3D de Vaca Muerta sobre el relieve real, con 5.089 pozos, su producción acumulada y su valor actual neto" },
+        { name: "Power BI (PBIP + TMDL)", why: "El mismo tablero como proyecto de texto versionable, generado por script: 5 páginas con filtros sincronizados" },
+        { name: "Excel sin macros", why: "Para el público financiero: cuatro listas desplegables gobiernan todo y cada número sale de una fórmula auditable" },
+        { name: "SEC EDGAR + Secretaría de Energía", why: "Fuentes primarias: 20-F y 6-K para los estados contables, capítulo IV y SESCO para la producción por pozo" },
+      ],
+      decisions: [
+        {
+          decision: "Separar el precio del crudo de la gestión",
+          reasoning: "Un récord que se explica por el ciclo se paga distinto que uno que se explica por la compañía. El puente del EBITDA descompone el aumento interanual de US$ 1.680M: US$ 851M son precio, el volumen aporta −2M y el costo −28M. El modelo de cuatro drivers (Brent, producción, lifting cost y crudo procesado) explica el 91% de la variación trimestral desde 2022.",
+        },
+        {
+          decision: "Medir la reacción contra el patrón, no contra la intuición",
+          reasoning: "Un estudio de eventos sobre cada balance desde 2020, con un modelo de mercado estimado en las 120 ruedas previas, muestra que 16 de 22 reportes tuvieron retorno anormal negativo. La caída del 2T26 (−2,0% anormal) está dentro de lo normal para YPF: no fue un rechazo al récord, fue el comportamiento de siempre.",
+        },
+        {
+          decision: "Un pipeline, tres salidas",
+          reasoning: "La web, el Power BI y el Excel leen los mismos datos procesados y ninguno calcula por su cuenta. Así un analista, un gerente y un lector general ven exactamente los mismos números, cada uno en la herramienta que usa.",
+        },
+        {
+          decision: "Chequear que el dato no sea imposible",
+          reasoning: "Los 14 invariantes no prueban que un número sea correcto, pero sí detectan cuando es imposible: un operador que produce más que el país, un territorio cuyas cinco dimensiones no suman lo mismo, un puente que no cierra contra la variación publicada.",
+        },
+      ],
+      results:
+        "La respuesta está en el puente: casi la mitad de la mejora viene del Brent, el único driver que la compañía no controla y que puede desandarse en un trimestre. Para repetir el EBITDA del 2T26 haría falta un Brent de US$ 106. A eso se suma un descuento estructural: con el Brent controlado, cada 100 puntos básicos de riesgo país le restan 3,3% a la acción. YPF cotiza a 6,7x EV/EBITDA, contra 8,1x de Vista y 7,7x de Pampa.",
+      learned:
+        "Un número récord no es una conclusión: hay que separar qué parte es ciclo y qué parte es gestión. Y una sola fuente de verdad con varias salidas vale más que tres tableros hechos a mano, porque nadie discute de dónde salió cada cifra.",
+      metrics: [
+        { value: "US$ 851M", description: "Del aumento interanual del EBITDA explicado por el precio del crudo" },
+        { value: "91%", description: "De la variación trimestral del EBITDA explicada por 4 drivers" },
+        { value: "16 de 22", description: "Balances desde 2020 con reacción anormal negativa" },
+      ],
       nextSlug: "atlas-one-erp",
       nextTitle: "Atlas One ERP →",
     },
@@ -593,6 +658,60 @@ const content: Record<Locale, Record<string, CaseStudy>> = {
         { value: "19", description: "ETL pipelines across INYM, INDEC and the central bank" },
         { value: "6.3%", description: "Mean error of the domestic consumption model" },
         { value: "87", description: "Export destinations analysed" },
+      ],
+      nextSlug: "atlas-ypf",
+      nextTitle: "ATLAS-YPF →",
+    },
+    "atlas-ypf": {
+      slug: "atlas-ypf",
+      title: "ATLAS-YPF",
+      category: "Finance · Energy · Research",
+      subtitle: "YPF posted the best quarter in its history and the market sold it. This case reconstructs why.",
+      accent: "#38bdf8",
+      screenshots: YPF_SHOTS,
+      url: "https://atlas-ypf.vercel.app/ypf-project",
+      context:
+        "In Q2 2026 YPF reported its best results ever: adjusted EBITDA of US$ 2,804M (+149% year on year), a 42.7% margin, shale oil at 212.7 thousand barrels a day and net debt at the lowest point of the series. The stock fell 3.6% that same day.",
+      challenge:
+        "\"The market got it wrong\" is a comfortable answer that doesn't survive the data. Explaining the price meant combining sources that never come together: SEC financial statements, well-by-well production from Argentina's Energy Secretariat, Brent, country risk, debt, and Vista and Pampa as comparables — without a single number typed in by hand.",
+      role:
+        "Personal project end to end: framing the question, ingesting 8 public sources, financial and econometric modelling, and all three outputs — the Next.js website, the Power BI dashboard and the Excel workbook.",
+      approach:
+        "A Python pipeline with three separate layers: ingestion (one source per script, never mixed), transformation (every calculation lives there and only there) and export (outputs read, they don't compute). Fourteen invariants check every run: parts must add up to the total, no operator can produce more than the country, the EBITDA bridge must reconcile with the reported change. On top of that: a four-driver EBITDA model, an event study of the market reaction, and a country-risk regression.",
+      stack: [
+        { name: "Python + pandas + geopandas", why: "Ingestion and calculation in one place; the 14 checks stop the pipeline if anything doesn't reconcile" },
+        { name: "Next.js + Recharts", why: "The website tells the case in 7 chapters, with filters stored in the URL so an exact view can be shared" },
+        { name: "deck.gl + Copernicus DEM", why: "A 3D map of Vaca Muerta on the real terrain, with 5,089 wells, their cumulative output and net present value" },
+        { name: "Power BI (PBIP + TMDL)", why: "The same dashboard as a version-controlled text project, generated by script: 5 pages with synced filters" },
+        { name: "Macro-free Excel", why: "For a finance audience: four dropdowns drive everything and every number comes from an auditable formula" },
+        { name: "SEC EDGAR + Energy Secretariat", why: "Primary sources: 20-F and 6-K for the financials, chapter IV and SESCO for well-level production" },
+      ],
+      decisions: [
+        {
+          decision: "Separate the oil price from management",
+          reasoning: "A record explained by the cycle is valued differently from one explained by the company. The EBITDA bridge breaks down the US$ 1,680M year-on-year increase: US$ 851M is price, volume contributes −2M and cost −28M. The four-driver model (Brent, production, lifting cost and crude processed) explains 91% of quarterly variation since 2022.",
+        },
+        {
+          decision: "Measure the reaction against the pattern, not intuition",
+          reasoning: "An event study of every earnings release since 2020, using a market model estimated over the prior 120 trading days, shows 16 of 22 reports had a negative abnormal return. The Q2 2026 drop (−2.0% abnormal) is normal for YPF: not a rejection of the record, just the usual behaviour.",
+        },
+        {
+          decision: "One pipeline, three outputs",
+          reasoning: "The website, Power BI and Excel all read the same processed data and none of them computes on its own. An analyst, a manager and a general reader see exactly the same numbers, each in the tool they use.",
+        },
+        {
+          decision: "Check that the data isn't impossible",
+          reasoning: "The 14 invariants don't prove a number is right, but they catch when it's impossible: an operator producing more than the country, a territory whose five breakdowns don't match, a bridge that doesn't reconcile with the reported change.",
+        },
+      ],
+      results:
+        "The answer is in the bridge: almost half of the improvement comes from Brent, the one driver the company doesn't control and that can reverse within a quarter. Repeating Q2 2026 EBITDA would take Brent at US$ 106. On top of that sits a structural discount: controlling for Brent, every 100 basis points of country risk takes 3.3% off the stock. YPF trades at 6.7x EV/EBITDA, against 8.1x for Vista and 7.7x for Pampa.",
+      learned:
+        "A record number isn't a conclusion: you have to separate what is cycle from what is management. And one source of truth with several outputs beats three hand-built dashboards, because nobody argues about where a figure came from.",
+      metrics: [
+        { value: "US$ 851M", description: "Of the year-on-year EBITDA increase explained by the oil price" },
+        { value: "91%", description: "Of quarterly EBITDA variation explained by 4 drivers" },
+        { value: "16 of 22", description: "Earnings releases since 2020 with a negative abnormal return" },
       ],
       nextSlug: "atlas-one-erp",
       nextTitle: "Atlas One ERP →",
