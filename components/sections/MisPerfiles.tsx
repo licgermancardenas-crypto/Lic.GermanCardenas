@@ -118,7 +118,7 @@ export function MisPerfiles() {
             }}
           >
             Seis dimensiones.{" "}
-            <span style={{ fontStyle: "italic" }}>Una visión.</span>
+            <span>Una visión.</span>
           </h2>
           <p
             style={{

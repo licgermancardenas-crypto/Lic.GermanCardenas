@@ -157,7 +157,7 @@ export function ExperienceSection() {
               }}
             >
               Donde las ideas{" "}
-              <span style={{ fontStyle: "italic" }}>toman forma.</span>
+              <span>toman forma.</span>
             </h2>
             <p
               style={{

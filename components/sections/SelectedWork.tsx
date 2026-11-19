@@ -84,7 +84,7 @@ export function SelectedWork() {
             }}
           >
             Research, civic tech,{" "}
-            <span style={{ fontStyle: "italic" }}>impacto social.</span>
+            <span>impacto social.</span>
           </h2>
         </AnimatedSection>
 

@@ -6,7 +6,7 @@ const pillars = [
       <>
         Modelos Financieros
         <br />
-        <span style={{ fontStyle: "italic" }}>Dinámicos.</span>
+        <span>Dinámicos.</span>
       </>
     ),
     description:
@@ -20,7 +20,7 @@ const pillars = [
       <>
         Advanced Excel
         <br />
-        <span style={{ fontStyle: "italic" }}>&amp; VBA.</span>
+        <span>&amp; VBA.</span>
       </>
     ),
     description:
@@ -34,7 +34,7 @@ const pillars = [
       <>
         Valuación de Empresas
         <br />
-        <span style={{ fontStyle: "italic" }}>DCF &amp; Múltiplos.</span>
+        <span>DCF &amp; Múltiplos.</span>
       </>
     ),
     description:
@@ -48,7 +48,7 @@ const pillars = [
       <>
         Three-Statement
         <br />
-        <span style={{ fontStyle: "italic" }}>Forecasting.</span>
+        <span>Forecasting.</span>
       </>
     ),
     description:
@@ -62,7 +62,7 @@ const pillars = [
       <>
         Reporting Ejecutivo
         <br />
-        <span style={{ fontStyle: "italic" }}>&amp; Business Intelligence.</span>
+        <span>&amp; Business Intelligence.</span>
       </>
     ),
     description:
@@ -76,7 +76,7 @@ const pillars = [
       <>
         Análisis de Sensibilidad
         <br />
-        <span style={{ fontStyle: "italic" }}>&amp; Stress Testing.</span>
+        <span>&amp; Stress Testing.</span>
       </>
     ),
     description:

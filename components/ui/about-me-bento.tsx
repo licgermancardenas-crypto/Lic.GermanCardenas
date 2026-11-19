@@ -79,7 +79,7 @@ export function AboutMeBento() {
             >
               No construyo software únicamente para resolver problemas técnicos. Construyo
               plataformas que ayudan a personas y organizaciones a{" "}
-              <span style={{ fontStyle: "italic", color: "#7BA8F5" }}>tomar mejores decisiones.</span>
+              <span style={{ color: "#7BA8F5" }}>tomar mejores decisiones.</span>
             </h3>
 
             <div style={{ display: "flex", flexDirection: "column", gap: "14px" }}>
@@ -230,7 +230,7 @@ export function AboutMeBento() {
               marginBottom: "20px",
             }}
           >
-            <span style={{ fontStyle: "italic", color: "#7BA8F5" }}>Más allá</span> de desarrollar software
+            <span style={{ color: "#7BA8F5" }}>Más allá</span> de desarrollar software
           </h3>
 
           <div style={{ display: "flex", flexDirection: "column", gap: "14px", marginBottom: "32px" }}>

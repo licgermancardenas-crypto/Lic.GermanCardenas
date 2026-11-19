@@ -176,7 +176,7 @@ export default async function WorkIndexPage({
               }}
             >
               {t.title}{" "}
-              <span style={{ fontStyle: "italic" }}>{t.titleItalic}</span>
+              <span>{t.titleItalic}</span>
             </h1>
 
             <div className="grid sm:grid-cols-2 gap-5">

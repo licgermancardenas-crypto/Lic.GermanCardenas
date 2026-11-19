@@ -161,7 +161,7 @@ export function Hero() {
           >
             Construyo<br />
             sistemas de{" "}
-            <span style={{ fontStyle: "italic" }}>inteligencia</span>
+            <span>inteligencia</span>
             <br />
             para decisiones<br />
             de negocio.

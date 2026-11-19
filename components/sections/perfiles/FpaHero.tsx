@@ -148,7 +148,7 @@ export function FpaHero() {
         >
           Financial Planning
           <br />
-          <span style={{ fontStyle: "italic" }}>&amp; Analysis</span>
+          <span>&amp; Analysis</span>
         </motion.h1>
 
         {/* Subtitle */}

@@ -493,7 +493,7 @@ export function Experience() {
             ─── Experiencia profesional
           </p>
           <h2 className="font-serif" style={{ fontSize: "clamp(36px, 4vw, 60px)", fontWeight: 600, color: "#F0F4FB", lineHeight: 1.05, letterSpacing: "-0.03em" }}>
-            5+ años.{" "}<span style={{ fontStyle: "italic" }}>7 empresas.</span>
+            5+ años.{" "}<span>7 empresas.</span>
           </h2>
         </div>
 

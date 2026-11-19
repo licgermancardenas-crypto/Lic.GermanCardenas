@@ -74,7 +74,7 @@ export default async function FpaPage({
               }}
             >
               Financial Engineering.{" "}
-              <span style={{ fontStyle: "italic" }}>Seis pilares.</span>
+              <span>Seis pilares.</span>
             </h2>
             <p
               style={{

@@ -70,7 +70,7 @@ export default async function NowPage({
             style={{ fontSize: "clamp(32px, 4vw, 52px)", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.02em" }}
           >
             ¿Qué estoy haciendo{" "}
-            <span className="italic text-[#4F7CFF]">ahora</span>?
+            <span className="text-[#4F7CFF]">ahora</span>?
           </h1>
           <p className="text-[#6B7689] text-sm font-mono">
             Última actualización: junio 2026 · Buenos Aires, Argentina

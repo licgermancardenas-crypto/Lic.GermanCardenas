@@ -614,7 +614,7 @@ export function FeaturedCases() {
               }}
             >
               Cuatro proyectos.{" "}
-              <span style={{ fontStyle: "italic" }}>Cuatro historias.</span>
+              <span>Cuatro historias.</span>
             </h2>
             <p
               style={{
