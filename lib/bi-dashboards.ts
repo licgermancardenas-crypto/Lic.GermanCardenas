@@ -274,12 +274,12 @@ export const DASHBOARDS: Dashboard[] = [
     tags: ["Next.js", "PostGIS", "Series temporales", "Freelance"],
     shots: [
       {
-        src: "/screenshots/yerba-mate/competencia.jpg",
-        width: 1894,
+        src: "/screenshots/yerba-mate/produccion.jpg",
+        width: 1873,
         height: 910,
         caption: {
-          es: "Competencia — el top 4 concentra el 56% del mercado, HHI 1.073, líder Playadito con 21,2%",
-          en: "Competition — top 4 hold 56% of the market, HHI 1,073, Playadito leads with 21.2%",
+          es: "Producción — 889 M kg en 2025 (−9,9% vs. 2024), cosecha mensual 2012–2026 y superficie por departamento",
+          en: "Production — 889 M kg in 2025 (−9.9% vs. 2024), monthly harvest 2012–2026 and planted area by department",
         },
       },
       {

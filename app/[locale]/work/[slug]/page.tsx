@@ -60,7 +60,6 @@ const YERBA_SHOTS = [
   "produccion.jpg",
   "consumo-heatmap.jpg",
   "exportaciones.jpg",
-  "competencia.jpg",
   "cadena-productiva.jpg",
   "estacionalidad.jpg",
 ].map((f) => `/screenshots/yerba-mate/${f}`);
