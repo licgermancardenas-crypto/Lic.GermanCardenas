@@ -20,14 +20,14 @@ export async function generateMetadata({
         path: "/work",
         title: "Work — Germán Cárdenas",
         description:
-          "Full case studies: Atlas One ERP, Atlas Nexus, AgroNova, LAPD Crime Analytics, Yerba Mate Intelligence, ATLAS-YPF, ATLAS SENTINEL, Phantom AI, Atlas Analytics, and ZEUS.",
+          "Full case studies: Atlas One ERP, Atlas Nexus, AgroNova, LAPD Crime Analytics, Yerba Mate Intelligence, ATLAS-YPF, ATLAS SENTINEL, Phantom AI, Atlas Analytics, ZEUS, and Atlas CABA.",
       })
     : pageMetadata({
         locale,
         path: "/work",
         title: "Work — Germán Cárdenas",
         description:
-          "Casos de estudio completos: Atlas One ERP, Atlas Nexus, AgroNova, LAPD Crime Analytics, Yerba Mate Intelligence, ATLAS-YPF, ATLAS SENTINEL, Phantom AI, Atlas Analytics y ZEUS.",
+          "Casos de estudio completos: Atlas One ERP, Atlas Nexus, AgroNova, LAPD Crime Analytics, Yerba Mate Intelligence, ATLAS-YPF, ATLAS SENTINEL, Phantom AI, Atlas Analytics, ZEUS y Atlas CABA.",
       });
 }
 
@@ -135,6 +135,15 @@ const cases: Record<Locale, CaseCard[]> = {
       accent: "#6D5EF5",
       thumbnail: "/screenshots/zeus/resumen.jpg",
     },
+    {
+      slug: "caba-jefatura",
+      number: "11",
+      category: "Inteligencia electoral · Geoespacial · Cliente",
+      title: "Atlas CABA · Jefatura de Gobierno",
+      subtitle: "Treinta años del voto porteño para una candidatura 2027: el derrumbe del PRO fue de marca, no de territorio.",
+      accent: "#00A3C4",
+      thumbnail: "/screenshots/caba/mapa-2025.jpg",
+    },
   ],
   en: [
     {
@@ -226,6 +235,15 @@ const cases: Record<Locale, CaseCard[]> = {
       subtitle: "Endpoint security and data-loss prevention for lenders and brokers, without reading what people type.",
       accent: "#6D5EF5",
       thumbnail: "/screenshots/zeus/resumen.jpg",
+    },
+    {
+      slug: "caba-jefatura",
+      number: "11",
+      category: "Electoral intelligence · Geospatial · Client",
+      title: "Atlas CABA · Mayoral race",
+      subtitle: "Thirty years of the Buenos Aires vote for a 2027 campaign: PRO's collapse was about the brand, not the territory.",
+      accent: "#00A3C4",
+      thumbnail: "/screenshots/caba/mapa-2025.jpg",
     },
   ],
 };

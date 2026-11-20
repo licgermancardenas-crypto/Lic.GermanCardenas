@@ -98,6 +98,15 @@ const CASES: Record<
     },
     chips: ["Go", "EDR", "DLP", "Multi-tenant"],
   },
+  "caba-jefatura": {
+    title: "Atlas CABA",
+    accent: "#00A3C4",
+    subtitle: {
+      es: "Treinta años del voto porteño, de la comuna a la mesa",
+      en: "Thirty years of the Buenos Aires vote, district to polling station",
+    },
+    chips: ["Inferencia ecológica", "GeoPandas", "Gemelo digital", "Censo 2022"],
+  },
 };
 
 export default async function Image({

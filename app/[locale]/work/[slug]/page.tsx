@@ -55,6 +55,8 @@ const ERP_IMPACT_IMAGES: Record<Locale, { src: string; caption: string }[]> = {
   ],
 };
 
+const CABA_SHOTS = ["portada.jpg", "mapa-2025.jpg", "mesas.jpg", "gemelo-3d.jpg"].map((f) => `/screenshots/caba/${f}`);
+
 const ZEUS_SHOTS = ["resumen.jpg", "edr.jpg", "alertas.jpg", "en-vivo.jpg"].map((f) => `/screenshots/zeus/${f}`);
 
 const AA_SHOTS = ["portadas.jpg", "apellidos.jpg", "reservas.jpg", "sitio.jpg"].map((f) => `/screenshots/atlas-analytics/${f}`);
@@ -631,6 +633,60 @@ const content: Record<Locale, Record<string, CaseStudy>> = {
         { value: "0", description: "Agujeros abiertos en la auditoría multi-tenant" },
         { value: "2", description: "Modos: empresa y proctoring" },
       ],
+      nextSlug: "caba-jefatura",
+      nextTitle: "Atlas CABA →",
+    },
+    "caba-jefatura": {
+      slug: "caba-jefatura",
+      title: "Atlas CABA · Jefatura de Gobierno",
+      category: "Inteligencia electoral · Geoespacial · Cliente",
+      subtitle: "Treinta años del voto porteño, de la comuna a la mesa, para una candidatura a Jefe de Gobierno 2027. El hallazgo: el derrumbe del PRO fue de marca, no de territorio.",
+      accent: "#00A3C4",
+      screenshots: CABA_SHOTS,
+      url: "https://atlas-caba-ciudad.vercel.app/gemelo/",
+      context:
+        "Una candidatura a la Jefatura de Gobierno porteña de 2027 contrató a Atlas Analytics para responder una pregunta: dónde es fuerte y dónde es débil el oficialismo después de 2025. La Ciudad venía de dos años en los que el PRO perdió siete de cada diez votos y la oferta política cambió por completo.",
+      challenge:
+        "La lectura fácil decía que el PRO se había derrumbado en su núcleo duro. La correlación entre fuerza previa y caída en puntos daba −0,98, pero eso es casi aritmética: si todos pierden la misma proporción, el que tenía más pierde más puntos. Había que separar lo que es geografía de lo que es un artefacto del cálculo, con una base que no existía armada.",
+      role:
+        "Director del proyecto por Atlas Analytics: diseño de la base, todo el análisis, la cartografía, el gemelo digital, los informes y las herramientas de decisión que se entregaron.",
+      approach:
+        "Quince elecciones armonizadas de 2013 a 2025 por mesa y circuito, más ocho elecciones a Jefe de Gobierno desde 1996; el censo 2022 llevado de radio a circuito; el padrón separando a los 510.287 extranjeros habilitados; escuelas, 3,6 millones de reclamos ciudadanos, barrios populares y 318.607 parcelas. Cada script declara qué pregunta contesta, qué supone y qué no puede afirmar, y cada hallazgo pasa tres filtros antes de publicarse.",
+      stack: [
+        { name: "Python · pandas · GeoPandas", why: "474 tablas derivadas y 343 scripts numerados, reproducibles desde el dato de origen" },
+        { name: "Inferencia ecológica (King, NNLS, saldo)", why: "Tres caminos con supuestos distintos para estimar cuántos votantes conservó el PRO" },
+        { name: "Spearman parcial · Benjamini-Hochberg", why: "Correlaciones por rangos con la clase social descontada y corrección por comparaciones múltiples" },
+        { name: "Pruebas de dígitos", why: "17 pruebas sobre las actas de 2015 a 2023 para medir, no suponer, si son confiables" },
+        { name: "Gemelo digital (MapLibre y 3D)", why: "La ciudad parcela por parcela para decidir dónde rinde el esfuerzo de campaña" },
+        { name: "Chrome headless · Excel", why: "Informes en PDF, libros de Excel y un votómetro para el equipo de campaña" },
+      ],
+      decisions: [
+        {
+          decision: "El denominador es el padrón nativo",
+          reasoning: "El padrón total de 2023 y 2025 incluye medio millón de extranjeros que votan al 15-20%. Cruzar cualquier variable social contra la participación del padrón total da −0,91 por pura mecánica. Separar nativos de extranjeros fue la diferencia entre un hallazgo y un error.",
+        },
+        {
+          decision: "Medir en votos, no en puntos porcentuales",
+          reasoning: "En puntos, el PRO parecía haberse hundido en su núcleo. En votos, retuvo el 29,9% y la retención va de 29,0% a 30,7% en los cinco quintiles de fuerza previa: no hubo refugio territorial. Cambió la conclusión y, con ella, dónde poner la campaña.",
+        },
+        {
+          decision: "Tres métodos para un mismo número",
+          reasoning: "El saldo aritmético da 29,9%, la matriz NNLS 29,9% y el modelo de King 29,8%, con un intervalo de 29,4% a 30,0%. Tres caminos con supuestos distintos llegan al mismo lugar. Lo que no sobrevivió esa prueba —de dónde venía el voto libertario— se publicó solo como cota.",
+        },
+        {
+          decision: "Publicar también el resultado negativo",
+          reasoning: "Se probaron 73 indicadores censales y tres fuentes independientes para predecir la retención: el R² validado fue −0,05, peor que predecir la media. En vez de forzar un modelo, se dijo: el cambio no se predice con el territorio, y eso también orienta la estrategia.",
+        },
+      ],
+      results:
+        "El territorio explica casi todo el nivel del voto —R² validado de 0,935 para el voto a Jorge Macri en 2023— y casi nada del cambio. El derrumbe del PRO fue parejo en toda la ciudad; lo que varía por barrio es quién capturó ese voto. Se entregaron informes por comuna, mesa por mesa, encuesta cruzada con territorio, libros de Excel, un votómetro y el gemelo digital. El análisis de candidatos y el modelo 2027 quedan reservados para el cliente.",
+      learned:
+        "La trampa más cara en análisis electoral no es un mal modelo: es una lectura correcta en la unidad equivocada. Pasar de puntos a votos, y del padrón total al nativo, cambió las conclusiones más que cualquier técnica sofisticada.",
+      metrics: [
+        { value: "29,9%", description: "Retención del PRO 2023→2025, con tres métodos" },
+        { value: "0,935", description: "R² validado del territorio sobre el nivel de voto" },
+        { value: "−0,05", description: "R² validado sobre el cambio: no se predice" },
+      ],
       nextSlug: "atlas-one-erp",
       nextTitle: "Atlas One ERP →",
     },
@@ -1155,6 +1211,60 @@ const content: Record<Locale, Record<string, CaseStudy>> = {
         { value: "0", description: "Open holes in the multi-tenant audit" },
         { value: "2", description: "Modes: company and proctoring" },
       ],
+      nextSlug: "caba-jefatura",
+      nextTitle: "Atlas CABA →",
+    },
+    "caba-jefatura": {
+      slug: "caba-jefatura",
+      title: "Atlas CABA · Mayoral race",
+      category: "Electoral intelligence · Geospatial · Client",
+      subtitle: "Thirty years of the Buenos Aires vote, from district down to polling station, for a 2027 mayoral campaign. The finding: PRO's collapse was about the brand, not the territory.",
+      accent: "#00A3C4",
+      screenshots: CABA_SHOTS,
+      url: "https://atlas-caba-ciudad.vercel.app/gemelo/",
+      context:
+        "A 2027 campaign for Mayor of Buenos Aires hired Atlas Analytics to answer one question: where is the incumbent party strong and where is it weak after 2025. The city was coming off two years in which PRO lost seven in ten votes and the political landscape changed completely.",
+      challenge:
+        "The easy reading said PRO had collapsed in its stronghold. The correlation between prior strength and the drop in points was −0.98, but that's mostly arithmetic: if everyone loses the same share, whoever had more loses more points. The job was to separate geography from a calculation artifact, on a database that didn't exist yet.",
+      role:
+        "Project lead for Atlas Analytics: database design, all the analysis, cartography, the digital twin, the reports and the decision tools that were delivered.",
+      approach:
+        "Fifteen harmonised elections from 2013 to 2025 by polling station and circuit, plus eight mayoral races since 1996; the 2022 census mapped from tracts to circuits; the electoral roll split to set apart the 510,287 eligible foreign residents; schools, 3.6 million citizen complaints, informal settlements and 318,607 land parcels. Every script states what question it answers, what it assumes and what it can't claim, and every finding passes three filters before publication.",
+      stack: [
+        { name: "Python · pandas · GeoPandas", why: "474 derived tables and 343 numbered scripts, reproducible from the source data" },
+        { name: "Ecological inference (King, NNLS, balance)", why: "Three routes with different assumptions to estimate how many voters PRO kept" },
+        { name: "Partial Spearman · Benjamini-Hochberg", why: "Rank correlations with social class controlled and correction for multiple comparisons" },
+        { name: "Digit tests", why: "17 tests on the 2015–2023 tally sheets to measure, not assume, whether they're reliable" },
+        { name: "Digital twin (MapLibre and 3D)", why: "The city parcel by parcel, to decide where campaign effort pays off" },
+        { name: "Headless Chrome · Excel", why: "PDF reports, Excel workbooks and a vote calculator for the campaign team" },
+      ],
+      decisions: [
+        {
+          decision: "The denominator is the native-born roll",
+          reasoning: "The 2023 and 2025 rolls include half a million foreign residents who turn out at 15–20%. Crossing any social variable against total-roll turnout yields −0.91 purely by construction. Separating native-born from foreign voters was the difference between a finding and an error.",
+        },
+        {
+          decision: "Measure in votes, not percentage points",
+          reasoning: "In points, PRO seemed to have sunk in its stronghold. In votes, it kept 29.9%, and retention ranges from 29.0% to 30.7% across all five quintiles of prior strength: there was no territorial refuge. The conclusion changed, and with it where to campaign.",
+        },
+        {
+          decision: "Three methods for one number",
+          reasoning: "The arithmetic balance gives 29.9%, the NNLS matrix 29.9% and King's model 29.8%, with an interval of 29.4% to 30.0%. Three routes with different assumptions land in the same place. What didn't survive that test — where the libertarian vote came from — was published only as a bound.",
+        },
+        {
+          decision: "Publish the negative result too",
+          reasoning: "73 census indicators and three independent sources were tested to predict retention: the validated R² was −0.05, worse than predicting the mean. Instead of forcing a model, the report said so: change isn't predicted by territory, and that also guides strategy.",
+        },
+      ],
+      results:
+        "Territory explains almost all of the level of the vote — validated R² of 0.935 for Jorge Macri's 2023 vote — and almost none of the change. PRO's collapse was even across the city; what varies by neighbourhood is who captured that vote. The delivery included district reports, a station-by-station analysis, a survey matched to territory, Excel workbooks, a vote calculator and the digital twin. The candidates analysis and the 2027 model remain reserved for the client.",
+      learned:
+        "The costliest trap in electoral analysis isn't a bad model: it's a correct reading in the wrong unit. Moving from points to votes, and from the total roll to the native-born roll, changed the conclusions more than any sophisticated technique.",
+      metrics: [
+        { value: "29.9%", description: "PRO retention 2023→2025, three methods" },
+        { value: "0.935", description: "Validated R² of territory on vote level" },
+        { value: "−0.05", description: "Validated R² on change: not predictable" },
+      ],
       nextSlug: "atlas-one-erp",
       nextTitle: "Atlas One ERP →",
     },
@@ -1342,14 +1452,14 @@ export default async function WorkPage({
             </h2>
             <div className="space-y-3">
               {c.stack.map((s) => (
-                <div key={s.name} className="flex gap-4 p-4 rounded-lg bg-[#0F1419] border border-[#1F2937]">
+                <div key={s.name} className="flex flex-col sm:flex-row gap-1 sm:gap-4 p-4 rounded-lg bg-[#0F1419] border border-[#1F2937]">
                   <span
-                    className="flex-shrink-0 text-sm font-mono font-semibold min-w-[160px]"
+                    className="sm:flex-shrink-0 text-sm font-mono font-semibold sm:min-w-[160px] sm:max-w-[240px]"
                     style={{ color: c.accent }}
                   >
                     {s.name}
                   </span>
-                  <span className="text-[#B8C1D1] text-sm leading-relaxed">{s.why}</span>
+                  <span className="min-w-0 text-[#B8C1D1] text-sm leading-relaxed">{s.why}</span>
                 </div>
               ))}
             </div>

@@ -376,6 +376,34 @@ const cases: CaseData[] = [
     screenshots: ["resumen.jpg", "edr.jpg", "alertas.jpg", "en-vivo.jpg"].map((f) => `/screenshots/zeus/${f}`),
     privateNote: "Producto propio · demo a pedido",
   },
+  {
+    id: "caso-11",
+    slug: "caba-jefatura",
+    number: "11",
+    category: "INTELIGENCIA ELECTORAL · GEOESPACIAL · CLIENTE",
+    title: "Atlas CABA · Jefatura de Gobierno",
+    subtitle: "Treinta años del voto porteño, de la comuna a la mesa, para una candidatura a Jefe de Gobierno 2027. El hallazgo: el derrumbe del PRO fue de marca, no de territorio.",
+    meta: {
+      rol: "Director del proyecto · Atlas Analytics",
+      escala: "474 tablas · 167 circuitos · 318.607 parcelas",
+      stack: "Python · GeoPandas · inferencia ecológica",
+      estado: "Para cliente · 2026",
+    },
+    challenge:
+      "La lectura fácil de 2025 era que el PRO se había derrumbado en Recoleta y Palermo, su núcleo duro. Es cierta en puntos porcentuales y engañosa como diagnóstico: si todos pierden la misma proporción, el que tenía más pierde más puntos. Una campaña que se arma sobre esa lectura defiende los barrios equivocados.",
+    approach:
+      "Una base que cruza quince elecciones armonizadas con el censo 2022 por radio, el padrón separando nativos de extranjeros, escuelas, reclamos ciudadanos y barrios populares, y un gemelo digital de la ciudad con cada parcela. Nada se publica sin pasar tres filtros: corrección por comparaciones múltiples, control de composición social y prueba de fragilidad caso por caso. Y la retención se estimó con tres métodos de inferencia ecológica independientes.",
+    impactLabel: "QUÉ ENCONTRAMOS",
+    impact:
+      "Los tres métodos coinciden: el PRO retuvo el 29,9% de sus votos, y la retención es pareja en toda la ciudad. Ninguno de 73 indicadores censales explica quién se quedó: no hubo refugio territorial, fue un colapso de marca. Lo que sí cambia por barrio es quién capturó ese voto. El territorio explica casi todo el nivel del voto y casi nada del cambio, y decirlo a tiempo evita gastar campaña en el lugar equivocado.",
+    metrics: [
+      { value: "29,9%", label: "Retención del PRO, con tres métodos" },
+      { value: "0,935", label: "R² validado: el territorio explica el nivel" },
+      { value: "−0,05", label: "R² validado: no explica el cambio" },
+    ],
+    screenshots: ["portada.jpg", "mapa-2025.jpg", "mesas.jpg", "gemelo-3d.jpg"].map((f) => `/screenshots/caba/${f}`),
+    url: "https://atlas-caba-ciudad.vercel.app/gemelo/",
+  },
 ];
 
 // ── Lightbox ──────────────────────────────────────────────────────────────────
@@ -801,8 +829,8 @@ export function FeaturedCases() {
                 letterSpacing: "0.02em",
               }}
             >
-              Diez proyectos.{" "}
-              <span>Diez historias.</span>
+              Once proyectos.{" "}
+              <span>Once historias.</span>
             </h2>
             <p
               style={{
