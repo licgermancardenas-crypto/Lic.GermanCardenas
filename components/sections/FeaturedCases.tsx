@@ -263,6 +263,33 @@ const cases: CaseData[] = [
       "excel-resumen.jpg",
     ].map((f) => `/screenshots/ypf/${f}`),
     url: "https://atlas-ypf.vercel.app/ypf-project",
+  },  {
+    id: "caso-07",
+    slug: "atlas-sentinel",
+    number: "07",
+    category: "DATA SCIENCE · SEGURIDAD URBANA · GOVTECH",
+    title: "ATLAS SENTINEL",
+    subtitle: "Riesgo delictivo de Buenos Aires por zona y turno, y qué hacer con eso: dónde patrullar, dónde poner cámaras y qué corredores controlar.",
+    meta: {
+      rol: "Data Scientist & Full-stack",
+      escala: "401 hexágonos · 2016–2025",
+      stack: "Python · LightGBM · Next.js",
+      estado: "En producción",
+    },
+    challenge:
+      "La Ciudad registra más de 130.000 delitos por año, y comisarías, patrullas y cámaras se ubican por historia, no por riesgo. Los datos para hacerlo mejor existen, pero están repartidos en más de 20 datasets abiertos que nunca se cruzan: delitos, transporte, alumbrado, siniestros viales y censo.",
+    approach:
+      "Unifiqué todas las fuentes en una grilla hexagonal H3 por turno y entrené un modelo de conteo (LightGBM con objetivo Poisson), validado en el espacio y explicado con SHAP. Sobre la predicción construí tres módulos de optimización —patrullas por cobertura máxima, cámaras nuevas sobre la red vial y controles en corredores de acceso— y una auditoría de equidad para ver a quién cubre cada plan.",
+    impactLabel: "QUÉ DEMUESTRA",
+    impact:
+      "Con las mismas 75 patrullas, reubicadas según el riesgo, la cobertura pasa del 35,1% al 58,7%: 23,6 puntos más sin sumar un solo recurso. Y una lección honesta: el modelo apenas supera a repetir el pasado, porque el delito porteño es muy persistente. El valor está en decidir mejor, no en adivinar mejor.",
+    metrics: [
+      { value: "+23,6 pts", label: "Cobertura, mismos recursos" },
+      { value: "58,5%", label: "Delitos en el 30% del área" },
+      { value: "130.418", label: "Delitos 2025 analizados" },
+    ],
+    screenshots: ["inicio.jpg", "mapa.jpg"].map((f) => `/screenshots/sentinel/${f}`),
+    url: "https://dashboard-two-sepia-39.vercel.app",
   },
 ];
 
@@ -687,8 +714,8 @@ export function FeaturedCases() {
                 letterSpacing: "0.02em",
               }}
             >
-              Seis proyectos.{" "}
-              <span>Seis historias.</span>
+              Siete proyectos.{" "}
+              <span>Siete historias.</span>
             </h2>
             <p
               style={{

@@ -55,6 +55,8 @@ const ERP_IMPACT_IMAGES: Record<Locale, { src: string; caption: string }[]> = {
   ],
 };
 
+const SENTINEL_SHOTS = ["inicio.jpg", "mapa.jpg"].map((f) => `/screenshots/sentinel/${f}`);
+
 const YPF_SHOTS = [
   "web-caso.jpg",
   "web-mapa.jpg",
@@ -406,6 +408,60 @@ const content: Record<Locale, Record<string, CaseStudy>> = {
         { value: "91%", description: "De la variación trimestral del EBITDA explicada por 4 drivers" },
         { value: "16 de 22", description: "Balances desde 2020 con reacción anormal negativa" },
       ],
+      nextSlug: "atlas-sentinel",
+      nextTitle: "ATLAS SENTINEL →",
+    },
+    "atlas-sentinel": {
+      slug: "atlas-sentinel",
+      title: "ATLAS SENTINEL",
+      category: "Data Science · Seguridad urbana · GovTech",
+      subtitle: "Riesgo delictivo de Buenos Aires por zona y turno, y qué hacer con eso: dónde patrullar, dónde poner cámaras y qué corredores controlar.",
+      accent: "#3b82f6",
+      screenshots: SENTINEL_SHOTS,
+      url: "https://dashboard-two-sepia-39.vercel.app",
+      context:
+        "La Ciudad de Buenos Aires registró 130.418 delitos en 2025, uno cada cuatro minutos. Las comisarías, las patrullas y las cámaras se ubican por historia y por decisión administrativa, no por dónde y cuándo se concentra el riesgo.",
+      challenge:
+        "Los datos para decidir mejor existen, pero están repartidos en más de 20 datasets abiertos del portal de la Ciudad que nunca se cruzan entre sí: delitos 2016-2025, colectivos, subte, EcoBici, alumbrado LED, siniestros viales, cámaras, comisarías y censo, cada uno con su propia geometría y su propio corte temporal.",
+      role:
+        "Proyecto propio de punta a punta: ingesta y normalización de las fuentes, unificación espacio-temporal, modelado, validación, los tres módulos de optimización, la auditoría de equidad y el tablero web en Next.js.",
+      approach:
+        "Cuatro capas: (0) unificación de todas las fuentes en una grilla hexagonal H3 de resolución 8, por turno; (1) un modelo núcleo de conteo de delitos por hexágono y turno; (2) tres módulos de decisión —patrullas por cobertura máxima, cámaras nuevas sobre la red vial y controles en corredores de acceso—; (3) validación con SHAP, backtesting y holdout espacial, más una auditoría de equidad que mide a qué población cubre cada plan.",
+      stack: [
+        { name: "Python + GeoPandas + H3", why: "Una grilla de hexágonos de igual área permite cruzar fuentes con geometrías distintas y comparar zonas sin el sesgo del tamaño de cada barrio" },
+        { name: "LightGBM (objetivo Poisson)", why: "Se predicen conteos de delitos, que no pueden ser negativos y cuya varianza crece con la media: Poisson respeta esa forma" },
+        { name: "SHAP + predicción conformal", why: "Explicar qué empuja el riesgo de cada zona y dar intervalos de incertidumbre honestos, no un número suelto" },
+        { name: "PuLP (programación entera)", why: "El módulo de patrullas es un problema de cobertura máxima (MCLP): dónde ubicar k puestos para cubrir el mayor riesgo posible" },
+        { name: "Prophet con regímenes", why: "Pronóstico 2026 que trata la pandemia y la caída de 2025 como escalones aparte, elegido por backtesting sobre 84 cortes" },
+        { name: "Next.js + Leaflet", why: "Tablero con filtros por turno, tipo de delito y comuna, mapa a pantalla completa y vista 3D, publicado en Vercel" },
+      ],
+      decisions: [
+        {
+          decision: "Hexágonos H3 en lugar de barrios",
+          reasoning: "Los 48 barrios tienen tamaños y poblaciones muy distintos, y un promedio por barrio esconde lo que pasa adentro. Los 401 hexágonos de igual área permiten cruzar delitos, paradas, luminarias y siniestros sobre la misma unidad.",
+        },
+        {
+          decision: "Medirse contra repetir el pasado, y decirlo",
+          reasoning: "Antes de celebrar el modelo lo comparé con la línea de base ingenua. El resultado fue que apenas la mejora: error de 0,290 contra 0,296. El delito porteño es muy persistente. Eso cambió el foco del proyecto: de adivinar mejor a decidir mejor.",
+        },
+        {
+          decision: "Optimizar con los recursos que ya existen",
+          reasoning: "Pedir más patrullas es fácil. El módulo A responde otra pregunta: con las mismas 75, ¿cuánto riesgo se cubre si se reubican? La respuesta, 58,7% contra 35,1% de hoy, es un argumento de gestión que no requiere presupuesto nuevo.",
+        },
+        {
+          decision: "Auditar a quién cubre cada plan",
+          reasoning: "Maximizar el riesgo cubierto puede dejar afuera a los barrios más vulnerables. Cada plan se mide también por la población que cubre, incluidos los hogares con necesidades básicas insatisfechas y los mayores de 65, para que la eficiencia no tape la equidad.",
+        },
+      ],
+      results:
+        "Con las mismas 75 patrullas, reubicadas por riesgo, la cobertura pasa del 35,1% al 58,7%, y 22 de los puestos propuestos reutilizan comisarías existentes. El 58,5% de los delitos ocurre en el 30% del área. Treinta cámaras nuevas bien ubicadas cubrirían 86,4 km de la red vial. El pronóstico 2026 es de 131.911 delitos, un 1,1% más que en 2025.",
+      learned:
+        "Un modelo que apenas supera a la línea de base no es un fracaso si se cuenta bien: dice que el problema es de decisión, no de predicción. Y en seguridad, la eficiencia sin una mirada de equidad puede reproducir las mismas desigualdades que se quieren resolver.",
+      metrics: [
+        { value: "+23,6 pts", description: "De cobertura de riesgo con las mismas 75 patrullas" },
+        { value: "58,5%", description: "De los delitos ocurre en el 30% del área" },
+        { value: "0,290 vs 0,296", description: "Error del modelo contra repetir el pasado" },
+      ],
       nextSlug: "atlas-one-erp",
       nextTitle: "Atlas One ERP →",
     },
@@ -713,6 +769,60 @@ const content: Record<Locale, Record<string, CaseStudy>> = {
         { value: "US$ 851M", description: "Of the year-on-year EBITDA increase explained by the oil price" },
         { value: "91%", description: "Of quarterly EBITDA variation explained by 4 drivers" },
         { value: "16 of 22", description: "Earnings releases since 2020 with a negative abnormal return" },
+      ],
+      nextSlug: "atlas-sentinel",
+      nextTitle: "ATLAS SENTINEL →",
+    },
+    "atlas-sentinel": {
+      slug: "atlas-sentinel",
+      title: "ATLAS SENTINEL",
+      category: "Data Science · Urban safety · GovTech",
+      subtitle: "Crime risk in Buenos Aires by area and time of day, and what to do about it: where to patrol, where to place cameras and which corridors to control.",
+      accent: "#3b82f6",
+      screenshots: SENTINEL_SHOTS,
+      url: "https://dashboard-two-sepia-39.vercel.app",
+      context:
+        "The City of Buenos Aires recorded 130,418 crimes in 2025, one every four minutes. Police stations, patrols and cameras are placed by history and administrative decision, not by where and when risk concentrates.",
+      challenge:
+        "The data to decide better exists, but it's spread across more than 20 open datasets on the City's portal that never get combined: crime 2016-2025, buses, subway, bike share, LED street lighting, road accidents, cameras, police stations and the census, each with its own geometry and time breakdown.",
+      role:
+        "Personal project end to end: ingesting and normalising the sources, spatio-temporal unification, modelling, validation, the three optimisation modules, the fairness audit and the Next.js web dashboard.",
+      approach:
+        "Four layers: (0) every source unified on an H3 resolution-8 hexagonal grid, by time of day; (1) a core model counting crimes per hexagon and shift; (2) three decision modules — patrols by maximal coverage, new cameras on the road network and checkpoints on access corridors; (3) validation with SHAP, backtesting and spatial holdout, plus a fairness audit measuring which population each plan covers.",
+      stack: [
+        { name: "Python + GeoPandas + H3", why: "An equal-area hexagon grid lets sources with different geometries be combined and areas compared without each neighbourhood's size bias" },
+        { name: "LightGBM (Poisson objective)", why: "The target is crime counts, which can't be negative and whose variance grows with the mean: Poisson respects that shape" },
+        { name: "SHAP + conformal prediction", why: "Explain what drives each area's risk and give honest uncertainty intervals, not a bare number" },
+        { name: "PuLP (integer programming)", why: "The patrol module is a maximal covering location problem (MCLP): where to place k posts to cover as much risk as possible" },
+        { name: "Prophet with regimes", why: "A 2026 forecast that treats the pandemic and the 2025 drop as separate steps, chosen by backtesting over 84 cutoffs" },
+        { name: "Next.js + Leaflet", why: "A dashboard filtered by shift, crime type and district, with a full-screen map and a 3D view, deployed on Vercel" },
+      ],
+      decisions: [
+        {
+          decision: "H3 hexagons instead of neighbourhoods",
+          reasoning: "The 48 neighbourhoods vary widely in size and population, and a neighbourhood average hides what happens inside. The 401 equal-area hexagons put crime, bus stops, street lights and accidents on the same unit.",
+        },
+        {
+          decision: "Measure against repeating the past, and say so",
+          reasoning: "Before celebrating the model I compared it with the naive baseline. It barely beats it: an error of 0.290 versus 0.296. Crime in Buenos Aires is highly persistent. That shifted the project's focus from predicting better to deciding better.",
+        },
+        {
+          decision: "Optimise with the resources that already exist",
+          reasoning: "Asking for more patrols is easy. Module A answers a different question: with the same 75, how much risk is covered if they're relocated? The answer, 58.7% versus 35.1% today, is a management case that needs no new budget.",
+        },
+        {
+          decision: "Audit who each plan covers",
+          reasoning: "Maximising the risk covered can leave out the most vulnerable neighbourhoods. Each plan is also measured by the population it covers, including households with unmet basic needs and people over 65, so efficiency doesn't hide equity.",
+        },
+      ],
+      results:
+        "With the same 75 patrols relocated by risk, coverage rises from 35.1% to 58.7%, and 22 of the proposed posts reuse existing police stations. 58.5% of crime happens in 30% of the area. Thirty well-placed new cameras would cover 86.4 km of the road network. The 2026 forecast is 131,911 crimes, 1.1% more than in 2025.",
+      learned:
+        "A model that barely beats the baseline isn't a failure if it's told well: it says the problem is one of decisions, not prediction. And in public safety, efficiency without an equity lens can reproduce the very inequalities it's meant to fix.",
+      metrics: [
+        { value: "+23.6 pts", description: "Of risk coverage with the same 75 patrols" },
+        { value: "58.5%", description: "Of crime happens in 30% of the area" },
+        { value: "0.290 vs 0.296", description: "Model error versus repeating the past" },
       ],
       nextSlug: "atlas-one-erp",
       nextTitle: "Atlas One ERP →",

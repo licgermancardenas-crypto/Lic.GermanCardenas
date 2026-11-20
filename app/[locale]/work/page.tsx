@@ -20,14 +20,14 @@ export async function generateMetadata({
         path: "/work",
         title: "Work — Germán Cárdenas",
         description:
-          "Full case studies: Atlas One ERP, Atlas Nexus, AgroNova, LAPD Crime Analytics, Yerba Mate Intelligence, and ATLAS-YPF.",
+          "Full case studies: Atlas One ERP, Atlas Nexus, AgroNova, LAPD Crime Analytics, Yerba Mate Intelligence, ATLAS-YPF, and ATLAS SENTINEL.",
       })
     : pageMetadata({
         locale,
         path: "/work",
         title: "Work — Germán Cárdenas",
         description:
-          "Casos de estudio completos: Atlas One ERP, Atlas Nexus, AgroNova, LAPD Crime Analytics, Yerba Mate Intelligence y ATLAS-YPF.",
+          "Casos de estudio completos: Atlas One ERP, Atlas Nexus, AgroNova, LAPD Crime Analytics, Yerba Mate Intelligence, ATLAS-YPF y ATLAS SENTINEL.",
       });
 }
 
@@ -99,6 +99,15 @@ const cases: Record<Locale, CaseCard[]> = {
       accent: "#38bdf8",
       thumbnail: "/screenshots/ypf/web-caso.jpg",
     },
+    {
+      slug: "atlas-sentinel",
+      number: "07",
+      category: "Data Science · Seguridad urbana · GovTech",
+      title: "ATLAS SENTINEL",
+      subtitle: "Riesgo delictivo de Buenos Aires por zona y turno: las mismas 75 patrullas, reubicadas, cubren 23,6 puntos más de riesgo.",
+      accent: "#3b82f6",
+      thumbnail: "/screenshots/sentinel/mapa.jpg",
+    },
   ],
   en: [
     {
@@ -154,6 +163,15 @@ const cases: Record<Locale, CaseCard[]> = {
       subtitle: "Why the market punished YPF's best-ever results: web, Power BI and Excel on a single pipeline.",
       accent: "#38bdf8",
       thumbnail: "/screenshots/ypf/web-caso.jpg",
+    },
+    {
+      slug: "atlas-sentinel",
+      number: "07",
+      category: "Data Science · Urban safety · GovTech",
+      title: "ATLAS SENTINEL",
+      subtitle: "Crime risk in Buenos Aires by area and shift: the same 75 patrols, relocated, cover 23.6 points more risk.",
+      accent: "#3b82f6",
+      thumbnail: "/screenshots/sentinel/mapa.jpg",
     },
   ],
 };

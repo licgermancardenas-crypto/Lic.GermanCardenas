@@ -62,6 +62,15 @@ const CASES: Record<
     },
     chips: ["Python", "Power BI", "Excel", "Next.js"],
   },
+  "atlas-sentinel": {
+    title: "ATLAS SENTINEL",
+    accent: "#3b82f6",
+    subtitle: {
+      es: "Riesgo delictivo de Buenos Aires: las mismas 75 patrullas, reubicadas, cubren 23,6 puntos más",
+      en: "Crime risk in Buenos Aires: the same 75 patrols, relocated, cover 23.6 points more",
+    },
+    chips: ["LightGBM", "H3", "SHAP", "Optimización"],
+  },
 };
 
 export default async function Image({
