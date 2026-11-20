@@ -14,19 +14,19 @@ const COPY = {
   es: {
     eyebrow: "Galería completa",
     title: "Dashboards en producción",
-    lead: `${DASHBOARD_STATS.dashboards} tableros —en Power BI y en web— sobre datos reales de operación y fuentes públicas de Argentina, Brasil y EE.UU.: California, balotaje de Brasil, YPF, vuelos de EE.UU., yerba mate, exportaciones, patentamientos, retail, mayorista, farmacia y conciliación de cobros con tarjeta.`,
+    lead: `${DASHBOARD_STATS.dashboards} tableros —en Power BI y en web— sobre datos reales de operación y fuentes públicas de Argentina, Brasil, España y EE.UU.: España, California, balotaje de Brasil, YPF, vuelos de EE.UU., yerba mate, exportaciones, patentamientos, retail, mayorista, farmacia y conciliación de cobros con tarjeta.`,
     cta: `Ver los ${DASHBOARD_STATS.dashboards} tableros`,
     more: (n: number) =>
-      `Hay ${n} tableros más en la galería completa — California, Brasil, YPF, vuelos de EE.UU., patentamientos, kioscos, mayorista, forma de pago, créditos personales y farmacia`,
+      `Hay ${n} tableros más en la galería completa — España, California, Brasil, YPF, vuelos de EE.UU., patentamientos, kioscos, mayorista, forma de pago, créditos personales y farmacia`,
     moreCta: "Abrir galería completa",
   },
   en: {
     eyebrow: "Full gallery",
     title: "Dashboards in production",
-    lead: `${DASHBOARD_STATS.dashboards} dashboards —in Power BI and on the web— built on real operating data and Argentine, Brazilian and US open data: California, Brazil's runoff, YPF, US flights, yerba mate, exports, vehicle registrations, retail, wholesale, pharmacy and card settlement reconciliation.`,
+    lead: `${DASHBOARD_STATS.dashboards} dashboards —in Power BI and on the web— built on real operating data and Argentine, Brazilian, Spanish and US open data: Spain, California, Brazil's runoff, YPF, US flights, yerba mate, exports, vehicle registrations, retail, wholesale, pharmacy and card settlement reconciliation.`,
     cta: `See all ${DASHBOARD_STATS.dashboards} dashboards`,
     more: (n: number) =>
-      `${n} more dashboards in the full gallery — California, Brazil, YPF, US flights, vehicle registrations, convenience stores, wholesale, payment mix, personal credit and pharmacy`,
+      `${n} more dashboards in the full gallery — Spain, California, Brazil, YPF, US flights, vehicle registrations, convenience stores, wholesale, payment mix, personal credit and pharmacy`,
     moreCta: "Open the full gallery",
   },
 };
