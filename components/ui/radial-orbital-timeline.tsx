@@ -4,7 +4,8 @@ import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { useLocale } from "next-intl";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, ArrowRight } from "lucide-react";
+import { textOn } from "@/lib/color";
+import { X, ArrowRight, MessageCircle } from "lucide-react";
 
 const SIZE = 700;
 const CENTER = 350;
@@ -27,6 +28,8 @@ export interface OrbitalNode {
   status: OrbitalStatus;
   energy: number;
   href?: string;
+  /** Caso del portfolio que mejor muestra este perfil. */
+  showcase?: { title: string; slug: string; teaser: string };
 }
 
 interface Props {
@@ -52,7 +55,11 @@ function hexToRgb(hex: string): string {
 export default function RadialOrbitalTimeline({ timelineData }: Props) {
   const [rotDeg, setRotDeg] = useState(0);
   const [activeId, setActiveId] = useState<number | null>(null);
-  const closeLabel = useLocale() === "en" ? "Close" : "Cerrar";
+  const lang = useLocale() === "en" ? "en" : "es";
+  const T = lang === "en"
+    ? { close: "Close", level: "Technical level", profile: "See full profile", done: "Consolidated", growing: "Evolving", synergies: "Synergies:", showcase: "Representative case", talk: "Let's talk about a project like this" }
+    : { close: "Cerrar", level: "Nivel técnico", profile: "Ver perfil completo", done: "Consolidado", growing: "En evolución", synergies: "Sinergias:", showcase: "Caso representativo", talk: "Hablemos de un proyecto así" };
+  const closeLabel = T.close;
   const [hoverId, setHoverId] = useState<number | null>(null);
   const [scale, setScale] = useState(1);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -455,7 +462,7 @@ export default function RadialOrbitalTimeline({ timelineData }: Props) {
                     color: "#8D9AB3",
                   }}
                 >
-                  Nivel técnico
+                  {T.level}
                 </p>
                 <p
                   style={{
@@ -494,24 +501,45 @@ export default function RadialOrbitalTimeline({ timelineData }: Props) {
               </div>
             </div>
 
-            {/* Ver perfil link */}
-            {activeNode.href && (
+            {/* Caso representativo */}
+            {activeNode.showcase && (
               <Link
-                href={activeNode.href}
-                className="flex items-center gap-2 mb-5 w-fit transition-opacity duration-200 hover:opacity-70"
-                style={{
-                  fontFamily: "var(--font-mono)",
-                  fontSize: "12px",
-                  letterSpacing: "0.12em",
-                  textTransform: "uppercase",
-                  color: CATEGORY_COLORS[activeNode.category] ?? "#2B6FE8",
-                  fontWeight: 600,
-                }}
+                href={`/${lang}/work/${activeNode.showcase.slug}`}
+                className="group block mb-5 rounded-xl transition-colors hover:bg-white/[0.04]"
+                style={{ padding: "14px 16px", border: "1px solid rgba(255,255,255,0.08)", background: "rgba(255,255,255,0.02)" }}
               >
-                Ver perfil completo
-                <ArrowRight className="w-3.5 h-3.5" />
+                <p style={{ fontFamily: "var(--font-mono)", fontSize: "12px", letterSpacing: "0.12em", textTransform: "uppercase", color: "#8D9AB3", marginBottom: "6px" }}>
+                  {T.showcase}
+                </p>
+                <p className="flex items-center gap-2" style={{ fontSize: "16px", fontWeight: 600, color: "#F0F4FB", marginBottom: "4px" }}>
+                  {activeNode.showcase.title}
+                  <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" style={{ color: CATEGORY_COLORS[activeNode.category] ?? "#2B6FE8" }} aria-hidden="true" />
+                </p>
+                <p style={{ fontSize: "13px", lineHeight: 1.55, color: "#C5CFE2" }}>{activeNode.showcase.teaser}</p>
               </Link>
             )}
+
+            {/* CTAs */}
+            <div className="flex flex-wrap items-center gap-x-5 gap-y-2 mb-5">
+              <a
+                href="#contact"
+                className="inline-flex items-center gap-2 min-h-[40px] px-4 rounded-full transition-opacity hover:opacity-85"
+                style={{ background: CATEGORY_COLORS[activeNode.category] ?? "#2B6FE8", color: textOn(CATEGORY_COLORS[activeNode.category] ?? "#2B6FE8"), fontSize: "13px", fontWeight: 600 }}
+              >
+                <MessageCircle className="w-3.5 h-3.5" aria-hidden="true" />
+                {T.talk}
+              </a>
+              {activeNode.href && (
+                <Link
+                  href={activeNode.href}
+                  className="inline-flex items-center gap-2 min-h-[40px] transition-opacity duration-200 hover:opacity-70"
+                  style={{ fontFamily: "var(--font-mono)", fontSize: "12px", letterSpacing: "0.12em", textTransform: "uppercase", color: CATEGORY_COLORS[activeNode.category] ?? "#2B6FE8", fontWeight: 600 }}
+                >
+                  {T.profile}
+                  <ArrowRight className="w-3.5 h-3.5" aria-hidden="true" />
+                </Link>
+              )}
+            </div>
 
             {/* Footer */}
             <div className="flex items-center justify-between flex-wrap gap-3">
@@ -536,7 +564,7 @@ export default function RadialOrbitalTimeline({ timelineData }: Props) {
                       }),
                 }}
               >
-                {activeNode.status === "completed" ? "Consolidado" : "En evolución"}
+                {activeNode.status === "completed" ? T.done : T.growing}
               </span>
 
               <div className="flex items-center gap-2">
@@ -549,7 +577,7 @@ export default function RadialOrbitalTimeline({ timelineData }: Props) {
                     color: "#8D9AB3",
                   }}
                 >
-                  Sinergias:
+                  {T.synergies}
                 </p>
                 {activeNode.relatedIds.map((rid) => {
                   const rel = timelineData.find((n) => n.id === rid);

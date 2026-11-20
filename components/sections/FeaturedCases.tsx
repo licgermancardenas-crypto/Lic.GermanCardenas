@@ -4,18 +4,17 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRef, useState, useEffect, useCallback } from "react";
 import { createPortal } from "react-dom";
-import { motion, useScroll, useTransform, useReducedMotion } from "framer-motion";
-import { AnimatedSection } from "@/components/AnimatedSection";
+import { motion, useScroll, useTransform, useReducedMotion, AnimatePresence, LayoutGroup } from "framer-motion";
 import { ContactCta } from "@/components/ContactCta";
 import { ResponsiveVideo } from "@/components/ResponsiveVideo";
 import { useLocale } from "next-intl";
 import { describeShot, UI_LABELS } from "@/lib/alt";
+import { CASES_EN, CASE_TAGS, FEATURED_IDS, TAG_LABELS, type CaseTag } from "@/lib/cases-i18n";
 import {
   ExternalLink,
   ArrowRight,
   ChevronLeft,
   ChevronRight,
-  ChevronDown,
   X,
   ZoomIn,
   Trophy,
@@ -723,464 +722,385 @@ function ParallaxScreenshot({
   );
 }
 
-// ── PitchHero ─────────────────────────────────────────────────────────────────
+// ── Textos de la sección ──────────────────────────────────────────────────────
 
-function PitchHero({
-  photo,
-  title,
-  category,
-  caption,
-  nextId,
-}: {
-  photo: string;
-  title: string;
-  category: string;
-  caption: string;
-  nextId: string;
-}) {
-  const scrollLabel = useLocale() === "en" ? "See the case" : "Ver el caso";
-  const scrollToCase = () => {
-    document.getElementById(nextId)?.scrollIntoView({ behavior: "smooth" });
+type Lang = "es" | "en";
+
+const UI = {
+  es: {
+    eyebrow: "─── Casos destacados",
+    title: (n: number, k: number) => [`${n} proyectos.`, `${k} a fondo.`],
+    sub: "Los cuatro más representativos, en detalle; el resto, en la grilla. Filtrá por tema.",
+    filterLabel: "Filtrar casos por tema",
+    all: "Todos",
+    caseWord: "CASO",
+    problem: "Problema",
+    did: "Qué hice",
+    result: "Resultado",
+    winner: "Proyecto ganador",
+    teams: (t: string, sp: string) => `${t} equipos · Sponsor: ${sp}`,
+    role: "Rol",
+    status: "Estado",
+    live: "Ver en producción",
+    full: "Caso completo",
+    more: "Más casos",
+    empty: "No hay casos con ese tema.",
+    privateDefault: "Proyecto para cliente · acceso privado",
+  },
+  en: {
+    eyebrow: "─── Featured cases",
+    title: (n: number, k: number) => [`${n} projects.`, `${k} in depth.`],
+    sub: "The four most representative ones in detail; the rest in the grid. Filter by topic.",
+    filterLabel: "Filter cases by topic",
+    all: "All",
+    caseWord: "CASE",
+    problem: "Problem",
+    did: "What I did",
+    result: "Result",
+    winner: "Winning project",
+    teams: (t: string, sp: string) => `${t} teams · Sponsor: ${sp}`,
+    role: "Role",
+    status: "Status",
+    live: "See it live",
+    full: "Full case",
+    more: "More cases",
+    empty: "No cases with that topic.",
+    privateDefault: "Client project · private access",
+  },
+} as const;
+
+/** Texto del caso en el idioma de la página (el inglés vive en lib/cases-i18n.ts). */
+function localize(c: CaseData, lang: Lang) {
+  const en = lang === "en" ? CASES_EN[c.id] : undefined;
+  return {
+    category: en?.category ?? c.category,
+    subtitle: en?.subtitle ?? c.subtitle,
+    meta: en?.meta ?? c.meta,
+    metrics: c.metrics.map((m, i) => ({ value: m.value, label: en?.metricLabels[i] ?? m.label })),
+    challenge: en?.challenge ?? c.challenge,
+    approach: en?.approach ?? c.approach,
+    impact: en?.impact ?? c.impact,
+    privateNote: en?.privateNote ?? c.privateNote,
   };
+}
+
+const mono = { fontFamily: "var(--font-mono)" } as const;
+
+// ── Caso en formato grande ────────────────────────────────────────────────────
+
+function FeaturedBig({ c, lang }: { c: CaseData; lang: Lang }) {
+  const t = UI[lang];
+  const L = localize(c, lang);
+  const gold = c.isHackathon;
+  const accent = gold ? "#F5B544" : "#4A8BFF";
 
   return (
-    <section className="relative" style={{ height: "100svh", minHeight: "600px" }}>
-      <Image
-        src={photo}
-        alt={`${title} — pitch`}
-        fill
-        className="object-cover"
-        quality={90}
-        sizes="100vw"
-      />
+    <motion.section
+      layout
+      id={c.id}
+      initial={false}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.3, ease: EASE }}
+      className="py-14 sm:py-20 scroll-mt-20"
+      style={{ borderTop: "1px solid rgba(255,255,255,0.05)" }}
+    >
+      <p style={{ ...mono, fontSize: "12px", letterSpacing: "0.16em", textTransform: "uppercase", color: "#8D9AB3" }}>
+        {t.caseWord} {c.number} · {L.category}
+      </p>
 
-      {/* Gradient overlay: light on top, heavy on bottom */}
-      <div
-        className="absolute inset-0"
-        style={{
-          background:
-            "linear-gradient(to bottom, rgba(6,8,13,0.25) 0%, rgba(6,8,13,0.35) 50%, rgba(6,8,13,0.88) 85%, rgba(6,8,13,1) 100%)",
-        }}
-      />
+      <div className="mt-6 grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start">
+        <div className="space-y-8 min-w-0">
+          <div>
+            <h3
+              className="font-serif"
+              style={{ textTransform: "uppercase", fontSize: "clamp(36px, 4.5vw, 64px)", fontWeight: 600, color: "#F0F4FB", lineHeight: 1.0, letterSpacing: "0.02em", marginBottom: "16px" }}
+            >
+              {c.title}
+            </h3>
+            <div style={{ height: "2px", width: "64px", background: gold ? "#F5B544" : "#2B6FE8", marginBottom: "20px" }} />
+            <p style={{ fontSize: "19px", lineHeight: 1.6, color: "#C5CFE2" }}>{L.subtitle}</p>
+          </div>
 
-      {/* Text: bottom-left */}
-      <motion.div
-        initial={{ opacity: 0, y: 24 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, ease: EASE, delay: 0.2 }}
-        className="absolute bottom-0 left-0 right-0 px-6 pb-24 md:px-16 lg:px-24"
-      >
-        <p
-          style={{
-            fontFamily: "var(--font-mono)",
-            fontSize: "12px",
-            letterSpacing: "0.18em",
-            textTransform: "uppercase",
-            color: "rgba(255,255,255,0.45)",
-            marginBottom: "14px",
-          }}
-        >
-          CASO 02 · {category}
+          {/* Métricas clave, arriba */}
+          <div className="grid grid-cols-3 gap-4 sm:gap-6">
+            {L.metrics.map((m) => (
+              <div key={m.value + m.label} className="flex flex-col gap-2 min-w-0">
+                <span style={{ fontSize: "clamp(22px, 2.6vw, 36px)", fontWeight: 600, color: "#F0F4FB", letterSpacing: "-0.03em", fontVariantNumeric: "tabular-nums", lineHeight: 1.05 }}>
+                  {m.value}
+                </span>
+                <span style={{ ...mono, fontSize: "12px", letterSpacing: "0.06em", textTransform: "uppercase", color: "#8D9AB3", lineHeight: 1.45 }}>
+                  {m.label}
+                </span>
+              </div>
+            ))}
+          </div>
+
+          {gold && (
+            <div className="flex items-start gap-4" style={{ borderRadius: "12px", padding: "18px 22px", border: "1px dashed rgba(245,181,68,0.3)", background: "rgba(245,181,68,0.04)" }}>
+              <Trophy className="w-6 h-6 shrink-0" style={{ color: "#F5B544" }} aria-hidden="true" />
+              <div>
+                <p style={{ ...mono, fontSize: "12px", letterSpacing: "0.16em", textTransform: "uppercase", color: "#F5B544", marginBottom: "4px" }}>{t.winner}</p>
+                <p style={{ fontSize: "16px", fontWeight: 500, color: "#F0F4FB", marginBottom: "2px" }}>{c.hackathonName}</p>
+                <p style={{ ...mono, fontSize: "12px", color: "#D9B36A" }}>{t.teams(c.hackathonTeams ?? "", c.hackathonSponsor ?? "")}</p>
+              </div>
+            </div>
+          )}
+
+          {/* Problema → Qué hice → Resultado */}
+          <div className="space-y-6">
+            {[
+              { label: t.problem, text: L.challenge },
+              { label: t.did, text: L.approach },
+              { label: t.result, text: L.impact },
+            ].map(({ label, text }) => (
+              <div key={label} style={{ paddingLeft: "18px", borderLeft: `2px solid ${gold ? "rgba(245,181,68,0.3)" : "rgba(43,111,232,0.35)"}` }}>
+                <h4 style={{ ...mono, fontSize: "12px", letterSpacing: "0.14em", textTransform: "uppercase", color: accent, marginBottom: "8px", fontWeight: 600 }}>
+                  {label}
+                </h4>
+                <p style={{ fontSize: "16px", lineHeight: 1.7, color: "#C5CFE2" }}>{text}</p>
+              </div>
+            ))}
+          </div>
+
+          <dl className="flex flex-wrap gap-x-8 gap-y-3" style={{ paddingTop: "4px" }}>
+            {[
+              [t.role, L.meta.rol],
+              ["Stack", L.meta.stack],
+              [t.status, L.meta.estado],
+            ].map(([k, v]) => (
+              <div key={k}>
+                <dt style={{ ...mono, fontSize: "12px", letterSpacing: "0.12em", textTransform: "uppercase", color: "#8D9AB3", marginBottom: "4px" }}>{k}</dt>
+                <dd style={{ fontSize: "14px", fontWeight: 500, color: "#C5CFE2" }}>{v}</dd>
+              </div>
+            ))}
+          </dl>
+
+          <div className="flex flex-wrap gap-3">
+            {c.url && (
+              <a
+                href={c.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 min-h-[44px] transition-all duration-200 hover:-translate-y-0.5"
+                style={{ padding: "12px 24px", borderRadius: "8px", background: gold ? "#F5B544" : "#2B6FE8", color: gold ? "#06080D" : "#fff", fontSize: "14px", fontWeight: 600 }}
+              >
+                {t.live}
+                <ExternalLink className="w-3.5 h-3.5" aria-hidden="true" />
+              </a>
+            )}
+            <Link
+              href={`/${lang}/work/${c.slug}`}
+              className="inline-flex items-center gap-2 min-h-[44px] transition-all duration-200 hover:-translate-y-0.5 hover:border-[#4A8BFF]/40"
+              style={{ padding: "12px 24px", borderRadius: "8px", background: "rgba(15,22,35,0.6)", border: "1px solid rgba(255,255,255,0.08)", color: "#C5CFE2", fontSize: "14px", fontWeight: 500 }}
+            >
+              {t.full}
+              <ArrowRight className="w-3.5 h-3.5" aria-hidden="true" />
+            </Link>
+          </div>
+        </div>
+
+        <div className="lg:sticky lg:top-24 lg:self-start min-w-0">
+          <ParallaxScreenshot
+            screenshots={c.pitchPhoto ? [c.pitchPhoto, ...c.screenshots] : c.screenshots}
+            title={c.title}
+            url={c.url}
+            privateNote={L.privateNote ?? t.privateDefault}
+            isHackathon={c.isHackathon}
+          />
+        </div>
+      </div>
+    </motion.section>
+  );
+}
+
+// ── Tarjeta compacta (bento) ──────────────────────────────────────────────────
+
+function BentoCard({ c, lang, wide }: { c: CaseData; lang: Lang; wide: boolean }) {
+  const t = UI[lang];
+  const L = localize(c, lang);
+  const m = L.metrics[0];
+
+  return (
+    <motion.article
+      layout
+      id={c.id}
+      initial={{ opacity: 0, scale: 0.98 }}
+      animate={{ opacity: 1, scale: 1 }}
+      exit={{ opacity: 0, scale: 0.98 }}
+      transition={{ duration: 0.3, ease: EASE }}
+      className={`relative group flex flex-col rounded-2xl overflow-hidden scroll-mt-24 ${wide ? "md:col-span-2" : ""}`}
+      style={{ background: "#0B1019", border: "1px solid rgba(255,255,255,0.07)" }}
+    >
+      <div className="relative z-10">
+        {c.video ? (
+          <ResponsiveVideo
+            label={c.video.label}
+            wide={{ src: c.video.src, poster: c.video.poster, width: c.video.width, height: c.video.height }}
+            tall={{ src: c.video.src, poster: c.video.poster, width: c.video.width, height: c.video.height }}
+          />
+        ) : (
+          <div className="relative w-full" style={{ aspectRatio: "16 / 10", background: "#060810" }}>
+            <Image
+              src={c.screenshots[0]}
+              alt={describeShot(c.screenshots[0], c.title, 0, c.screenshots.length, lang)}
+              fill
+              sizes={wide ? "(max-width: 768px) 100vw, 66vw" : "(max-width: 768px) 100vw, 33vw"}
+              className="object-cover object-top transition-transform duration-500 group-hover:scale-[1.02]"
+            />
+          </div>
+        )}
+      </div>
+
+      <div className="flex flex-col gap-3 p-5 sm:p-6 flex-1">
+        <p style={{ ...mono, fontSize: "12px", letterSpacing: "0.12em", textTransform: "uppercase", color: "#8D9AB3" }}>
+          {c.number} · {L.category}
         </p>
-        <h3
-          style={{
-            textTransform: "uppercase",
-            fontSize: "clamp(44px, 6.5vw, 96px)",
-            fontWeight: 600,
-            color: "#F0F4FB",
-            lineHeight: 1.0,
-            letterSpacing: "0.02em",
-            fontFamily: "var(--font-serif)",
-            marginBottom: "16px",
-          }}
-        >
-          {title}
-        </h3>
-        <p
-          style={{
-            fontFamily: "var(--font-mono)",
-            fontSize: "12px",
-            letterSpacing: "0.08em",
-            color: "rgba(255,255,255,0.35)",
-          }}
-        >
-          {caption}
+        <h4 style={{ fontSize: "22px", fontWeight: 600, color: "#F0F4FB", lineHeight: 1.2 }}>
+          <Link
+            href={`/${lang}/work/${c.slug}`}
+            className="after:absolute after:inset-0 after:content-[''] focus:outline-none focus-visible:underline"
+          >
+            {c.title}
+          </Link>
+        </h4>
+        <p className="line-clamp-3" style={{ fontSize: "15px", lineHeight: 1.6, color: "#C5CFE2" }}>
+          {L.subtitle}
         </p>
-      </motion.div>
 
-      {/* Scroll indicator */}
-      <button
-        onClick={scrollToCase}
-        aria-label={scrollLabel}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 min-w-[40px] min-h-[40px] flex flex-col items-center justify-center gap-1 group"
-      >
-        <motion.div
-          animate={{ y: [0, 6, 0] }}
-          transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}
-          style={{ color: "rgba(255,255,255,0.4)" }}
-          className="group-hover:text-white transition-colors duration-200"
-        >
-          <ChevronDown className="w-5 h-5" />
-        </motion.div>
-      </button>
-    </section>
+        <div className="flex items-baseline gap-3 mt-1">
+          <span style={{ fontSize: "28px", fontWeight: 600, color: "#F0F4FB", letterSpacing: "-0.03em", fontVariantNumeric: "tabular-nums" }}>{m.value}</span>
+          <span style={{ ...mono, fontSize: "12px", letterSpacing: "0.06em", textTransform: "uppercase", color: "#8D9AB3", lineHeight: 1.4 }}>{m.label}</span>
+        </div>
+
+        <p style={{ fontSize: "13px", color: "#8D9AB3", lineHeight: 1.5 }}>
+          {L.meta.rol} · {L.meta.stack}
+        </p>
+
+        <div className="mt-auto pt-2 flex flex-wrap items-center gap-4">
+          <span className="inline-flex items-center gap-1.5 text-sm font-medium" style={{ color: "#4A8BFF" }}>
+            {t.full}
+            <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
+          </span>
+          {c.url && (
+            <a
+              href={c.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="relative z-10 inline-flex items-center gap-1.5 min-h-[40px] text-sm hover:text-[#F0F4FB] transition-colors"
+              style={{ color: "#8D9AB3" }}
+            >
+              {t.live}
+              <ExternalLink className="w-3.5 h-3.5" aria-hidden="true" />
+            </a>
+          )}
+        </div>
+      </div>
+    </motion.article>
   );
 }
 
 // ── FeaturedCases ─────────────────────────────────────────────────────────────
 
+type Filter = "all" | CaseTag;
+
 export function FeaturedCases() {
-  const locale = useLocale();
+  const lang: Lang = useLocale() === "en" ? "en" : "es";
+  const t = UI[lang];
+  const [filter, setFilter] = useState<Filter>("all");
+
+  const matches = (c: CaseData) => filter === "all" || (CASE_TAGS[c.id] ?? []).includes(filter);
+  const featured = FEATURED_IDS.map((id) => cases.find((c) => c.id === id)).filter((c): c is CaseData => !!c);
+  const rest = cases.filter((c) => !(FEATURED_IDS as readonly string[]).includes(c.id));
+  const featuredShown = featured.filter(matches);
+  const restShown = rest.filter(matches);
+  const count = (f: Filter) => (f === "all" ? cases.length : cases.filter((c) => (CASE_TAGS[c.id] ?? []).includes(f)).length);
+  const [h2a, h2b] = t.title(cases.length, featured.length);
+
   return (
-    <>
-      {/* Section intro */}
-      <section id="casos" className="pt-20 sm:pt-32 lg:pt-40 pb-12 sm:pb-20" style={{ backgroundColor: "#06080D" }}>
-        <div className="container-custom">
-          <AnimatedSection>
-            <p
-              style={{
-                fontFamily: "var(--font-mono)",
-                fontSize: "12px",
-                letterSpacing: "0.16em",
-                textTransform: "uppercase",
-                color: "#8D9AB3",
-                marginBottom: "32px",
-              }}
-            >
-              ─── Casos destacados
-            </p>
-            <h2
-              className="font-serif"
-              style={{
-                textTransform: "uppercase",
-                fontSize: "clamp(40px, 5.5vw, 80px)",
-                fontWeight: 600,
-                color: "#F0F4FB",
-                lineHeight: 1.05,
-                letterSpacing: "0.02em",
-              }}
-            >
-              Once proyectos.{" "}
-              <span>Once historias.</span>
-            </h2>
-            <p
-              style={{
-                marginTop: "16px",
-                fontFamily: "var(--font-mono)",
-                fontSize: "13px",
-                color: "#8D9AB3",
-                letterSpacing: "0.04em",
-              }}
-            >
-              Una constelación de evidencia.
-            </p>
-          </AnimatedSection>
-        </div>
-      </section>
+    <section id="casos" className="scroll-mt-16" style={{ backgroundColor: "#06080D" }}>
+      <div className="container-custom pt-20 sm:pt-28 pb-6">
+        <p style={{ ...mono, fontSize: "12px", letterSpacing: "0.16em", textTransform: "uppercase", color: "#8D9AB3", marginBottom: "24px" }}>
+          {t.eyebrow}
+        </p>
+        <h2
+          className="font-serif"
+          style={{ textTransform: "uppercase", fontSize: "clamp(40px, 5.5vw, 80px)", fontWeight: 600, color: "#F0F4FB", lineHeight: 1.05, letterSpacing: "0.02em" }}
+        >
+          {h2a} <span>{h2b}</span>
+        </h2>
+        <p style={{ marginTop: "16px", fontSize: "16px", color: "#C5CFE2", maxWidth: "640px" }}>{t.sub}</p>
 
-      {/* 4 case sections */}
-      {cases.map((c) => {
-        const isGold = c.isHackathon;
-
-        return (
-          <div key={c.id}>
-          {c.pitchPhoto && (
-            <PitchHero
-              photo={c.pitchPhoto}
-              title={c.title}
-              category={c.category}
-              caption={c.pitchPhotoCaption ?? ""}
-              nextId={c.id}
-            />
-          )}
-          <section
-            id={c.id}
-            className="py-16 sm:py-24 lg:py-32"
-            style={{
-              backgroundColor: "#06080D",
-              borderTop: "1px solid rgba(255,255,255,0.05)",
-            }}
-          >
-            <div className="container-custom">
-              {/* Eyebrow */}
-              <AnimatedSection className="mb-8 sm:mb-16">
-                <p
-                  style={{
-                    fontFamily: "var(--font-mono)",
-                    fontSize: "12px",
-                    letterSpacing: "0.16em",
-                    textTransform: "uppercase",
-                    color: "#8D9AB3",
-                  }}
-                >
-                  CASO {c.number} · {c.category}
-                </p>
-              </AnimatedSection>
-
-              {/* 2-col layout */}
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-20 items-start">
-                {/* LEFT: narrative */}
-                <AnimatedSection className="space-y-10">
-                  <div>
-                    <h3
-                      className="font-serif"
-                      style={{
-                        textTransform: "uppercase",
-                        fontSize: "clamp(40px, 5vw, 72px)",
-                        fontWeight: 600,
-                        color: "#F0F4FB",
-                        lineHeight: 1.0,
-                        letterSpacing: "0.02em",
-                        marginBottom: "16px",
-                      }}
-                    >
-                      {c.title}
-                    </h3>
-                    <div
-                      style={{
-                        height: "2px",
-                        width: "64px",
-                        background: isGold ? "#F5B544" : "#2B6FE8",
-                        marginBottom: "24px",
-                      }}
-                    />
-                    <p style={{ fontSize: "20px", lineHeight: 1.6, color: "#C5CFE2" }}>
-                      {c.subtitle}
-                    </p>
-                  </div>
-
-                  {c.isHackathon && (
-                    <div
-                      style={{
-                        borderRadius: "12px",
-                        padding: "20px 24px",
-                        border: "1px dashed rgba(245,181,68,0.3)",
-                        background: "rgba(245,181,68,0.04)",
-                      }}
-                    >
-                      <div className="flex items-start gap-4">
-                        <Trophy className="w-6 h-6" style={{ color: "#F5B544" }} aria-hidden="true" />
-                        <div>
-                          <p
-                            style={{
-                              fontFamily: "var(--font-mono)",
-                              fontSize: "12px",
-                              letterSpacing: "0.16em",
-                              textTransform: "uppercase",
-                              color: "#F5B544",
-                              marginBottom: "6px",
-                            }}
-                          >
-                            Proyecto Ganador
-                          </p>
-                          <p style={{ fontSize: "16px", fontWeight: 500, color: "#F0F4FB", marginBottom: "4px" }}>
-                            {c.hackathonName}
-                          </p>
-                          <p style={{ fontFamily: "var(--font-mono)", fontSize: "12px", color: "rgba(245,181,68,0.6)" }}>
-                            {c.hackathonTeams} equipos · Sponsor: {c.hackathonSponsor}
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  )}
-
-                  <div
-                    className="grid grid-cols-2 lg:grid-cols-4 gap-4"
-                    style={{
-                      padding: "20px 24px",
-                      borderRadius: "12px",
-                      background: "#0F1623",
-                      border: "1px solid rgba(255,255,255,0.04)",
-                    }}
-                  >
-                    {(
-                      [
-                        ["ROL", c.meta.rol],
-                        ["ESCALA", c.meta.escala],
-                        ["STACK", c.meta.stack],
-                        ["ESTADO", c.meta.estado],
-                      ] as [string, string][]
-                    ).map(([label, value]) => (
-                      <div key={label}>
-                        <p
-                          style={{
-                            fontFamily: "var(--font-mono)",
-                            fontSize: "12px",
-                            letterSpacing: "0.12em",
-                            textTransform: "uppercase",
-                            color: "#8D9AB3",
-                            marginBottom: "6px",
-                          }}
-                        >
-                          {label}
-                        </p>
-                        <p style={{ fontSize: "14px", fontWeight: 500, color: "#C5CFE2" }}>
-                          {value}
-                        </p>
-                      </div>
-                    ))}
-                  </div>
-
-                  <div className="space-y-8">
-                    {[
-                      { label: "El desafío", text: c.challenge },
-                      { label: "Mi aproximación", text: c.approach },
-                      { label: c.impactLabel, text: c.impact },
-                    ].map(({ label, text }) => (
-                      <div
-                        key={label}
-                        style={{
-                          paddingLeft: "20px",
-                          borderLeft: `2px solid ${isGold ? "rgba(245,181,68,0.3)" : "rgba(43,111,232,0.3)"}`,
-                        }}
-                      >
-                        <p
-                          style={{
-                            fontFamily: "var(--font-mono)",
-                            fontSize: "12px",
-                            letterSpacing: "0.14em",
-                            textTransform: "uppercase",
-                            color: isGold ? "#F5B544" : "#4A8BFF",
-                            marginBottom: "10px",
-                          }}
-                        >
-                          {label}
-                        </p>
-                        <p style={{ fontSize: "16px", lineHeight: 1.7, color: "#C5CFE2" }}>
-                          {text}
-                        </p>
-                      </div>
-                    ))}
-                  </div>
-
-                  <div
-                    className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8"
-                    style={{ paddingTop: "32px", borderTop: "1px solid rgba(255,255,255,0.06)" }}
-                  >
-                    {c.metrics.map((m) => (
-                      <div key={m.label} className="flex flex-col gap-2">
-                        <span
-                          style={{
-                            fontSize: "clamp(24px, 3vw, 40px)",
-                            fontWeight: 600,
-                            color: "#F0F4FB",
-                            letterSpacing: "-0.04em",
-                            fontVariantNumeric: "tabular-nums",
-                            fontFamily: "var(--font-sans)",
-                          }}
-                        >
-                          {m.value}
-                        </span>
-                        <div
-                          style={{
-                            height: "1px",
-                            width: "40px",
-                            background: isGold ? "#F5B544" : "#2B6FE8",
-                            marginBottom: "8px",
-                          }}
-                        />
-                        <span
-                          style={{
-                            fontFamily: "var(--font-mono)",
-                            fontSize: "12px",
-                            letterSpacing: "0.08em",
-                            textTransform: "uppercase",
-                            color: "#8D9AB3",
-                            lineHeight: 1.5,
-                          }}
-                        >
-                          {m.label}
-                        </span>
-                      </div>
-                    ))}
-                  </div>
-
-                  <div className="flex flex-wrap gap-3 pt-2">
-                    {c.url && (
-                    <a
-                      href={c.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 transition-all duration-200 hover:-translate-y-0.5"
-                      style={{
-                        padding: "12px 24px",
-                        borderRadius: "8px",
-                        background: isGold ? "#F5B544" : "#2B6FE8",
-                        color: isGold ? "#06080D" : "#fff",
-                        fontSize: "14px",
-                        fontWeight: 600,
-                      }}
-                    >
-                      Ver en producción
-                      <ExternalLink className="w-3.5 h-3.5" />
-                    </a>
-                    )}
-                    <Link
-                      href={`/es/work/${c.slug}`}
-                      className="inline-flex items-center gap-2 transition-all duration-200 hover:-translate-y-0.5"
-                      style={{
-                        padding: "12px 24px",
-                        borderRadius: "8px",
-                        background: "rgba(15,22,35,0.6)",
-                        backdropFilter: "blur(24px)",
-                        border: "1px solid rgba(255,255,255,0.06)",
-                        color: "#C5CFE2",
-                        fontSize: "14px",
-                        fontWeight: 500,
-                      }}
-                      onMouseEnter={(e) => {
-                        (e.currentTarget as HTMLElement).style.borderColor = "rgba(74,139,255,0.3)";
-                        (e.currentTarget as HTMLElement).style.color = "#F0F4FB";
-                      }}
-                      onMouseLeave={(e) => {
-                        (e.currentTarget as HTMLElement).style.borderColor = "rgba(255,255,255,0.06)";
-                        (e.currentTarget as HTMLElement).style.color = "#C5CFE2";
-                      }}
-                    >
-                      Caso completo
-                      <ArrowRight className="w-3.5 h-3.5" />
-                    </Link>
-                  </div>
-                </AnimatedSection>
-
-                {/* RIGHT: gallery */}
-                <AnimatedSection delay={0.15} className="lg:sticky lg:top-24 lg:self-start">
-                  {c.video && (
-                    <figure className="mb-5" style={{ borderRadius: "12px", overflow: "hidden", border: "1px solid rgba(255,255,255,0.08)", background: "#0b0b0b" }}>
-                      <ResponsiveVideo
-                        label={c.video.label}
-                        wide={{ src: c.video.src, poster: c.video.poster, width: c.video.width, height: c.video.height }}
-                        tall={{ src: c.video.src, poster: c.video.poster, width: c.video.width, height: c.video.height }}
-                      />
-                      <figcaption style={{ fontFamily: "var(--font-mono)", fontSize: "12px", color: "rgba(255,255,255,0.4)", padding: "10px 14px" }}>
-                        {c.video.label}
-                      </figcaption>
-                    </figure>
-                  )}
-                  <ParallaxScreenshot
-                    screenshots={c.screenshots}
-                    title={c.title}
-                    url={c.url}
-                    privateNote={c.privateNote}
-                    isHackathon={c.isHackathon}
+        {/* Filtros */}
+        <div role="group" aria-label={t.filterLabel} className="mt-8 flex flex-wrap gap-2">
+          {(["all", "finance", "gis", "ai", "security"] as Filter[]).map((f) => {
+            const on = filter === f;
+            return (
+              <button
+                key={f}
+                type="button"
+                onClick={() => setFilter(f)}
+                aria-pressed={on}
+                className="relative inline-flex items-center gap-2 min-h-[40px] px-4 rounded-full text-sm font-medium transition-colors"
+                style={{
+                  color: on ? "#06080D" : "#C5CFE2",
+                  border: `1px solid ${on ? "transparent" : "rgba(255,255,255,0.12)"}`,
+                }}
+              >
+                {on && (
+                  <motion.span
+                    layoutId="case-filter-pill"
+                    className="absolute inset-0 rounded-full"
+                    style={{ background: "#F0F4FB" }}
+                    transition={{ type: "spring", stiffness: 420, damping: 34 }}
                   />
-                </AnimatedSection>
+                )}
+                <span className="relative">{f === "all" ? t.all : TAG_LABELS[f][lang]}</span>
+                <span className="relative tabular-nums" style={{ ...mono, fontSize: "12px", opacity: 0.75 }}>{count(f)}</span>
+              </button>
+            );
+          })}
+        </div>
+      </div>
+
+      <LayoutGroup>
+        <div className="container-custom">
+          <AnimatePresence initial={false} mode="popLayout">
+            {featuredShown.map((c) => (
+              <FeaturedBig key={c.id} c={c} lang={lang} />
+            ))}
+          </AnimatePresence>
+
+          {restShown.length > 0 && (
+            <motion.div layout className="pt-14 pb-10" style={{ borderTop: "1px solid rgba(255,255,255,0.05)" }}>
+              <h3 style={{ ...mono, fontSize: "12px", letterSpacing: "0.16em", textTransform: "uppercase", color: "#8D9AB3", marginBottom: "24px", fontWeight: 500 }}>
+                ─── {t.more}
+              </h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+                <AnimatePresence initial={false} mode="popLayout">
+                  {restShown.map((c) => (
+                    <BentoCard key={c.id} c={c} lang={lang} wide={!!c.video} />
+                  ))}
+                </AnimatePresence>
               </div>
-            </div>
-          </section>
-          </div>
-        );
-      })}
-      <div className="container-custom pb-24" style={{ backgroundColor: "#06080D" }}>
+            </motion.div>
+          )}
+
+          {featuredShown.length + restShown.length === 0 && (
+            <p className="py-16 text-center" style={{ color: "#8D9AB3" }}>{t.empty}</p>
+          )}
+        </div>
+      </LayoutGroup>
+
+      <div className="container-custom pb-24">
         <div className="max-w-5xl mx-auto">
           <ContactCta
-            locale={locale}
+            locale={lang}
             variant="full"
-            title={locale === "en" ? "Got a similar data problem?" : "¿Tenés un problema de datos parecido?"}
-            text={locale === "en" ? "From raw data to a dashboard in production: ETL, models, maps and the website that tells the story." : "Del dato crudo al tablero en producción: ETL, modelos, mapas y la web que lo cuenta."}
+            title={lang === "en" ? "Got a similar data problem?" : "¿Tenés un problema de datos parecido?"}
+            text={lang === "en" ? "From raw data to a dashboard in production: ETL, models, maps and the website that tells the story." : "Del dato crudo al tablero en producción: ETL, modelos, mapas y la web que lo cuenta."}
           />
         </div>
       </div>
-    </>
+    </section>
   );
 }

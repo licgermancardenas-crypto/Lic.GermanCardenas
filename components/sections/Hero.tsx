@@ -4,6 +4,8 @@ import { useEffect } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { useLocale } from "next-intl";
+import { HexField } from "@/components/HexField";
+import { CountUp } from "@/components/CountUp";
 import { COMPANIES_COUNT, yearsOfExperience } from "@/lib/experience-data";
 import { CASES_COUNT } from "@/components/sections/FeaturedCases";
 
@@ -132,6 +134,13 @@ export function Hero() {
             "radial-gradient(ellipse at 20% 40%, rgba(26,58,140,0.25) 0%, transparent 60%)",
         }}
       />
+
+      {/* Grilla hexagonal viva (detrás del texto, se desvanece antes de la foto) */}
+      <div
+        className="absolute inset-0 pointer-events-none [mask-image:linear-gradient(to_bottom,black_35%,transparent_70%)] md:[mask-image:linear-gradient(to_right,black_25%,transparent_55%)]"
+      >
+        <HexField className="w-full h-full" />
+      </div>
 
       <div className="container-custom pt-28 pb-8 relative z-10">
         {/* TEXT — left half only, max-width keeps it from clashing with photo */}
@@ -351,7 +360,7 @@ export function Hero() {
                     fontVariantNumeric: "tabular-nums",
                   }}
                 >
-                  {m.value}
+                  <CountUp value={m.value} delay={900 + i * 90} />
                 </span>
                 <span
                   style={{

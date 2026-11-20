@@ -292,7 +292,9 @@ export function Navigation() {
           {/* ⌘K */}
           <button
             onClick={openPalette}
-            className="hidden md:flex items-center gap-1.5 px-3 py-1.5 rounded-md transition-all duration-200"
+            aria-label={currentLocale === "en" ? "Quick search (Ctrl+K)" : "Búsqueda rápida (Ctrl+K)"}
+            aria-keyshortcuts="Control+K Meta+K"
+            className="hidden md:flex items-center gap-1.5 px-3 py-1.5 min-h-[40px] rounded-md transition-all duration-200"
             style={{
               fontFamily: "var(--font-mono)",
               fontSize: "12px",

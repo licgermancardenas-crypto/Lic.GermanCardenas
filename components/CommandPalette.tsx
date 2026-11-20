@@ -1,90 +1,183 @@
 "use client";
 
-import { useState, useEffect, useRef, useCallback } from "react";
+import { useState, useEffect, useRef, useCallback, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Search, ArrowRight, Hash } from "lucide-react";
-import { useRouter } from "next/navigation";
+import { Search, ArrowRight, Download, Languages, MessageCircle, Clock } from "lucide-react";
+import { useRouter, usePathname } from "next/navigation";
+import { useLocale } from "next-intl";
+import { CASE_INDEX } from "@/lib/cases-i18n";
+
+type Lang = "es" | "en";
+type Group = "sections" | "cases" | "actions";
 
 type Command = {
   id: string;
+  group: Group;
   label: string;
   description?: string;
-  type: "scroll" | "navigate";
-  target: string;
-  icon?: string;
+  /** Palabras extra para la búsqueda (no se muestran). */
+  keywords?: string;
+  icon: React.ReactNode;
+  run: () => void;
 };
 
-const commands: Command[] = [
-  { id: "inicio", label: "Inicio", description: "Volver al principio", type: "scroll", target: "hero", icon: "↑" },
-  { id: "casos", label: "Casos destacados", description: "Atlas ERP, Nexus, AgroNova, LAPD, Yerba Mate, YPF, Sentinel, Phantom, Atlas Analytics, ZEUS, CABA", type: "scroll", target: "casos", icon: "⬡" },
-  { id: "caso-erp", label: "Atlas One ERP", description: "Caso 01 · SaaS para comercios de cercanía", type: "scroll", target: "caso-01", icon: "01" },
-  { id: "caso-nexus", label: "Atlas Nexus", description: "Caso 02 · Hackathon Winner", type: "scroll", target: "caso-02", icon: "02" },
-  { id: "caso-agronova", label: "AgroNova", description: "Caso 03 · AgriTech · 24 provincias", type: "scroll", target: "caso-03", icon: "03" },
-  { id: "caso-lapd", label: "LAPD Crime Analytics", description: "Caso 04 · Research · 1M+ registros", type: "scroll", target: "caso-04", icon: "04" },
-  { id: "caso-yerba", label: "Yerba Mate Intelligence", description: "Caso 05 · Data Science · Freelance", type: "scroll", target: "caso-05", icon: "05" },
-  { id: "caso-ypf", label: "ATLAS-YPF", description: "Caso 06 · Finanzas · Vaca Muerta", type: "scroll", target: "caso-06", icon: "06" },
-  { id: "caso-sentinel", label: "ATLAS SENTINEL", description: "Caso 07 · Data Science · Seguridad urbana", type: "scroll", target: "caso-07", icon: "07" },
-  { id: "caso-phantom", label: "Phantom AI", description: "Caso 08 · Data Science · Prevención de lavado", type: "scroll", target: "caso-08", icon: "08" },
-  { id: "caso-atlas-analytics", label: "Atlas Analytics", description: "Caso 09 · AI Engineering · Consultora", type: "scroll", target: "caso-09", icon: "09" },
-  { id: "caso-zeus", label: "ZEUS · Atlas Control", description: "Caso 10 · Ciberseguridad · DLP", type: "scroll", target: "caso-10", icon: "10" },
-  { id: "caso-caba", label: "Atlas CABA · Jefatura de Gobierno", description: "Caso 11 · Inteligencia electoral", type: "scroll", target: "caso-11", icon: "11" },
-  { id: "mas-trabajo", label: "Más proyectos", description: "RSI, Electoral, CIPE", type: "scroll", target: "projects", icon: "+" },
-  { id: "experiencia", label: "Experiencia", description: "Timeline 2021–presente", type: "scroll", target: "experience", icon: "◎" },
-  { id: "stack", label: "Tech Stack", description: "Herramientas y tecnologías", type: "scroll", target: "stack", icon: "⌘" },
-  { id: "contacto", label: "Contacto", description: "Hablemos", type: "scroll", target: "contact", icon: "@" },
-  { id: "work-erp", label: "Ver caso completo: Atlas ERP", type: "navigate", target: "/es/work/atlas-one-erp", icon: "→" },
-  { id: "work-nexus", label: "Ver caso completo: Atlas Nexus", type: "navigate", target: "/es/work/atlas-nexus", icon: "→" },
-  { id: "work-agronova", label: "Ver caso completo: AgroNova", type: "navigate", target: "/es/work/agronova", icon: "→" },
-  { id: "work-lapd", label: "Ver caso completo: LAPD", type: "navigate", target: "/es/work/lapd", icon: "→" },
-  { id: "work-yerba", label: "Ver caso completo: Yerba Mate", type: "navigate", target: "/es/work/yerba-mate-ml", icon: "→" },
-  { id: "work-ypf", label: "Ver caso completo: ATLAS-YPF", type: "navigate", target: "/es/work/atlas-ypf", icon: "→" },
-  { id: "work-sentinel", label: "Ver caso completo: ATLAS SENTINEL", type: "navigate", target: "/es/work/atlas-sentinel", icon: "→" },
-  { id: "work-phantom", label: "Ver caso completo: Phantom AI", type: "navigate", target: "/es/work/phantom-ai", icon: "→" },
-  { id: "work-atlas-analytics", label: "Ver caso completo: Atlas Analytics", type: "navigate", target: "/es/work/atlas-analytics", icon: "→" },
-  { id: "work-zeus", label: "Ver caso completo: ZEUS", type: "navigate", target: "/es/work/zeus", icon: "→" },
-  { id: "work-caba", label: "Ver caso completo: Atlas CABA", type: "navigate", target: "/es/work/caba-jefatura", icon: "→" },
-  { id: "now", label: "¿Qué estoy haciendo ahora?", type: "navigate", target: "/es/now", icon: "●" },
-  { id: "cv", label: "Descargar CV", type: "navigate", target: "/cv.pdf", icon: "↓" },
-];
+const UI = {
+  es: {
+    placeholder: "Buscar sección, caso o acción…",
+    empty: (q: string) => `Sin resultados para "${q}"`,
+    groups: { sections: "Secciones", cases: "Casos", actions: "Acciones" },
+    nav: "navegar",
+    open: "abrir",
+    close: "cerrar",
+    dialog: "Búsqueda rápida",
+    sections: [
+      ["hero", "Inicio", "Volver al principio"],
+      ["perfiles", "Perfiles", "Seis especialidades"],
+      ["sobre-mi", "Sobre mí", "Quién soy y cómo trabajo"],
+      ["casos", "Casos destacados", "Los proyectos, con filtros por tema"],
+      ["projects", "Más proyectos", "Trabajo seleccionado"],
+      ["experience", "Experiencia", "Trayectoria 2021–presente"],
+      ["stack", "Tech stack", "Herramientas y tecnologías"],
+      ["contact", "Contacto", "Hablemos"],
+    ],
+    cv: "Descargar CV",
+    cvDesc: "PDF",
+    lang: "Switch to English",
+    langDesc: "Ver el sitio en inglés",
+    wa: "Escribir por WhatsApp",
+    waDesc: "Respuesta en el día",
+    now: "¿Qué estoy haciendo ahora?",
+    caseDesc: (n: string, cat: string) => `Caso ${n} · ${cat}`,
+  },
+  en: {
+    placeholder: "Search a section, case or action…",
+    empty: (q: string) => `No results for "${q}"`,
+    groups: { sections: "Sections", cases: "Cases", actions: "Actions" },
+    nav: "navigate",
+    open: "open",
+    close: "close",
+    dialog: "Quick search",
+    sections: [
+      ["hero", "Home", "Back to the top"],
+      ["perfiles", "Profiles", "Six specialties"],
+      ["sobre-mi", "About me", "Who I am and how I work"],
+      ["casos", "Featured cases", "The projects, filterable by topic"],
+      ["projects", "More projects", "Selected work"],
+      ["experience", "Experience", "Career 2021–present"],
+      ["stack", "Tech stack", "Tools and technologies"],
+      ["contact", "Contact", "Let's talk"],
+    ],
+    cv: "Download CV",
+    cvDesc: "PDF",
+    lang: "Cambiar a español",
+    langDesc: "View the site in Spanish",
+    wa: "Message me on WhatsApp",
+    waDesc: "Same-day reply",
+    now: "What am I doing now?",
+    caseDesc: (n: string, cat: string) => `Case ${n} · ${cat}`,
+  },
+} as const;
+
+const norm = (s: string) => s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "");
 
 export function CommandPalette() {
+  const lang: Lang = useLocale() === "en" ? "en" : "es";
+  const t = UI[lang];
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState("");
   const [selected, setSelected] = useState(0);
   const inputRef = useRef<HTMLInputElement>(null);
+  const listRef = useRef<HTMLDivElement>(null);
   const router = useRouter();
+  const pathname = usePathname();
 
-  const filtered = query
-    ? commands.filter(
-        (c) =>
-          c.label.toLowerCase().includes(query.toLowerCase()) ||
-          (c.description?.toLowerCase().includes(query.toLowerCase()) ?? false)
-      )
-    : commands;
+  const scrollTo = useCallback((id: string) => {
+    setTimeout(() => document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" }), 100);
+  }, []);
 
-  const execute = useCallback(
-    (cmd: Command) => {
-      setOpen(false);
-      setQuery("");
-      if (cmd.type === "scroll") {
-        setTimeout(() => {
-          document.getElementById(cmd.target)?.scrollIntoView({ behavior: "smooth", block: "start" });
-        }, 100);
-      } else if (cmd.target === "/cv.pdf") {
-        const a = document.createElement("a");
-        a.href = "/cv.pdf";
-        a.download = "CV_German_Cardenas.pdf";
-        a.click();
-      } else {
-        router.push(cmd.target);
-      }
-    },
-    [router]
-  );
+  const commands: Command[] = useMemo(() => {
+    const other = lang === "es" ? "en" : "es";
+    const sections: Command[] = t.sections.map(([id, label, description]) => ({
+      id: `s-${id}`,
+      group: "sections",
+      label,
+      description,
+      icon: <span className="font-mono text-xs">#</span>,
+      run: () => scrollTo(id),
+    }));
+    const cases: Command[] = CASE_INDEX.map((c) => ({
+      id: `c-${c.id}`,
+      group: "cases",
+      label: c.title,
+      description: t.caseDesc(c.number, c[lang]),
+      keywords: `${c.slug} ${c.es} ${c.en}`,
+      icon: <span className="font-mono text-xs">{c.number}</span>,
+      run: () => router.push(`/${lang}/work/${c.slug}`),
+    }));
+    const actions: Command[] = [
+      {
+        id: "a-cv",
+        group: "actions",
+        label: t.cv,
+        description: t.cvDesc,
+        keywords: "cv resume curriculum pdf",
+        icon: <Download className="w-3.5 h-3.5" />,
+        run: () => {
+          const a = document.createElement("a");
+          a.href = "/cv.pdf";
+          a.download = "CV_German_Cardenas.pdf";
+          a.click();
+        },
+      },
+      {
+        id: "a-lang",
+        group: "actions",
+        label: t.lang,
+        description: t.langDesc,
+        keywords: "idioma language english español ingles",
+        icon: <Languages className="w-3.5 h-3.5" />,
+        run: () => {
+          const seg = pathname.split("/");
+          seg[1] = other;
+          router.push(seg.join("/") || `/${other}`);
+        },
+      },
+      {
+        id: "a-wa",
+        group: "actions",
+        label: t.wa,
+        description: t.waDesc,
+        keywords: "whatsapp contacto contact mensaje",
+        icon: <MessageCircle className="w-3.5 h-3.5" />,
+        run: () => window.open("https://wa.me/5491158562766", "_blank", "noopener,noreferrer"),
+      },
+      {
+        id: "a-now",
+        group: "actions",
+        label: t.now,
+        keywords: "now ahora",
+        icon: <Clock className="w-3.5 h-3.5" />,
+        run: () => router.push(`/${lang}/now`),
+      },
+    ];
+    return [...actions, ...sections, ...cases];
+  }, [lang, t, pathname, router, scrollTo]);
+
+  const filtered = useMemo(() => {
+    if (!query) return commands;
+    const q = norm(query);
+    return commands.filter((c) => norm(`${c.label} ${c.description ?? ""} ${c.keywords ?? ""}`).includes(q));
+  }, [commands, query]);
+
+  const execute = useCallback((cmd: Command) => {
+    setOpen(false);
+    setQuery("");
+    cmd.run();
+  }, []);
 
   useEffect(() => {
     const handleKey = (e: KeyboardEvent) => {
-      if ((e.metaKey || e.ctrlKey) && e.key === "k") {
+      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
         e.preventDefault();
         setOpen((v) => !v);
         setQuery("");
@@ -100,6 +193,10 @@ export function CommandPalette() {
     if (open) setTimeout(() => inputRef.current?.focus(), 50);
   }, [open]);
 
+  useEffect(() => {
+    listRef.current?.querySelector(`[data-idx="${selected}"]`)?.scrollIntoView({ block: "nearest" });
+  }, [selected]);
+
   function handleKeyDown(e: React.KeyboardEvent) {
     if (e.key === "ArrowDown") {
       e.preventDefault();
@@ -113,91 +210,111 @@ export function CommandPalette() {
     }
   }
 
+  const activeId = filtered[selected] ? `cmd-${filtered[selected].id}` : undefined;
+
   return (
-    <>
-      <AnimatePresence>
-        {open && (
-          <>
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.15 }}
-              className="fixed inset-0 z-[9990] bg-black/60 backdrop-blur-sm"
-              onClick={() => setOpen(false)}
-            />
-            <motion.div
-              initial={{ opacity: 0, scale: 0.97, y: -8 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.97, y: -8 }}
-              transition={{ duration: 0.15 }}
-              className="fixed left-1/2 top-[20%] -translate-x-1/2 z-[9991] w-full max-w-[560px] mx-4"
-            >
-              <div className="rounded-2xl border border-[#1F2937] bg-[#0F1419] shadow-2xl overflow-hidden">
-                {/* Search input */}
-                <div className="flex items-center gap-3 px-4 py-4 border-b border-[#1F2937]">
-                  <Search className="w-4 h-4 text-[#8D9AB3] flex-shrink-0" />
-                  <input
-                    ref={inputRef}
-                    value={query}
-                    onChange={(e) => {
-                  setQuery(e.target.value);
-                  setSelected(0);
-                }}
-                    onKeyDown={handleKeyDown}
-                    placeholder="Buscar sección o proyecto..."
-                    className="flex-1 bg-transparent text-[#F5F7FA] placeholder-[#6B7689] text-sm outline-none"
-                  />
-                  <kbd className="text-xs text-[#8D9AB3] border border-[#1F2937] rounded px-1.5 py-0.5 font-mono">
-                    ESC
-                  </kbd>
-                </div>
-                {/* Results */}
-                <div className="max-h-80 overflow-y-auto py-2">
-                  {filtered.length === 0 ? (
-                    <div className="px-4 py-8 text-center text-sm text-[#8D9AB3]">
-                      Sin resultados para &quot;{query}&quot;
-                    </div>
-                  ) : (
-                    filtered.map((cmd, i) => (
-                      <button
-                        key={cmd.id}
-                        onClick={() => execute(cmd)}
-                        onMouseEnter={() => setSelected(i)}
-                        className={`w-full flex items-center gap-3 px-4 py-2.5 text-left transition-colors ${
-                          selected === i
-                            ? "bg-[#4F7CFF]/10 text-[#F5F7FA]"
-                            : "text-[#B8C1D1] hover:bg-white/5"
-                        }`}
-                      >
-                        <span
-                          className="w-6 h-6 flex-shrink-0 flex items-center justify-center rounded text-xs font-mono"
-                          style={{ color: selected === i ? "#4F7CFF" : "#8D9AB3" }}
-                        >
-                          {cmd.icon ?? <Hash className="w-3 h-3" />}
-                        </span>
-                        <div className="flex-1 min-w-0">
-                          <div className="text-sm font-medium truncate">{cmd.label}</div>
-                          {cmd.description && (
-                            <div className="text-xs text-[#8D9AB3] truncate">{cmd.description}</div>
-                          )}
-                        </div>
-                        {selected === i && <ArrowRight className="w-3.5 h-3.5 text-[#4F7CFF] flex-shrink-0" />}
-                      </button>
-                    ))
-                  )}
-                </div>
-                {/* Footer */}
-                <div className="px-4 py-2.5 border-t border-[#1F2937] flex items-center gap-4 text-xs text-[#8D9AB3] font-mono">
-                  <span><kbd className="border border-[#1F2937] rounded px-1">↑↓</kbd> navegar</span>
-                  <span><kbd className="border border-[#1F2937] rounded px-1">↵</kbd> abrir</span>
-                  <span><kbd className="border border-[#1F2937] rounded px-1">⌘K</kbd> cerrar</span>
-                </div>
+    <AnimatePresence>
+      {open && (
+        <>
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.15 }}
+            className="fixed inset-0 z-[9990] bg-black/60 backdrop-blur-sm"
+            onClick={() => setOpen(false)}
+          />
+          <motion.div
+            role="dialog"
+            aria-modal="true"
+            aria-label={t.dialog}
+            initial={{ opacity: 0, scale: 0.97, y: -8 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.97, y: -8 }}
+            transition={{ duration: 0.15 }}
+            className="fixed left-1/2 top-[12%] sm:top-[18%] -translate-x-1/2 z-[9991] w-[calc(100%-32px)] max-w-[560px]"
+          >
+            <div className="rounded-2xl border border-[#1F2937] bg-[#0F1419] shadow-2xl overflow-hidden">
+              <div className="flex items-center gap-3 px-4 py-3 border-b border-[#1F2937]">
+                <Search className="w-4 h-4 text-[#8D9AB3] flex-shrink-0" aria-hidden="true" />
+                <input
+                  ref={inputRef}
+                  value={query}
+                  onChange={(e) => {
+                    setQuery(e.target.value);
+                    setSelected(0);
+                  }}
+                  onKeyDown={handleKeyDown}
+                  placeholder={t.placeholder}
+                  aria-label={t.placeholder}
+                  role="combobox"
+                  aria-expanded="true"
+                  aria-controls="cmdk-list"
+                  aria-activedescendant={activeId}
+                  className="flex-1 min-h-[40px] bg-transparent text-[#F5F7FA] placeholder-[#8D9AB3] text-base sm:text-sm outline-none"
+                />
+                <button
+                  type="button"
+                  onClick={() => setOpen(false)}
+                  className="text-xs text-[#8D9AB3] border border-[#1F2937] rounded px-2 min-h-[32px] font-mono"
+                >
+                  ESC
+                </button>
               </div>
-            </motion.div>
-          </>
-        )}
-      </AnimatePresence>
-    </>
+
+              <div ref={listRef} id="cmdk-list" role="listbox" aria-label={t.dialog} className="max-h-[60vh] sm:max-h-96 overflow-y-auto py-2">
+                {filtered.length === 0 ? (
+                  <div className="px-4 py-8 text-center text-sm text-[#8D9AB3]">{t.empty(query)}</div>
+                ) : (
+                  filtered.map((cmd, i) => {
+                    const head = i === 0 || filtered[i - 1].group !== cmd.group;
+                    const on = selected === i;
+                    return (
+                      <div key={cmd.id}>
+                        {head && (
+                          <p className="px-4 pt-3 pb-1 text-xs font-mono uppercase tracking-[0.14em] text-[#8D9AB3]" aria-hidden="true">
+                            {t.groups[cmd.group]}
+                          </p>
+                        )}
+                        <button
+                          id={`cmd-${cmd.id}`}
+                          data-idx={i}
+                          role="option"
+                          aria-selected={on}
+                          onClick={() => execute(cmd)}
+                          onMouseMove={() => setSelected(i)}
+                          className={`w-full flex items-center gap-3 px-4 py-2.5 min-h-[44px] text-left transition-colors ${
+                            on ? "bg-[#4F7CFF]/10 text-[#F5F7FA]" : "text-[#B8C1D1] hover:bg-white/5"
+                          }`}
+                        >
+                          <span
+                            className="w-6 h-6 flex-shrink-0 flex items-center justify-center rounded"
+                            style={{ color: on ? "#7FA2FF" : "#8D9AB3" }}
+                            aria-hidden="true"
+                          >
+                            {cmd.icon}
+                          </span>
+                          <span className="flex-1 min-w-0">
+                            <span className="block text-sm font-medium truncate">{cmd.label}</span>
+                            {cmd.description && <span className="block text-xs text-[#8D9AB3] truncate">{cmd.description}</span>}
+                          </span>
+                          {on && <ArrowRight className="w-3.5 h-3.5 text-[#7FA2FF] flex-shrink-0" aria-hidden="true" />}
+                        </button>
+                      </div>
+                    );
+                  })
+                )}
+              </div>
+
+              <div className="hidden sm:flex px-4 py-2.5 border-t border-[#1F2937] items-center gap-4 text-xs text-[#8D9AB3] font-mono">
+                <span><kbd className="border border-[#1F2937] rounded px-1">↑↓</kbd> {t.nav}</span>
+                <span><kbd className="border border-[#1F2937] rounded px-1">↵</kbd> {t.open}</span>
+                <span><kbd className="border border-[#1F2937] rounded px-1">⌘K</kbd> {t.close}</span>
+              </div>
+            </div>
+          </motion.div>
+        </>
+      )}
+    </AnimatePresence>
   );
 }
