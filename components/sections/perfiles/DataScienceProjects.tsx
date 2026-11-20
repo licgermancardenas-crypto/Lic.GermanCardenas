@@ -77,7 +77,7 @@ const copy = {
         { k: "88% vs 81%", v: "de vehículos detectados con un YOLOv8 reentrenado para esa esquina, contra el modelo general" },
         { k: "0", v: "cruces falsos en la validación: el sistema puede perder vehículos, pero no inventa" },
         { k: "±1,4 km/h", v: "de diferencia entre dos métodos de velocidad, con la escala tomada de las sendas peatonales" },
-        { k: "±10%", v: "de error del conteo de día contra un conteo manual a ciegas (−4,5%, −5,6% y 0%)" },
+        { k: "±10%", v: "de error del conteo de día contra un conteo de referencia a ciegas (−4,5%, −5,6% y 0%)" },
       ],
       finding:
         "De noche el conteo pierde hasta un 36% de los vehículos, así que cada número se corrige con la tasa de detección medida y se publica con su intervalo de confianza del 95%. Y fuera de alcance, a propósito: la lectura de patentes, el reconocimiento facial y el seguimiento de personas entre cámaras. El sistema trabaja con conteos agregados y eventos de tránsito, dentro de la Ley 25.326 de protección de datos personales.",
@@ -182,7 +182,7 @@ const copy = {
         { k: "88% vs 81%", v: "of vehicles detected with a YOLOv8 retrained for this intersection, versus the general model" },
         { k: "0", v: "false crossings in validation: the system can miss vehicles, but it doesn't invent them" },
         { k: "±1.4 km/h", v: "agreement between two speed methods, with the scale taken from the crosswalk stripes" },
-        { k: "±10%", v: "daytime count error against a blind manual count (−4.5%, −5.6% and 0%)" },
+        { k: "±10%", v: "daytime count error against a blind reference count (−4.5%, −5.6% and 0%)" },
       ],
       finding:
         "At night the count misses up to 36% of vehicles, so every number is corrected with the measured detection rate and published with its 95% confidence interval. And out of scope, on purpose: licence-plate reading, facial recognition and tracking people across cameras. The system works with aggregate counts and traffic events, within Argentina's personal data protection law.",
