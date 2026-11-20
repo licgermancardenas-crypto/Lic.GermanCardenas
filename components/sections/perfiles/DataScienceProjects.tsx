@@ -69,6 +69,28 @@ const copy = {
       live: "Ver el tablero en vivo",
       data: "Datos abiertos y código",
     },
+    traffic: {
+      tag: "Proyecto propio · Visión por computadora · Movilidad urbana",
+      title: "ATLAS Traffic",
+      desc: "Visión por computadora sobre una esquina real de Buenos Aires —Av. Córdoba y Rodríguez Peña— filmada desde un balcón. Cuenta cada vehículo una sola vez y por dirección, mide la velocidad en km/h, clasifica la congestión por densidad y velocidad, y detecta riesgo peatonal, sendas bloqueadas, detenciones prolongadas y circulación en contramano, con foto y video como evidencia. Todo se consulta en un centro de monitoreo vial.",
+      metrics: [
+        { k: "88% vs 81%", v: "de vehículos detectados con un YOLOv8 reentrenado para esa esquina, contra el modelo general" },
+        { k: "0", v: "cruces falsos en la validación: el sistema puede perder vehículos, pero no inventa" },
+        { k: "±1,4 km/h", v: "de diferencia entre dos métodos de velocidad, con la escala tomada de las sendas peatonales" },
+        { k: "±10%", v: "de error del conteo de día contra un conteo manual a ciegas (−4,5%, −5,6% y 0%)" },
+      ],
+      finding:
+        "De noche el conteo pierde hasta un 36% de los vehículos, así que cada número se corrige con la tasa de detección medida y se publica con su intervalo de confianza del 95%. Y fuera de alcance, a propósito: la lectura de patentes, el reconocimiento facial y el seguimiento de personas entre cámaras. El sistema trabaja con conteos agregados y eventos de tránsito, dentro de la Ley 25.326 de protección de datos personales.",
+      stack: ["Python", "YOLOv8 con fine-tuning", "OpenCV (homografía)", "Seguimiento multiobjeto", "PET (seguridad vial)", "Streamlit"],
+      captions: [
+        "Seguir un vehículo: su recorrido, su velocidad y el recorte de evidencia",
+        "La misma esquina con tránsito fluido y con cola, con las líneas de conteo por dirección",
+        "El centro de monitoreo vial: indicadores, mapa de la cámara y últimas alertas",
+      ],
+      note: "Análisis de grabaciones ya procesadas, no una transmisión en vivo. El tablero corre en Streamlit Cloud: si estuvo sin visitas, tarda unos segundos en despertar.",
+      live: "Ver el centro de monitoreo",
+      data: "Código y validación",
+    },
     yerba: {
       tag: "Freelance · Agroindustria",
       title: "Yerba Mate Intelligence",
@@ -151,6 +173,28 @@ const copy = {
       note: "Charts built from the project's open data as of 20/11/2026. The dashboard runs on Streamlit Cloud: if it hasn't had visitors, it takes a few seconds to wake up.",
       live: "See the live dashboard",
       data: "Open data and code",
+    },
+    traffic: {
+      tag: "Personal project · Computer vision · Urban mobility",
+      title: "ATLAS Traffic",
+      desc: "Computer vision on a real Buenos Aires intersection — Córdoba Avenue and Rodríguez Peña — filmed from a balcony. It counts each vehicle once and by direction, measures speed in km/h, classifies congestion by density and speed, and detects pedestrian risk, blocked crosswalks, prolonged stops and wrong-way driving, with photo and video evidence. Everything is browsable in a traffic monitoring centre.",
+      metrics: [
+        { k: "88% vs 81%", v: "of vehicles detected with a YOLOv8 retrained for this intersection, versus the general model" },
+        { k: "0", v: "false crossings in validation: the system can miss vehicles, but it doesn't invent them" },
+        { k: "±1.4 km/h", v: "agreement between two speed methods, with the scale taken from the crosswalk stripes" },
+        { k: "±10%", v: "daytime count error against a blind manual count (−4.5%, −5.6% and 0%)" },
+      ],
+      finding:
+        "At night the count misses up to 36% of vehicles, so every number is corrected with the measured detection rate and published with its 95% confidence interval. And out of scope, on purpose: licence-plate reading, facial recognition and tracking people across cameras. The system works with aggregate counts and traffic events, within Argentina's personal data protection law.",
+      stack: ["Python", "Fine-tuned YOLOv8", "OpenCV (homography)", "Multi-object tracking", "PET (road safety)", "Streamlit"],
+      captions: [
+        "Following a vehicle: its path, its speed and the evidence crop",
+        "The same intersection in free flow and in a queue, with directional counting lines",
+        "The traffic monitoring centre: indicators, camera map and latest alerts",
+      ],
+      note: "Analysis of recorded footage, not a live feed. The dashboard runs on Streamlit Cloud: if it hasn't had visitors, it takes a few seconds to wake up.",
+      live: "See the monitoring centre",
+      data: "Code and validation",
     },
     yerba: {
       tag: "Freelance · Agribusiness",
@@ -451,6 +495,89 @@ export function DataScienceProjects({ locale }: { locale: string }) {
                 style={{ padding: "12px 24px", borderRadius: "8px", border: "1px solid rgba(255,255,255,0.15)", color: "rgba(230,230,235,0.9)", fontSize: "14px", fontWeight: 500 }}
               >
                 {t.precios.data}
+                <ExternalLink className="w-4 h-4" />
+              </a>
+            </div>
+          </div>
+        </article>
+
+        {/* ATLAS Traffic */}
+        <article
+          className="rounded-2xl overflow-hidden mb-6"
+          style={{ border: "1px solid rgba(255,255,255,0.08)", background: "rgba(255,255,255,0.02)" }}
+        >
+          <figure style={{ background: "#0B0F17" }}>
+            <div className="relative w-full" style={{ aspectRatio: "1600 / 1000" }}>
+              <Image src="/screenshots/traffic/seguir.jpg" alt={t.traffic.captions[0]} fill sizes="(max-width: 1200px) 100vw, 1100px" className="object-cover" />
+            </div>
+            <figcaption style={{ ...mono, fontSize: "11px", color: "rgba(255,255,255,0.4)", padding: "10px 16px" }}>{t.traffic.captions[0]}</figcaption>
+          </figure>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-px" style={{ background: "rgba(255,255,255,0.06)" }}>
+            {["escena", "centro"].map((img, i) => (
+              <figure key={img} style={{ background: "#0B0F17" }}>
+                <div className="relative w-full" style={{ aspectRatio: "1600 / 1000" }}>
+                  <Image src={`/screenshots/traffic/${img}.jpg`} alt={t.traffic.captions[i + 1]} fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover" />
+                </div>
+                <figcaption style={{ ...mono, fontSize: "11px", color: "rgba(255,255,255,0.4)", padding: "10px 16px" }}>{t.traffic.captions[i + 1]}</figcaption>
+              </figure>
+            ))}
+          </div>
+
+          <div className="p-6 md:p-10">
+            <p style={{ ...mono, fontSize: "11px", letterSpacing: "0.16em", textTransform: "uppercase", color: BLUE, marginBottom: "10px" }}>
+              {t.traffic.tag}
+            </p>
+            <h3 style={{ fontSize: "clamp(24px, 3vw, 34px)", fontWeight: 600, color: "#FFFFFF", marginBottom: "12px", letterSpacing: "-0.01em" }}>
+              {t.traffic.title}
+            </h3>
+            <p style={{ fontSize: "16px", lineHeight: 1.7, color: "rgba(212,212,216,0.85)", maxWidth: "780px", marginBottom: "28px" }}>
+              {t.traffic.desc}
+            </p>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+              {t.traffic.metrics.map((m) => (
+                <div key={m.k} className="rounded-xl p-4" style={{ border: "1px solid rgba(0,207,255,0.14)", background: "rgba(0,207,255,0.03)" }}>
+                  <p style={{ fontSize: "24px", fontWeight: 600, color: "#FFFFFF", lineHeight: 1.1, marginBottom: "8px", fontVariantNumeric: "tabular-nums" }}>
+                    {m.k}
+                  </p>
+                  <p style={{ fontSize: "13px", color: "rgba(212,212,216,0.65)", lineHeight: 1.45 }}>{m.v}</p>
+                </div>
+              ))}
+            </div>
+
+            <p className="pl-4 mb-6" style={{ borderLeft: `2px solid ${BLUE}`, fontSize: "15px", lineHeight: 1.65, color: "rgba(212,212,216,0.85)", maxWidth: "780px" }}>
+              {t.traffic.finding}
+            </p>
+
+            <div className="flex flex-wrap gap-2 mb-5">
+              {t.traffic.stack.map((x) => (
+                <span key={x} style={{ ...mono, fontSize: "11px", padding: "6px 11px", borderRadius: "999px", border: "1px solid rgba(255,255,255,0.12)", color: "rgba(230,230,235,0.8)" }}>
+                  {x}
+                </span>
+              ))}
+            </div>
+
+            <p style={{ ...mono, fontSize: "12px", color: "rgba(212,212,216,0.55)", marginBottom: "22px" }}>{t.traffic.note}</p>
+
+            <div className="flex flex-wrap gap-3">
+              <a
+                href="https://atlas-traffic.streamlit.app"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 transition-all duration-200 hover:-translate-y-0.5"
+                style={{ padding: "12px 24px", borderRadius: "8px", background: BLUE, color: "#050505", fontSize: "14px", fontWeight: 600 }}
+              >
+                {t.traffic.live}
+                <ExternalLink className="w-4 h-4" />
+              </a>
+              <a
+                href="https://github.com/licgermancardenas-crypto/ATLAS-TRAFFIC"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 transition-all duration-200 hover:-translate-y-0.5"
+                style={{ padding: "12px 24px", borderRadius: "8px", border: "1px solid rgba(255,255,255,0.15)", color: "rgba(230,230,235,0.9)", fontSize: "14px", fontWeight: 500 }}
+              >
+                {t.traffic.data}
                 <ExternalLink className="w-4 h-4" />
               </a>
             </div>
