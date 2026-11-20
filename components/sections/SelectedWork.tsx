@@ -28,6 +28,39 @@ const projects: Tier2Project[] = [
     screenshot: "/screenshots/rsi.png",
   },
   {
+    id: "mapa-del-poder",
+    eyebrow: "Civic tech · Grafos",
+    title: "Mapa del Estado BA",
+    description:
+      "Un grafo navegable del poder en la Provincia y la Ciudad de Buenos Aires: 7.255 organismos, 9.978 personas, 10.261 cargos y 887 vacantes, de los ministerios a los juzgados y los concejos. Un solo botón vuelve a bajar todas las fuentes oficiales, rearma el grafo y muestra qué cambió: designaciones, bajas y vacantes que se abren o se cubren.",
+    stack: "Python · 20 scrapers de fuentes oficiales · D3 · GitHub Pages",
+    url: "https://licgermancardenas-crypto.github.io/MAPA-DEL-PODER/",
+    live: true,
+    screenshot: "/screenshots/mapa-del-poder.jpg",
+  },
+  {
+    id: "presupuesto-caba",
+    eyebrow: "Civic tech · Finanzas públicas",
+    title: "Presupuesto CABA",
+    description:
+      "Monitor del presupuesto porteño 2022–2026 en pesos constantes: cuánto se gasta, en qué, quién lo gasta y cómo, programa por programa y comuna por comuna, con un mapa de obras. Armado desde cero con datos abiertos, en una web propia y en Power BI sobre el mismo modelo. Toma la idea del monitor de Juan Ignacio Fernández.",
+    stack: "Python · modelo estrella · Power BI · IPC del INDEC",
+    url: "https://licgermancardenas-crypto.github.io/presupuesto-caba/",
+    live: true,
+    screenshot: "/screenshots/presupuesto-caba.jpg",
+  },
+  {
+    id: "atlas-signal",
+    eyebrow: "Seguridad · Criptografía",
+    title: "Atlas Signal",
+    description:
+      "Esconde archivos y mensajes cifrados dentro de una imagen o un audio que se ve y suena igual que el original. Cifrado AES-256-GCM con clave derivada por PBKDF2 en 600.000 iteraciones, bits repartidos en posiciones que solo la contraseña conoce, y todo el proceso en el navegador: nada se sube a internet.",
+    stack: "JavaScript · Web Crypto API · esteganografía · 100% local",
+    url: "https://licgermancardenas-crypto.github.io/ATLAS-SIGNAL/",
+    live: true,
+    screenshot: "/screenshots/atlas-signal.jpg",
+  },
+  {
     id: "electoral",
     eyebrow: "Research · Civic Intelligence",
     title: "Electoral Analytics",
@@ -84,7 +117,7 @@ export function SelectedWork() {
             }}
           >
             Research, civic tech,{" "}
-            <span>impacto social.</span>
+            <span>seguridad e impacto social.</span>
           </h2>
         </AnimatedSection>
 
