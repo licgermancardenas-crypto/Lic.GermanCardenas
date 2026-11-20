@@ -29,6 +29,24 @@ const copy = {
       captions: ["Tablero: riesgo por barrio, cobertura y concentración", "Patrullas propuestas contra las 75 comisarías actuales"],
       live: "Ver el tablero en vivo",
     },
+    phantom: {
+      tag: "Proyecto propio · Prevención de lavado · Datos sintéticos",
+      title: "Phantom AI",
+      desc: "Detección de redes de lavado de activos con redes neuronales de grafos, en una prueba de concepto de punta a punta para un banco simulado: 75.000 cuentas y 1,5 millones de transacciones sintéticas con ocho tipologías de lavado alineadas con GAFI —anillos, pitufeo, mulas, sociedades pantalla, round-tripping— y el módulo que usa un oficial de cumplimiento: alertas, casos, KYC, screening y reportes de operaciones sospechosas.",
+      metrics: [
+        { k: "0,943", v: "de PR-AUC con GraphSAGE, contra 0,882 de XGBoost y 0,471 de una regresión logística" },
+        { k: "90%", v: "del fraude detectado exigiendo que 9 de cada 10 alertas sean reales" },
+        { k: "13% vs 21%", v: "de fraude que se escapa con el grafo, contra el mejor modelo tabular" },
+        { k: "2,9×", v: "más probable que el vecino de una cuenta fraudulenta también lo sea" },
+      ],
+      finding:
+        "Las cuentas mula son crediticiamente normales: el score de riesgo externo no las distingue. Se delatan por con quién transaccionan. Y el rastreo hacia atrás mostró que el modelo encuentra a las mulas pero no a quien inyecta el dinero, así que se sumó una segunda pasada para llegar al origen.",
+      stack: ["PyTorch Geometric", "GraphSAGE · GAT", "XGBoost", "GNNExplainer", "Calibración isotónica", "Ablación con Node2Vec", "FastAPI · Next.js"],
+      captions: ["Investigación de redes: el flujo del dinero alrededor de una cuenta", "Panel ejecutivo del programa de prevención de lavado"],
+      note: "Datos 100% sintéticos: es una prueba de concepto, no validada con datos de un banco real.",
+      live: "Ver el tablero en vivo",
+      api: "API en vivo",
+    },
     yerba: {
       tag: "Freelance · Agroindustria",
       title: "Yerba Mate Intelligence",
@@ -71,6 +89,24 @@ const copy = {
       stack: ["LightGBM Poisson", "H3 grid", "SHAP", "Conformal prediction", "Integer programming (PuLP)", "Fairness audit", "Tested: Hawkes and graph neural network"],
       captions: ["Dashboard: risk by neighbourhood, coverage and concentration", "Proposed patrols versus the 75 current police stations"],
       live: "See the live dashboard",
+    },
+    phantom: {
+      tag: "Personal project · Anti-money laundering · Synthetic data",
+      title: "Phantom AI",
+      desc: "Money-laundering network detection with graph neural networks, as an end-to-end proof of concept for a simulated bank: 75,000 accounts and 1.5 million synthetic transactions covering eight FATF-aligned laundering typologies — cycles, structuring, mules, shell companies, round-tripping — plus the module a compliance officer uses: alerts, cases, KYC, screening and suspicious activity reports.",
+      metrics: [
+        { k: "0.943", v: "PR-AUC with GraphSAGE, versus 0.882 for XGBoost and 0.471 for logistic regression" },
+        { k: "90%", v: "of fraud detected while requiring 9 in 10 alerts to be real" },
+        { k: "13% vs 21%", v: "of fraud slipping through with the graph, versus the best tabular model" },
+        { k: "2.9×", v: "more likely that a fraudulent account's neighbour is fraudulent too" },
+      ],
+      finding:
+        "Mule accounts look normal from a credit standpoint: the external risk score can't tell them apart. They give themselves away through who they transact with. And backward tracing showed the model finds the mules but not whoever injects the money, so a second pass was added to reach the source.",
+      stack: ["PyTorch Geometric", "GraphSAGE · GAT", "XGBoost", "GNNExplainer", "Isotonic calibration", "Node2Vec ablation", "FastAPI · Next.js"],
+      captions: ["Network investigation: the money flow around one account", "Executive panel of the anti-money-laundering programme"],
+      note: "100% synthetic data: it's a proof of concept, not validated on a real bank's data.",
+      live: "See the live dashboard",
+      api: "Live API",
     },
     yerba: {
       tag: "Freelance · Agribusiness",
@@ -203,6 +239,94 @@ export function DataScienceProjects({ locale }: { locale: string }) {
               {t.sentinel.live}
               <ExternalLink className="w-4 h-4" />
             </a>
+          </div>
+        </article>
+
+        {/* Phantom AI */}
+        <article
+          className="rounded-2xl overflow-hidden mb-6"
+          style={{ border: "1px solid rgba(255,255,255,0.08)", background: "rgba(255,255,255,0.02)" }}
+        >
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-px" style={{ background: "rgba(255,255,255,0.06)" }}>
+            {["red", "direccion"].map((img, i) => (
+              <figure key={img} className="relative" style={{ background: "#050505" }}>
+                <div className="relative w-full" style={{ aspectRatio: "2400 / 1500" }}>
+                  <Image
+                    src={`/screenshots/phantom/${img}.jpg`}
+                    alt={t.phantom.captions[i]}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                    className="object-cover object-top"
+                  />
+                </div>
+                <figcaption style={{ ...mono, fontSize: "11px", color: "rgba(255,255,255,0.4)", padding: "10px 16px" }}>
+                  {t.phantom.captions[i]}
+                </figcaption>
+              </figure>
+            ))}
+          </div>
+
+          <div className="p-6 md:p-10">
+            <p style={{ ...mono, fontSize: "11px", letterSpacing: "0.16em", textTransform: "uppercase", color: BLUE, marginBottom: "10px" }}>
+              {t.phantom.tag}
+            </p>
+            <h3 style={{ fontSize: "clamp(24px, 3vw, 34px)", fontWeight: 600, color: "#FFFFFF", marginBottom: "12px", letterSpacing: "-0.01em" }}>
+              {t.phantom.title}
+            </h3>
+            <p style={{ fontSize: "16px", lineHeight: 1.7, color: "rgba(212,212,216,0.85)", maxWidth: "780px", marginBottom: "28px" }}>
+              {t.phantom.desc}
+            </p>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+              {t.phantom.metrics.map((m) => (
+                <div key={m.k} className="rounded-xl p-4" style={{ border: "1px solid rgba(0,207,255,0.14)", background: "rgba(0,207,255,0.03)" }}>
+                  <p style={{ fontSize: "24px", fontWeight: 600, color: "#FFFFFF", lineHeight: 1.1, marginBottom: "8px", fontVariantNumeric: "tabular-nums" }}>
+                    {m.k}
+                  </p>
+                  <p style={{ fontSize: "13px", color: "rgba(212,212,216,0.65)", lineHeight: 1.45 }}>{m.v}</p>
+                </div>
+              ))}
+            </div>
+
+            <p
+              className="pl-4 mb-6"
+              style={{ borderLeft: `2px solid ${BLUE}`, fontSize: "15px", lineHeight: 1.65, color: "rgba(212,212,216,0.85)", maxWidth: "780px" }}
+            >
+              {t.phantom.finding}
+            </p>
+
+            <div className="flex flex-wrap gap-2 mb-5">
+              {t.phantom.stack.map((x) => (
+                <span key={x} style={{ ...mono, fontSize: "11px", padding: "6px 11px", borderRadius: "999px", border: "1px solid rgba(255,255,255,0.12)", color: "rgba(230,230,235,0.8)" }}>
+                  {x}
+                </span>
+              ))}
+            </div>
+
+            <p style={{ ...mono, fontSize: "12px", color: "rgba(245,181,68,0.85)", marginBottom: "22px" }}>{t.phantom.note}</p>
+
+            <div className="flex flex-wrap gap-3">
+              <a
+                href="https://fraude-bancario-2026.vercel.app"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 transition-all duration-200 hover:-translate-y-0.5"
+                style={{ padding: "12px 24px", borderRadius: "8px", background: BLUE, color: "#050505", fontSize: "14px", fontWeight: 600 }}
+              >
+                {t.phantom.live}
+                <ExternalLink className="w-4 h-4" />
+              </a>
+              <a
+                href="https://phantom-rcs9.onrender.com/docs"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 transition-all duration-200 hover:-translate-y-0.5"
+                style={{ padding: "12px 24px", borderRadius: "8px", border: "1px solid rgba(255,255,255,0.15)", color: "rgba(230,230,235,0.9)", fontSize: "14px", fontWeight: 500 }}
+              >
+                {t.phantom.api}
+                <ExternalLink className="w-4 h-4" />
+              </a>
+            </div>
           </div>
         </article>
 
