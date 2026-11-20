@@ -15,6 +15,7 @@ import { Experience } from "@/components/sections/Experience";
 import { Education } from "@/components/sections/Education";
 import { TechStack } from "@/components/sections/TechStack";
 import { ExperienceSection } from "@/components/sections/ExperienceSection";
+import { Recommendations } from "@/components/sections/Recommendations";
 import { WorkWithMe } from "@/components/sections/WorkWithMe";
 import { Footer } from "@/components/sections/Footer";
 
@@ -109,6 +110,7 @@ export default async function HomePage({
         <Experience />
         <Education />
         <TechStack />
+        <Recommendations locale={locale} />
         <WorkWithMe />
       </main>
       <Footer />

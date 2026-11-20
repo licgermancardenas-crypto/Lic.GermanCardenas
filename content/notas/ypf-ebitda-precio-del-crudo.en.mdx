@@ -1,0 +1,35 @@
+{/* DRAFT — not published. Figures from the /work/atlas-ypf case. Fill in the remaining drivers from the project (E:\YPF ATLAS) before publishing. This is analysis, not investment advice. */}
+
+In the second quarter of 2026 YPF reported adjusted EBITDA of **US$ 2,804 million**, up 149% year on year, with debt at a low and shale up 47%. That same day, the stock fell 3.6%.
+
+The easy reading is that the market got it wrong. Before saying that, you have to separate how much of the record is the company and how much is the cycle.
+
+## An EBITDA bridge
+
+A bridge breaks the year-on-year change in EBITDA down into its causes: price, volume, costs and the rest. Each bar answers one concrete question: how much would EBITDA have changed if only this had moved?
+
+Of the **US$ 1,680 million** year-on-year increase, **US$ 851 million is crude price**: 51% of the total. Four drivers explain 91% of the change.
+
+| Driver | Contribution (US$ M) |
+|---|---|
+| Crude price | 851 |
+| [To complete] | [To complete] |
+| [To complete] | [To complete] |
+| [To complete] | [To complete] |
+| **Total change** | **1,680** |
+
+## Why it matters for reading the reaction
+
+If half the record is price, a large part of the result doesn't depend on management and can reverse with the cycle. The market wasn't rewarding or punishing the quarter in isolation: it was pricing in how much of it is repeatable.
+
+And the punishment wasn't an exception. In **16 of the last 22 results** the stock had a negative abnormal reaction, and every 100 basis points of country risk takes **3.3%** off the price. For YPF, the Argentine context weighs as much as the result.
+
+## How it was built
+
+A Python pipeline ingests each source separately (SEC 20-F and 6-K filings, Energy Secretariat production, Brent, ADR and country risk) and computes everything in one place. **Fourteen automatic checks** stop the run if anything doesn't add up: if the bridge doesn't sum to the total change, nothing is published.
+
+The same numbers feed a website with a 3D basin map, a Power BI dashboard and a macro-free Excel workbook that can be audited cell by cell.
+
+---
+
+*The full case, with the map of the 5,089 wells, is at [ATLAS-YPF](/en/work/atlas-ypf). This analysis is not investment advice.*

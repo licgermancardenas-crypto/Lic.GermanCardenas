@@ -1,0 +1,35 @@
+{/* BORRADOR — no publicado. Cifras del caso /work/atlas-ypf. Completar los drivers restantes desde el proyecto (E:\YPF ATLAS) antes de publicar. Esto es análisis, no recomendación de inversión. */}
+
+En el segundo trimestre de 2026 YPF reportó un EBITDA ajustado de **US$ 2.804 millones**, 149% más que un año antes, con la deuda en mínimos y el shale creciendo 47%. El mismo día, la acción cayó 3,6%.
+
+La lectura fácil es que el mercado se equivocó. Antes de decir eso, hay que separar cuánto de ese récord es la compañía y cuánto es el ciclo.
+
+## Un puente de EBITDA
+
+Un puente descompone la variación interanual del EBITDA en sus causas: precio, volumen, costos y el resto. Cada barra responde una pregunta concreta: ¿cuánto habría cambiado el EBITDA si solo se hubiera movido esto?
+
+De los **US$ 1.680 millones** de aumento interanual, **US$ 851 millones son precio del crudo**: el 51% del total. Cuatro drivers explican el 91% de la variación.
+
+| Driver | Aporte (US$ M) |
+|---|---|
+| Precio del crudo | 851 |
+| [Completar] | [Completar] |
+| [Completar] | [Completar] |
+| [Completar] | [Completar] |
+| **Variación total** | **1.680** |
+
+## Por qué importa para leer la reacción
+
+Si la mitad del récord es precio, una parte grande del resultado no depende de la gestión y puede revertirse con el ciclo. El mercado no estaba premiando o castigando el trimestre aislado: estaba descontando cuánto de eso es repetible.
+
+Y el castigo no fue una excepción. En **16 de los últimos 22 balances** la acción tuvo una reacción anormal negativa, y cada 100 puntos básicos de riesgo país le restan **3,3%** al precio. Para YPF, el contexto argentino pesa tanto como el resultado.
+
+## Cómo se armó
+
+Un pipeline en Python ingiere cada fuente por separado (20-F y 6-K de la SEC, producción de la Secretaría de Energía, Brent, ADR y riesgo país) y calcula todo en un solo lugar. **Catorce chequeos automáticos** frenan el proceso si algo no cierra: si el puente no suma la variación total, no se publica.
+
+Los mismos números alimentan una web con mapa 3D de la cuenca, un tablero de Power BI y un Excel sin macros que se puede auditar celda por celda.
+
+---
+
+*El caso completo, con el mapa de los 5.089 pozos, está en [ATLAS-YPF](/es/work/atlas-ypf). Este análisis no es una recomendación de inversión.*
