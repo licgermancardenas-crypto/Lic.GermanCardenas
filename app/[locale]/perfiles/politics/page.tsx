@@ -3,6 +3,7 @@ import { routing } from "@/i18n/routing";
 import { Navigation } from "@/components/Navigation";
 import { PoliticsHero } from "@/components/sections/perfiles/PoliticsHero";
 import { PoliticsContent } from "@/components/sections/perfiles/PoliticsContent";
+import { PoliticsChaco } from "@/components/sections/perfiles/PoliticsChaco";
 import { PoliticsProject } from "@/components/sections/perfiles/PoliticsProject";
 import { PoliticsCalifornia } from "@/components/sections/perfiles/PoliticsCalifornia";
 import { PoliticsEspana } from "@/components/sections/perfiles/PoliticsEspana";
@@ -44,6 +45,7 @@ export default async function PoliticsPage({
       <main>
         <PoliticsHero />
         <PoliticsContent />
+        <PoliticsChaco locale={locale} />
         <PoliticsProject locale={locale} />
         <PoliticsCalifornia locale={locale} />
         <PoliticsEspana locale={locale} />
