@@ -55,6 +55,8 @@ const ERP_IMPACT_IMAGES: Record<Locale, { src: string; caption: string }[]> = {
   ],
 };
 
+const PHANTOM_SHOTS = ["red.jpg", "anillos.jpg", "casos.jpg", "direccion.jpg"].map((f) => `/screenshots/phantom/${f}`);
+
 const SENTINEL_SHOTS = ["inicio.jpg", "mapa.jpg"].map((f) => `/screenshots/sentinel/${f}`);
 
 const YPF_SHOTS = [
@@ -462,6 +464,60 @@ const content: Record<Locale, Record<string, CaseStudy>> = {
         { value: "58,5%", description: "De los delitos ocurre en el 30% del área" },
         { value: "0,290 vs 0,296", description: "Error del modelo contra repetir el pasado" },
       ],
+      nextSlug: "phantom-ai",
+      nextTitle: "Phantom AI →",
+    },
+    "phantom-ai": {
+      slug: "phantom-ai",
+      title: "Phantom AI",
+      category: "Data Science · Finanzas · Prevención de lavado",
+      subtitle: "Redes neuronales de grafos para encontrar lavado de activos que las reglas tradicionales no ven. Prueba de concepto con datos sintéticos.",
+      accent: "#6366f1",
+      screenshots: PHANTOM_SHOTS,
+      url: "https://fraude-bancario-2026.vercel.app",
+      context:
+        "Los sistemas de prevención de lavado de los bancos trabajan con reglas: montos, frecuencias, umbrales. Funcionan para la operación aislada, pero el lavado moderno se diseña para esquivarlas: reparte grandes sumas en movimientos chicos a través de cuentas que, una por una, parecen normales.",
+      challenge:
+        "Detectar el patrón en la red y no en la transacción: anillos cíclicos, pitufeo, agregación de fondos, cuentas de paso, sociedades pantalla, cuentas durmientes reactivadas, redes de mulas y round-tripping. Y hacerlo de una forma que un oficial de cumplimiento pueda usar y explicar ante un regulador.",
+      role:
+        "Proyecto propio de punta a punta: generador de datos sintéticos, análisis exploratorio del grafo, modelos tabulares y de grafos, explicabilidad, calibración, rastreo de origen, la API en FastAPI y la aplicación de compliance en Next.js.",
+      approach:
+        "Un banco simulado con 75.000 cuentas y 1,5 millones de transacciones sintéticas con ocho tipologías de lavado alineadas con GAFI. Sobre ese grafo comparé una regresión logística, XGBoost, Node2Vec, GAT y GraphSAGE con las mismas métricas. El mejor modelo se calibró, se explica cuenta por cuenta con GNNExplainer y se completa con un rastreo hacia atrás que remonta el dinero hasta su origen.",
+      stack: [
+        { name: "PyTorch Geometric", why: "GraphSAGE y GAT aprenden de cada cuenta y de sus vecinos a la vez: la señal del lavado está en las conexiones" },
+        { name: "XGBoost + regresión logística", why: "Líneas de base tabulares contra las que medir cuánto aporta el grafo de verdad" },
+        { name: "GNNExplainer", why: "Para cada alerta, qué conexiones y qué variables la dispararon: lo que un oficial necesita para justificar un reporte" },
+        { name: "Calibración isotónica", why: "Convierte el score en una probabilidad confiable para ordenar la cola de casos" },
+        { name: "FastAPI en Render", why: "API pública con la documentación interactiva, para integrar el scoring con otros sistemas" },
+        { name: "Next.js", why: "La aplicación de compliance: alertas, casos con vencimiento de reportes, KYC, screening, investigación de redes y gobernanza del modelo" },
+      ],
+      decisions: [
+        {
+          decision: "Datos sintéticos, y decirlo en todos lados",
+          reasoning: "No existen datos públicos de lavado con etiquetas confiables. Construí un generador reproducible con las ocho tipologías de GAFI y lo declaro en la app, en el README y acá: es una prueba de concepto, no un modelo validado con datos de un banco real.",
+        },
+        {
+          decision: "Medir cuánto aporta el grafo, no suponerlo",
+          reasoning: "Antes de usar redes neuronales de grafos comparé contra modelos tabulares con las mismas métricas. GraphSAGE llega a 0,943 de PR-AUC contra 0,882 de XGBoost, y deja escapar el 13% del fraude contra el 21%: el grafo suma, pero la ventaja tiene un tamaño concreto.",
+        },
+        {
+          decision: "Una ablación para entender de dónde sale la señal",
+          reasoning: "Node2Vec aprende solo de la forma de la red, sin el comportamiento de cada cuenta, y cae a 0,235. La señal no es topología pura: hace falta combinar estructura y comportamiento, que es exactamente lo que hace GraphSAGE.",
+        },
+        {
+          decision: "Calibrar antes de priorizar",
+          reasoning: "El 51% de los scores crudos estaba saturado en 1,0 y entre las mil cuentas más riesgosas había solo cuatro valores distintos: imposible ordenar la cola de casos. Con calibración isotónica el error de calibración bajó de 0,043 a 0,003.",
+        },
+      ],
+      results:
+        "GraphSAGE detecta el 90% del fraude exigiendo que 9 de cada 10 alertas sean reales, con un PR-AUC de 0,943. Las cuentas mula son crediticiamente normales y se delatan por sus conexiones: el vecino de una cuenta fraudulenta tiene 2,9 veces más chances de serlo también. El rastreo hacia atrás encontró 149 cuentas de origen, 98 de ellas invisibles para el modelo principal.",
+      learned:
+        "Un buen score no alcanza: tiene que poder ordenarse, explicarse y defenderse ante un regulador. Y en fraude, la parte más difícil no es encontrar a la mula sino a quien la usa, algo que un clasificador de nodos no ve sin una segunda mirada sobre la red.",
+      metrics: [
+        { value: "0,943", description: "PR-AUC de GraphSAGE, contra 0,882 de XGBoost" },
+        { value: "90%", description: "Del fraude detectado con 9 de cada 10 alertas reales" },
+        { value: "13% vs 21%", description: "Fraude no detectado: grafo contra mejor modelo tabular" },
+      ],
       nextSlug: "atlas-one-erp",
       nextTitle: "Atlas One ERP →",
     },
@@ -823,6 +879,60 @@ const content: Record<Locale, Record<string, CaseStudy>> = {
         { value: "+23.6 pts", description: "Of risk coverage with the same 75 patrols" },
         { value: "58.5%", description: "Of crime happens in 30% of the area" },
         { value: "0.290 vs 0.296", description: "Model error versus repeating the past" },
+      ],
+      nextSlug: "phantom-ai",
+      nextTitle: "Phantom AI →",
+    },
+    "phantom-ai": {
+      slug: "phantom-ai",
+      title: "Phantom AI",
+      category: "Data Science · Finance · Anti-money laundering",
+      subtitle: "Graph neural networks to find money laundering that traditional rules miss. A proof of concept on synthetic data.",
+      accent: "#6366f1",
+      screenshots: PHANTOM_SHOTS,
+      url: "https://fraude-bancario-2026.vercel.app",
+      context:
+        "Banks' anti-money-laundering systems run on rules: amounts, frequencies, thresholds. They work for the isolated transaction, but modern laundering is designed to dodge them, splitting large sums into small movements across accounts that each look normal on their own.",
+      challenge:
+        "Detect the pattern in the network rather than in the transaction: cycles, structuring, fund aggregation, flow-through accounts, shell companies, reactivated dormant accounts, mule networks and round-tripping — in a way a compliance officer can use and explain to a regulator.",
+      role:
+        "Personal project end to end: synthetic data generator, exploratory graph analysis, tabular and graph models, explainability, calibration, source tracing, the FastAPI backend and the Next.js compliance application.",
+      approach:
+        "A simulated bank with 75,000 accounts and 1.5 million synthetic transactions covering eight FATF-aligned laundering typologies. On that graph I compared logistic regression, XGBoost, Node2Vec, GAT and GraphSAGE on the same metrics. The best model was calibrated, explained account by account with GNNExplainer, and complemented with backward tracing that follows the money to its source.",
+      stack: [
+        { name: "PyTorch Geometric", why: "GraphSAGE and GAT learn from each account and its neighbours at once: the laundering signal lives in the connections" },
+        { name: "XGBoost + logistic regression", why: "Tabular baselines to measure how much the graph really adds" },
+        { name: "GNNExplainer", why: "For each alert, which connections and variables triggered it: what an officer needs to justify a report" },
+        { name: "Isotonic calibration", why: "Turns the score into a reliable probability to rank the case queue" },
+        { name: "FastAPI on Render", why: "A public API with interactive documentation, to plug the scoring into other systems" },
+        { name: "Next.js", why: "The compliance app: alerts, cases with report deadlines, KYC, screening, network investigation and model governance" },
+      ],
+      decisions: [
+        {
+          decision: "Synthetic data, and say so everywhere",
+          reasoning: "There's no public laundering data with reliable labels. I built a reproducible generator with the eight FATF typologies and state it in the app, the README and here: it's a proof of concept, not a model validated on a real bank's data.",
+        },
+        {
+          decision: "Measure what the graph adds, don't assume it",
+          reasoning: "Before using graph neural networks I compared them with tabular models on the same metrics. GraphSAGE reaches 0.943 PR-AUC versus 0.882 for XGBoost, and lets 13% of fraud slip through versus 21%: the graph helps, by a concrete margin.",
+        },
+        {
+          decision: "An ablation to understand where the signal comes from",
+          reasoning: "Node2Vec learns only from the shape of the network, without each account's behaviour, and drops to 0.235. The signal isn't pure topology: it takes structure plus behaviour, which is exactly what GraphSAGE combines.",
+        },
+        {
+          decision: "Calibrate before prioritising",
+          reasoning: "51% of the raw scores were saturated at 1.0, and the thousand riskiest accounts shared only four distinct values: the case queue couldn't be ranked. Isotonic calibration cut the calibration error from 0.043 to 0.003.",
+        },
+      ],
+      results:
+        "GraphSAGE detects 90% of fraud while requiring 9 in 10 alerts to be real, with a PR-AUC of 0.943. Mule accounts look normal from a credit standpoint and give themselves away through their connections: a fraudulent account's neighbour is 2.9 times more likely to be fraudulent too. Backward tracing found 149 source accounts, 98 of them invisible to the main model.",
+      learned:
+        "A good score isn't enough: it has to be rankable, explainable and defensible before a regulator. And in fraud, the hardest part isn't finding the mule but whoever uses it — something a node classifier misses without a second look at the network.",
+      metrics: [
+        { value: "0.943", description: "GraphSAGE PR-AUC, versus 0.882 for XGBoost" },
+        { value: "90%", description: "Of fraud detected with 9 in 10 alerts real" },
+        { value: "13% vs 21%", description: "Undetected fraud: graph versus best tabular model" },
       ],
       nextSlug: "atlas-one-erp",
       nextTitle: "Atlas One ERP →",

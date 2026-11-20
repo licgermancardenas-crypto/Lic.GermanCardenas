@@ -17,7 +17,7 @@ type Command = {
 
 const commands: Command[] = [
   { id: "inicio", label: "Inicio", description: "Volver al principio", type: "scroll", target: "hero", icon: "↑" },
-  { id: "casos", label: "Casos destacados", description: "Atlas ERP, Nexus, AgroNova, LAPD, Yerba Mate, YPF, Sentinel", type: "scroll", target: "casos", icon: "⬡" },
+  { id: "casos", label: "Casos destacados", description: "Atlas ERP, Nexus, AgroNova, LAPD, Yerba Mate, YPF, Sentinel, Phantom", type: "scroll", target: "casos", icon: "⬡" },
   { id: "caso-erp", label: "Atlas One ERP", description: "Caso 01 · Enterprise SaaS B2B", type: "scroll", target: "caso-01", icon: "01" },
   { id: "caso-nexus", label: "Atlas Nexus", description: "Caso 02 · Hackathon Winner", type: "scroll", target: "caso-02", icon: "🏆" },
   { id: "caso-agronova", label: "AgroNova", description: "Caso 03 · AgriTech · 24 provincias", type: "scroll", target: "caso-03", icon: "03" },
@@ -25,6 +25,7 @@ const commands: Command[] = [
   { id: "caso-yerba", label: "Yerba Mate Intelligence", description: "Caso 05 · Data Science · Freelance", type: "scroll", target: "caso-05", icon: "05" },
   { id: "caso-ypf", label: "ATLAS-YPF", description: "Caso 06 · Finanzas · Vaca Muerta", type: "scroll", target: "caso-06", icon: "06" },
   { id: "caso-sentinel", label: "ATLAS SENTINEL", description: "Caso 07 · Data Science · Seguridad urbana", type: "scroll", target: "caso-07", icon: "07" },
+  { id: "caso-phantom", label: "Phantom AI", description: "Caso 08 · Data Science · Prevención de lavado", type: "scroll", target: "caso-08", icon: "08" },
   { id: "mas-trabajo", label: "Más proyectos", description: "RSI, Electoral, CIPE", type: "scroll", target: "projects", icon: "+" },
   { id: "experiencia", label: "Experiencia", description: "Timeline 2021–presente", type: "scroll", target: "experience", icon: "◎" },
   { id: "stack", label: "Tech Stack", description: "Herramientas y tecnologías", type: "scroll", target: "stack", icon: "⌘" },
@@ -36,6 +37,7 @@ const commands: Command[] = [
   { id: "work-yerba", label: "Ver caso completo: Yerba Mate", type: "navigate", target: "/es/work/yerba-mate-ml", icon: "→" },
   { id: "work-ypf", label: "Ver caso completo: ATLAS-YPF", type: "navigate", target: "/es/work/atlas-ypf", icon: "→" },
   { id: "work-sentinel", label: "Ver caso completo: ATLAS SENTINEL", type: "navigate", target: "/es/work/atlas-sentinel", icon: "→" },
+  { id: "work-phantom", label: "Ver caso completo: Phantom AI", type: "navigate", target: "/es/work/phantom-ai", icon: "→" },
   { id: "now", label: "¿Qué estoy haciendo ahora?", type: "navigate", target: "/es/now", icon: "●" },
   { id: "cv", label: "Descargar CV", type: "navigate", target: "/cv.pdf", icon: "↓" },
 ];

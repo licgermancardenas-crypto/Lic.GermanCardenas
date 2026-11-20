@@ -20,14 +20,14 @@ export async function generateMetadata({
         path: "/work",
         title: "Work — Germán Cárdenas",
         description:
-          "Full case studies: Atlas One ERP, Atlas Nexus, AgroNova, LAPD Crime Analytics, Yerba Mate Intelligence, ATLAS-YPF, and ATLAS SENTINEL.",
+          "Full case studies: Atlas One ERP, Atlas Nexus, AgroNova, LAPD Crime Analytics, Yerba Mate Intelligence, ATLAS-YPF, ATLAS SENTINEL, and Phantom AI.",
       })
     : pageMetadata({
         locale,
         path: "/work",
         title: "Work — Germán Cárdenas",
         description:
-          "Casos de estudio completos: Atlas One ERP, Atlas Nexus, AgroNova, LAPD Crime Analytics, Yerba Mate Intelligence, ATLAS-YPF y ATLAS SENTINEL.",
+          "Casos de estudio completos: Atlas One ERP, Atlas Nexus, AgroNova, LAPD Crime Analytics, Yerba Mate Intelligence, ATLAS-YPF, ATLAS SENTINEL y Phantom AI.",
       });
 }
 
@@ -108,6 +108,15 @@ const cases: Record<Locale, CaseCard[]> = {
       accent: "#3b82f6",
       thumbnail: "/screenshots/sentinel/mapa.jpg",
     },
+    {
+      slug: "phantom-ai",
+      number: "08",
+      category: "Data Science · Finanzas · Prevención de lavado",
+      title: "Phantom AI",
+      subtitle: "Redes neuronales de grafos contra el lavado de activos: 90% del fraude detectado, sobre datos sintéticos.",
+      accent: "#6366f1",
+      thumbnail: "/screenshots/phantom/red.jpg",
+    },
   ],
   en: [
     {
@@ -172,6 +181,15 @@ const cases: Record<Locale, CaseCard[]> = {
       subtitle: "Crime risk in Buenos Aires by area and shift: the same 75 patrols, relocated, cover 23.6 points more risk.",
       accent: "#3b82f6",
       thumbnail: "/screenshots/sentinel/mapa.jpg",
+    },
+    {
+      slug: "phantom-ai",
+      number: "08",
+      category: "Data Science · Finance · Anti-money laundering",
+      title: "Phantom AI",
+      subtitle: "Graph neural networks against money laundering: 90% of fraud detected, on synthetic data.",
+      accent: "#6366f1",
+      thumbnail: "/screenshots/phantom/red.jpg",
     },
   ],
 };

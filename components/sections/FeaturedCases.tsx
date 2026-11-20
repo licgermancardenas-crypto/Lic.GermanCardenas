@@ -290,6 +290,33 @@ const cases: CaseData[] = [
     ],
     screenshots: ["inicio.jpg", "mapa.jpg"].map((f) => `/screenshots/sentinel/${f}`),
     url: "https://dashboard-two-sepia-39.vercel.app",
+  },  {
+    id: "caso-08",
+    slug: "phantom-ai",
+    number: "08",
+    category: "DATA SCIENCE · FINANZAS · PREVENCIÓN DE LAVADO",
+    title: "Phantom AI",
+    subtitle: "Redes neuronales de grafos para encontrar lavado de activos que las reglas tradicionales no ven. Prueba de concepto con datos sintéticos.",
+    meta: {
+      rol: "Data Scientist & Full-stack",
+      escala: "75.000 cuentas · 1,5 M de transacciones",
+      stack: "PyTorch Geometric · FastAPI · Next.js",
+      estado: "Demo en vivo",
+    },
+    challenge:
+      "Las reglas clásicas de prevención de lavado miran cada transacción por monto o frecuencia. Pero el pitufeo, los anillos y las redes de mulas reparten grandes sumas en movimientos chicos que, uno por uno, parecen normales: el patrón está en la red, no en la operación individual.",
+    approach:
+      "Construí un banco simulado con 75.000 cuentas y 1,5 millones de transacciones sintéticas con ocho tipologías de lavado alineadas con GAFI, y comparé modelos tabulares contra redes neuronales de grafos (GraphSAGE y GAT), con explicabilidad por cuenta, calibración de probabilidades y rastreo hacia atrás hasta el origen del dinero. Encima, el módulo que usa un oficial de cumplimiento: alertas, casos, KYC, screening y reportes de operaciones sospechosas.",
+    impactLabel: "QUÉ DEMUESTRA",
+    impact:
+      "Con el grafo se escapa el 13% del fraude, contra el 21% del mejor modelo tabular: las mulas tienen un perfil crediticio normal y se delatan por con quién transaccionan. Y una limitación dicha a tiempo: el modelo encuentra a las mulas pero no a quien inyecta el dinero, así que se sumó una segunda pasada para llegar al origen.",
+    metrics: [
+      { value: "0,943", label: "PR-AUC (GraphSAGE)" },
+      { value: "90%", label: "Fraude detectado con 90% de precisión" },
+      { value: "2,9×", label: "Homofilia del fraude en la red" },
+    ],
+    screenshots: ["red.jpg", "anillos.jpg", "casos.jpg", "direccion.jpg"].map((f) => `/screenshots/phantom/${f}`),
+    url: "https://fraude-bancario-2026.vercel.app",
   },
 ];
 
@@ -714,8 +741,8 @@ export function FeaturedCases() {
                 letterSpacing: "0.02em",
               }}
             >
-              Siete proyectos.{" "}
-              <span>Siete historias.</span>
+              Ocho proyectos.{" "}
+              <span>Ocho historias.</span>
             </h2>
             <p
               style={{

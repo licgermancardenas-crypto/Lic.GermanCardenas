@@ -71,6 +71,15 @@ const CASES: Record<
     },
     chips: ["LightGBM", "H3", "SHAP", "Optimización"],
   },
+  "phantom-ai": {
+    title: "Phantom AI",
+    accent: "#6366f1",
+    subtitle: {
+      es: "Redes neuronales de grafos contra el lavado de activos (datos sintéticos)",
+      en: "Graph neural networks against money laundering (synthetic data)",
+    },
+    chips: ["GraphSAGE", "PyTorch Geometric", "XGBoost", "Compliance"],
+  },
 };
 
 export default async function Image({
