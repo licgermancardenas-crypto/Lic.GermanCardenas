@@ -18,7 +18,7 @@ type Command = {
 const commands: Command[] = [
   { id: "inicio", label: "Inicio", description: "Volver al principio", type: "scroll", target: "hero", icon: "↑" },
   { id: "casos", label: "Casos destacados", description: "Atlas ERP, Nexus, AgroNova, LAPD, Yerba Mate, YPF, Sentinel, Phantom, Atlas Analytics, ZEUS, CABA", type: "scroll", target: "casos", icon: "⬡" },
-  { id: "caso-erp", label: "Atlas One ERP", description: "Caso 01 · Enterprise SaaS B2B", type: "scroll", target: "caso-01", icon: "01" },
+  { id: "caso-erp", label: "Atlas One ERP", description: "Caso 01 · SaaS para comercios de cercanía", type: "scroll", target: "caso-01", icon: "01" },
   { id: "caso-nexus", label: "Atlas Nexus", description: "Caso 02 · Hackathon Winner", type: "scroll", target: "caso-02", icon: "🏆" },
   { id: "caso-agronova", label: "AgroNova", description: "Caso 03 · AgriTech · 24 provincias", type: "scroll", target: "caso-03", icon: "03" },
   { id: "caso-lapd", label: "LAPD Crime Analytics", description: "Caso 04 · Research · 1M+ registros", type: "scroll", target: "caso-04", icon: "04" },

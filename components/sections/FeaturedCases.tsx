@@ -7,6 +7,7 @@ import { createPortal } from "react-dom";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { AnimatedSection } from "@/components/AnimatedSection";
 import { ContactCta } from "@/components/ContactCta";
+import { ResponsiveVideo } from "@/components/ResponsiveVideo";
 import { useLocale } from "next-intl";
 import {
   ExternalLink,
@@ -45,6 +46,8 @@ type CaseData = {
   url?: string;
   /** Texto de la barra cuando no hay url pública (por defecto: proyecto para cliente). */
   privateNote?: string;
+  /** Video del producto, se muestra arriba de la galería. */
+  video?: { src: string; poster: string; width: number; height: number; label: string };
   pitchPhoto?: string;
   pitchPhotoCaption?: string;
 };
@@ -82,29 +85,36 @@ const cases: CaseData[] = [
     id: "caso-01",
     slug: "atlas-one-erp",
     number: "01",
-    category: "ENTERPRISE · SAAS B2B",
+    category: "SAAS B2B · COMERCIO DE CERCANÍA",
     title: "Atlas One ERP",
-    subtitle: "ERP modular para PyMEs argentinas que necesitan inteligencia de negocio sin complejidad técnica.",
+    subtitle: "El sistema de gestión para kioscos, minimarkets y comercios de cercanía: ventas, stock, compras, facturación y una IA que avisa antes de que falte algo.",
     meta: {
-      rol: "Founder & Lead Dev",
-      escala: "B2B · PyMEs ARG",
-      stack: "React · FastAPI · PostgreSQL",
+      rol: "Cofundador · CEO",
+      escala: "Comercio de cercanía · Argentina",
+      stack: "Next.js · Supabase · ARCA",
       estado: "En producción",
     },
     challenge:
-      "Las PyMEs argentinas operan con herramientas dispersas: planillas Excel para finanzas, WhatsApp para clientes, y ninguna visibilidad consolidada de sus KPIs. El 87% no tiene acceso a BI real por costo o complejidad técnica. Los dueños toman decisiones críticas en base a intuición, no a datos.",
+      "Un kiosco o un minimarket se gestiona pegando con cinta un POS, un Excel, un grupo de WhatsApp y una calculadora. Nadie ve el costo de ese desorden hasta que falta un producto en la góndola y el cliente se va a otro comercio.",
     approach:
-      "Diseñé una arquitectura modular donde cada equipo accede solo a lo que necesita. El módulo CRM con IA integrada genera briefings diarios automáticos, detecta leads en riesgo y sugiere el mejor horario de contacto según comportamiento histórico. Los dashboards ejecutivos consolidan ventas, inventario y finanzas en una vista unificada en tiempo real, sin necesidad de código.",
-    impactLabel: "IMPACTO",
+      "Un único núcleo donde cada venta descuenta stock en tiempo real: punto de venta por código de barras, stock por sucursal con alertas de quiebre, compras a proveedores, equipo con permisos a medida, facturación electrónica ARCA y una capa predictiva que proyecta ventas y marca las categorías en riesgo. Integrado con Mercado Pago, PedidosYa y Rappi.",
+    impactLabel: "QUÉ RESUELVE",
     impact:
-      "Sistema en uso activo en PyMEs del sector retail y servicios. Los módulos de CRM e inteligencia comercial reducen el tiempo de análisis gerencial en un 40% y mejoran significativamente la tasa de conversión de leads. La arquitectura modular permite escalar por industria sin reescribir el core.",
+      "Reemplaza cinco herramientas sueltas por una, a un precio pensado para un comercio chico: entre el POS que solo cobra y el ERP corporativo que necesita consultor. Ya lo usan comercios de cercanía, y el próximo paso es la app móvil nativa.",
     metrics: [
-      { value: "2.847", label: "Leads gestionados" },
-      { value: "68.4%", label: "Tasa de apertura" },
-      { value: "−40%", label: "Tiempo análisis" },
+      { value: "96.000", label: "Kioscos en la Argentina" },
+      { value: "ARCA", label: "Facturación integrada" },
+      { value: "$25–50K", label: "Por mes, según sucursales" },
     ],
     screenshots: ERP_SHOTS,
     url: "https://www.atlaones-erp.com",
+    video: {
+      src: "/videos/atlas-one-recorrido.mp4",
+      poster: "/videos/atlas-one-recorrido-poster.jpg",
+      width: 1600,
+      height: 900,
+      label: "Recorrido por el producto en 2 minutos · datos de demo",
+    },
   },
   {
     id: "caso-02",
@@ -1114,6 +1124,18 @@ export function FeaturedCases() {
 
                 {/* RIGHT: gallery */}
                 <AnimatedSection delay={0.15} className="lg:sticky lg:top-24 lg:self-start">
+                  {c.video && (
+                    <figure className="mb-5" style={{ borderRadius: "12px", overflow: "hidden", border: "1px solid rgba(255,255,255,0.08)", background: "#0b0b0b" }}>
+                      <ResponsiveVideo
+                        label={c.video.label}
+                        wide={{ src: c.video.src, poster: c.video.poster, width: c.video.width, height: c.video.height }}
+                        tall={{ src: c.video.src, poster: c.video.poster, width: c.video.width, height: c.video.height }}
+                      />
+                      <figcaption style={{ fontFamily: "var(--font-mono)", fontSize: "11px", color: "rgba(255,255,255,0.4)", padding: "10px 14px" }}>
+                        {c.video.label}
+                      </figcaption>
+                    </figure>
+                  )}
                   <ParallaxScreenshot
                     screenshots={c.screenshots}
                     alt={`${c.title} dashboard`}

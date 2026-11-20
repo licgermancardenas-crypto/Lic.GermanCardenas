@@ -48,9 +48,9 @@ const cases: Record<Locale, CaseCard[]> = {
     {
       slug: "atlas-one-erp",
       number: "01",
-      category: "Enterprise · SaaS B2B",
+      category: "SaaS B2B · Comercio de cercanía",
       title: "Atlas One ERP",
-      subtitle: "ERP modular para PyMEs argentinas con inteligencia de negocio integrada.",
+      subtitle: "Gestión para kioscos y minimarkets: ventas, stock, compras, facturación ARCA e IA predictiva.",
       accent: "#06b6d4",
       thumbnail: "/screenshots/atlas-erp/1766963976633.jpg",
     },
@@ -149,9 +149,9 @@ const cases: Record<Locale, CaseCard[]> = {
     {
       slug: "atlas-one-erp",
       number: "01",
-      category: "Enterprise · SaaS B2B",
+      category: "B2B SaaS · Neighbourhood retail",
       title: "Atlas One ERP",
-      subtitle: "Modular ERP for Argentine SMEs with built-in business intelligence.",
+      subtitle: "Management for kiosks and minimarkets: sales, stock, purchasing, ARCA invoicing and predictive AI.",
       accent: "#06b6d4",
       thumbnail: "/screenshots/atlas-erp/1766963976633.jpg",
     },

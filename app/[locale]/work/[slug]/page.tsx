@@ -1,3 +1,4 @@
+import { ResponsiveVideo } from "@/components/ResponsiveVideo";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import type { Metadata } from "next";
@@ -9,6 +10,8 @@ import { ScreenshotGallery } from "@/components/ScreenshotGallery";
 import { ContactCta } from "@/components/ContactCta";
 
 type Locale = "es" | "en";
+
+const VIDEO_ERP = { src: "/videos/atlas-one-recorrido.mp4", poster: "/videos/atlas-one-recorrido-poster.jpg", width: 1600, height: 900 };
 
 const ERP_SHOTS = [
   "1766963976633.jpg",
@@ -41,17 +44,17 @@ const ERP_SHOTS = [
 const ERP_IMPACT_IMAGES: Record<Locale, { src: string; caption: string }[]> = {
   es: [
     { src: "/screenshots/atlas-erp/mockup-tablet.png", caption: "Stock & Inventario — módulo de gestión en tiempo real" },
-    { src: "/screenshots/atlas-erp/mockup-farmacia.png", caption: "Deploy en punto de venta — farmacia" },
-    { src: "/screenshots/atlas-erp/mockup-licorera.png", caption: "Gestión de stock — rubro bebidas" },
-    { src: "/screenshots/atlas-erp/mockup-farmacia-2.png", caption: "Resumen ejecutivo en sala de ventas" },
-    { src: "/screenshots/atlas-erp/mockup-farmacia-3.png", caption: "Vista operativa — dashboard en caja" },
+    { src: "/screenshots/atlas-erp/mockup-farmacia.png", caption: "Concepto: el panel en el mostrador de una farmacia" },
+    { src: "/screenshots/atlas-erp/mockup-licorera.png", caption: "Concepto: gestión de stock en una licorería" },
+    { src: "/screenshots/atlas-erp/mockup-farmacia-2.png", caption: "Concepto: resumen ejecutivo en el local" },
+    { src: "/screenshots/atlas-erp/mockup-farmacia-3.png", caption: "Concepto: vista operativa en la caja" },
   ],
   en: [
     { src: "/screenshots/atlas-erp/mockup-tablet.png", caption: "Stock & Inventory — real-time management module" },
-    { src: "/screenshots/atlas-erp/mockup-farmacia.png", caption: "Point-of-sale deployment — pharmacy" },
-    { src: "/screenshots/atlas-erp/mockup-licorera.png", caption: "Stock management — beverage retail" },
-    { src: "/screenshots/atlas-erp/mockup-farmacia-2.png", caption: "Executive summary on the sales floor" },
-    { src: "/screenshots/atlas-erp/mockup-farmacia-3.png", caption: "Operational view — register dashboard" },
+    { src: "/screenshots/atlas-erp/mockup-farmacia.png", caption: "Concept: the dashboard at a pharmacy counter" },
+    { src: "/screenshots/atlas-erp/mockup-licorera.png", caption: "Concept: stock management at a liquor store" },
+    { src: "/screenshots/atlas-erp/mockup-farmacia-2.png", caption: "Concept: executive summary in the store" },
+    { src: "/screenshots/atlas-erp/mockup-farmacia-3.png", caption: "Concept: operational view at the register" },
   ],
 };
 
@@ -108,6 +111,7 @@ type CaseStudy = {
   learned: string;
   metrics: { value: string; description: string }[];
   impactImages?: { src: string; caption: string }[];
+  video?: { src: string; poster: string; width: number; height: number; label: string };
   nextSlug: string;
   nextTitle: string;
 };
@@ -117,48 +121,50 @@ const content: Record<Locale, Record<string, CaseStudy>> = {
     "atlas-one-erp": {
       slug: "atlas-one-erp",
       title: "Atlas One ERP",
-      category: "Enterprise · SaaS B2B",
-      subtitle: "ERP modular para PyMEs argentinas con inteligencia de negocio integrada.",
+      category: "SaaS B2B · Comercio de cercanía",
+      subtitle: "El sistema de gestión para kioscos, minimarkets y comercios de cercanía: ventas, stock, compras, facturación y una capa de IA que avisa antes de que falte algo.",
       accent: "#06b6d4",
       screenshots: ERP_SHOTS,
       url: "https://www.atlaones-erp.com",
+      video: { ...VIDEO_ERP, label: "Recorrido por el producto: punto de venta, stock, compras, multisucursal, equipo, facturación ARCA e IA predictiva. Datos de demo." },
       context:
-        "El mercado de software para PyMEs en Argentina está dominado por soluciones costosas e inflexibles (SAP, Oracle) o por herramientas desconectadas (planillas, WhatsApp, Excel). El 87% de las PyMEs no tiene acceso a Business Intelligence real. Atlas One nació para cerrar esa brecha con un ERP modular pensado para equipos sin perfil técnico.",
+        "En la Argentina hay unos 96.000 kioscos y maxikioscos, y miles de autoservicios, pet shops y vinotecas. La mayoría gestiona pegando con cinta un POS, un Excel, un grupo de WhatsApp y una calculadora: nadie ve el costo de ese desorden hasta que falta un producto en la góndola y el cliente se va a otro comercio.",
       challenge:
-        "Diseñar un sistema que sea suficientemente robusto para reemplazar 5+ herramientas simultáneamente (CRM, inventario, finanzas, reportes, comunicaciones) pero tan simple que el dueño de un comercio pueda operarlo sin capacitación. El desafío técnico fue construir sobre una arquitectura modular donde cada cliente activa solo los módulos que necesita, sin pagar por lo que no usa.",
+        "Reemplazar toda esa pila con un solo sistema que el dueño de un comercio pueda usar sin capacitación, a un precio que tenga sentido para un negocio chico: por debajo de los ERP corporativos que exigen consultor y por encima de un POS que solo cobra.",
       role:
-        "Fui el único responsable técnico del proyecto: diseño de la arquitectura, desarrollo full-stack (React + FastAPI + PostgreSQL), integración del módulo de IA (Groq API para el CRM), diseño de la experiencia de usuario y despliegue en producción. También lideré las conversaciones comerciales con los primeros clientes para validar el modelo.",
+        "Cofundador y CEO de Atlas One, junto a Darién Pérez como CTO. Definí el producto y sus módulos, la experiencia de quien atiende el mostrador, la capa de datos e IA predictiva, el modelo de negocio, el pricing y la estrategia comercial, y armé el pitch para la ronda pre-seed.",
       approach:
-        "Arquitectura de microservicios desacoplados con un API Gateway central. El módulo CRM usa Groq + Llama para generar briefings diarios automáticos analizando el comportamiento histórico de cada cliente. Los dashboards ejecutivos se construyeron con visualizaciones custom en React que actualizan en tiempo real via WebSockets. La base de datos usa PostgreSQL con Row Level Security para multitenancy seguro.",
+        "Un único núcleo donde la venta descuenta stock en tiempo real: punto de venta por código de barras con cualquier medio de pago, stock por sucursal con alertas de quiebre, compras a proveedores con recepción de mercadería, empleados con acceso por PIN y permisos a medida, facturación electrónica ARCA con contabilidad de partida doble, y una capa predictiva que anticipa ventas y detecta categorías en riesgo. Todo web, sobre Next.js y Supabase.",
       stack: [
-        { name: "React + TypeScript", why: "SPA con estado complejo; TypeScript previene errores en el modelo de datos financiero" },
-        { name: "FastAPI (Python)", why: "Velocidad de desarrollo + ecosistema de análisis de datos nativo (Pandas, NumPy)" },
-        { name: "PostgreSQL + Neon", why: "RLS para multitenancy, extensiones geoespaciales y serverless para escalar sin ops" },
-        { name: "Groq API (Llama)", why: "Latencia ultralow (<200ms) para el briefing de IA en tiempo real, clave para UX" },
-        { name: "Vercel + Render", why: "Deploy automático, preview URLs para demos con clientes sin infra dedicada" },
+        { name: "Next.js", why: "Una sola aplicación web para el mostrador, el depósito y el dueño, sin instalar nada" },
+        { name: "Supabase", why: "Base de datos, autenticación y permisos por usuario y sucursal" },
+        { name: "Facturación ARCA", why: "Facturas A, B, C y E y notas de crédito y débito desde el mismo sistema" },
+        { name: "Mercado Pago, PedidosYa y Rappi", why: "Integrado con lo que el comercio ya usa, en vez de reinventarlo" },
+        { name: "IA predictiva", why: "Proyección de ventas y alertas de categorías en baja, para decidir antes de fin de mes" },
+        { name: "Telegram", why: "Notificaciones de ventas al celular del dueño, aunque no esté en el local" },
       ],
       decisions: [
         {
-          decision: "Módulos independientes vs. sistema monolítico",
-          reasoning: "Un monolito es más simple al inicio pero obliga a los clientes a pagar por todo. La modularidad permite pricing granular y adopción incremental, que es el modelo de ventas correcto para PyMEs.",
+          decision: "Vertical, no genérico",
+          reasoning: "Odoo o Tango sirven para todo y por eso necesitan un consultor. Atlas One está pensado para el comercio de cercanía: el mostrador, el código de barras, el quiebre de stock y el proveedor que llega con la mercadería.",
         },
         {
-          decision: "IA en el CRM desde el día 1",
-          reasoning: "El CRM sin IA es solo un glorificado Excel. El briefing diario automatizado es la feature que mueve la aguja en demos: cuando el cliente ve que el sistema le dice 'Ana García no compra hace 18 días, escribile hoy', el valor se vuelve inmediato.",
+          decision: "La IA tiene que decidir, no decorar",
+          reasoning: "Un tablero que muestra lo que ya pasó llega tarde. La capa predictiva proyecta las ventas y avisa qué categoría está cayendo, que es la decisión que el dueño de un comercio toma todos los días.",
         },
         {
-          decision: "No construir todo, integrar lo que existe",
-          reasoning: "Para pagos usé Mercado Pago. Para emails, Resend. Para WhatsApp, la API oficial. El valor está en la orquestación e inteligencia, no en reinventar infraestructura de mensajería.",
+          decision: "Un precio entre el POS y el ERP corporativo",
+          reasoning: "Suscripción de $25.000 a $50.000 por mes según sucursales y volumen: lo que cuesta un empleado part-time, contra herramientas corporativas que salen entre diez y veinte veces más y exigen implementación.",
         },
       ],
       results:
-        "Sistema en uso activo. El módulo CRM con IA fue el diferenciador clave en todas las demos — los clientes lo adoptan primero y desde allí escalan a otros módulos. La tasa de apertura de campañas creadas desde el CRM supera el 68%, significativamente por encima del 20-25% del mercado. El tiempo de análisis gerencial se redujo en ~40% según feedback de los primeros clientes.",
+        "Atlas One funciona en producción y ya lo usan comercios de cercanía. Tiene una demo pública para probarlo, y el próximo paso, que es el objetivo de la ronda pre-seed, es la app móvil nativa para iOS y Android.",
       learned:
-        "Subestimé el tiempo de onboarding. La UX puede ser perfecta pero si el cliente no entiende cómo importar sus datos de Excel al sistema, abandonan. Dediqué la segunda iteración completa a construir importadores inteligentes. También aprendí que en PyMEs, quien decide la compra y quien usa el sistema son personas distintas: el dueño decide, el empleado usa. El producto tiene que convencer a ambos.",
+        "En un comercio chico, quien decide la compra y quien usa el sistema son personas distintas: el dueño decide, el empleado atiende. El producto tiene que convencer a los dos, y por eso el punto de venta tiene que ser tan rápido como una caja registradora.",
       metrics: [
-        { value: "2.847", description: "Leads gestionados en el CRM" },
-        { value: "68.4%", description: "Tasa de apertura de campañas" },
-        { value: "−40%", description: "Tiempo en análisis gerencial" },
+        { value: "96.000", description: "Kioscos en la Argentina, el primer mercado" },
+        { value: "ARCA", description: "Facturación electrónica integrada" },
+        { value: "$25–50K", description: "Por mes, entre el POS básico y el ERP corporativo" },
       ],
       impactImages: ERP_IMPACT_IMAGES.es,
       nextSlug: "atlas-nexus",
@@ -695,48 +701,50 @@ const content: Record<Locale, Record<string, CaseStudy>> = {
     "atlas-one-erp": {
       slug: "atlas-one-erp",
       title: "Atlas One ERP",
-      category: "Enterprise · SaaS B2B",
-      subtitle: "Modular ERP for Argentine SMEs with built-in business intelligence.",
+      category: "B2B SaaS · Neighbourhood retail",
+      subtitle: "The management system for kiosks, minimarkets and neighbourhood stores: sales, stock, purchasing, invoicing and an AI layer that warns before something runs out.",
       accent: "#06b6d4",
       screenshots: ERP_SHOTS,
       url: "https://www.atlaones-erp.com",
+      video: { ...VIDEO_ERP, label: "Product walkthrough: point of sale, stock, purchasing, multi-branch, team, ARCA invoicing and predictive AI. Demo data." },
       context:
-        "The SME software market in Argentina is dominated by expensive, inflexible solutions (SAP, Oracle) or by disconnected tools (spreadsheets, WhatsApp, Excel). 87% of SMEs have no access to real Business Intelligence. Atlas One was built to close that gap with a modular ERP designed for teams with no technical background.",
+        "Argentina has about 96,000 kiosks and convenience stores, plus thousands of small supermarkets, pet shops and wine shops. Most of them run on a POS, a spreadsheet, a WhatsApp group and a calculator taped together: nobody sees the cost of that mess until a product is missing from the shelf and the customer walks to another store.",
       challenge:
-        "Design a system robust enough to replace 5+ tools at once (CRM, inventory, finance, reporting, communications) yet simple enough for a shop owner to run without training. The technical challenge was building on a modular architecture where each client activates only the modules it needs, without paying for what it doesn't use.",
+        "Replacing that whole stack with a single system a shop owner can use without training, at a price that makes sense for a small business: below enterprise ERPs that need a consultant, and above a POS that only takes payments.",
       role:
-        "I was the sole technical lead on the project: architecture design, full-stack development (React + FastAPI + PostgreSQL), integration of the AI module (Groq API for the CRM), UX design, and production deployment. I also led the early sales conversations with the first clients to validate the model.",
+        "Co-founder and CEO of Atlas One, with Darién Pérez as CTO. I defined the product and its modules, the experience of whoever is at the counter, the data and predictive-AI layer, the business model, pricing and go-to-market, and built the pitch for the pre-seed round.",
       approach:
-        "A decoupled microservices architecture behind a central API Gateway. The CRM module uses Groq + Llama to generate automatic daily briefings by analyzing each client's historical behavior. Executive dashboards were built with custom React visualizations that update in real time via WebSockets. The database uses PostgreSQL with Row Level Security for secure multitenancy.",
+        "A single core where every sale updates stock in real time: barcode point of sale with any payment method, stock by branch with stock-out alerts, purchasing with goods receipt, staff access by PIN with custom permissions, ARCA electronic invoicing with double-entry accounting, and a predictive layer that forecasts sales and flags categories at risk. Fully web-based, on Next.js and Supabase.",
       stack: [
-        { name: "React + TypeScript", why: "SPA with complex state; TypeScript prevents errors in the financial data model" },
-        { name: "FastAPI (Python)", why: "Development speed plus a native data-analysis ecosystem (Pandas, NumPy)" },
-        { name: "PostgreSQL + Neon", why: "RLS for multitenancy, geospatial extensions, and serverless to scale without ops overhead" },
-        { name: "Groq API (Llama)", why: "Ultra-low latency (<200ms) for the real-time AI briefing — key to the UX" },
-        { name: "Vercel + Render", why: "Automatic deploys and preview URLs for client demos, no dedicated infra required" },
+        { name: "Next.js", why: "One web app for the counter, the stockroom and the owner, with nothing to install" },
+        { name: "Supabase", why: "Database, authentication and permissions per user and branch" },
+        { name: "ARCA invoicing", why: "Type A, B, C and E invoices and credit and debit notes from the same system" },
+        { name: "Mercado Pago, PedidosYa and Rappi", why: "Integrated with what the store already uses instead of reinventing it" },
+        { name: "Predictive AI", why: "Sales forecasts and alerts on declining categories, to decide before the month closes" },
+        { name: "Telegram", why: "Sales notifications on the owner's phone, even when they're not at the store" },
       ],
       decisions: [
         {
-          decision: "Independent modules vs. a monolithic system",
-          reasoning: "A monolith is simpler at first but forces clients to pay for everything. Modularity enables granular pricing and incremental adoption — the right sales model for SMEs.",
+          decision: "Vertical, not generic",
+          reasoning: "Odoo or Tango work for everything, which is why they need a consultant. Atlas One is built for neighbourhood retail: the counter, the barcode, the stock-out and the supplier arriving with goods.",
         },
         {
-          decision: "AI in the CRM from day one",
-          reasoning: "A CRM without AI is just a glorified spreadsheet. The automated daily briefing is the feature that moves the needle in demos: once a client sees the system say 'Ana García hasn't bought in 18 days, reach out today,' the value becomes immediate.",
+          decision: "AI has to decide, not decorate",
+          reasoning: "A dashboard showing what already happened arrives too late. The predictive layer forecasts sales and flags which category is falling, which is the decision a shop owner makes every day.",
         },
         {
-          decision: "Don't build everything — integrate what already exists",
-          reasoning: "For payments I used Mercado Pago. For email, Resend. For WhatsApp, the official API. The value is in the orchestration and intelligence, not in reinventing messaging infrastructure.",
+          decision: "Priced between a POS and an enterprise ERP",
+          reasoning: "A subscription of ARS 25,000 to 50,000 per month depending on branches and volume: the cost of a part-time employee, versus enterprise tools that cost ten to twenty times more and require implementation.",
         },
       ],
       results:
-        "System in active use. The AI-powered CRM module was the key differentiator in every demo — clients adopt it first and scale to other modules from there. Campaigns created from the CRM see an open rate above 68%, well over the market's 20–25%. Management analysis time dropped by roughly 40% according to early client feedback.",
+        "Atlas One runs in production and neighbourhood stores already use it. There's a public demo to try it, and the next step — the goal of the pre-seed round — is a native mobile app for iOS and Android.",
       learned:
-        "I underestimated onboarding time. UX can be flawless, but if a client can't figure out how to import their Excel data, they churn. I dedicated the entire second iteration to building smart importers. I also learned that in SMEs, the buyer and the user are different people: the owner decides, the employee operates the system. The product has to convince both.",
+        "In a small store, the person who buys the system and the person who uses it are different people: the owner decides, the employee serves customers. The product has to win over both, which is why the point of sale has to be as fast as a cash register.",
       metrics: [
-        { value: "2,847", description: "Leads managed in the CRM" },
-        { value: "68.4%", description: "Campaign open rate" },
-        { value: "−40%", description: "Reduction in management analysis time" },
+        { value: "96,000", description: "Kiosks in Argentina, the first market" },
+        { value: "ARCA", description: "Built-in electronic invoicing" },
+        { value: "ARS 25–50K", description: "Per month, between a basic POS and an enterprise ERP" },
       ],
       impactImages: ERP_IMPACT_IMAGES.en,
       nextSlug: "atlas-nexus",
@@ -1400,6 +1408,19 @@ export default async function WorkPage({
             </div>
           )}
         </div>
+
+        {c.video && (
+          <figure className="mb-10" style={{ borderRadius: "14px", overflow: "hidden", border: "1px solid rgba(255,255,255,0.08)", background: "#0b0b0b" }}>
+            <ResponsiveVideo
+              label={c.video.label}
+              wide={{ src: c.video.src, poster: c.video.poster, width: c.video.width, height: c.video.height }}
+              tall={{ src: c.video.src, poster: c.video.poster, width: c.video.width, height: c.video.height }}
+            />
+            <figcaption style={{ fontFamily: "var(--font-mono)", fontSize: "12px", color: "rgba(255,255,255,0.45)", padding: "12px 16px", borderTop: "1px solid rgba(255,255,255,0.06)" }}>
+              {c.video.label}
+            </figcaption>
+          </figure>
+        )}
 
         {/* Screenshots */}
         <ScreenshotGallery

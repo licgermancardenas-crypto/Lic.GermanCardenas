@@ -49,7 +49,7 @@ const profileData: OrbitalNode[] = [
     title: "AI Solutions Engineer",
     date: "Automation & Products",
     content:
-      "Líder de desarrollo del ecosistema modular Atlas One ERP. Integración práctica de LLMs, automatizaciones avanzadas en n8n y arquitecturas ágiles Low-Code/No-Code.",
+      "Cofundador y CEO de Atlas One ERP, a cargo de producto, datos e IA. Integración práctica de LLMs, automatizaciones avanzadas en n8n y arquitecturas ágiles Low-Code/No-Code.",
     category: "AI",
     icon: Cpu,
     relatedIds: [3, 5],

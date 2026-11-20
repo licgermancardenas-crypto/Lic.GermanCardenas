@@ -12,10 +12,10 @@ const CASES: Record<
     title: "Atlas One ERP",
     accent: "#06b6d4",
     subtitle: {
-      es: "ERP modular para PyMEs argentinas con inteligencia de negocio integrada",
-      en: "Modular ERP for Argentine SMBs with built-in business intelligence",
+      es: "El sistema de gestión para kioscos y comercios de cercanía",
+      en: "The management system for kiosks and neighbourhood stores",
     },
-    chips: ["Next.js", "FastAPI", "PostgreSQL", "BI"],
+    chips: ["Next.js", "Supabase", "Facturación ARCA", "IA predictiva"],
   },
   "atlas-nexus": {
     title: "Atlas Nexus",
