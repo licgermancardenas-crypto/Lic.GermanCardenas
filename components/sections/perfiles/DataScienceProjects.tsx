@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ExternalLink } from "lucide-react";
 import { ContactCta } from "@/components/ContactCta";
 
 const BLUE = "#00CFFF";
@@ -13,6 +13,22 @@ const copy = {
     title: "Modelos sobre datos reales.",
     intro:
       "Cada métrica que aparece acá sale de una validación real, incluidos los resultados que no salieron como esperaba.",
+    sentinel: {
+      tag: "Proyecto propio · Seguridad urbana",
+      title: "ATLAS SENTINEL",
+      desc: "Riesgo delictivo de la Ciudad de Buenos Aires por zona y turno. Más de 20 fuentes abiertas —delitos 2016-2025, colectivos, subte, EcoBici, alumbrado, siniestros viales y censo— cruzadas sobre una grilla hexagonal H3, un modelo de conteo y tres módulos que convierten la predicción en decisiones: dónde patrullar, dónde sumar cámaras y qué corredores controlar.",
+      metrics: [
+        { k: "35% → 59%", v: "del riesgo cubierto con las mismas 75 patrullas, reubicadas con un modelo de cobertura máxima (MCLP)" },
+        { k: "58,5%", v: "de los delitos ocurre en el 30% del área de la ciudad" },
+        { k: "0,290 vs 0,296", v: "error del modelo contra repetir el pasado: el delito porteño es muy persistente" },
+        { k: "84", v: "cortes de backtesting para elegir el pronóstico 2026" },
+      ],
+      finding:
+        "El modelo apenas mejora a la línea de base: dónde hubo delito, va a volver a haber. El valor no está en adivinar mejor, sino en decidir mejor con lo que ya se sabe, y eso es lo que optimizan los tres módulos.",
+      stack: ["LightGBM Poisson", "Grilla H3", "SHAP", "Predicción conformal", "Programación entera (PuLP)", "Auditoría de equidad", "Probados: Hawkes y red neuronal de grafos"],
+      captions: ["Tablero: riesgo por barrio, cobertura y concentración", "Patrullas propuestas contra las 75 comisarías actuales"],
+      live: "Ver el tablero en vivo",
+    },
     yerba: {
       tag: "Freelance · Agroindustria",
       title: "Yerba Mate Intelligence",
@@ -40,6 +56,22 @@ const copy = {
     title: "Models on real data.",
     intro:
       "Every metric here comes from an actual validation, including the results that didn't go the way I expected.",
+    sentinel: {
+      tag: "Personal project · Urban safety",
+      title: "ATLAS SENTINEL",
+      desc: "Crime risk across the City of Buenos Aires by area and time of day. More than 20 open sources — crime 2016-2025, buses, subway, bike share, street lighting, road accidents and the census — joined on an H3 hexagonal grid, a count model, and three modules that turn the prediction into decisions: where to patrol, where to add cameras and which corridors to control.",
+      metrics: [
+        { k: "35% → 59%", v: "of risk covered by the same 75 patrols, relocated with a maximal covering location model (MCLP)" },
+        { k: "58.5%", v: "of crime happens in 30% of the city's area" },
+        { k: "0.290 vs 0.296", v: "model error versus repeating the past: crime in Buenos Aires is highly persistent" },
+        { k: "84", v: "backtesting cutoffs used to choose the 2026 forecast" },
+      ],
+      finding:
+        "The model barely beats the baseline: where crime happened, it will happen again. The value isn't in predicting better, it's in deciding better with what is already known, and that's what the three modules optimise.",
+      stack: ["LightGBM Poisson", "H3 grid", "SHAP", "Conformal prediction", "Integer programming (PuLP)", "Fairness audit", "Tested: Hawkes and graph neural network"],
+      captions: ["Dashboard: risk by neighbourhood, coverage and concentration", "Proposed patrols versus the 75 current police stations"],
+      live: "See the live dashboard",
+    },
     yerba: {
       tag: "Freelance · Agribusiness",
       title: "Yerba Mate Intelligence",
@@ -99,6 +131,80 @@ export function DataScienceProjects({ locale }: { locale: string }) {
         <p style={{ fontSize: "16px", lineHeight: 1.7, color: "rgba(212,212,216,0.75)", maxWidth: "620px", marginBottom: "56px" }}>
           {t.intro}
         </p>
+
+        {/* ATLAS SENTINEL — featured */}
+        <article
+          className="rounded-2xl overflow-hidden mb-6"
+          style={{ border: "1px solid rgba(255,255,255,0.08)", background: "rgba(255,255,255,0.02)" }}
+        >
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-px" style={{ background: "rgba(255,255,255,0.06)" }}>
+            {["inicio", "mapa"].map((img, i) => (
+              <figure key={img} className="relative" style={{ background: "#050505" }}>
+                <div className="relative w-full" style={{ aspectRatio: "2400 / 1500" }}>
+                  <Image
+                    src={`/screenshots/sentinel/${img}.jpg`}
+                    alt={t.sentinel.captions[i]}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                    className="object-cover object-top"
+                  />
+                </div>
+                <figcaption style={{ ...mono, fontSize: "11px", color: "rgba(255,255,255,0.4)", padding: "10px 16px" }}>
+                  {t.sentinel.captions[i]}
+                </figcaption>
+              </figure>
+            ))}
+          </div>
+
+          <div className="p-6 md:p-10">
+            <p style={{ ...mono, fontSize: "11px", letterSpacing: "0.16em", textTransform: "uppercase", color: BLUE, marginBottom: "10px" }}>
+              {t.sentinel.tag}
+            </p>
+            <h3 style={{ fontSize: "clamp(24px, 3vw, 34px)", fontWeight: 600, color: "#FFFFFF", marginBottom: "12px", letterSpacing: "-0.01em" }}>
+              {t.sentinel.title}
+            </h3>
+            <p style={{ fontSize: "16px", lineHeight: 1.7, color: "rgba(212,212,216,0.85)", maxWidth: "780px", marginBottom: "28px" }}>
+              {t.sentinel.desc}
+            </p>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+              {t.sentinel.metrics.map((m) => (
+                <div key={m.k} className="rounded-xl p-4" style={{ border: "1px solid rgba(0,207,255,0.14)", background: "rgba(0,207,255,0.03)" }}>
+                  <p style={{ fontSize: "24px", fontWeight: 600, color: "#FFFFFF", lineHeight: 1.1, marginBottom: "8px", fontVariantNumeric: "tabular-nums" }}>
+                    {m.k}
+                  </p>
+                  <p style={{ fontSize: "13px", color: "rgba(212,212,216,0.65)", lineHeight: 1.45 }}>{m.v}</p>
+                </div>
+              ))}
+            </div>
+
+            <p
+              className="pl-4 mb-6"
+              style={{ borderLeft: `2px solid ${BLUE}`, fontSize: "15px", lineHeight: 1.65, color: "rgba(212,212,216,0.85)", maxWidth: "780px" }}
+            >
+              {t.sentinel.finding}
+            </p>
+
+            <div className="flex flex-wrap gap-2 mb-8">
+              {t.sentinel.stack.map((x) => (
+                <span key={x} style={{ ...mono, fontSize: "11px", padding: "6px 11px", borderRadius: "999px", border: "1px solid rgba(255,255,255,0.12)", color: "rgba(230,230,235,0.8)" }}>
+                  {x}
+                </span>
+              ))}
+            </div>
+
+            <a
+              href="https://dashboard-two-sepia-39.vercel.app"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 transition-all duration-200 hover:-translate-y-0.5"
+              style={{ padding: "12px 24px", borderRadius: "8px", background: BLUE, color: "#050505", fontSize: "14px", fontWeight: 600 }}
+            >
+              {t.sentinel.live}
+              <ExternalLink className="w-4 h-4" />
+            </a>
+          </div>
+        </article>
 
         {/* Yerba Mate — featured */}
         <article
