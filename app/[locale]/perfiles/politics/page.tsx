@@ -9,6 +9,7 @@ import { PoliticsMalvinas } from "@/components/sections/perfiles/PoliticsMalvina
 import { PoliticsProject } from "@/components/sections/perfiles/PoliticsProject";
 import { PoliticsCalifornia } from "@/components/sections/perfiles/PoliticsCalifornia";
 import { PoliticsEspana } from "@/components/sections/perfiles/PoliticsEspana";
+import { PoliticsEcuador } from "@/components/sections/perfiles/PoliticsEcuador";
 import { Footer } from "@/components/sections/Footer";
 
 import { pageMetadata } from "@/lib/seo";
@@ -53,6 +54,7 @@ export default async function PoliticsPage({
         <PoliticsProject locale={locale} />
         <PoliticsCalifornia locale={locale} />
         <PoliticsEspana locale={locale} />
+        <PoliticsEcuador locale={locale} />
       </main>
       <Footer />
     </>

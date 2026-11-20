@@ -634,6 +634,41 @@ export const DASHBOARDS: Dashboard[] = [
       },
     ],
   },
+  {
+    id: "ecuador-29n",
+    number: "15",
+    name: {
+      es: "Ecuador 29-N · Alcaldías 2026",
+      en: "Ecuador 29-N · 2026 Mayoral Races",
+    },
+    tagline: {
+      es: "Las 222 alcaldías de Ecuador sobre 1.103 elecciones de 2004 a 2023: evolución cantón por cantón, fortaleza territorial de cada organización y validación a ciegas de cinco modelos. El pronóstico 2026 está en veda electoral hasta el cierre de urnas del 29 de noviembre.",
+      en: "Ecuador's 222 mayoralties over 1,103 races from 2004 to 2023: canton-by-canton trends, each party's territorial strength and a blind validation of five models. The 2026 forecast is under the electoral blackout until polls close on 29 November.",
+    },
+    dataSource: "public",
+    period: "2004–2026",
+    tags: ["Power BI", "Mapas SVG en DAX", "Backtesting", "Datos abiertos"],
+    shots: [
+      {
+        src: "/perfiles/bi/dashboards/ecuador-evolucion.jpg",
+        width: 1264,
+        height: 711,
+        caption: {
+          es: "Evolución 2004–2023 — organización ganadora de cada alcaldía y alcaldías por organización",
+          en: "2004–2023 trend — winning party in every mayoralty and mayoralties by party",
+        },
+      },
+      {
+        src: "/perfiles/bi/dashboards/ecuador-validacion.jpg",
+        width: 1264,
+        height: 711,
+        caption: {
+          es: "Validación — cinco modelos contra 2019 y 2023; la regresión logística condicional, elegida por parsimonia",
+          en: "Validation — five models against 2019 and 2023; conditional logistic regression chosen for parsimony",
+        },
+      },
+    ],
+  },
 ];
 
 /** Los que se muestran como adelanto en /perfiles/bi */
