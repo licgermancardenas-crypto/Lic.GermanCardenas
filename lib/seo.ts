@@ -22,6 +22,7 @@ export const ROUTES = [
   { path: "/work/atlas-ypf", priority: 0.8, changeFrequency: "monthly" },
   { path: "/work/atlas-sentinel", priority: 0.8, changeFrequency: "monthly" },
   { path: "/work/phantom-ai", priority: 0.8, changeFrequency: "monthly" },
+  { path: "/work/atlas-analytics", priority: 0.8, changeFrequency: "monthly" },
   { path: "/perfiles/fpa", priority: 0.9, changeFrequency: "monthly" },
   { path: "/perfiles/data-science", priority: 0.9, changeFrequency: "monthly" },
   { path: "/perfiles/bi", priority: 0.9, changeFrequency: "monthly" },

@@ -48,6 +48,7 @@ const projectLinks = [
   { label: "ATLAS-YPF", url: "https://atlas-ypf.vercel.app/ypf-project" },
   { label: "ATLAS SENTINEL", url: "https://dashboard-two-sepia-39.vercel.app" },
   { label: "Phantom AI", url: "https://fraude-bancario-2026.vercel.app" },
+  { label: "Atlas Analytics", url: "https://www.atlas-analytics.site" },
   { label: "Real Estate Intelligence", url: "https://real-state-intelligence.vercel.app/" },
   { label: "Fundación CIPE", url: "https://www.fundacioncipe.com/" },
 ];

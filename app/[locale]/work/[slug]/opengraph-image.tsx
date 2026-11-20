@@ -80,6 +80,15 @@ const CASES: Record<
     },
     chips: ["GraphSAGE", "PyTorch Geometric", "XGBoost", "Compliance"],
   },
+  "atlas-analytics": {
+    title: "Atlas Analytics",
+    accent: "#8B2CF5",
+    subtitle: {
+      es: "Consultora de datos y un sistema de IA que no inventa fuentes",
+      en: "A data consultancy and an AI system that can't make up sources",
+    },
+    chips: ["Agentes de IA", "Claude", "Next.js", "Datos públicos"],
+  },
 };
 
 export default async function Image({

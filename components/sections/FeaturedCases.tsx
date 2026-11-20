@@ -318,6 +318,34 @@ const cases: CaseData[] = [
     screenshots: ["red.jpg", "anillos.jpg", "casos.jpg", "direccion.jpg"].map((f) => `/screenshots/phantom/${f}`),
     url: "https://fraude-bancario-2026.vercel.app",
   },
+  {
+    id: "caso-09",
+    slug: "atlas-analytics",
+    number: "09",
+    category: "AI ENGINEERING · DATOS PÚBLICOS · CONSULTORA",
+    title: "Atlas Analytics",
+    subtitle: "Mi consultora de análisis de datos y geointeligencia política, y el sistema de IA que investiga con fuentes reales antes de escribir una sola línea.",
+    meta: {
+      rol: "Fundador · AI Engineer",
+      escala: "41 carruseles · 451 placas",
+      stack: "Next.js · Claude · Supabase",
+      estado: "En producción",
+    },
+    challenge:
+      "Publicar análisis de datos todas las semanas sin caer en lo que la IA generativa hace por defecto: inventar cifras, citar fuentes que no existen y producir una estética genérica. Para una consultora cuyo producto es la precisión, un solo número inventado alcanza para perder la credibilidad.",
+    approach:
+      "Un pipeline de seis agentes —investigación, inteligencia, estrategia, copy, visual y control de calidad— en el que los modelos nunca escriben un link: citan los resultados de búsqueda por número y el código resuelve la fuente real. Antes, un radar sin IA barre unas 300 series públicas (BCRA, datos.gob.ar, RENAPER, Ministerio de Seguridad) y puntúa cada señal de 0 a 100 como oportunidad. Las placas se componen por código con los valores reales, porque un modelo de imagen no escribe bien un porcentaje.",
+    impactLabel: "QUÉ DEMUESTRA",
+    impact:
+      "41 carruseles producidos entre agosto y noviembre de 2026, cada uno con su ficha de fuentes y cada placa marcada como dato observado o imagen generada. Es la misma forma de trabajar que ofrezco a clientes: IA que acelera el trabajo, con trazabilidad completa y una persona que aprueba antes de publicar.",
+    metrics: [
+      { value: "41", label: "Carruseles producidos" },
+      { value: "~300", label: "Series públicas por barrido del radar" },
+      { value: "0", label: "Links escritos por el modelo" },
+    ],
+    screenshots: ["portadas.jpg", "apellidos.jpg", "reservas.jpg", "sitio.jpg"].map((f) => `/screenshots/atlas-analytics/${f}`),
+    url: "https://www.atlas-analytics.site",
+  },
 ];
 
 // ── Lightbox ──────────────────────────────────────────────────────────────────
@@ -741,8 +769,8 @@ export function FeaturedCases() {
                 letterSpacing: "0.02em",
               }}
             >
-              Ocho proyectos.{" "}
-              <span>Ocho historias.</span>
+              Nueve proyectos.{" "}
+              <span>Nueve historias.</span>
             </h2>
             <p
               style={{

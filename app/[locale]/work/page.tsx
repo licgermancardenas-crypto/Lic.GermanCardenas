@@ -20,14 +20,14 @@ export async function generateMetadata({
         path: "/work",
         title: "Work — Germán Cárdenas",
         description:
-          "Full case studies: Atlas One ERP, Atlas Nexus, AgroNova, LAPD Crime Analytics, Yerba Mate Intelligence, ATLAS-YPF, ATLAS SENTINEL, and Phantom AI.",
+          "Full case studies: Atlas One ERP, Atlas Nexus, AgroNova, LAPD Crime Analytics, Yerba Mate Intelligence, ATLAS-YPF, ATLAS SENTINEL, Phantom AI, and Atlas Analytics.",
       })
     : pageMetadata({
         locale,
         path: "/work",
         title: "Work — Germán Cárdenas",
         description:
-          "Casos de estudio completos: Atlas One ERP, Atlas Nexus, AgroNova, LAPD Crime Analytics, Yerba Mate Intelligence, ATLAS-YPF, ATLAS SENTINEL y Phantom AI.",
+          "Casos de estudio completos: Atlas One ERP, Atlas Nexus, AgroNova, LAPD Crime Analytics, Yerba Mate Intelligence, ATLAS-YPF, ATLAS SENTINEL, Phantom AI y Atlas Analytics.",
       });
 }
 
@@ -117,6 +117,15 @@ const cases: Record<Locale, CaseCard[]> = {
       accent: "#6366f1",
       thumbnail: "/screenshots/phantom/red.jpg",
     },
+    {
+      slug: "atlas-analytics",
+      number: "09",
+      category: "AI Engineering · Datos públicos · Consultora",
+      title: "Atlas Analytics",
+      subtitle: "Mi consultora de datos y el sistema de IA que investiga con fuentes reales: 41 carruseles, cero links inventados.",
+      accent: "#8B2CF5",
+      thumbnail: "/screenshots/atlas-analytics/portadas.jpg",
+    },
   ],
   en: [
     {
@@ -190,6 +199,15 @@ const cases: Record<Locale, CaseCard[]> = {
       subtitle: "Graph neural networks against money laundering: 90% of fraud detected, on synthetic data.",
       accent: "#6366f1",
       thumbnail: "/screenshots/phantom/red.jpg",
+    },
+    {
+      slug: "atlas-analytics",
+      number: "09",
+      category: "AI Engineering · Public data · Consultancy",
+      title: "Atlas Analytics",
+      subtitle: "My data consultancy and the AI system that researches real sources: 41 carousels, zero made-up links.",
+      accent: "#8B2CF5",
+      thumbnail: "/screenshots/atlas-analytics/portadas.jpg",
     },
   ],
 };

@@ -55,6 +55,8 @@ const ERP_IMPACT_IMAGES: Record<Locale, { src: string; caption: string }[]> = {
   ],
 };
 
+const AA_SHOTS = ["portadas.jpg", "apellidos.jpg", "reservas.jpg", "sitio.jpg"].map((f) => `/screenshots/atlas-analytics/${f}`);
+
 const PHANTOM_SHOTS = ["red.jpg", "anillos.jpg", "casos.jpg", "direccion.jpg"].map((f) => `/screenshots/phantom/${f}`);
 
 const SENTINEL_SHOTS = ["inicio.jpg", "mapa.jpg"].map((f) => `/screenshots/sentinel/${f}`);
@@ -518,6 +520,60 @@ const content: Record<Locale, Record<string, CaseStudy>> = {
         { value: "90%", description: "Del fraude detectado con 9 de cada 10 alertas reales" },
         { value: "13% vs 21%", description: "Fraude no detectado: grafo contra mejor modelo tabular" },
       ],
+      nextSlug: "atlas-analytics",
+      nextTitle: "Atlas Analytics →",
+    },
+    "atlas-analytics": {
+      slug: "atlas-analytics",
+      title: "Atlas Analytics",
+      category: "AI Engineering · Datos públicos · Consultora",
+      subtitle: "Mi consultora de análisis de datos y geointeligencia política, y el sistema de IA que investiga con fuentes reales antes de escribir una sola línea.",
+      accent: "#8B2CF5",
+      screenshots: AA_SHOTS,
+      url: "https://www.atlas-analytics.site",
+      context:
+        "Atlas Analytics es mi consultora: análisis de datos y geointeligencia territorial y política para campañas, gobiernos y empresas. Varios de los informes territoriales de este portfolio salieron de ahí. La marca necesitaba además una voz pública constante: análisis cortos, con datos abiertos de Argentina, que muestren cómo trabajamos.",
+      challenge:
+        "Producir contenido de datos todas las semanas con IA sin heredar sus vicios: cifras inventadas, fuentes que no existen, gráficos con números mal escritos y una estética genérica. En una consultora que vende precisión, un error así no es un detalle: es el producto fallando en público.",
+      role:
+        "Fundador y desarrollador de punta a punta: la arquitectura de agentes, los prompts, el radar de fuentes, el renderer visual, la base de datos, el control de costos y la identidad de la marca.",
+      approach:
+        "El sistema sigue un orden fijo: investigar, encontrar la oportunidad, definir la estrategia, escribir, diseñar y revisar. Seis agentes con responsabilidades separadas, que no tocan la base de datos y devuelven siempre salidas validadas con esquema. Antes del pipeline corre el radar: barre unas 300 series de fuentes públicas y gratuitas, las convierte en señales, las agrupa y las puntúa de 0 a 100, sin usar modelos.",
+      stack: [
+        { name: "Next.js 16", why: "La plataforma privada: investigación, estudio de contenido, biblioteca, calendario y panel de consumo de IA" },
+        { name: "Claude (Sonnet y Haiku)", why: "Ruteo por tarea: el modelo más capaz donde importa el razonamiento, el más barato para formateo y verificación" },
+        { name: "Búsqueda web intercambiable", why: "Proveedores detrás de una interfaz: cambiar de buscador es configuración, no código" },
+        { name: "Renderer editorial en SVG", why: "Compone cada placa por código con los valores reales de las fuentes: exacto y a costo cero" },
+        { name: "Supabase / Postgres", why: "Almacén con dos implementaciones, JSON local o Postgres, intercambiables con una variable" },
+        { name: "Zod", why: "Toda salida de un modelo se valida contra un esquema: sin reintentos por texto mal formado" },
+      ],
+      decisions: [
+        {
+          decision: "Los modelos nunca escriben un link",
+          reasoning: "El agente de investigación recibe los resultados numerados y solo puede citarlos por número; el código resuelve ese número contra la fuente real. Si cita algo que no existe, se descarta. Una cita inventada es imposible por diseño, no por buena voluntad del modelo.",
+        },
+        {
+          decision: "Clasificar cada afirmación y mostrar lo no verificado",
+          reasoning: "Todo se etiqueta como hecho, opinión, interpretación o inferencia. Lo que no se pudo verificar se muestra como \"No verificado\" en vez de esconderse, y cada placa publicada dice si es dato observado o imagen generada.",
+        },
+        {
+          decision: "Un radar sin IA para decidir qué contar",
+          reasoning: "Elegir temas no necesita un modelo. El radar puntúa cada señal con ocho factores de peso fijo —novedad, sorpresa, relevancia, calidad del dato, potencial visual y narrativo, si se comparte, actualidad—, gratis y reproducible. Limita cuántas señales aporta cada organismo para que uno solo no se lleve todo, y debajo de 55 puntos ni siquiera se investiga.",
+        },
+        {
+          decision: "Gráficos compuestos por código, no generados",
+          reasoning: "Un modelo de imagen cuesta entre 2 y 15 centavos de dólar por pieza y no escribe bien \"1,9%\". El renderer propio pone los números reales en la placa, siempre igual y sin costo. La imagen generada queda solo para fondos y atmósfera.",
+        },
+      ],
+      results:
+        "41 carruseles de 11 placas producidos entre agosto y noviembre de 2026 —demografía, reservas del BCRA, delito por provincia, comercio exterior, energía—, cada uno con su ficha de fuentes. Investigar el mismo tema dos veces en 12 horas no cuesta nada, y pedir otro título cuesta unos 400 tokens, no una pasada completa.",
+      learned:
+        "El control de calidad automático ayuda, pero no reemplaza a una persona: por eso ningún contenido avanza solo hacia la publicación. Y la mejor manera de que una IA no invente datos no es pedírselo, es diseñar el sistema para que no pueda.",
+      metrics: [
+        { value: "41", description: "Carruseles producidos, 451 placas" },
+        { value: "~300", description: "Series públicas por barrido del radar" },
+        { value: "0", description: "Links escritos por el modelo" },
+      ],
       nextSlug: "atlas-one-erp",
       nextTitle: "Atlas One ERP →",
     },
@@ -933,6 +989,60 @@ const content: Record<Locale, Record<string, CaseStudy>> = {
         { value: "0.943", description: "GraphSAGE PR-AUC, versus 0.882 for XGBoost" },
         { value: "90%", description: "Of fraud detected with 9 in 10 alerts real" },
         { value: "13% vs 21%", description: "Undetected fraud: graph versus best tabular model" },
+      ],
+      nextSlug: "atlas-analytics",
+      nextTitle: "Atlas Analytics →",
+    },
+    "atlas-analytics": {
+      slug: "atlas-analytics",
+      title: "Atlas Analytics",
+      category: "AI Engineering · Public data · Consultancy",
+      subtitle: "My data-analytics and political geo-intelligence consultancy, and the AI system that researches real sources before writing a single line.",
+      accent: "#8B2CF5",
+      screenshots: AA_SHOTS,
+      url: "https://www.atlas-analytics.site",
+      context:
+        "Atlas Analytics is my consultancy: data analysis and territorial and political geo-intelligence for campaigns, governments and companies. Several of the territorial reports in this portfolio came out of it. The brand also needed a steady public voice: short analyses built on Argentine open data that show how we work.",
+      challenge:
+        "Producing data content every week with AI without inheriting its vices: made-up figures, sources that don't exist, charts with wrongly written numbers and a generic look. For a consultancy that sells precision, that kind of error isn't a detail — it's the product failing in public.",
+      role:
+        "Founder and end-to-end developer: the agent architecture, prompts, source radar, visual renderer, database, cost control and the brand identity.",
+      approach:
+        "The system follows a fixed order: research, find the opportunity, set the strategy, write, design and review. Six agents with separate responsibilities that never touch the database and always return schema-validated output. Before the pipeline runs the radar: it sweeps about 300 free public data series, turns them into signals, clusters them and scores them from 0 to 100, without using any model.",
+      stack: [
+        { name: "Next.js 16", why: "The private platform: research, content studio, library, calendar and AI usage panel" },
+        { name: "Claude (Sonnet and Haiku)", why: "Task routing: the most capable model where reasoning matters, the cheapest for formatting and checks" },
+        { name: "Swappable web search", why: "Providers behind an interface: switching search engines is configuration, not code" },
+        { name: "SVG editorial renderer", why: "Composes each slide in code with the real values from the sources: exact and at zero cost" },
+        { name: "Supabase / Postgres", why: "A store with two implementations, local JSON or Postgres, swappable with one variable" },
+        { name: "Zod", why: "Every model output is validated against a schema: no retries over malformed text" },
+      ],
+      decisions: [
+        {
+          decision: "Models never write a link",
+          reasoning: "The research agent receives numbered search results and can only cite them by number; the code resolves that number against the real source. If it cites something that doesn't exist, it's dropped. A made-up citation is impossible by design, not by the model's good will.",
+        },
+        {
+          decision: "Classify every claim and show what's unverified",
+          reasoning: "Everything is tagged as fact, opinion, interpretation or inference. What couldn't be verified is shown as \"Not verified\" instead of being hidden, and every published slide says whether it's observed data or a generated image.",
+        },
+        {
+          decision: "An AI-free radar to decide what to cover",
+          reasoning: "Choosing topics doesn't need a model. The radar scores each signal on eight fixed-weight factors — novelty, surprise, relevance, data quality, visual and story potential, shareability, timeliness — free and reproducible. It caps how many signals each agency contributes so one source can't take over, and anything under 55 isn't even researched.",
+        },
+        {
+          decision: "Charts composed in code, not generated",
+          reasoning: "An image model costs 2 to 15 US cents per piece and can't reliably write \"1.9%\". The custom renderer puts the real numbers on the slide, always the same and at no cost. Generated imagery is kept for backgrounds and atmosphere only.",
+        },
+      ],
+      results:
+        "41 eleven-slide carousels produced between August and November 2026 — demographics, central-bank reserves, crime by province, foreign trade, energy — each with its own source sheet. Researching the same topic twice within 12 hours costs nothing, and asking for another headline costs about 400 tokens, not a full run.",
+      learned:
+        "Automated quality control helps, but it doesn't replace a person: that's why no content moves to publication on its own. And the best way to stop an AI from making up data isn't to ask it not to — it's to design the system so it can't.",
+      metrics: [
+        { value: "41", description: "Carousels produced, 451 slides" },
+        { value: "~300", description: "Public series per radar sweep" },
+        { value: "0", description: "Links written by the model" },
       ],
       nextSlug: "atlas-one-erp",
       nextTitle: "Atlas One ERP →",
