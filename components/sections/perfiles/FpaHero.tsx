@@ -79,10 +79,10 @@ export function FpaHero() {
       >
         <Link
           href={`/${locale}`}
-          className="inline-flex items-center gap-2 transition-colors duration-200"
+          className="inline-flex items-center gap-2 min-h-[40px] transition-colors duration-200"
           style={{
             fontFamily: "var(--font-mono)",
-            fontSize: "11px",
+            fontSize: "12px",
             letterSpacing: "0.12em",
             textTransform: "uppercase",
             color: "rgba(255,255,255,0.3)",
@@ -113,7 +113,7 @@ export function FpaHero() {
           <span
             style={{
               fontFamily: "var(--font-mono)",
-              fontSize: "11px",
+              fontSize: "12px",
               letterSpacing: "0.18em",
               textTransform: "uppercase",
               color: "#2B6FE8",
@@ -179,13 +179,13 @@ export function FpaHero() {
               key={skill}
               style={{
                 fontFamily: "var(--font-mono)",
-                fontSize: "10px",
+                fontSize: "12px",
                 letterSpacing: "0.1em",
                 textTransform: "uppercase",
                 padding: "5px 14px",
                 borderRadius: "100px",
                 border: "1px solid rgba(43,111,232,0.35)",
-                color: "rgba(43,111,232,0.85)",
+                color: "#4B85EB",
                 background: "rgba(43,111,232,0.07)",
               }}
             >

@@ -98,7 +98,7 @@ export function ExperienceCard({ exp, index, lang }: { exp: ExperienceData; inde
             className="absolute top-4 left-4 z-20"
             style={{
               fontFamily: "var(--font-mono)",
-              fontSize: "10px",
+              fontSize: "12px",
               letterSpacing: "0.18em",
               textTransform: "uppercase",
               color: "rgba(255,255,255,0.45)",
@@ -127,7 +127,7 @@ export function ExperienceCard({ exp, index, lang }: { exp: ExperienceData; inde
           <span
             style={{
               fontFamily: "var(--font-mono)",
-              fontSize: "11px",
+              fontSize: "12px",
               letterSpacing: "0.16em",
               textTransform: "uppercase",
               color: "#4A8BFF",
@@ -157,7 +157,7 @@ export function ExperienceCard({ exp, index, lang }: { exp: ExperienceData; inde
           style={{
             fontFamily: "var(--font-mono)",
             fontSize: "12px",
-            color: "#6B7A95",
+            color: "#8D9AB3",
             letterSpacing: "0.04em",
           }}
         >
@@ -189,7 +189,7 @@ export function ExperienceCard({ exp, index, lang }: { exp: ExperienceData; inde
           <p
             style={{
               fontFamily: "var(--font-mono)",
-              fontSize: "10px",
+              fontSize: "12px",
               letterSpacing: "0.14em",
               textTransform: "uppercase",
               color: "#4A8BFF",
@@ -224,7 +224,7 @@ export function ExperienceCard({ exp, index, lang }: { exp: ExperienceData; inde
                 borderRadius: "999px",
                 background: "rgba(255,255,255,0.03)",
                 border: "1px solid rgba(255,255,255,0.07)",
-                color: "#6B7A95",
+                color: "#8D9AB3",
                 backdropFilter: "blur(6px)",
               }}
             >
@@ -243,7 +243,7 @@ export function ExperienceCard({ exp, index, lang }: { exp: ExperienceData; inde
                 key={t}
                 style={{
                   fontFamily: "var(--font-mono)",
-                  fontSize: "11px",
+                  fontSize: "12px",
                   padding: "4px 10px",
                   borderRadius: "6px",
                   background: "rgba(43,111,232,0.06)",

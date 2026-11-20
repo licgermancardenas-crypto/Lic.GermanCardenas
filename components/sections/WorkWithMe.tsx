@@ -93,10 +93,10 @@ export function WorkWithMe() {
               <p
                 style={{
                   fontFamily: "var(--font-mono)",
-                  fontSize: "11px",
+                  fontSize: "12px",
                   letterSpacing: "0.16em",
                   textTransform: "uppercase",
-                  color: "#6B7A95",
+                  color: "#8D9AB3",
                   marginBottom: "24px",
                 }}
               >
@@ -135,7 +135,7 @@ export function WorkWithMe() {
                   fontFamily: "var(--font-mono)",
                   fontSize: "12px",
                   letterSpacing: "0.06em",
-                  color: "#6B7A95",
+                  color: "#8D9AB3",
                   marginBottom: "28px",
                   lineHeight: 1.6,
                 }}
@@ -208,10 +208,10 @@ export function WorkWithMe() {
               <p
                 style={{
                   fontFamily: "var(--font-mono)",
-                  fontSize: "11px",
+                  fontSize: "12px",
                   letterSpacing: "0.16em",
                   textTransform: "uppercase",
-                  color: "#6B7A95",
+                  color: "#8D9AB3",
                   marginBottom: "24px",
                 }}
               >
@@ -244,7 +244,7 @@ export function WorkWithMe() {
                 style={{
                   fontSize: "15px",
                   lineHeight: 1.7,
-                  color: "#6B7A95",
+                  color: "#8D9AB3",
                   marginBottom: "28px",
                 }}
               >
@@ -295,7 +295,7 @@ export function WorkWithMe() {
           <p
             style={{
               fontSize: "15px",
-              color: "#6B7A95",
+              color: "#8D9AB3",
               marginBottom: "20px",
             }}
           >
@@ -304,7 +304,7 @@ export function WorkWithMe() {
 
           <a
             href="mailto:lic.germancardenas@gmail.com"
-            className="block transition-colors duration-200 hover:opacity-80"
+            className="block py-1.5 transition-colors duration-200 hover:opacity-80"
             style={{
               fontSize: "clamp(20px, 3vw, 32px)",
               fontWeight: 400,
@@ -343,7 +343,7 @@ export function WorkWithMe() {
               fontFamily: "var(--font-mono)",
               fontSize: "12px",
               letterSpacing: "0.06em",
-              color: "#3F4A5F",
+              color: "#7888A5",
             }}
           >
             {t.reply}

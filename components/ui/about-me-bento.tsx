@@ -83,20 +83,20 @@ export function AboutMeBento() {
             </h3>
 
             <div style={{ display: "flex", flexDirection: "column", gap: "14px" }}>
-              <p style={{ fontSize: "13.5px", color: "#6B7A95", lineHeight: 1.78 }}>
+              <p style={{ fontSize: "13.5px", color: "#8D9AB3", lineHeight: 1.78 }}>
                 Mi trabajo se encuentra en la intersección de la inteligencia artificial, la
                 ingeniería de datos, el análisis geoespacial y el desarrollo de software. Me
                 apasiona diseñar productos que transforman datos complejos en información clara,
                 útil y accionable.
               </p>
-              <p style={{ fontSize: "13.5px", color: "#6B7A95", lineHeight: 1.78 }}>
+              <p style={{ fontSize: "13.5px", color: "#8D9AB3", lineHeight: 1.78 }}>
                 Creo que los datos adquieren verdadero valor cuando generan contexto, reducen la
                 incertidumbre y permiten comprender mejor la realidad. Por eso desarrollo
                 soluciones que integran procesamiento de datos, modelos de IA, sistemas
                 geoespaciales y visualizaciones interactivas en experiencias intuitivas y
                 escalables.
               </p>
-              <p style={{ fontSize: "13.5px", color: "#6B7A95", lineHeight: 1.78 }}>
+              <p style={{ fontSize: "13.5px", color: "#8D9AB3", lineHeight: 1.78 }}>
                 Disfruto crear productos de punta a punta: desde la arquitectura y el backend
                 hasta la experiencia de usuario, la analítica y la infraestructura necesaria
                 para llevar una idea a producción.
@@ -135,10 +135,10 @@ export function AboutMeBento() {
             <span
               style={{
                 fontFamily: "var(--font-mono)",
-                fontSize: "10px",
+                fontSize: "12px",
                 letterSpacing: "0.12em",
                 textTransform: "uppercase",
-                color: "#52525b",
+                color: "#868692",
               }}
             >
               Chicago · 360° NORTH
@@ -168,10 +168,10 @@ export function AboutMeBento() {
               alignItems: "center",
               gap: "8px",
               fontFamily: "var(--font-mono)",
-              fontSize: "10px",
+              fontSize: "12px",
               letterSpacing: "0.14em",
               textTransform: "uppercase",
-              color: "#6B7A95",
+              color: "#8D9AB3",
               marginBottom: "20px",
             }}
           >
@@ -192,7 +192,7 @@ export function AboutMeBento() {
                     marginTop: "7px",
                   }}
                 />
-                <span style={{ fontSize: "13px", color: "#6B7A95", lineHeight: 1.72 }}>
+                <span style={{ fontSize: "13px", color: "#8D9AB3", lineHeight: 1.72 }}>
                   <strong style={{ color: "#C5CFE2", fontWeight: 600, display: "block", marginBottom: "4px" }}>
                     {item.label}
                   </strong>
@@ -234,20 +234,20 @@ export function AboutMeBento() {
           </h3>
 
           <div style={{ display: "flex", flexDirection: "column", gap: "14px", marginBottom: "32px" }}>
-            <p style={{ fontSize: "13.5px", color: "#6B7A95", lineHeight: 1.78 }}>
+            <p style={{ fontSize: "13.5px", color: "#8D9AB3", lineHeight: 1.78 }}>
               Creo que el aprendizaje no termina cuando cierro el editor de código.
             </p>
-            <p style={{ fontSize: "13.5px", color: "#6B7A95", lineHeight: 1.78 }}>
+            <p style={{ fontSize: "13.5px", color: "#8D9AB3", lineHeight: 1.78 }}>
               Disfruto participar en conferencias, hackatones, comunidades tecnológicas y espacios
               donde se reúnen emprendedores, investigadores, empresas y profesionales para
               compartir ideas, debatir tendencias y explorar el futuro de la tecnología.
             </p>
-            <p style={{ fontSize: "13.5px", color: "#6B7A95", lineHeight: 1.78 }}>
+            <p style={{ fontSize: "13.5px", color: "#8D9AB3", lineHeight: 1.78 }}>
               Cada evento representa una oportunidad para descubrir nuevas perspectivas, conocer
               personas que están construyendo soluciones innovadoras y desafiar mi propia forma de
               pensar.
             </p>
-            <p style={{ fontSize: "13.5px", color: "#6B7A95", lineHeight: 1.78 }}>
+            <p style={{ fontSize: "13.5px", color: "#8D9AB3", lineHeight: 1.78 }}>
               Busco rodearme de personas curiosas, con ganas de crear, aprender y generar impacto.
               Estoy convencido de que las mejores oportunidades nacen de una conversación, una
               colaboración o una idea compartida.
@@ -272,7 +272,7 @@ export function AboutMeBento() {
               <span
                 style={{
                   fontFamily: "var(--font-mono)",
-                  fontSize: "10px",
+                  fontSize: "12px",
                   letterSpacing: "0.14em",
                   textTransform: "uppercase",
                   color: "#7BA8F5",
@@ -282,7 +282,7 @@ export function AboutMeBento() {
               >
                 Forbes Sostenibilidad Summit
               </span>
-              <p style={{ fontSize: "13.5px", color: "#6B7A95", lineHeight: 1.78 }}>
+              <p style={{ fontSize: "13.5px", color: "#8D9AB3", lineHeight: 1.78 }}>
                 Participé en el Forbes Sostenibilidad Summit, un espacio donde líderes de
                 empresas, organizaciones y especialistas compartieron cómo la innovación y la
                 tecnología están transformando el desarrollo sostenible. Asistir a este tipo de

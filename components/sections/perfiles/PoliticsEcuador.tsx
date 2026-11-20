@@ -63,7 +63,7 @@ export function PoliticsEcuador({ locale }: { locale: string }) {
   return (
     <section id="ecuador" className="pb-24 md:pb-32" style={{ backgroundColor: "#050505" }}>
       <div className="container-custom max-w-6xl mx-auto pt-16 md:pt-20" style={{ borderTop: "1px solid rgba(255,255,255,0.06)" }}>
-        <p style={{ ...mono, fontSize: "11px", letterSpacing: "0.2em", textTransform: "uppercase", color: GOLD, marginBottom: "16px" }}>
+        <p style={{ ...mono, fontSize: "12px", letterSpacing: "0.2em", textTransform: "uppercase", color: GOLD, marginBottom: "16px" }}>
           {t.eyebrow}
         </p>
         <h2

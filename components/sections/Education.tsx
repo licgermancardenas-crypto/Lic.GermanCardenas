@@ -14,7 +14,7 @@ const education = [
     period: "2019 – 2024",
     detail: "Graduado",
     icon: GraduationCap,
-    accent: "#635bff",
+    accent: "#7B75FF",
   },
   {
     institution: "Instituto de Capacitación Bursátil",
@@ -66,7 +66,7 @@ export function Education() {
                   >
                     <edu.icon className="w-5 h-5" style={{ color: edu.accent }} />
                   </div>
-                  <p className="text-xs text-[#6B7689] mb-1">{edu.period}</p>
+                  <p className="text-xs text-[#8D9AB3] mb-1">{edu.period}</p>
                   <h3 className="text-base font-bold text-[#F5F7FA] mb-1">
                     {edu.degree}
                   </h3>
@@ -97,7 +97,7 @@ export function Education() {
                         <span>{lang.flag}</span>
                         {lang.lang}
                       </span>
-                      <span className="text-xs text-[#6B7689]">
+                      <span className="text-xs text-[#8D9AB3]">
                         {t(lang.level_key as "native" | "advanced" | "intermediate" | "basic")}
                       </span>
                     </div>
@@ -120,7 +120,7 @@ export function Education() {
             <h3 className="text-base font-bold text-[#F5F7FA]">
               {t("certifications_title")}
             </h3>
-            <span className="text-xs text-[#6B7689]">
+            <span className="text-xs text-[#8D9AB3]">
               {t("certifications_count", { count: diplomas.length })}
             </span>
           </div>

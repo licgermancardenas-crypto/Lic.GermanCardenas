@@ -136,7 +136,7 @@ export function CommandPalette() {
               <div className="rounded-2xl border border-[#1F2937] bg-[#0F1419] shadow-2xl overflow-hidden">
                 {/* Search input */}
                 <div className="flex items-center gap-3 px-4 py-4 border-b border-[#1F2937]">
-                  <Search className="w-4 h-4 text-[#6B7689] flex-shrink-0" />
+                  <Search className="w-4 h-4 text-[#8D9AB3] flex-shrink-0" />
                   <input
                     ref={inputRef}
                     value={query}
@@ -148,14 +148,14 @@ export function CommandPalette() {
                     placeholder="Buscar sección o proyecto..."
                     className="flex-1 bg-transparent text-[#F5F7FA] placeholder-[#6B7689] text-sm outline-none"
                   />
-                  <kbd className="text-[10px] text-[#6B7689] border border-[#1F2937] rounded px-1.5 py-0.5 font-mono">
+                  <kbd className="text-xs text-[#8D9AB3] border border-[#1F2937] rounded px-1.5 py-0.5 font-mono">
                     ESC
                   </kbd>
                 </div>
                 {/* Results */}
                 <div className="max-h-80 overflow-y-auto py-2">
                   {filtered.length === 0 ? (
-                    <div className="px-4 py-8 text-center text-sm text-[#6B7689]">
+                    <div className="px-4 py-8 text-center text-sm text-[#8D9AB3]">
                       Sin resultados para &quot;{query}&quot;
                     </div>
                   ) : (
@@ -172,14 +172,14 @@ export function CommandPalette() {
                       >
                         <span
                           className="w-6 h-6 flex-shrink-0 flex items-center justify-center rounded text-xs font-mono"
-                          style={{ color: selected === i ? "#4F7CFF" : "#6B7689" }}
+                          style={{ color: selected === i ? "#4F7CFF" : "#8D9AB3" }}
                         >
                           {cmd.icon ?? <Hash className="w-3 h-3" />}
                         </span>
                         <div className="flex-1 min-w-0">
                           <div className="text-sm font-medium truncate">{cmd.label}</div>
                           {cmd.description && (
-                            <div className="text-xs text-[#6B7689] truncate">{cmd.description}</div>
+                            <div className="text-xs text-[#8D9AB3] truncate">{cmd.description}</div>
                           )}
                         </div>
                         {selected === i && <ArrowRight className="w-3.5 h-3.5 text-[#4F7CFF] flex-shrink-0" />}
@@ -188,7 +188,7 @@ export function CommandPalette() {
                   )}
                 </div>
                 {/* Footer */}
-                <div className="px-4 py-2.5 border-t border-[#1F2937] flex items-center gap-4 text-[10px] text-[#6B7689] font-mono">
+                <div className="px-4 py-2.5 border-t border-[#1F2937] flex items-center gap-4 text-xs text-[#8D9AB3] font-mono">
                   <span><kbd className="border border-[#1F2937] rounded px-1">↑↓</kbd> navegar</span>
                   <span><kbd className="border border-[#1F2937] rounded px-1">↵</kbd> abrir</span>
                   <span><kbd className="border border-[#1F2937] rounded px-1">⌘K</kbd> cerrar</span>

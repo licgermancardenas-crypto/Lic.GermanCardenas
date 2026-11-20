@@ -168,7 +168,7 @@ function GlassCard({
           <span
             style={{
               fontFamily: "var(--font-mono)",
-              fontSize: "9px",
+              fontSize: "12px",
               letterSpacing: "0.14em",
               textTransform: "uppercase",
               padding: "4px 10px",
@@ -204,7 +204,7 @@ function GlassCard({
           <p
             style={{
               fontFamily: "var(--font-mono)",
-              fontSize: "10px",
+              fontSize: "12px",
               fontWeight: 500,
               letterSpacing: "0.1em",
               textTransform: "uppercase",
@@ -240,13 +240,13 @@ function GlassCard({
         <span
           style={{
             fontFamily: "var(--font-mono)",
-            fontSize: "10px",
+            fontSize: "12px",
             letterSpacing: "0.12em",
             textTransform: "uppercase",
             display: "flex",
             alignItems: "center",
             gap: "6px",
-            color: hovered ? "rgba(147, 197, 253, 0.95)" : "rgba(100, 116, 139, 0.8)",
+            color: hovered ? "rgba(147, 197, 253, 0.95)" : "#8D9AB3",
             transition: "color 0.3s ease",
           }}
         >
@@ -256,8 +256,8 @@ function GlassCard({
         <span
           style={{
             fontFamily: "var(--font-mono)",
-            fontSize: "9px",
-            color: hovered ? "rgba(100, 116, 139, 0.8)" : "rgba(71, 85, 105, 0.6)",
+            fontSize: "12px",
+            color: hovered ? "#8D9AB3" : "#7888A5",
             transition: "color 0.3s ease",
           }}
         >
@@ -337,13 +337,13 @@ export function FinancialStackCards() {
               <button
                 onClick={() => setActiveImage(null)}
                 className="ml-4 flex-shrink-0 p-1.5 rounded-lg transition-all duration-200"
-                style={{ color: "rgba(100, 116, 139, 0.8)" }}
+                style={{ color: "#8D9AB3" }}
                 onMouseEnter={(e) => {
                   (e.currentTarget as HTMLElement).style.color = "#fff";
                   (e.currentTarget as HTMLElement).style.background = "rgba(59,130,246,0.12)";
                 }}
                 onMouseLeave={(e) => {
-                  (e.currentTarget as HTMLElement).style.color = "rgba(100, 116, 139, 0.8)";
+                  (e.currentTarget as HTMLElement).style.color = "#8D9AB3";
                   (e.currentTarget as HTMLElement).style.background = "transparent";
                 }}
                 aria-label="Cerrar"
@@ -378,7 +378,7 @@ export function FinancialStackCards() {
               <span
                 style={{
                   fontFamily: "var(--font-mono)",
-                  fontSize: "10px",
+                  fontSize: "12px",
                   letterSpacing: "0.1em",
                   textTransform: "uppercase",
                   color: "rgba(59, 130, 246, 0.45)",
@@ -389,8 +389,8 @@ export function FinancialStackCards() {
               <span
                 style={{
                   fontFamily: "var(--font-mono)",
-                  fontSize: "10px",
-                  color: "rgba(71, 85, 105, 0.6)",
+                  fontSize: "12px",
+                  color: "#7888A5",
                 }}
               >
                 Enterprise Grade Architecture

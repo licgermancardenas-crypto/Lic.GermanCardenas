@@ -67,7 +67,7 @@ export function FpaProject({ locale }: { locale: string }) {
       style={{ backgroundColor: "#06080D", borderTop: "1px solid rgba(255,255,255,0.05)" }}
     >
       <div className="container-custom">
-        <p style={{ ...mono, fontSize: "12px", letterSpacing: "0.16em", textTransform: "uppercase", color: "#6B7A95", marginBottom: "28px" }}>
+        <p style={{ ...mono, fontSize: "12px", letterSpacing: "0.16em", textTransform: "uppercase", color: "#8D9AB3", marginBottom: "28px" }}>
           {t.eyebrow}
         </p>
         <h2
@@ -102,7 +102,7 @@ export function FpaProject({ locale }: { locale: string }) {
                 sizes={i === 0 ? "(max-width: 1024px) 100vw, 1200px" : "(max-width: 1024px) 100vw, 600px"}
                 className="w-full h-auto"
               />
-              <figcaption style={{ ...mono, fontSize: "12px", color: "#6B7A95", padding: "12px 16px", borderTop: "1px solid rgba(255,255,255,0.05)" }}>
+              <figcaption style={{ ...mono, fontSize: "12px", color: "#8D9AB3", padding: "12px 16px", borderTop: "1px solid rgba(255,255,255,0.05)" }}>
                 {t.captions[i]}
               </figcaption>
             </figure>

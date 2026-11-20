@@ -95,10 +95,10 @@ function TimelineNode({
           <p
             style={{
               fontFamily: "var(--font-mono)",
-              fontSize: "9px",
+              fontSize: "12px",
               letterSpacing: "0.14em",
               textTransform: "uppercase",
-              color: lit ? "#93c5fd" : "#3F4A5F",
+              color: lit ? "#93c5fd" : "#7888A5",
               marginBottom: "4px",
               transition: "color 0.3s ease",
             }}
@@ -120,8 +120,8 @@ function TimelineNode({
           <p
             style={{
               fontFamily: "var(--font-mono)",
-              fontSize: "10px",
-              color: lit ? "rgba(147,197,253,0.8)" : "#3F4A5F",
+              fontSize: "12px",
+              color: lit ? "rgba(147,197,253,0.8)" : "#7888A5",
               lineHeight: 1.4,
               transition: "color 0.3s ease",
             }}
@@ -156,11 +156,11 @@ function ExecutiveView({ exp, lang }: { exp: ExpItem; lang: Lang }) {
           {exp.company}
         </p>
         <div className="flex flex-wrap gap-4">
-          <span className="flex items-center gap-1.5" style={{ fontFamily: "var(--font-mono)", fontSize: "10px", color: "#6B7A95" }}>
+          <span className="flex items-center gap-1.5" style={{ fontFamily: "var(--font-mono)", fontSize: "12px", color: "#8D9AB3" }}>
             <Calendar style={{ width: "10px", height: "10px" }} />
             {formatYM(exp.start, lang)} → {formatYM(exp.end, lang)}
           </span>
-          <span className="flex items-center gap-1.5" style={{ fontFamily: "var(--font-mono)", fontSize: "10px", color: "#6B7A95" }}>
+          <span className="flex items-center gap-1.5" style={{ fontFamily: "var(--font-mono)", fontSize: "12px", color: "#8D9AB3" }}>
             <MapPin style={{ width: "10px", height: "10px" }} />
             {exp.location[lang]}
           </span>
@@ -169,7 +169,7 @@ function ExecutiveView({ exp, lang }: { exp: ExpItem; lang: Lang }) {
 
       {/* Impact chips */}
       <div>
-        <p style={{ fontFamily: "var(--font-mono)", fontSize: "9px", letterSpacing: "0.18em", textTransform: "uppercase", color: "#3F4A5F", marginBottom: "10px" }}>
+        <p style={{ fontFamily: "var(--font-mono)", fontSize: "12px", letterSpacing: "0.18em", textTransform: "uppercase", color: "#7888A5", marginBottom: "10px" }}>
           {"// impact_metrics[]"}
         </p>
         <div className="flex flex-wrap gap-2">
@@ -178,7 +178,7 @@ function ExecutiveView({ exp, lang }: { exp: ExpItem; lang: Lang }) {
               <span style={{ fontFamily: "var(--font-mono)", fontSize: "13px", fontWeight: 700, color: "#7dd3fc", letterSpacing: "-0.02em" }}>
                 {imp.metric}
               </span>
-              <span style={{ fontFamily: "var(--font-mono)", fontSize: "9px", color: "rgba(203,213,225,0.6)", letterSpacing: "0.02em" }}>
+              <span style={{ fontFamily: "var(--font-mono)", fontSize: "12px", color: "rgba(203,213,225,0.6)", letterSpacing: "0.02em" }}>
                 {imp.label[lang]}
               </span>
             </div>
@@ -188,7 +188,7 @@ function ExecutiveView({ exp, lang }: { exp: ExpItem; lang: Lang }) {
 
       {/* CV bullets */}
       <div>
-        <p style={{ fontFamily: "var(--font-mono)", fontSize: "9px", letterSpacing: "0.18em", textTransform: "uppercase", color: "#3F4A5F", marginBottom: "10px" }}>
+        <p style={{ fontFamily: "var(--font-mono)", fontSize: "12px", letterSpacing: "0.18em", textTransform: "uppercase", color: "#7888A5", marginBottom: "10px" }}>
           {lang === "en" ? "// responsibilities[]" : "// responsabilidades[]"}
         </p>
         <ul className="flex flex-col gap-2.5">
@@ -223,7 +223,7 @@ function TechTag({ label }: { label: string }) {
       onMouseLeave={() => setHovered(false)}
       style={{
         fontFamily: "var(--font-mono)",
-        fontSize: "11px",
+        fontSize: "12px",
         padding: "2px 10px",
         borderRadius: "6px",
         display: "inline-block",
@@ -255,7 +255,7 @@ function CodeView({ exp, lang }: { exp: ExpItem; lang: Lang }) {
         {["#ff5f56", "#ffbd2e", "#27c93f"].map((c) => (
           <div key={c} className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: c, opacity: 0.65 }} />
         ))}
-        <span className="ml-2" style={{ fontSize: "10px", color: "rgba(255,255,255,0.25)", letterSpacing: "0.08em" }}>
+        <span className="ml-2" style={{ fontSize: "12px", color: "rgba(255,255,255,0.25)", letterSpacing: "0.08em" }}>
           career_engine.json — {exp.company}
         </span>
       </div>
@@ -326,7 +326,7 @@ export function Experience() {
     >
       <div className="container-custom">
         <div className="mb-14">
-          <p style={{ fontFamily: "var(--font-mono)", fontSize: "12px", letterSpacing: "0.16em", textTransform: "uppercase", color: "#6B7A95", marginBottom: "20px" }}>
+          <p style={{ fontFamily: "var(--font-mono)", fontSize: "12px", letterSpacing: "0.16em", textTransform: "uppercase", color: "#8D9AB3", marginBottom: "20px" }}>
             {lang === "en" ? "─── Professional experience" : "─── Experiencia profesional"}
           </p>
           <h2 className="font-serif" style={{ fontSize: "clamp(36px, 4vw, 60px)", fontWeight: 600, color: "#F0F4FB", lineHeight: 1.05, letterSpacing: "-0.03em" }}>
@@ -374,7 +374,7 @@ export function Experience() {
                   {["#ff5f56", "#ffbd2e", "#27c93f"].map((c) => (
                     <div key={c} className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: c, opacity: 0.5 }} />
                   ))}
-                  <span className="ml-2" style={{ fontFamily: "var(--font-mono)", fontSize: "10px", color: "rgba(255,255,255,0.2)", letterSpacing: "0.06em" }}>
+                  <span className="ml-2" style={{ fontFamily: "var(--font-mono)", fontSize: "12px", color: "rgba(255,255,255,0.2)", letterSpacing: "0.06em" }}>
                     career_engine.ts
                   </span>
                 </div>
@@ -389,10 +389,10 @@ export function Experience() {
                     <button
                       key={id}
                       onClick={() => setTab(id)}
-                      className="flex items-center gap-1.5 px-3 py-1.5 rounded-md"
+                      className="flex items-center gap-1.5 px-3 py-1.5 min-h-[40px] rounded-md"
                       style={{
                         fontFamily: "var(--font-mono)",
-                        fontSize: "10px",
+                        fontSize: "12px",
                         letterSpacing: "0.04em",
                         background: tab === id ? "rgba(43,111,232,0.2)" : "transparent",
                         border: tab === id ? "1px solid rgba(74,139,255,0.3)" : "1px solid transparent",

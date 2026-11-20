@@ -78,7 +78,7 @@ const cases: Record<Locale, CaseCard[]> = {
       category: "Research · Data Analytics",
       title: "LAPD Crime Analytics",
       subtitle: "Análisis de 1 millón de registros policiales de Los Ángeles con rigor metodológico.",
-      accent: "#8b5cf6",
+      accent: "#976DF7",
       thumbnail: "/screenshots/lapd.png",
     },
     {
@@ -114,7 +114,7 @@ const cases: Record<Locale, CaseCard[]> = {
       category: "Data Science · Finanzas · Prevención de lavado",
       title: "Phantom AI",
       subtitle: "Redes neuronales de grafos contra el lavado de activos: 90% del fraude detectado, sobre datos sintéticos.",
-      accent: "#6366f1",
+      accent: "#787BF3",
       thumbnail: "/screenshots/phantom/red.jpg",
     },
     {
@@ -123,7 +123,7 @@ const cases: Record<Locale, CaseCard[]> = {
       category: "AI Engineering · Datos públicos · Consultora",
       title: "Atlas Analytics",
       subtitle: "Mi consultora de datos y el sistema de IA que investiga con fuentes reales: 41 carruseles, cero links inventados.",
-      accent: "#8B2CF5",
+      accent: "#AA64F8",
       thumbnail: "/screenshots/atlas-analytics/portadas.jpg",
     },
     {
@@ -132,7 +132,7 @@ const cases: Record<Locale, CaseCard[]> = {
       category: "Ciberseguridad · DLP · Producto SaaS",
       title: "ZEUS · Atlas Control",
       subtitle: "Seguridad del endpoint y prevención de fuga de datos para financieras y brokers, sin leer lo que la gente escribe.",
-      accent: "#6D5EF5",
+      accent: "#8376F6",
       thumbnail: "/screenshots/zeus/resumen.jpg",
     },
     {
@@ -179,7 +179,7 @@ const cases: Record<Locale, CaseCard[]> = {
       category: "Research · Data Analytics",
       title: "LAPD Crime Analytics",
       subtitle: "Analysis of 1 million Los Angeles police records with methodological rigor.",
-      accent: "#8b5cf6",
+      accent: "#976DF7",
       thumbnail: "/screenshots/lapd.png",
     },
     {
@@ -215,7 +215,7 @@ const cases: Record<Locale, CaseCard[]> = {
       category: "Data Science · Finance · Anti-money laundering",
       title: "Phantom AI",
       subtitle: "Graph neural networks against money laundering: 90% of fraud detected, on synthetic data.",
-      accent: "#6366f1",
+      accent: "#787BF3",
       thumbnail: "/screenshots/phantom/red.jpg",
     },
     {
@@ -224,7 +224,7 @@ const cases: Record<Locale, CaseCard[]> = {
       category: "AI Engineering · Public data · Consultancy",
       title: "Atlas Analytics",
       subtitle: "My data consultancy and the AI system that researches real sources: 41 carousels, zero made-up links.",
-      accent: "#8B2CF5",
+      accent: "#AA64F8",
       thumbnail: "/screenshots/atlas-analytics/portadas.jpg",
     },
     {
@@ -233,7 +233,7 @@ const cases: Record<Locale, CaseCard[]> = {
       category: "Cybersecurity · DLP · SaaS product",
       title: "ZEUS · Atlas Control",
       subtitle: "Endpoint security and data-loss prevention for lenders and brokers, without reading what people type.",
-      accent: "#6D5EF5",
+      accent: "#8376F6",
       thumbnail: "/screenshots/zeus/resumen.jpg",
     },
     {
@@ -270,7 +270,7 @@ export default async function WorkIndexPage({
   return (
     <>
       <Navigation />
-      <main>
+      <main id="contenido" tabIndex={-1} className="outline-none">
         <section
           style={{ backgroundColor: "#06080D", minHeight: "100svh" }}
           className="pt-36 pb-28"
@@ -282,7 +282,7 @@ export default async function WorkIndexPage({
                 fontSize: "12px",
                 letterSpacing: "0.16em",
                 textTransform: "uppercase",
-                color: "#6B7A95",
+                color: "#8D9AB3",
                 marginBottom: "24px",
               }}
             >
@@ -334,7 +334,7 @@ export default async function WorkIndexPage({
                       className="absolute top-4 left-4"
                       style={{
                         fontFamily: "var(--font-mono)",
-                        fontSize: "11px",
+                        fontSize: "12px",
                         letterSpacing: "0.14em",
                         color: c.accent,
                         background: "rgba(6,8,13,0.65)",
@@ -351,7 +351,7 @@ export default async function WorkIndexPage({
                     <p
                       style={{
                         fontFamily: "var(--font-mono)",
-                        fontSize: "11px",
+                        fontSize: "12px",
                         letterSpacing: "0.12em",
                         textTransform: "uppercase",
                         color: c.accent,

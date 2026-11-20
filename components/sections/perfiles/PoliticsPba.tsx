@@ -74,7 +74,7 @@ export function PoliticsPba({ locale }: { locale: string }) {
   return (
     <section id="pba" className="pb-24 md:pb-32" style={{ backgroundColor: "#050505" }}>
       <div className="container-custom max-w-6xl mx-auto pt-16 md:pt-20" style={{ borderTop: "1px solid rgba(255,255,255,0.06)" }}>
-        <p style={{ ...mono, fontSize: "11px", letterSpacing: "0.2em", textTransform: "uppercase", color: VIOLET, marginBottom: "16px" }}>
+        <p style={{ ...mono, fontSize: "12px", letterSpacing: "0.2em", textTransform: "uppercase", color: VIOLET, marginBottom: "16px" }}>
           {t.eyebrow}
         </p>
         <h2
@@ -142,7 +142,7 @@ export function PoliticsPba({ locale }: { locale: string }) {
               {t.mayorsFacts.map((m) => (
                 <div key={m.v} className="rounded-xl p-4" style={{ border: "1px solid rgba(255,255,255,0.08)", background: "rgba(255,255,255,0.02)" }}>
                   <p style={{ fontSize: "clamp(24px, 3vw, 34px)", fontWeight: 600, color: "#FFFFFF", lineHeight: 1, marginBottom: "6px", fontVariantNumeric: "tabular-nums" }}>{m.k}</p>
-                  <p style={{ ...mono, fontSize: "11px", color: "rgba(255,255,255,0.5)" }}>{m.v}</p>
+                  <p style={{ ...mono, fontSize: "12px", color: "rgba(255,255,255,0.5)" }}>{m.v}</p>
                 </div>
               ))}
             </div>

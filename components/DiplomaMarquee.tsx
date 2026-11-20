@@ -49,7 +49,7 @@ function DiplomaCard({
         <p className="text-sm font-semibold text-[#F5F7FA] leading-snug line-clamp-2 mb-1">
           {diploma.title}
         </p>
-        <p className="text-xs text-[#6B7689]">
+        <p className="text-xs text-[#8D9AB3]">
           {diploma.issuer} · {diploma.date}
         </p>
       </div>
@@ -88,7 +88,7 @@ function DiplomaLightbox({ diploma, onClose }: { diploma: Diploma; onClose: () =
         </div>
         <div className="p-5">
           <p className="text-base font-semibold text-[#F5F7FA] mb-1">{diploma.title}</p>
-          <p className="text-sm text-[#6B7689]">
+          <p className="text-sm text-[#8D9AB3]">
             {diploma.issuer} · {diploma.date}
           </p>
         </div>

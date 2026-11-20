@@ -4,11 +4,12 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRef, useState, useEffect, useCallback } from "react";
 import { createPortal } from "react-dom";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform, useReducedMotion } from "framer-motion";
 import { AnimatedSection } from "@/components/AnimatedSection";
 import { ContactCta } from "@/components/ContactCta";
 import { ResponsiveVideo } from "@/components/ResponsiveVideo";
 import { useLocale } from "next-intl";
+import { describeShot, UI_LABELS } from "@/lib/alt";
 import {
   ExternalLink,
   ArrowRight,
@@ -424,17 +425,21 @@ export const CASES_COUNT = cases.length;
 
 function Lightbox({
   screenshots,
+  title,
   index,
   onClose,
   onPrev,
   onNext,
 }: {
   screenshots: string[];
+  title: string;
   index: number;
   onClose: () => void;
   onPrev: () => void;
   onNext: () => void;
 }) {
+  const lang = useLocale() === "en" ? "en" : "es";
+  const ui = UI_LABELS[lang];
   useEffect(() => {
     const handle = (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose();
@@ -459,7 +464,7 @@ function Lightbox({
         onClick={onClose}
         className="absolute top-4 right-4 z-10 p-2.5 rounded-full text-white transition-colors"
         style={{ background: "rgba(255,255,255,0.1)" }}
-        aria-label="Cerrar"
+        aria-label={ui.close}
       >
         <X className="w-5 h-5" />
       </button>
@@ -478,7 +483,7 @@ function Lightbox({
         <Image
           key={screenshots[index]}
           src={screenshots[index]}
-          alt={`Screenshot ${index + 1}`}
+          alt={describeShot(screenshots[index], title, index, screenshots.length, lang)}
           fill
           className="object-contain"
           sizes="100vw"
@@ -492,7 +497,7 @@ function Lightbox({
             onClick={(e) => { e.stopPropagation(); onPrev(); }}
             className="absolute left-3 top-1/2 -translate-y-1/2 z-10 p-3 rounded-full text-white transition-colors"
             style={{ background: "rgba(255,255,255,0.1)" }}
-            aria-label="Anterior"
+            aria-label={ui.prev}
           >
             <ChevronLeft className="w-6 h-6" />
           </button>
@@ -500,7 +505,7 @@ function Lightbox({
             onClick={(e) => { e.stopPropagation(); onNext(); }}
             className="absolute right-3 top-1/2 -translate-y-1/2 z-10 p-3 rounded-full text-white transition-colors"
             style={{ background: "rgba(255,255,255,0.1)" }}
-            aria-label="Siguiente"
+            aria-label={ui.next}
           >
             <ChevronRight className="w-6 h-6" />
           </button>
@@ -515,20 +520,23 @@ function Lightbox({
 
 function ParallaxScreenshot({
   screenshots,
-  alt,
+  title,
   url,
   privateNote,
   isHackathon,
 }: {
   screenshots: string[];
-  alt: string;
+  title: string;
   url?: string;
   privateNote?: string;
   isHackathon?: boolean;
 }) {
+  const lang = useLocale() === "en" ? "en" : "es";
+  const ui = UI_LABELS[lang];
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
   const y = useTransform(scrollYProgress, [0, 1], [40, -40]);
+  const reduceMotion = useReducedMotion();
 
   const [idx, setIdx] = useState(0);
   const [lightbox, setLightbox] = useState(false);
@@ -562,7 +570,7 @@ function ParallaxScreenshot({
         }}
       />
 
-      <motion.div style={{ y }} className="relative group">
+      <motion.div style={{ y: reduceMotion ? 0 : y }} className="relative group">
         {/* Browser chrome */}
         <div
           className="overflow-hidden"
@@ -595,7 +603,7 @@ function ParallaxScreenshot({
                 background: "rgba(255,255,255,0.03)",
                 border: "1px solid rgba(255,255,255,0.04)",
                 fontFamily: "var(--font-mono)",
-                fontSize: "11px",
+                fontSize: "12px",
                 color: "rgba(255,255,255,0.2)",
               }}
             >
@@ -604,7 +612,7 @@ function ParallaxScreenshot({
             {multiple && (
               <span
                 className="flex-shrink-0 tabular-nums"
-                style={{ fontFamily: "var(--font-mono)", fontSize: "11px", color: "rgba(255,255,255,0.3)" }}
+                style={{ fontFamily: "var(--font-mono)", fontSize: "12px", color: "rgba(255,255,255,0.3)" }}
               >
                 {idx + 1}/{screenshots.length}
               </span>
@@ -619,12 +627,18 @@ function ParallaxScreenshot({
               backgroundColor: "#060810",
               overflow: "hidden",
             }}
+            role="button"
+            tabIndex={0}
+            aria-label={`${ui.zoom}: ${describeShot(screenshots[idx], title, idx, screenshots.length, lang)}`}
             onClick={() => { setLbIdx(idx); setLightbox(true); }}
+            onKeyDown={(e) => {
+              if (e.key === "Enter" || e.key === " ") { e.preventDefault(); setLbIdx(idx); setLightbox(true); }
+            }}
           >
             <Image
               key={screenshots[idx]}
               src={screenshots[idx]}
-              alt={alt}
+              alt={describeShot(screenshots[idx], title, idx, screenshots.length, lang)}
               fill
               className={isContain ? "object-contain" : "object-cover object-top"}
               sizes="(max-width: 1024px) 100vw, 50vw"
@@ -644,9 +658,9 @@ function ParallaxScreenshot({
             {multiple && (
               <button
                 onClick={(e) => { e.stopPropagation(); prev(); }}
-                className="absolute left-2 top-1/2 -translate-y-1/2 p-1.5 rounded-full opacity-0 group-hover:opacity-100 transition-all"
+                className="absolute left-2 top-1/2 -translate-y-1/2 w-10 h-10 flex items-center justify-center rounded-full opacity-100 md:opacity-0 md:group-hover:opacity-100 focus-visible:opacity-100 transition-all"
                 style={{ background: "rgba(0,0,0,0.6)", color: "rgba(255,255,255,0.8)" }}
-                aria-label="Anterior"
+                aria-label={ui.prev}
               >
                 <ChevronLeft className="w-4 h-4" />
               </button>
@@ -656,9 +670,9 @@ function ParallaxScreenshot({
             {multiple && (
               <button
                 onClick={(e) => { e.stopPropagation(); next(); }}
-                className="absolute right-2 top-1/2 -translate-y-1/2 p-1.5 rounded-full opacity-0 group-hover:opacity-100 transition-all"
+                className="absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 flex items-center justify-center rounded-full opacity-100 md:opacity-0 md:group-hover:opacity-100 focus-visible:opacity-100 transition-all"
                 style={{ background: "rgba(0,0,0,0.6)", color: "rgba(255,255,255,0.8)" }}
-                aria-label="Siguiente"
+                aria-label={ui.next}
               >
                 <ChevronRight className="w-4 h-4" />
               </button>
@@ -677,15 +691,16 @@ function ParallaxScreenshot({
                   onClick={() => setIdx(i)}
                   className="flex-shrink-0 relative rounded overflow-hidden transition-all"
                   style={{
-                    width: 52,
-                    height: 34,
+                    width: 60,
+                    height: 40,
                     outline: i === idx ? "2px solid rgba(74,139,255,0.8)" : "2px solid transparent",
                     outlineOffset: "1px",
                     opacity: i === idx ? 1 : 0.4,
                   }}
-                  aria-label={`Screenshot ${i + 1}`}
+                  aria-label={`${ui.show}: ${describeShot(src, title, i, screenshots.length, lang)}`}
+                  aria-current={i === idx ? "true" : undefined}
                 >
-                  <Image src={src} alt="" fill className="object-cover" sizes="52px" quality={30} />
+                  <Image src={src} alt="" fill className="object-cover" sizes="60px" quality={30} />
                 </button>
               ))}
             </div>
@@ -697,6 +712,7 @@ function ParallaxScreenshot({
       {lightbox && (
         <Lightbox
           screenshots={screenshots}
+          title={title}
           index={lbIdx}
           onClose={() => setLightbox(false)}
           onPrev={() => setLbIdx((i) => (i - 1 + screenshots.length) % screenshots.length)}
@@ -722,6 +738,7 @@ function PitchHero({
   caption: string;
   nextId: string;
 }) {
+  const scrollLabel = useLocale() === "en" ? "See the case" : "Ver el caso";
   const scrollToCase = () => {
     document.getElementById(nextId)?.scrollIntoView({ behavior: "smooth" });
   };
@@ -756,7 +773,7 @@ function PitchHero({
         <p
           style={{
             fontFamily: "var(--font-mono)",
-            fontSize: "11px",
+            fontSize: "12px",
             letterSpacing: "0.18em",
             textTransform: "uppercase",
             color: "rgba(255,255,255,0.45)",
@@ -794,8 +811,8 @@ function PitchHero({
       {/* Scroll indicator */}
       <button
         onClick={scrollToCase}
-        aria-label="Ver caso"
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 group"
+        aria-label={scrollLabel}
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 min-w-[40px] min-h-[40px] flex flex-col items-center justify-center gap-1 group"
       >
         <motion.div
           animate={{ y: [0, 6, 0] }}
@@ -826,7 +843,7 @@ export function FeaturedCases() {
                 fontSize: "12px",
                 letterSpacing: "0.16em",
                 textTransform: "uppercase",
-                color: "#6B7A95",
+                color: "#8D9AB3",
                 marginBottom: "32px",
               }}
             >
@@ -851,7 +868,7 @@ export function FeaturedCases() {
                 marginTop: "16px",
                 fontFamily: "var(--font-mono)",
                 fontSize: "13px",
-                color: "#6B7A95",
+                color: "#8D9AB3",
                 letterSpacing: "0.04em",
               }}
             >
@@ -893,7 +910,7 @@ export function FeaturedCases() {
                     fontSize: "12px",
                     letterSpacing: "0.16em",
                     textTransform: "uppercase",
-                    color: "#6B7A95",
+                    color: "#8D9AB3",
                   }}
                 >
                   CASO {c.number} · {c.category}
@@ -947,7 +964,7 @@ export function FeaturedCases() {
                           <p
                             style={{
                               fontFamily: "var(--font-mono)",
-                              fontSize: "11px",
+                              fontSize: "12px",
                               letterSpacing: "0.16em",
                               textTransform: "uppercase",
                               color: "#F5B544",
@@ -988,10 +1005,10 @@ export function FeaturedCases() {
                         <p
                           style={{
                             fontFamily: "var(--font-mono)",
-                            fontSize: "10px",
+                            fontSize: "12px",
                             letterSpacing: "0.12em",
                             textTransform: "uppercase",
-                            color: "#6B7A95",
+                            color: "#8D9AB3",
                             marginBottom: "6px",
                           }}
                         >
@@ -1020,7 +1037,7 @@ export function FeaturedCases() {
                         <p
                           style={{
                             fontFamily: "var(--font-mono)",
-                            fontSize: "10px",
+                            fontSize: "12px",
                             letterSpacing: "0.14em",
                             textTransform: "uppercase",
                             color: isGold ? "#F5B544" : "#4A8BFF",
@@ -1065,10 +1082,10 @@ export function FeaturedCases() {
                         <span
                           style={{
                             fontFamily: "var(--font-mono)",
-                            fontSize: "11px",
+                            fontSize: "12px",
                             letterSpacing: "0.08em",
                             textTransform: "uppercase",
-                            color: "#6B7A95",
+                            color: "#8D9AB3",
                             lineHeight: 1.5,
                           }}
                         >
@@ -1135,14 +1152,14 @@ export function FeaturedCases() {
                         wide={{ src: c.video.src, poster: c.video.poster, width: c.video.width, height: c.video.height }}
                         tall={{ src: c.video.src, poster: c.video.poster, width: c.video.width, height: c.video.height }}
                       />
-                      <figcaption style={{ fontFamily: "var(--font-mono)", fontSize: "11px", color: "rgba(255,255,255,0.4)", padding: "10px 14px" }}>
+                      <figcaption style={{ fontFamily: "var(--font-mono)", fontSize: "12px", color: "rgba(255,255,255,0.4)", padding: "10px 14px" }}>
                         {c.video.label}
                       </figcaption>
                     </figure>
                   )}
                   <ParallaxScreenshot
                     screenshots={c.screenshots}
-                    alt={`${c.title} dashboard`}
+                    title={c.title}
                     url={c.url}
                     privateNote={c.privateNote}
                     isHackathon={c.isHackathon}

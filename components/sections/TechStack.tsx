@@ -54,7 +54,7 @@ export function TechStack() {
                 fontSize: "12px",
                 letterSpacing: "0.16em",
                 textTransform: "uppercase",
-                color: "#6B7A95",
+                color: "#8D9AB3",
                 marginBottom: "24px",
               }}
             >
@@ -84,7 +84,7 @@ export function TechStack() {
                     <p
                       style={{
                         fontFamily: "var(--font-mono)",
-                        fontSize: "11px",
+                        fontSize: "12px",
                         letterSpacing: "0.16em",
                         textTransform: "uppercase",
                         color: "#4A8BFF",
@@ -96,9 +96,9 @@ export function TechStack() {
                     <p
                       style={{
                         fontFamily: "var(--font-mono)",
-                        fontSize: "10px",
+                        fontSize: "12px",
                         letterSpacing: "0.06em",
-                        color: "#3F4A5F",
+                        color: "#7888A5",
                         lineHeight: 1.5,
                       }}
                     >
@@ -132,7 +132,7 @@ export function TechStack() {
                         {j < level.items.length - 1 && (
                           <>
                             {" "}
-                            <span style={{ color: "#3F4A5F", margin: "0 4px" }}>·</span>{" "}
+                            <span style={{ color: "#7888A5", margin: "0 4px" }}>·</span>{" "}
                           </>
                         )}
                       </span>

@@ -235,7 +235,7 @@ export function DataScienceProjects({ locale }: { locale: string }) {
       <div className="container-custom max-w-6xl mx-auto">
         {/* Header */}
         <p
-          style={{ ...mono, fontSize: "11px", letterSpacing: "0.2em", textTransform: "uppercase", color: BLUE, marginBottom: "16px" }}
+          style={{ ...mono, fontSize: "12px", letterSpacing: "0.2em", textTransform: "uppercase", color: BLUE, marginBottom: "16px" }}
         >
           {t.eyebrow}
         </p>
@@ -273,7 +273,7 @@ export function DataScienceProjects({ locale }: { locale: string }) {
                     className="object-cover object-top"
                   />
                 </div>
-                <figcaption style={{ ...mono, fontSize: "11px", color: "rgba(255,255,255,0.4)", padding: "10px 16px" }}>
+                <figcaption style={{ ...mono, fontSize: "12px", color: "rgba(255,255,255,0.4)", padding: "10px 16px" }}>
                   {t.sentinel.captions[i]}
                 </figcaption>
               </figure>
@@ -281,7 +281,7 @@ export function DataScienceProjects({ locale }: { locale: string }) {
           </div>
 
           <div className="p-6 md:p-10">
-            <p style={{ ...mono, fontSize: "11px", letterSpacing: "0.16em", textTransform: "uppercase", color: BLUE, marginBottom: "10px" }}>
+            <p style={{ ...mono, fontSize: "12px", letterSpacing: "0.16em", textTransform: "uppercase", color: BLUE, marginBottom: "10px" }}>
               {t.sentinel.tag}
             </p>
             <h3 style={{ fontSize: "clamp(24px, 3vw, 34px)", fontWeight: 600, color: "#FFFFFF", marginBottom: "12px", letterSpacing: "-0.01em" }}>
@@ -311,7 +311,7 @@ export function DataScienceProjects({ locale }: { locale: string }) {
 
             <div className="flex flex-wrap gap-2 mb-8">
               {t.sentinel.stack.map((x) => (
-                <span key={x} style={{ ...mono, fontSize: "11px", padding: "6px 11px", borderRadius: "999px", border: "1px solid rgba(255,255,255,0.12)", color: "rgba(230,230,235,0.8)" }}>
+                <span key={x} style={{ ...mono, fontSize: "12px", padding: "6px 11px", borderRadius: "999px", border: "1px solid rgba(255,255,255,0.12)", color: "rgba(230,230,235,0.8)" }}>
                   {x}
                 </span>
               ))}
@@ -347,7 +347,7 @@ export function DataScienceProjects({ locale }: { locale: string }) {
                     className="object-cover object-top"
                   />
                 </div>
-                <figcaption style={{ ...mono, fontSize: "11px", color: "rgba(255,255,255,0.4)", padding: "10px 16px" }}>
+                <figcaption style={{ ...mono, fontSize: "12px", color: "rgba(255,255,255,0.4)", padding: "10px 16px" }}>
                   {t.phantom.captions[i]}
                 </figcaption>
               </figure>
@@ -355,7 +355,7 @@ export function DataScienceProjects({ locale }: { locale: string }) {
           </div>
 
           <div className="p-6 md:p-10">
-            <p style={{ ...mono, fontSize: "11px", letterSpacing: "0.16em", textTransform: "uppercase", color: BLUE, marginBottom: "10px" }}>
+            <p style={{ ...mono, fontSize: "12px", letterSpacing: "0.16em", textTransform: "uppercase", color: BLUE, marginBottom: "10px" }}>
               {t.phantom.tag}
             </p>
             <h3 style={{ fontSize: "clamp(24px, 3vw, 34px)", fontWeight: 600, color: "#FFFFFF", marginBottom: "12px", letterSpacing: "-0.01em" }}>
@@ -385,7 +385,7 @@ export function DataScienceProjects({ locale }: { locale: string }) {
 
             <div className="flex flex-wrap gap-2 mb-5">
               {t.phantom.stack.map((x) => (
-                <span key={x} style={{ ...mono, fontSize: "11px", padding: "6px 11px", borderRadius: "999px", border: "1px solid rgba(255,255,255,0.12)", color: "rgba(230,230,235,0.8)" }}>
+                <span key={x} style={{ ...mono, fontSize: "12px", padding: "6px 11px", borderRadius: "999px", border: "1px solid rgba(255,255,255,0.12)", color: "rgba(230,230,235,0.8)" }}>
                   {x}
                 </span>
               ))}
@@ -427,7 +427,7 @@ export function DataScienceProjects({ locale }: { locale: string }) {
             <div className="relative w-full" style={{ aspectRatio: "1600 / 1000" }}>
               <Image src="/screenshots/precios/indice.jpg" alt={t.precios.captions[0]} fill sizes="(max-width: 1200px) 100vw, 1100px" className="object-cover" />
             </div>
-            <figcaption style={{ ...mono, fontSize: "11px", color: "rgba(255,255,255,0.4)", padding: "10px 16px" }}>{t.precios.captions[0]}</figcaption>
+            <figcaption style={{ ...mono, fontSize: "12px", color: "rgba(255,255,255,0.4)", padding: "10px 16px" }}>{t.precios.captions[0]}</figcaption>
           </figure>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-px" style={{ background: "rgba(255,255,255,0.06)" }}>
             {["canasta-vs-ipc", "dispersion"].map((img, i) => (
@@ -435,13 +435,13 @@ export function DataScienceProjects({ locale }: { locale: string }) {
                 <div className="relative w-full" style={{ aspectRatio: "1600 / 1000" }}>
                   <Image src={`/screenshots/precios/${img}.jpg`} alt={t.precios.captions[i + 1]} fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover" />
                 </div>
-                <figcaption style={{ ...mono, fontSize: "11px", color: "rgba(255,255,255,0.4)", padding: "10px 16px" }}>{t.precios.captions[i + 1]}</figcaption>
+                <figcaption style={{ ...mono, fontSize: "12px", color: "rgba(255,255,255,0.4)", padding: "10px 16px" }}>{t.precios.captions[i + 1]}</figcaption>
               </figure>
             ))}
           </div>
 
           <div className="p-6 md:p-10">
-            <p style={{ ...mono, fontSize: "11px", letterSpacing: "0.16em", textTransform: "uppercase", color: BLUE, marginBottom: "10px" }}>
+            <p style={{ ...mono, fontSize: "12px", letterSpacing: "0.16em", textTransform: "uppercase", color: BLUE, marginBottom: "10px" }}>
               {t.precios.tag}
             </p>
             <h3 style={{ fontSize: "clamp(24px, 3vw, 34px)", fontWeight: 600, color: "#FFFFFF", marginBottom: "12px", letterSpacing: "-0.01em" }}>
@@ -468,7 +468,7 @@ export function DataScienceProjects({ locale }: { locale: string }) {
 
             <div className="flex flex-wrap gap-2 mb-5">
               {t.precios.stack.map((x) => (
-                <span key={x} style={{ ...mono, fontSize: "11px", padding: "6px 11px", borderRadius: "999px", border: "1px solid rgba(255,255,255,0.12)", color: "rgba(230,230,235,0.8)" }}>
+                <span key={x} style={{ ...mono, fontSize: "12px", padding: "6px 11px", borderRadius: "999px", border: "1px solid rgba(255,255,255,0.12)", color: "rgba(230,230,235,0.8)" }}>
                   {x}
                 </span>
               ))}
@@ -510,7 +510,7 @@ export function DataScienceProjects({ locale }: { locale: string }) {
             <div className="relative w-full" style={{ aspectRatio: "1600 / 1000" }}>
               <Image src="/screenshots/traffic/seguir.jpg" alt={t.traffic.captions[0]} fill sizes="(max-width: 1200px) 100vw, 1100px" className="object-cover" />
             </div>
-            <figcaption style={{ ...mono, fontSize: "11px", color: "rgba(255,255,255,0.4)", padding: "10px 16px" }}>{t.traffic.captions[0]}</figcaption>
+            <figcaption style={{ ...mono, fontSize: "12px", color: "rgba(255,255,255,0.4)", padding: "10px 16px" }}>{t.traffic.captions[0]}</figcaption>
           </figure>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-px" style={{ background: "rgba(255,255,255,0.06)" }}>
             {["escena", "centro"].map((img, i) => (
@@ -518,13 +518,13 @@ export function DataScienceProjects({ locale }: { locale: string }) {
                 <div className="relative w-full" style={{ aspectRatio: "1600 / 1000" }}>
                   <Image src={`/screenshots/traffic/${img}.jpg`} alt={t.traffic.captions[i + 1]} fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover" />
                 </div>
-                <figcaption style={{ ...mono, fontSize: "11px", color: "rgba(255,255,255,0.4)", padding: "10px 16px" }}>{t.traffic.captions[i + 1]}</figcaption>
+                <figcaption style={{ ...mono, fontSize: "12px", color: "rgba(255,255,255,0.4)", padding: "10px 16px" }}>{t.traffic.captions[i + 1]}</figcaption>
               </figure>
             ))}
           </div>
 
           <div className="p-6 md:p-10">
-            <p style={{ ...mono, fontSize: "11px", letterSpacing: "0.16em", textTransform: "uppercase", color: BLUE, marginBottom: "10px" }}>
+            <p style={{ ...mono, fontSize: "12px", letterSpacing: "0.16em", textTransform: "uppercase", color: BLUE, marginBottom: "10px" }}>
               {t.traffic.tag}
             </p>
             <h3 style={{ fontSize: "clamp(24px, 3vw, 34px)", fontWeight: 600, color: "#FFFFFF", marginBottom: "12px", letterSpacing: "-0.01em" }}>
@@ -551,7 +551,7 @@ export function DataScienceProjects({ locale }: { locale: string }) {
 
             <div className="flex flex-wrap gap-2 mb-5">
               {t.traffic.stack.map((x) => (
-                <span key={x} style={{ ...mono, fontSize: "11px", padding: "6px 11px", borderRadius: "999px", border: "1px solid rgba(255,255,255,0.12)", color: "rgba(230,230,235,0.8)" }}>
+                <span key={x} style={{ ...mono, fontSize: "12px", padding: "6px 11px", borderRadius: "999px", border: "1px solid rgba(255,255,255,0.12)", color: "rgba(230,230,235,0.8)" }}>
                   {x}
                 </span>
               ))}
@@ -602,7 +602,7 @@ export function DataScienceProjects({ locale }: { locale: string }) {
                   />
                 </div>
                 <figcaption
-                  style={{ ...mono, fontSize: "11px", color: "rgba(255,255,255,0.4)", padding: "10px 16px" }}
+                  style={{ ...mono, fontSize: "12px", color: "rgba(255,255,255,0.4)", padding: "10px 16px" }}
                 >
                   {t.yerba.captions[i]}
                 </figcaption>
@@ -611,7 +611,7 @@ export function DataScienceProjects({ locale }: { locale: string }) {
           </div>
 
           <div className="p-6 md:p-10">
-            <p style={{ ...mono, fontSize: "11px", letterSpacing: "0.16em", textTransform: "uppercase", color: BLUE, marginBottom: "10px" }}>
+            <p style={{ ...mono, fontSize: "12px", letterSpacing: "0.16em", textTransform: "uppercase", color: BLUE, marginBottom: "10px" }}>
               {t.yerba.tag}
             </p>
             <h3 style={{ fontSize: "clamp(24px, 3vw, 34px)", fontWeight: 600, color: "#FFFFFF", marginBottom: "12px", letterSpacing: "-0.01em" }}>
@@ -628,7 +628,7 @@ export function DataScienceProjects({ locale }: { locale: string }) {
                   className="rounded-xl p-4"
                   style={{ border: "1px solid rgba(0,207,255,0.14)", background: "rgba(0,207,255,0.03)" }}
                 >
-                  <p style={{ ...mono, fontSize: "10px", letterSpacing: "0.08em", textTransform: "uppercase", color: "rgba(255,255,255,0.5)", marginBottom: "10px", lineHeight: 1.4 }}>
+                  <p style={{ ...mono, fontSize: "12px", letterSpacing: "0.08em", textTransform: "uppercase", color: "rgba(255,255,255,0.5)", marginBottom: "10px", lineHeight: 1.4 }}>
                     {m.name}
                   </p>
                   <p style={{ fontSize: "28px", fontWeight: 600, color: "#FFFFFF", lineHeight: 1, marginBottom: "6px", fontVariantNumeric: "tabular-nums" }}>
@@ -672,14 +672,14 @@ export function DataScienceProjects({ locale }: { locale: string }) {
             />
           </div>
           <div className="p-6 md:p-8">
-            <p style={{ ...mono, fontSize: "11px", letterSpacing: "0.16em", textTransform: "uppercase", color: BLUE, marginBottom: "10px" }}>
+            <p style={{ ...mono, fontSize: "12px", letterSpacing: "0.16em", textTransform: "uppercase", color: BLUE, marginBottom: "10px" }}>
               {t.lapd.tag}
             </p>
             <h3 style={{ fontSize: "24px", fontWeight: 600, color: "#FFFFFF", marginBottom: "10px" }}>{t.lapd.title}</h3>
             <p style={{ fontSize: "15px", lineHeight: 1.7, color: "rgba(212,212,216,0.8)", marginBottom: "20px" }}>{t.lapd.desc}</p>
             <Link
               href={`/${lang}/work/lapd`}
-              className="inline-flex items-center gap-2 text-sm font-semibold transition-colors"
+              className="inline-flex items-center gap-2 min-h-[40px] text-sm font-semibold transition-colors"
               style={{ color: BLUE }}
             >
               {t.lapd.cta}

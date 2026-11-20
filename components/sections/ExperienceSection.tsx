@@ -177,7 +177,7 @@ export function ExperienceSection() {
                 fontSize: "12px",
                 letterSpacing: "0.16em",
                 textTransform: "uppercase",
-                color: "#6B7A95",
+                color: "#8D9AB3",
                 marginBottom: "28px",
               }}
             >
@@ -213,7 +213,7 @@ export function ExperienceSection() {
               style={{
                 fontSize: "15px",
                 lineHeight: 1.72,
-                color: "#6B7A95",
+                color: "#8D9AB3",
                 maxWidth: "560px",
               }}
             >

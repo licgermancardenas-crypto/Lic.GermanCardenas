@@ -99,7 +99,7 @@ export function SelectedWork() {
               fontSize: "12px",
               letterSpacing: "0.16em",
               textTransform: "uppercase",
-              color: "#6B7A95",
+              color: "#8D9AB3",
               marginBottom: "24px",
             }}
           >
@@ -165,7 +165,7 @@ export function SelectedWork() {
                           background: "linear-gradient(135deg, #0A0F1A 0%, rgba(43,111,232,0.06) 100%)",
                         }}
                       >
-                        <Sparkles className="w-8 h-8" style={{ color: "#3F4A5F" }} aria-hidden="true" />
+                        <Sparkles className="w-8 h-8" style={{ color: "#7888A5" }} aria-hidden="true" />
                       </div>
                     )}
                     <div
@@ -187,7 +187,7 @@ export function SelectedWork() {
                     <p
                       style={{
                         fontFamily: "var(--font-mono)",
-                        fontSize: "11px",
+                        fontSize: "12px",
                         letterSpacing: "0.14em",
                         textTransform: "uppercase",
                         color: "#4A8BFF",
@@ -226,7 +226,7 @@ export function SelectedWork() {
                         fontFamily: "var(--font-mono)",
                         fontSize: "12px",
                         letterSpacing: "0.06em",
-                        color: "#6B7A95",
+                        color: "#8D9AB3",
                         marginBottom: "24px",
                         lineHeight: 1.7,
                       }}
@@ -239,7 +239,7 @@ export function SelectedWork() {
                         href={p.url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 transition-colors duration-200 self-start"
+                        className="inline-flex items-center gap-2 min-h-[40px] transition-colors duration-200 self-start"
                         style={{
                           fontSize: "14px",
                           fontWeight: 600,
@@ -259,7 +259,7 @@ export function SelectedWork() {
                     ) : (
                       <span
                         className="inline-flex items-center gap-2 self-start"
-                        style={{ fontSize: "14px", color: "#3F4A5F" }}
+                        style={{ fontSize: "14px", color: "#7888A5" }}
                       >
                         <Lock className="w-3.5 h-3.5" />
                         Confidencial

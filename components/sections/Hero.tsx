@@ -213,7 +213,7 @@ export function Hero() {
                 fontSize: "12px",
                 letterSpacing: "0.16em",
                 textTransform: "uppercase",
-                color: "#6B7A95",
+                color: "#8D9AB3",
               }}
             >
               Financial Analyst · Data Scientist · AI Engineer
@@ -234,11 +234,11 @@ export function Hero() {
             style={{
               fontSize: "13px",
               letterSpacing: "0.08em",
-              color: "#6B7A95",
+              color: "#8D9AB3",
             }}
           >
             Buenos Aires, Argentina
-            <span style={{ color: "#3F4A5F", margin: "0 12px" }}>|</span>
+            <span style={{ color: "#7888A5", margin: "0 12px" }}>|</span>
             <span style={{ color: "#4A8BFF" }}>{t.remote}</span>
           </motion.p>
 
@@ -296,7 +296,7 @@ export function Hero() {
                 background: "rgba(15,22,35,0.55)",
                 backdropFilter: "blur(24px) saturate(180%)",
                 border: "1px solid rgba(255,255,255,0.06)",
-                color: "#6B7A95",
+                color: "#8D9AB3",
                 fontSize: "14px",
                 fontWeight: 500,
                 textDecoration: "none",
@@ -307,7 +307,7 @@ export function Hero() {
                   "rgba(74,139,255,0.3)";
               }}
               onMouseLeave={(e) => {
-                (e.currentTarget as HTMLElement).style.color = "#6B7A95";
+                (e.currentTarget as HTMLElement).style.color = "#8D9AB3";
                 (e.currentTarget as HTMLElement).style.borderColor =
                   "rgba(255,255,255,0.06)";
               }}
@@ -328,10 +328,10 @@ export function Hero() {
           <p
             className="mb-10"
             style={{
-              fontSize: "11px",
+              fontSize: "12px",
               letterSpacing: "0.16em",
               textTransform: "uppercase",
-              color: "#3F4A5F",
+              color: "#7888A5",
             }}
           >
             {t.production}
@@ -355,10 +355,10 @@ export function Hero() {
                 </span>
                 <span
                   style={{
-                    fontSize: "11px",
+                    fontSize: "12px",
                     letterSpacing: "0.08em",
                     textTransform: "uppercase",
-                    color: "#6B7A95",
+                    color: "#8D9AB3",
                     lineHeight: 1.5,
                     whiteSpace: "pre-line",
                   }}

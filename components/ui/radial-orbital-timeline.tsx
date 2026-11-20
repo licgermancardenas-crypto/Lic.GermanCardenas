@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
+import { useLocale } from "next-intl";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, ArrowRight } from "lucide-react";
 
@@ -9,6 +10,8 @@ const SIZE = 700;
 const CENTER = 350;
 const RADIUS = 205;
 const NODE_SIZE = 56;
+/** Área de toque: el gráfico se achica en el celular, así que el botón es más grande que el círculo. */
+const HIT_SIZE = 84;
 const LABEL_OFFSET = NODE_SIZE / 2 + 20;
 
 export type OrbitalStatus = "completed" | "in-progress" | "pending";
@@ -49,6 +52,7 @@ function hexToRgb(hex: string): string {
 export default function RadialOrbitalTimeline({ timelineData }: Props) {
   const [rotDeg, setRotDeg] = useState(0);
   const [activeId, setActiveId] = useState<number | null>(null);
+  const closeLabel = useLocale() === "en" ? "Close" : "Cerrar";
   const [hoverId, setHoverId] = useState<number | null>(null);
   const [scale, setScale] = useState(1);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -238,12 +242,14 @@ export default function RadialOrbitalTimeline({ timelineData }: Props) {
                   onClick={() => handleClick(node.id)}
                   onMouseEnter={() => setHoverId(node.id)}
                   onMouseLeave={() => setHoverId(null)}
-                  className="absolute focus:outline-none"
+                  aria-label={node.title}
+                  aria-expanded={isActive}
+                  className="absolute rounded-full focus:outline-none focus-visible:ring-2 focus-visible:ring-[#4A8BFF] focus-visible:ring-offset-2 focus-visible:ring-offset-[#06080D]"
                   style={{
-                    top: y - NODE_SIZE / 2,
-                    left: x - NODE_SIZE / 2,
-                    width: NODE_SIZE,
-                    height: NODE_SIZE,
+                    top: y - HIT_SIZE / 2,
+                    left: x - HIT_SIZE / 2,
+                    width: HIT_SIZE,
+                    height: HIT_SIZE,
                   }}
                   animate={{
                     opacity: isDim ? 0.22 : 1,
@@ -252,8 +258,10 @@ export default function RadialOrbitalTimeline({ timelineData }: Props) {
                   transition={{ duration: 0.2 }}
                 >
                   <div
-                    className="w-full h-full rounded-full flex items-center justify-center relative"
+                    className="absolute inset-0 m-auto rounded-full flex items-center justify-center"
                     style={{
+                      width: NODE_SIZE,
+                      height: NODE_SIZE,
                       background: isActive
                         ? color
                         : `rgba(${rgb},0.08)`,
@@ -311,7 +319,7 @@ export default function RadialOrbitalTimeline({ timelineData }: Props) {
                   <p
                     style={{
                       fontFamily: "var(--font-mono)",
-                      fontSize: "9px",
+                      fontSize: "12px",
                       letterSpacing: "0.08em",
                       textTransform: "uppercase",
                       color: isActive
@@ -355,7 +363,8 @@ export default function RadialOrbitalTimeline({ timelineData }: Props) {
             {/* Close */}
             <button
               onClick={() => setActiveId(null)}
-              className="absolute top-4 right-4 p-1.5 rounded-full transition-all"
+              aria-label={closeLabel}
+              className="absolute top-3 right-3 w-10 h-10 flex items-center justify-center rounded-full transition-all"
               style={{
                 color: "rgba(255,255,255,0.25)",
                 background: "rgba(255,255,255,0.04)",
@@ -398,7 +407,7 @@ export default function RadialOrbitalTimeline({ timelineData }: Props) {
                 <p
                   style={{
                     fontFamily: "var(--font-mono)",
-                    fontSize: "10px",
+                    fontSize: "12px",
                     letterSpacing: "0.16em",
                     textTransform: "uppercase",
                     color: CATEGORY_COLORS[activeNode.category] ?? "#2B6FE8",
@@ -440,10 +449,10 @@ export default function RadialOrbitalTimeline({ timelineData }: Props) {
                 <p
                   style={{
                     fontFamily: "var(--font-mono)",
-                    fontSize: "10px",
+                    fontSize: "12px",
                     letterSpacing: "0.12em",
                     textTransform: "uppercase",
-                    color: "#6B7A95",
+                    color: "#8D9AB3",
                   }}
                 >
                   Nivel técnico
@@ -451,7 +460,7 @@ export default function RadialOrbitalTimeline({ timelineData }: Props) {
                 <p
                   style={{
                     fontFamily: "var(--font-mono)",
-                    fontSize: "11px",
+                    fontSize: "12px",
                     color: CATEGORY_COLORS[activeNode.category] ?? "#2B6FE8",
                     fontWeight: 600,
                   }}
@@ -492,7 +501,7 @@ export default function RadialOrbitalTimeline({ timelineData }: Props) {
                 className="flex items-center gap-2 mb-5 w-fit transition-opacity duration-200 hover:opacity-70"
                 style={{
                   fontFamily: "var(--font-mono)",
-                  fontSize: "11px",
+                  fontSize: "12px",
                   letterSpacing: "0.12em",
                   textTransform: "uppercase",
                   color: CATEGORY_COLORS[activeNode.category] ?? "#2B6FE8",
@@ -509,7 +518,7 @@ export default function RadialOrbitalTimeline({ timelineData }: Props) {
               <span
                 style={{
                   fontFamily: "var(--font-mono)",
-                  fontSize: "10px",
+                  fontSize: "12px",
                   letterSpacing: "0.1em",
                   textTransform: "uppercase",
                   padding: "4px 12px",
@@ -534,10 +543,10 @@ export default function RadialOrbitalTimeline({ timelineData }: Props) {
                 <p
                   style={{
                     fontFamily: "var(--font-mono)",
-                    fontSize: "9px",
+                    fontSize: "12px",
                     letterSpacing: "0.1em",
                     textTransform: "uppercase",
-                    color: "#6B7A95",
+                    color: "#8D9AB3",
                   }}
                 >
                   Sinergias:
@@ -554,7 +563,7 @@ export default function RadialOrbitalTimeline({ timelineData }: Props) {
                       onClick={() => setActiveId(rid)}
                       style={{
                         fontFamily: "var(--font-mono)",
-                        fontSize: "9px",
+                        fontSize: "12px",
                         letterSpacing: "0.08em",
                         textTransform: "uppercase",
                         padding: "3px 9px",

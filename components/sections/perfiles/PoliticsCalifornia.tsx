@@ -100,7 +100,7 @@ export function PoliticsCalifornia({ locale }: { locale: string }) {
       style={{ backgroundColor: "#050505" }}
     >
       <div className="container-custom max-w-6xl mx-auto pt-16 md:pt-20" style={{ borderTop: "1px solid rgba(255,255,255,0.06)" }}>
-        <p style={{ ...mono, fontSize: "11px", letterSpacing: "0.2em", textTransform: "uppercase", color: CYAN, marginBottom: "16px" }}>
+        <p style={{ ...mono, fontSize: "12px", letterSpacing: "0.2em", textTransform: "uppercase", color: CYAN, marginBottom: "16px" }}>
           {t.eyebrow}
         </p>
         <h2
@@ -134,7 +134,7 @@ export function PoliticsCalifornia({ locale }: { locale: string }) {
           </figcaption>
         </figure>
 
-        <p style={{ ...mono, fontSize: "11px", letterSpacing: "0.16em", textTransform: "uppercase", color: "rgba(255,255,255,0.5)", margin: "48px 0 14px" }}>
+        <p style={{ ...mono, fontSize: "12px", letterSpacing: "0.16em", textTransform: "uppercase", color: "rgba(255,255,255,0.5)", margin: "48px 0 14px" }}>
           {t.resultTitle}
         </p>
         <div className="grid grid-cols-3 gap-3 sm:gap-4 mb-12">
@@ -143,7 +143,7 @@ export function PoliticsCalifornia({ locale }: { locale: string }) {
               <p style={{ fontSize: "clamp(22px, 3.2vw, 34px)", fontWeight: 600, color: "#FFFFFF", lineHeight: 1, marginBottom: "8px", fontVariantNumeric: "tabular-nums" }}>
                 {r.v}
               </p>
-              <p style={{ ...mono, fontSize: "10px", letterSpacing: "0.08em", textTransform: "uppercase", color: "rgba(255,255,255,0.5)" }}>{r.k}</p>
+              <p style={{ ...mono, fontSize: "12px", letterSpacing: "0.08em", textTransform: "uppercase", color: "rgba(255,255,255,0.5)" }}>{r.k}</p>
             </div>
           ))}
         </div>

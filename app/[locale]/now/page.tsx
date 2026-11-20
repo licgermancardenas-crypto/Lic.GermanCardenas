@@ -48,7 +48,7 @@ export default async function NowPage({
         <div className="container-custom h-14 flex items-center">
           <Link
             href={`/${locale}`}
-            className="flex items-center gap-2 text-sm text-[#6B7689] hover:text-[#B8C1D1] transition-colors"
+            className="flex items-center gap-2 text-sm text-[#8D9AB3] hover:text-[#B8C1D1] transition-colors"
           >
             <ArrowLeft className="w-4 h-4" />
             Volver
@@ -60,8 +60,8 @@ export default async function NowPage({
         {/* Header */}
         <div className="mb-14">
           <div className="flex items-center gap-4 mb-5">
-            <span className="text-[#6B7689] text-xs font-mono select-none">━━━</span>
-            <span className="text-[#6B7689] text-xs font-mono uppercase tracking-widest">
+            <span aria-hidden="true" className="text-[#8D9AB3] text-xs font-mono select-none">━━━</span>
+            <span className="text-[#8D9AB3] text-xs font-mono uppercase tracking-widest">
               /now
             </span>
           </div>
@@ -72,7 +72,7 @@ export default async function NowPage({
             ¿Qué estoy haciendo{" "}
             <span className="text-[#4F7CFF]">ahora</span>?
           </h1>
-          <p className="text-[#6B7689] text-sm font-mono">
+          <p className="text-[#8D9AB3] text-sm font-mono">
             Última actualización: junio 2026 · Buenos Aires, Argentina
           </p>
         </div>
@@ -183,12 +183,12 @@ export default async function NowPage({
 
           {/* Ubicación */}
           <section className="pt-8 border-t border-[#1F2937]">
-            <p className="text-[#6B7689] text-sm leading-relaxed">
+            <p className="text-[#8D9AB3] text-sm leading-relaxed">
               Basado en <strong className="text-[#B8C1D1]">Buenos Aires</strong>, disponible para trabajo
               remoto global. Próximo inicio disponible:{" "}
               <strong className="text-[#4F7CFF]">enero 2026</strong>.
             </p>
-            <p className="text-[#6B7689] text-xs mt-4 font-mono">
+            <p className="text-[#8D9AB3] text-xs mt-4 font-mono">
               Esta página está inspirada en el movimiento{" "}
               <a
                 href="https://nownownow.com/about"

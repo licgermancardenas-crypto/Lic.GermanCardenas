@@ -73,7 +73,7 @@ const CASES: Record<
   },
   "phantom-ai": {
     title: "Phantom AI",
-    accent: "#6366f1",
+    accent: "#787BF3",
     subtitle: {
       es: "Redes neuronales de grafos contra el lavado de activos (datos sintéticos)",
       en: "Graph neural networks against money laundering (synthetic data)",
@@ -82,7 +82,7 @@ const CASES: Record<
   },
   "atlas-analytics": {
     title: "Atlas Analytics",
-    accent: "#8B2CF5",
+    accent: "#AA64F8",
     subtitle: {
       es: "Consultora de datos y un sistema de IA que no inventa fuentes",
       en: "A data consultancy and an AI system that can't make up sources",
@@ -91,7 +91,7 @@ const CASES: Record<
   },
   zeus: {
     title: "ZEUS · Atlas Control",
-    accent: "#6D5EF5",
+    accent: "#8376F6",
     subtitle: {
       es: "Seguridad del endpoint y prevención de fuga de datos",
       en: "Endpoint security and data-loss prevention",

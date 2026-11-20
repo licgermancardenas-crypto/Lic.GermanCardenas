@@ -105,7 +105,7 @@ export function PoliticsChaco({ locale }: { locale: string }) {
       style={{ backgroundColor: "#050505", borderTop: "1px solid rgba(255,255,255,0.06)" }}
     >
       <div className="container-custom max-w-6xl mx-auto">
-        <p style={{ ...mono, fontSize: "11px", letterSpacing: "0.2em", textTransform: "uppercase", color: CYAN, marginBottom: "16px" }}>
+        <p style={{ ...mono, fontSize: "12px", letterSpacing: "0.2em", textTransform: "uppercase", color: CYAN, marginBottom: "16px" }}>
           {t.eyebrow}
         </p>
         <h2

@@ -40,7 +40,7 @@ export default async function BiPage({
   return (
     <>
       <Navigation />
-      <main>
+      <main id="contenido" tabIndex={-1} className="outline-none">
         <BiHero />
         <BiContent />
         <BiShowcase />

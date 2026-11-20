@@ -1,3 +1,4 @@
+import { MotionProvider } from "@/components/MotionProvider";
 import { yearsOfExperience } from "@/lib/experience-data";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages, getTranslations, setRequestLocale } from "next-intl/server";
@@ -81,8 +82,14 @@ export default async function LocaleLayout({ children, params }: Props) {
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
       </head>
       <body className="antialiased">
+        <a
+          href="#contenido"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[10000] focus:px-4 focus:py-3 focus:rounded-lg focus:bg-[#2B6FE8] focus:text-white focus:text-sm focus:font-semibold"
+        >
+          {locale === "en" ? "Skip to content" : "Saltar al contenido"}
+        </a>
         <NextIntlClientProvider messages={messages}>
-          {children}
+          <MotionProvider>{children}</MotionProvider>
         </NextIntlClientProvider>
         <Analytics />
         <SpeedInsights />

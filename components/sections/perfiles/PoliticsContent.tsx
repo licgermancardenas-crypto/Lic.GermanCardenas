@@ -105,6 +105,7 @@ function CapabilityBlock({ cap }: { cap: Capability; index: number }) {
           className="lg:col-span-3"
         >
           <p
+            aria-hidden="true"
             style={{
               fontFamily: "var(--font-display)",
               textTransform: "uppercase",
@@ -121,7 +122,7 @@ function CapabilityBlock({ cap }: { cap: Capability; index: number }) {
           <p
             style={{
               fontFamily: "var(--font-mono)",
-              fontSize: "9px",
+              fontSize: "12px",
               letterSpacing: "0.22em",
               textTransform: "uppercase",
               color: CYAN,
@@ -210,7 +211,7 @@ function CapabilityBlock({ cap }: { cap: Capability; index: number }) {
                 key={t}
                 style={{
                   fontFamily: "var(--font-mono)",
-                  fontSize: "10px",
+                  fontSize: "12px",
                   letterSpacing: "0.1em",
                   textTransform: "uppercase",
                   padding: "4px 12px",
@@ -250,7 +251,7 @@ export function PoliticsContent() {
           <p
             style={{
               fontFamily: "var(--font-mono)",
-              fontSize: "10px",
+              fontSize: "12px",
               letterSpacing: "0.22em",
               textTransform: "uppercase",
               color: CYAN,

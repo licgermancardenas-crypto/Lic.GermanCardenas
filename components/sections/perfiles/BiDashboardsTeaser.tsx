@@ -50,7 +50,7 @@ export function BiDashboardsTeaser({ locale }: { locale: string }) {
         <p
           style={{
             fontFamily: "var(--font-mono)",
-            fontSize: "10px",
+            fontSize: "12px",
             letterSpacing: "0.22em",
             textTransform: "uppercase",
             color: EMERALD,
@@ -160,7 +160,7 @@ export function BiDashboardsTeaser({ locale }: { locale: string }) {
                   style={{
                     marginTop: "4px",
                     fontFamily: "var(--font-mono)",
-                    fontSize: "10.5px",
+                    fontSize: "12px",
                     letterSpacing: "0.1em",
                     textTransform: "uppercase",
                     color: "rgba(255,255,255,0.35)",

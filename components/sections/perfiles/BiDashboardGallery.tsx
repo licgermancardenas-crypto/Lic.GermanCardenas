@@ -73,7 +73,7 @@ function Lightbox({
         <div
           style={{
             fontFamily: "var(--font-mono)",
-            fontSize: "11px",
+            fontSize: "12px",
             color: "rgba(255,255,255,0.55)",
           }}
         >
@@ -89,7 +89,7 @@ function Lightbox({
             style={{
               background: "rgba(255,255,255,0.1)",
               fontFamily: "var(--font-mono)",
-              fontSize: "11px",
+              fontSize: "12px",
             }}
           >
             {fit
@@ -205,7 +205,7 @@ export function BiDashboardGallery({ locale, veda = false }: { locale: string; v
               <span
                 style={{
                   fontFamily: "var(--font-mono)",
-                  fontSize: "11px",
+                  fontSize: "12px",
                   letterSpacing: "0.2em",
                   color: EMERALD,
                 }}
@@ -225,7 +225,7 @@ export function BiDashboardGallery({ locale, veda = false }: { locale: string; v
               <span
                 style={{
                   fontFamily: "var(--font-mono)",
-                  fontSize: "11px",
+                  fontSize: "12px",
                   color: "rgba(255,255,255,0.35)",
                 }}
               >
@@ -234,7 +234,7 @@ export function BiDashboardGallery({ locale, veda = false }: { locale: string; v
               <span
                 style={{
                   fontFamily: "var(--font-mono)",
-                  fontSize: "10px",
+                  fontSize: "12px",
                   letterSpacing: "0.12em",
                   textTransform: "uppercase",
                   padding: "3px 10px",
@@ -285,7 +285,7 @@ export function BiDashboardGallery({ locale, veda = false }: { locale: string; v
                   key={t}
                   style={{
                     fontFamily: "var(--font-mono)",
-                    fontSize: "10px",
+                    fontSize: "12px",
                     letterSpacing: "0.1em",
                     textTransform: "uppercase",
                     padding: "4px 10px",
@@ -345,7 +345,7 @@ export function BiDashboardGallery({ locale, veda = false }: { locale: string; v
                         borderRadius: "999px",
                         padding: "5px 11px",
                         fontFamily: "var(--font-mono)",
-                        fontSize: "10px",
+                        fontSize: "12px",
                         letterSpacing: "0.1em",
                         color: "rgba(255,255,255,0.8)",
                         lineHeight: 1.4,
@@ -359,7 +359,7 @@ export function BiDashboardGallery({ locale, veda = false }: { locale: string; v
                     style={{
                       marginTop: "12px",
                       fontFamily: "var(--font-mono)",
-                      fontSize: "11.5px",
+                      fontSize: "12px",
                       lineHeight: 1.6,
                       color: "rgba(255,255,255,0.4)",
                     }}

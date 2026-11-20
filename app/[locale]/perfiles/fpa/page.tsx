@@ -40,7 +40,7 @@ export default async function FpaPage({
   return (
     <>
       <Navigation />
-      <main>
+      <main id="contenido" tabIndex={-1} className="outline-none">
         <FpaHero />
 
         <section
@@ -56,7 +56,7 @@ export default async function FpaPage({
                 fontSize: "12px",
                 letterSpacing: "0.16em",
                 textTransform: "uppercase",
-                color: "#6B7A95",
+                color: "#8D9AB3",
                 marginBottom: "28px",
               }}
             >
@@ -81,7 +81,7 @@ export default async function FpaPage({
               style={{
                 fontFamily: "var(--font-mono)",
                 fontSize: "13px",
-                color: "#6B7A95",
+                color: "#8D9AB3",
                 letterSpacing: "0.04em",
               }}
             >

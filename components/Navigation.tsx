@@ -123,7 +123,7 @@ export function Navigation() {
           className="flex items-center gap-2.5 group"
         >
           <div
-            className="w-8 h-8 rounded-lg flex items-center justify-center text-white text-sm font-bold tracking-tight transition-all duration-200 group-hover:scale-105"
+            className="w-10 h-10 rounded-lg flex items-center justify-center text-white text-sm font-bold tracking-tight transition-all duration-200 group-hover:scale-105"
             style={{ backgroundColor: "#2B6FE8" }}
           >
             GC
@@ -153,7 +153,7 @@ export function Navigation() {
                     onClick={() => scrollTo(link.id)}
                     className="relative flex items-center gap-1 text-sm font-medium transition-colors duration-200"
                     style={{
-                      color: isActive || profilesOpen ? "#F0F4FB" : "#6B7A95",
+                      color: isActive || profilesOpen ? "#F0F4FB" : "#8D9AB3",
                       fontFamily: "var(--font-sans)",
                     }}
                   >
@@ -234,7 +234,7 @@ export function Navigation() {
                               <span
                                 style={{
                                   fontFamily: "var(--font-mono)",
-                                  fontSize: "9px",
+                                  fontSize: "12px",
                                   letterSpacing: "0.1em",
                                   textTransform: "uppercase",
                                   color: p.color,
@@ -260,7 +260,7 @@ export function Navigation() {
                 onClick={() => scrollTo(link.id)}
                 className="relative text-sm font-medium transition-colors duration-200"
                 style={{
-                  color: isActive ? "#F0F4FB" : "#6B7A95",
+                  color: isActive ? "#F0F4FB" : "#8D9AB3",
                   fontFamily: "var(--font-sans)",
                 }}
                 onMouseEnter={(e) => {
@@ -269,7 +269,7 @@ export function Navigation() {
                 }}
                 onMouseLeave={(e) => {
                   if (!isActive)
-                    (e.currentTarget as HTMLElement).style.color = "#6B7A95";
+                    (e.currentTarget as HTMLElement).style.color = "#8D9AB3";
                 }}
               >
                 {link.label}
@@ -296,7 +296,7 @@ export function Navigation() {
             style={{
               fontFamily: "var(--font-mono)",
               fontSize: "12px",
-              color: "#6B7A95",
+              color: "#8D9AB3",
               border: "1px solid rgba(255,255,255,0.06)",
             }}
             onMouseEnter={(e) => {
@@ -306,7 +306,7 @@ export function Navigation() {
             }}
             onMouseLeave={(e) => {
               const el = e.currentTarget as HTMLElement;
-              el.style.color = "#6B7A95";
+              el.style.color = "#8D9AB3";
               el.style.borderColor = "rgba(255,255,255,0.06)";
             }}
           >
@@ -316,12 +316,13 @@ export function Navigation() {
           {/* Lang toggle */}
           <button
             onClick={toggleLocale}
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-full transition-all duration-200"
+            aria-label={currentLocale === "es" ? "Switch to English" : "Cambiar a español"}
+            className="flex items-center gap-1.5 px-3 py-1.5 min-h-[40px] rounded-full transition-all duration-200"
             style={{
               fontFamily: "var(--font-mono)",
               fontSize: "12px",
               fontWeight: 600,
-              color: "#6B7A95",
+              color: "#8D9AB3",
               border: "1px solid rgba(255,255,255,0.06)",
             }}
             onMouseEnter={(e) => {
@@ -331,7 +332,7 @@ export function Navigation() {
             }}
             onMouseLeave={(e) => {
               const el = e.currentTarget as HTMLElement;
-              el.style.color = "#6B7A95";
+              el.style.color = "#8D9AB3";
               el.style.borderColor = "rgba(255,255,255,0.06)";
             }}
           >
@@ -352,7 +353,9 @@ export function Navigation() {
 
           {/* Mobile toggle */}
           <button
-            className="md:hidden w-9 h-9 flex items-center justify-center rounded-lg transition-colors duration-200"
+            className="md:hidden w-10 h-10 flex items-center justify-center rounded-lg transition-colors duration-200"
+            aria-label={menuOpen ? (currentLocale === "es" ? "Cerrar menú" : "Close menu") : currentLocale === "es" ? "Abrir menú" : "Open menu"}
+            aria-expanded={menuOpen}
             style={{
               color: "#C5CFE2",
               border: "1px solid rgba(255,255,255,0.06)",
@@ -452,7 +455,7 @@ export function Navigation() {
                 onClick={openPalette}
                 className="text-left px-3 py-3 rounded-lg text-sm font-medium transition-colors duration-200"
                 style={{
-                  color: "#6B7A95",
+                  color: "#8D9AB3",
                   fontFamily: "var(--font-mono)",
                   fontSize: "12px",
                 }}

@@ -65,7 +65,7 @@ const SectionWithMockup: React.FC<SectionWithMockupProps> = ({
             </div>
             <p
               style={{
-                color: "#6B7A95",
+                color: "#8D9AB3",
                 fontSize: "15px",
                 lineHeight: 1.7,
                 fontFamily: "var(--font-sans)",

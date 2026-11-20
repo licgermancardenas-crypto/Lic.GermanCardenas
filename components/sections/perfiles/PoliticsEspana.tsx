@@ -74,7 +74,7 @@ export function PoliticsEspana({ locale }: { locale: string }) {
   return (
     <section id="espana" className="pb-24 md:pb-32" style={{ backgroundColor: "#050505" }}>
       <div className="container-custom max-w-6xl mx-auto pt-16 md:pt-20" style={{ borderTop: "1px solid rgba(255,255,255,0.06)" }}>
-        <p style={{ ...mono, fontSize: "11px", letterSpacing: "0.2em", textTransform: "uppercase", color: CYAN, marginBottom: "16px" }}>
+        <p style={{ ...mono, fontSize: "12px", letterSpacing: "0.2em", textTransform: "uppercase", color: CYAN, marginBottom: "16px" }}>
           {t.eyebrow}
         </p>
         <h2
@@ -122,7 +122,7 @@ export function PoliticsEspana({ locale }: { locale: string }) {
           </figcaption>
         </figure>
 
-        <p style={{ ...mono, fontSize: "11px", letterSpacing: "0.16em", textTransform: "uppercase", color: "rgba(255,255,255,0.5)", margin: "48px 0 14px" }}>
+        <p style={{ ...mono, fontSize: "12px", letterSpacing: "0.16em", textTransform: "uppercase", color: "rgba(255,255,255,0.5)", margin: "48px 0 14px" }}>
           {t.forecastTitle}
         </p>
         <div className="grid grid-cols-3 gap-3 sm:gap-4 mb-12">
@@ -131,8 +131,8 @@ export function PoliticsEspana({ locale }: { locale: string }) {
               <p style={{ fontSize: "clamp(24px, 3.4vw, 38px)", fontWeight: 600, color: "#FFFFFF", lineHeight: 1, marginBottom: "6px", fontVariantNumeric: "tabular-nums" }}>
                 {s.v}
               </p>
-              <p style={{ ...mono, fontSize: "11px", color: "rgba(255,255,255,0.45)", marginBottom: "6px", fontVariantNumeric: "tabular-nums" }}>{s.r}</p>
-              <p style={{ ...mono, fontSize: "10px", letterSpacing: "0.08em", textTransform: "uppercase", color: "rgba(255,255,255,0.5)" }}>{s.k}</p>
+              <p style={{ ...mono, fontSize: "12px", color: "rgba(255,255,255,0.45)", marginBottom: "6px", fontVariantNumeric: "tabular-nums" }}>{s.r}</p>
+              <p style={{ ...mono, fontSize: "12px", letterSpacing: "0.08em", textTransform: "uppercase", color: "rgba(255,255,255,0.5)" }}>{s.k}</p>
             </div>
           ))}
         </div>

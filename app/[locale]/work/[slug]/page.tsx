@@ -1,4 +1,5 @@
 import { ResponsiveVideo } from "@/components/ResponsiveVideo";
+import { textOn } from "@/lib/color";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import type { Metadata } from "next";
@@ -485,7 +486,7 @@ const content: Record<Locale, Record<string, CaseStudy>> = {
       title: "Phantom AI",
       category: "Data Science · Finanzas · Prevención de lavado",
       subtitle: "Redes neuronales de grafos para encontrar lavado de activos que las reglas tradicionales no ven. Prueba de concepto con datos sintéticos.",
-      accent: "#6366f1",
+      accent: "#787BF3",
       screenshots: PHANTOM_SHOTS,
       url: "https://fraude-bancario-2026.vercel.app",
       context:
@@ -539,7 +540,7 @@ const content: Record<Locale, Record<string, CaseStudy>> = {
       title: "Atlas Analytics",
       category: "AI Engineering · Datos públicos · Consultora",
       subtitle: "Mi consultora de análisis de datos y geointeligencia política, y el sistema de IA que investiga con fuentes reales antes de escribir una sola línea.",
-      accent: "#8B2CF5",
+      accent: "#AA64F8",
       screenshots: AA_SHOTS,
       url: "https://www.atlas-analytics.site",
       context:
@@ -593,7 +594,7 @@ const content: Record<Locale, Record<string, CaseStudy>> = {
       title: "ZEUS · Atlas Control",
       category: "Ciberseguridad · DLP · Producto SaaS",
       subtitle: "Seguridad del endpoint y prevención de fuga de datos para empresas que manejan dinero: detecta ransomware, credenciales filtradas y pendrives sin leer lo que la gente escribe.",
-      accent: "#6D5EF5",
+      accent: "#8376F6",
       screenshots: ZEUS_SHOTS,
       privateNote: "Producto propio · demo a pedido",
       context:
@@ -1065,7 +1066,7 @@ const content: Record<Locale, Record<string, CaseStudy>> = {
       title: "Phantom AI",
       category: "Data Science · Finance · Anti-money laundering",
       subtitle: "Graph neural networks to find money laundering that traditional rules miss. A proof of concept on synthetic data.",
-      accent: "#6366f1",
+      accent: "#787BF3",
       screenshots: PHANTOM_SHOTS,
       url: "https://fraude-bancario-2026.vercel.app",
       context:
@@ -1119,7 +1120,7 @@ const content: Record<Locale, Record<string, CaseStudy>> = {
       title: "Atlas Analytics",
       category: "AI Engineering · Public data · Consultancy",
       subtitle: "My data-analytics and political geo-intelligence consultancy, and the AI system that researches real sources before writing a single line.",
-      accent: "#8B2CF5",
+      accent: "#AA64F8",
       screenshots: AA_SHOTS,
       url: "https://www.atlas-analytics.site",
       context:
@@ -1173,7 +1174,7 @@ const content: Record<Locale, Record<string, CaseStudy>> = {
       title: "ZEUS · Atlas Control",
       category: "Cybersecurity · DLP · SaaS product",
       subtitle: "Endpoint security and data-loss prevention for companies that handle money: it detects ransomware, leaked credentials and USB drives without reading what people type.",
-      accent: "#6D5EF5",
+      accent: "#8376F6",
       screenshots: ZEUS_SHOTS,
       privateNote: "Own product · demo on request",
       context:
@@ -1353,13 +1354,13 @@ export default async function WorkPage({
   if (!c) notFound();
 
   return (
-    <div className="min-h-screen bg-[#0A0E1A]">
+    <main id="contenido" tabIndex={-1} className="min-h-screen bg-[#0A0E1A] outline-none">
       {/* Back nav */}
       <div className="sticky top-0 z-50 bg-[#0A0E1A]/90 backdrop-blur-md border-b border-[#1F2937]">
         <div className="container-custom h-14 flex items-center justify-between">
           <Link
             href={`/${locale}`}
-            className="flex items-center gap-2 text-sm text-[#6B7689] hover:text-[#B8C1D1] transition-colors"
+            className="flex items-center gap-2 min-h-[40px] text-sm text-[#8D9AB3] hover:text-[#B8C1D1] transition-colors"
           >
             <ArrowLeft className="w-4 h-4" />
             {t.backToPortfolio}
@@ -1369,7 +1370,7 @@ export default async function WorkPage({
               href={c.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 text-sm font-semibold transition-colors"
+              className="flex items-center gap-2 min-h-[40px] text-sm font-semibold transition-colors"
               style={{ color: c.accent }}
             >
               {t.viewLive}
@@ -1383,8 +1384,8 @@ export default async function WorkPage({
         {/* Hero */}
         <div className="mb-10 sm:mb-16">
           <div className="flex items-center gap-4 mb-6">
-            <span className="text-[#6B7689] text-xs font-mono select-none">━━━</span>
-            <span className="text-[#6B7689] text-xs font-mono uppercase tracking-widest">
+            <span aria-hidden="true" className="text-[#8D9AB3] text-xs font-mono select-none">━━━</span>
+            <span className="text-[#8D9AB3] text-xs font-mono uppercase tracking-widest">
               {c.category}
             </span>
           </div>
@@ -1394,7 +1395,7 @@ export default async function WorkPage({
           >
             {c.title}
           </h1>
-          <div className="text-[#1F2937] text-xs mb-5 font-mono select-none overflow-hidden whitespace-nowrap">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</div>
+          <div aria-hidden="true" className="text-[#1F2937] text-xs mb-5 font-mono select-none overflow-hidden whitespace-nowrap">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</div>
           <p className="text-[#B8C1D1] text-lg md:text-xl leading-relaxed max-w-2xl">{c.subtitle}</p>
           {c.isHackathon && (
             <div
@@ -1442,7 +1443,7 @@ export default async function WorkPage({
                 {m.value}
               </div>
               <div className="border-t border-[#1F2937] pt-2">
-                <p className="text-[11px] text-[#6B7689] uppercase tracking-wider font-mono">{m.description}</p>
+                <p className="text-xs text-[#8D9AB3] uppercase tracking-wider font-mono">{m.description}</p>
               </div>
             </div>
           ))}
@@ -1533,7 +1534,7 @@ export default async function WorkPage({
                   style={{ backgroundColor: "#060810" }}
                 />
               </div>
-              <p className="text-[#6B7689] text-xs font-mono mb-6 text-center tracking-wider">
+              <p className="text-[#8D9AB3] text-xs font-mono mb-6 text-center tracking-wider">
                 {c.impactImages[0].caption}
               </p>
 
@@ -1549,7 +1550,7 @@ export default async function WorkPage({
                         className="w-full h-full object-cover"
                       />
                     </div>
-                    <p className="text-[#6B7689] text-[10px] font-mono tracking-wide leading-snug">
+                    <p className="text-[#8D9AB3] text-xs font-mono tracking-wide leading-snug">
                       {img.caption}
                     </p>
                   </div>
@@ -1563,6 +1564,7 @@ export default async function WorkPage({
           locale={locale}
           className="mt-16"
           accent={c.accent}
+          onAccent={textOn(c.accent)}
           title={locale === "en" ? "A project like this for your organization?" : "¿Un proyecto así para tu organización?"}
           text={locale === "en" ? "Tell me the problem and we'll work out how to solve it with data." : "Contame el problema y vemos cómo resolverlo con datos."}
         />
@@ -1570,21 +1572,21 @@ export default async function WorkPage({
         {/* Next case */}
         <div className="mt-20 pt-10 border-t border-[#1F2937] flex flex-col sm:flex-row sm:items-center justify-between gap-6">
           <div>
-            <p className="text-[#6B7689] text-xs font-mono uppercase tracking-widest mb-1">
+            <p className="text-[#8D9AB3] text-xs font-mono uppercase tracking-widest mb-1">
               {t.nextCase}
             </p>
             <p className="text-[#F5F7FA] font-semibold">{c.nextTitle}</p>
           </div>
           <Link
             href={`/${locale}/work/${c.nextSlug}`}
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-lg text-white font-semibold text-sm transition-all hover:-translate-y-0.5"
-            style={{ backgroundColor: c.accent }}
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-lg font-semibold text-sm transition-all hover:-translate-y-0.5"
+            style={{ backgroundColor: c.accent, color: textOn(c.accent) }}
           >
             {t.viewCase}
             <ArrowRight className="w-4 h-4" />
           </Link>
         </div>
       </div>
-    </div>
+    </main>
   );
 }

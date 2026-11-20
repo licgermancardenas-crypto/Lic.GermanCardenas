@@ -97,7 +97,7 @@ export default async function HomePage({
       <ScrollProgress />
       <CommandPalette />
       <Navigation />
-      <main>
+      <main id="contenido" tabIndex={-1} className="outline-none">
         <Hero />
         <MisPerfiles />
         <section id="sobre-mi">

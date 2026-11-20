@@ -50,7 +50,7 @@ export function Expertise() {
           <p
             style={{
               fontFamily: "var(--font-mono)",
-              fontSize: "11px",
+              fontSize: "12px",
               fontWeight: 500,
               letterSpacing: "0.14em",
               color: "#4A8BFF",
@@ -112,7 +112,7 @@ export function Expertise() {
                 <p
                   style={{
                     fontFamily: "var(--font-mono)",
-                    fontSize: "11px",
+                    fontSize: "12px",
                     fontWeight: 500,
                     letterSpacing: "0.12em",
                     color: "#4A8BFF",
@@ -162,7 +162,7 @@ export function Expertise() {
                 <p
                   style={{
                     fontFamily: "var(--font-mono)",
-                    fontSize: "10px",
+                    fontSize: "12px",
                     fontWeight: 500,
                     letterSpacing: "0.12em",
                     textTransform: "uppercase",
@@ -197,7 +197,7 @@ export function Expertise() {
                   <p
                     style={{
                       fontFamily: "var(--font-mono)",
-                      fontSize: "10px",
+                      fontSize: "12px",
                       fontWeight: 500,
                       letterSpacing: "0.12em",
                       color: "#5A6478",

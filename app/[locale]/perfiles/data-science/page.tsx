@@ -38,7 +38,7 @@ export default async function DataSciencePage({
   return (
     <>
       <Navigation />
-      <main>
+      <main id="contenido" tabIndex={-1} className="outline-none">
         <DataScienceHero />
         <DataScienceProjects locale={locale} />
       </main>

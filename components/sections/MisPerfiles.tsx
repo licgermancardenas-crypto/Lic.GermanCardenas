@@ -100,7 +100,7 @@ export function MisPerfiles() {
               fontSize: "12px",
               letterSpacing: "0.16em",
               textTransform: "uppercase",
-              color: "#6B7A95",
+              color: "#8D9AB3",
               marginBottom: "32px",
             }}
           >
@@ -125,7 +125,7 @@ export function MisPerfiles() {
               marginTop: "16px",
               fontFamily: "var(--font-mono)",
               fontSize: "13px",
-              color: "#6B7A95",
+              color: "#8D9AB3",
               letterSpacing: "0.04em",
             }}
           >

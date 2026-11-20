@@ -22,6 +22,16 @@ export function ResponsiveVideo({
   const ref = useRef<HTMLVideoElement>(null);
   const [isTall, setIsTall] = useState(false);
   const [visible, setVisible] = useState(false);
+  // Con movimiento reducido no arranca solo: se muestran los controles y lo inicia quien mira.
+  const [reduce, setReduce] = useState(false);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const update = () => setReduce(mq.matches);
+    update();
+    mq.addEventListener("change", update);
+    return () => mq.removeEventListener("change", update);
+  }, []);
 
   useEffect(() => {
     const mq = window.matchMedia(`(max-width: ${breakpoint - 1}px)`);
@@ -41,7 +51,7 @@ export function ResponsiveVideo({
       ([entry]) => {
         if (entry.isIntersecting) {
           setVisible(true);
-          el.play().catch(() => {});
+          if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) el.play().catch(() => {});
         } else {
           el.pause();
         }
@@ -62,9 +72,10 @@ export function ResponsiveVideo({
       height={s.height}
       muted
       loop
-      autoPlay={visible}
+      autoPlay={visible && !reduce}
+      controls={reduce}
       playsInline
-      preload="none"
+      preload={reduce ? "metadata" : "none"}
       aria-label={label}
       className="w-full h-auto block"
       style={{ aspectRatio: `${s.width} / ${s.height}` }}

@@ -49,7 +49,7 @@ export default async function PoliticsPage({
   return (
     <>
       <Navigation />
-      <main>
+      <main id="contenido" tabIndex={-1} className="outline-none">
         <PoliticsHero />
         <PoliticsContent />
         <PoliticsChaco locale={locale} />

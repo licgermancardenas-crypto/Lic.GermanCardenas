@@ -77,7 +77,7 @@ function SystemRow({ system }: { system: System; index: number }) {
         <span
           style={{
             fontFamily: "var(--font-mono)",
-            fontSize: "11px",
+            fontSize: "12px",
             letterSpacing: "0.2em",
             color: EMERALD,
           }}
@@ -184,7 +184,7 @@ export function BiShowcase() {
           <p
             style={{
               fontFamily: "var(--font-mono)",
-              fontSize: "10px",
+              fontSize: "12px",
               letterSpacing: "0.22em",
               textTransform: "uppercase",
               color: EMERALD,

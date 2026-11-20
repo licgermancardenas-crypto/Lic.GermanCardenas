@@ -84,14 +84,14 @@ export default async function BiDashboardsPage({
   return (
     <>
       <Navigation />
-      <main style={{ backgroundColor: "#050505", minHeight: "100vh" }}>
+      <main id="contenido" tabIndex={-1} className="outline-none" style={{ backgroundColor: "#050505", minHeight: "100vh" }}>
         <div className="container-custom pt-28 sm:pt-32 pb-8">
           <Link
             href={`/${locale}/perfiles/bi`}
-            className="inline-flex items-center gap-2 mb-12 transition-colors"
+            className="inline-flex items-center gap-2 mb-12 min-h-[40px] transition-colors"
             style={{
               fontFamily: "var(--font-mono)",
-              fontSize: "11px",
+              fontSize: "12px",
               letterSpacing: "0.12em",
               textTransform: "uppercase",
               color: "rgba(255,255,255,0.4)",
@@ -104,7 +104,7 @@ export default async function BiDashboardsPage({
           <p
             style={{
               fontFamily: "var(--font-mono)",
-              fontSize: "10px",
+              fontSize: "12px",
               letterSpacing: "0.22em",
               textTransform: "uppercase",
               color: EMERALD,
@@ -156,7 +156,7 @@ export default async function BiDashboardsPage({
             className="max-w-2xl"
             style={{
               fontFamily: "var(--font-mono)",
-              fontSize: "11.5px",
+              fontSize: "12px",
               lineHeight: 1.7,
               color: "rgba(255,255,255,0.35)",
               marginBottom: "40px",
@@ -182,7 +182,7 @@ export default async function BiDashboardsPage({
                 <div
                   style={{
                     fontFamily: "var(--font-mono)",
-                    fontSize: "10px",
+                    fontSize: "12px",
                     letterSpacing: "0.16em",
                     textTransform: "uppercase",
                     color: "rgba(255,255,255,0.35)",

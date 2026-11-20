@@ -87,7 +87,7 @@ export function Footer() {
               style={{
                 fontSize: "14px",
                 lineHeight: 1.7,
-                color: "#6B7A95",
+                color: "#8D9AB3",
                 marginBottom: "20px",
                 maxWidth: "260px",
               }}
@@ -101,7 +101,7 @@ export function Footer() {
                   href={s.href}
                   target={s.href.startsWith("mailto") ? "_self" : "_blank"}
                   rel="noopener noreferrer"
-                  className="w-9 h-9 rounded-lg flex items-center justify-center transition-all duration-200"
+                  className="w-10 h-10 rounded-lg flex items-center justify-center transition-all duration-200"
                   style={{
                     background: "rgba(255,255,255,0.04)",
                     color: "rgba(255,255,255,0.4)",
@@ -132,27 +132,27 @@ export function Footer() {
             <h4
               style={{
                 fontFamily: "var(--font-mono)",
-                fontSize: "11px",
+                fontSize: "12px",
                 letterSpacing: "0.16em",
                 textTransform: "uppercase",
-                color: "#3F4A5F",
+                color: "#7888A5",
                 marginBottom: "16px",
               }}
             >
               Navegación
             </h4>
-            <ul className="space-y-3">
+            <ul className="space-y-0">
               {navLinks.map((link) => (
                 <li key={link.id}>
                   <button
                     onClick={() => scrollTo(link.id)}
-                    className="text-sm transition-colors duration-200"
-                    style={{ color: "#6B7A95" }}
+                    className="text-sm inline-flex items-center min-h-[40px] min-w-[40px] transition-colors duration-200"
+                    style={{ color: "#8D9AB3" }}
                     onMouseEnter={(e) => {
                       (e.currentTarget as HTMLElement).style.color = "#C5CFE2";
                     }}
                     onMouseLeave={(e) => {
-                      (e.currentTarget as HTMLElement).style.color = "#6B7A95";
+                      (e.currentTarget as HTMLElement).style.color = "#8D9AB3";
                     }}
                   >
                     {link.label}
@@ -167,10 +167,10 @@ export function Footer() {
             <h4
               style={{
                 fontFamily: "var(--font-mono)",
-                fontSize: "11px",
+                fontSize: "12px",
                 letterSpacing: "0.16em",
                 textTransform: "uppercase",
-                color: "#3F4A5F",
+                color: "#7888A5",
                 marginBottom: "16px",
               }}
             >
@@ -184,12 +184,12 @@ export function Footer() {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-sm transition-colors duration-200"
-                    style={{ color: "#6B7A95", textDecoration: "none" }}
+                    style={{ color: "#8D9AB3", textDecoration: "none" }}
                     onMouseEnter={(e) => {
                       (e.currentTarget as HTMLElement).style.color = "#4A8BFF";
                     }}
                     onMouseLeave={(e) => {
-                      (e.currentTarget as HTMLElement).style.color = "#6B7A95";
+                      (e.currentTarget as HTMLElement).style.color = "#8D9AB3";
                     }}
                   >
                     {p.label}
@@ -209,7 +209,7 @@ export function Footer() {
             style={{
               fontFamily: "var(--font-mono)",
               fontSize: "12px",
-              color: "#3F4A5F",
+              color: "#7888A5",
             }}
           >
             © {new Date().getFullYear()} Germán Cárdenas
@@ -218,7 +218,7 @@ export function Footer() {
             style={{
               fontFamily: "var(--font-mono)",
               fontSize: "12px",
-              color: "#3F4A5F",
+              color: "#7888A5",
             }}
           >
             Hecho con Next.js · Vercel · Framer Motion

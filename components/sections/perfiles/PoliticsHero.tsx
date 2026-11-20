@@ -166,19 +166,19 @@ export function PoliticsHero() {
       >
         <Link
           href={`/${locale}`}
-          className="inline-flex items-center gap-2 transition-colors duration-200"
+          className="inline-flex items-center gap-2 min-h-[40px] transition-colors duration-200"
           style={{
             fontFamily: "var(--font-mono)",
-            fontSize: "11px",
+            fontSize: "12px",
             letterSpacing: "0.12em",
             textTransform: "uppercase",
-            color: "rgba(255,255,255,0.28)",
+            color: "rgba(255,255,255,0.6)",
           }}
           onMouseEnter={(e) => {
             (e.currentTarget as HTMLElement).style.color = "rgba(255,255,255,0.65)";
           }}
           onMouseLeave={(e) => {
-            (e.currentTarget as HTMLElement).style.color = "rgba(255,255,255,0.28)";
+            (e.currentTarget as HTMLElement).style.color = "rgba(255,255,255,0.6)";
           }}
         >
           <ArrowLeft className="w-3.5 h-3.5" />
@@ -198,7 +198,7 @@ export function PoliticsHero() {
           <span
             style={{
               fontFamily: "var(--font-mono)",
-              fontSize: "10px",
+              fontSize: "12px",
               letterSpacing: "0.22em",
               textTransform: "uppercase",
               color: CYAN,
@@ -284,7 +284,7 @@ export function PoliticsHero() {
               <p
                 style={{
                   fontFamily: "var(--font-mono)",
-                  fontSize: "9px",
+                  fontSize: "12px",
                   letterSpacing: "0.2em",
                   textTransform: "uppercase",
                   color: CYAN,
@@ -296,7 +296,7 @@ export function PoliticsHero() {
               <p
                 style={{
                   fontFamily: "var(--font-mono)",
-                  fontSize: "11px",
+                  fontSize: "12px",
                   fontWeight: 600,
                   color: "rgba(255,255,255,0.82)",
                   marginBottom: "6px",
@@ -309,7 +309,7 @@ export function PoliticsHero() {
                 className="hidden lg:block"
                 style={{
                   fontFamily: "var(--font-mono)",
-                  fontSize: "10px",
+                  fontSize: "12px",
                   lineHeight: 1.65,
                   color: "rgba(255,255,255,0.3)",
                 }}
