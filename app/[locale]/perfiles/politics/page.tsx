@@ -5,6 +5,7 @@ import { PoliticsHero } from "@/components/sections/perfiles/PoliticsHero";
 import { PoliticsContent } from "@/components/sections/perfiles/PoliticsContent";
 import { PoliticsChaco } from "@/components/sections/perfiles/PoliticsChaco";
 import { PoliticsCaba } from "@/components/sections/perfiles/PoliticsCaba";
+import { PoliticsPba } from "@/components/sections/perfiles/PoliticsPba";
 import { PoliticsMalvinas } from "@/components/sections/perfiles/PoliticsMalvinas";
 import { PoliticsProject } from "@/components/sections/perfiles/PoliticsProject";
 import { PoliticsCalifornia } from "@/components/sections/perfiles/PoliticsCalifornia";
@@ -53,6 +54,7 @@ export default async function PoliticsPage({
         <PoliticsContent />
         <PoliticsChaco locale={locale} />
         <PoliticsCaba locale={locale} />
+        <PoliticsPba locale={locale} />
         <PoliticsMalvinas locale={locale} />
         <PoliticsProject locale={locale} />
         <PoliticsCalifornia locale={locale} />
