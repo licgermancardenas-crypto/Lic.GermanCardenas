@@ -1,10 +1,12 @@
 import Image from "next/image";
-import { Lock } from "lucide-react";
+import { Lock, ExternalLink } from "lucide-react";
 import { ContactCta } from "@/components/ContactCta";
 
 const CYAN = "#00A3C4";
 
 type Lang = "es" | "en";
+
+const GEMELO = "https://atlas-caba-ciudad.vercel.app/gemelo/";
 
 const PAGES = ["portada", "mapa-2023", "mapa-2025", "educacion", "mesas", "actas", "encuesta-territorio"] as const;
 
@@ -15,7 +17,7 @@ const copy = {
     lead:
       "Inteligencia electoral para la Jefatura de Gobierno porteña, hecha para un cliente: 27 elecciones de 1996 a 2025, 54.325 mesas, 167 circuitos y el Censo 2022 en una sola base, más una encuesta propia cruzada con el territorio. Seis informes, seis libros de Excel y un votómetro.",
     findings: [
-      { k: "7 de 10", v: "votos perdió el PRO en dos años: en 2025 retuvo el 29,4% de lo que había sacado en 2023." },
+      { k: "7 de 10", v: "votos perdió el PRO en dos años: en 2025 retuvo el 29,9% de lo que había sacado en 2023." },
       { k: "143 de 167", v: "circuitos ganó el PRO en 2023. Dos años después la ciudad quedó partida en dos." },
       { k: "Educación", v: "ordena el voto porteño mejor que cualquier otra variable del censo; la pobreza, no." },
       { k: "0 de 17", v: "pruebas de dígitos detectan anomalías en las actas de 2015 a 2023. Se mide, no se supone." },
@@ -29,6 +31,14 @@ const copy = {
       "¿Son confiables las actas? 17 pruebas de dígitos, ninguna anomalía",
       "Encuesta y territorio: 511 respuestas cruzadas con el voto real de cada comuna",
     ],
+    twinTitle: "El gemelo digital de la Ciudad",
+    twinText:
+      "Para decidir dónde poner el esfuerzo hay que ver el territorio. 318.607 parcelas con sus pisos y su uso, 12.652 manzanas, 31.961 cuadras, los radios censales y los 167 circuitos en una sola web: en 2D las manzanas se pintan por población estimada y se cruzan con escuelas, locales de votación, hospitales y transporte; en 3D los edificios se levantan sobre la foto aérea oficial.",
+    twinCaptions: [
+      "2D: manzanas por personas estimadas, con circuitos electorales y barrios populares",
+      "3D: los edificios levantados por su cantidad de pisos sobre la foto aérea 2021",
+    ],
+    twinCta: "Abrir el gemelo digital",
     reportsTitle: "Qué incluye el trabajo",
     reports: [
       "El mapa del voto porteño",
@@ -52,7 +62,7 @@ const copy = {
     lead:
       "Electoral intelligence for the Buenos Aires mayoral race, built for a client: 27 elections from 1996 to 2025, 54,325 polling stations, 167 circuits and the 2022 Census in a single base, plus an original survey crossed with the territory. Six reports, six Excel workbooks and a vote calculator.",
     findings: [
-      { k: "7 in 10", v: "votes lost by PRO in two years: in 2025 it kept 29.4% of what it won in 2023." },
+      { k: "7 in 10", v: "votes lost by PRO in two years: in 2025 it kept 29.9% of what it won in 2023." },
       { k: "143 of 167", v: "circuits won by PRO in 2023. Two years later the city was split in two." },
       { k: "Education", v: "orders the city's vote better than any other census variable; poverty doesn't." },
       { k: "0 of 17", v: "digit tests flag anomalies in the 2015–2023 tally sheets. Measured, not assumed." },
@@ -66,6 +76,14 @@ const copy = {
       "Are the tally sheets reliable? 17 digit tests, no anomalies",
       "Survey and territory: 511 responses matched to each district's real vote",
     ],
+    twinTitle: "The city's digital twin",
+    twinText:
+      "Deciding where to put the effort means seeing the territory. 318,607 land parcels with their floors and use, 12,652 blocks, 31,961 street segments, the census tracts and the 167 electoral circuits in a single website: in 2D the blocks are shaded by estimated population and crossed with schools, polling places, hospitals and transport; in 3D the buildings rise over the official aerial photo.",
+    twinCaptions: [
+      "2D: blocks by estimated population, with electoral circuits and informal settlements",
+      "3D: buildings raised by their number of floors over the 2021 aerial photo",
+    ],
+    twinCta: "Open the digital twin",
     reportsTitle: "What the work includes",
     reports: [
       "The Buenos Aires vote map",
@@ -145,6 +163,30 @@ export function PoliticsCaba({ locale }: { locale: string }) {
             </figure>
           ))}
         </div>
+
+        <h3 style={{ fontSize: "24px", fontWeight: 600, color: "#FFFFFF", marginBottom: "10px" }}>{t.twinTitle}</h3>
+        <p style={{ fontSize: "16px", lineHeight: 1.7, color: "rgba(212,212,216,0.85)", maxWidth: "820px", marginBottom: "22px" }}>{t.twinText}</p>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-6">
+          {[
+            { src: "/screenshots/caba/gemelo-2d.jpg", h: 1000 },
+            { src: "/screenshots/caba/gemelo-3d.jpg", h: 950 },
+          ].map((img, i) => (
+            <figure key={img.src} style={{ borderRadius: "12px", overflow: "hidden", border: "1px solid rgba(255,255,255,0.08)", background: "#0b0b0b" }}>
+              <Image src={img.src} alt={t.twinCaptions[i]} width={1600} height={img.h} sizes="(max-width: 768px) 100vw, 550px" className="w-full h-auto" />
+              <figcaption style={{ ...mono, fontSize: "12px", color: "rgba(255,255,255,0.5)", padding: "10px 14px" }}>{t.twinCaptions[i]}</figcaption>
+            </figure>
+          ))}
+        </div>
+        <a
+          href={GEMELO}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-2 mb-14 transition-all duration-200 hover:-translate-y-0.5"
+          style={{ padding: "12px 24px", borderRadius: "8px", background: CYAN, color: "#050505", fontSize: "14px", fontWeight: 600 }}
+        >
+          {t.twinCta}
+          <ExternalLink className="w-4 h-4" />
+        </a>
 
         <h3 style={{ fontSize: "20px", fontWeight: 600, color: "#FFFFFF", marginBottom: "14px" }}>{t.reportsTitle}</h3>
         <div className="flex flex-wrap gap-2 mb-6">
