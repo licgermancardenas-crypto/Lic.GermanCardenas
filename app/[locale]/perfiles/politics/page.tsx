@@ -4,6 +4,7 @@ import { Navigation } from "@/components/Navigation";
 import { PoliticsHero } from "@/components/sections/perfiles/PoliticsHero";
 import { PoliticsContent } from "@/components/sections/perfiles/PoliticsContent";
 import { PoliticsChaco } from "@/components/sections/perfiles/PoliticsChaco";
+import { PoliticsCaba } from "@/components/sections/perfiles/PoliticsCaba";
 import { PoliticsProject } from "@/components/sections/perfiles/PoliticsProject";
 import { PoliticsCalifornia } from "@/components/sections/perfiles/PoliticsCalifornia";
 import { PoliticsEspana } from "@/components/sections/perfiles/PoliticsEspana";
@@ -46,6 +47,7 @@ export default async function PoliticsPage({
         <PoliticsHero />
         <PoliticsContent />
         <PoliticsChaco locale={locale} />
+        <PoliticsCaba locale={locale} />
         <PoliticsProject locale={locale} />
         <PoliticsCalifornia locale={locale} />
         <PoliticsEspana locale={locale} />
