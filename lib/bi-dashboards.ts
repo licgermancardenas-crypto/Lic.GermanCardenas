@@ -583,8 +583,8 @@ export const DASHBOARDS: Dashboard[] = [
         width: 1340,
         height: 753,
         caption: {
-          es: "Panel nacional — escaños esperados por candidatura: PP 124, PSOE 110, Vox 66; 95% de mayoría PP + Vox",
-          en: "National panel — expected seats by party: PP 124, PSOE 110, Vox 66; 95% chance of a PP + Vox majority",
+          es: "Panel nacional — escaños esperados por candidatura y probabilidad de cada mayoría",
+          en: "National panel — expected seats by party and the probability of each majority",
         },
       },
       {

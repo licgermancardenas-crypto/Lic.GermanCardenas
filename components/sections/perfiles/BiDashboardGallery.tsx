@@ -10,6 +10,7 @@ import {
   dashboardLocale,
   type DashboardShot,
 } from "@/lib/bi-dashboards";
+import { capturaVisibleEnVeda } from "@/lib/veda";
 
 const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
 const EMERALD = "#10b981";
@@ -20,8 +21,13 @@ type FlatShot = DashboardShot & { dashboard: string };
  * Todas las capturas en una lista plana para poder navegar el lightbox
  * de punta a punta con las flechas.
  */
-function flatten(locale: "es" | "en"): FlatShot[] {
-  return DASHBOARDS.flatMap((d) =>
+function visibles(veda: boolean) {
+  if (!veda) return DASHBOARDS;
+  return DASHBOARDS.map((d) => ({ ...d, shots: d.shots.filter((s) => capturaVisibleEnVeda(d.id, s.src)) }));
+}
+
+function flatten(locale: "es" | "en", veda: boolean): FlatShot[] {
+  return visibles(veda).flatMap((d) =>
     d.shots.map((s) => ({ ...s, dashboard: d.name[locale] })),
   );
 }
@@ -161,9 +167,9 @@ function Lightbox({
   );
 }
 
-export function BiDashboardGallery({ locale }: { locale: string }) {
+export function BiDashboardGallery({ locale, veda = false }: { locale: string; veda?: boolean }) {
   const lang = dashboardLocale(locale);
-  const shots = flatten(lang);
+  const shots = flatten(lang, veda);
   const [lbIdx, setLbIdx] = useState<number | null>(null);
 
   const prev = useCallback(
@@ -179,7 +185,7 @@ export function BiDashboardGallery({ locale }: { locale: string }) {
 
   return (
     <>
-      {DASHBOARDS.map((d, di) => (
+      {visibles(veda).map((d, di) => (
         <section
           key={d.id}
           id={d.id}

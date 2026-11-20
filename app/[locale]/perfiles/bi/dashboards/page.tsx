@@ -8,6 +8,10 @@ import { DASHBOARD_STATS, dashboardLocale } from "@/lib/bi-dashboards";
 import { pageMetadata } from "@/lib/seo";
 import { routing } from "@/i18n/routing";
 import { ContactCta } from "@/components/ContactCta";
+import { enVedaEspana } from "@/lib/veda";
+
+// Se regenera cada 10 minutos para que la veda electoral de España se aplique y se levante sola.
+export const revalidate = 600;
 
 const EMERALD = "#10b981";
 
@@ -193,7 +197,7 @@ export default async function BiDashboardsPage({
         </div>
 
         <div className="container-custom pb-24">
-          <BiDashboardGallery locale={locale} />
+          <BiDashboardGallery locale={locale} veda={enVedaEspana()} />
           <ContactCta
             locale={locale}
             variant="full"

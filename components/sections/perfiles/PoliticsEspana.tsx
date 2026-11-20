@@ -2,6 +2,7 @@ import Image from "next/image";
 import { ExternalLink } from "lucide-react";
 import { ResponsiveVideo } from "@/components/ResponsiveVideo";
 import { ContactCta } from "@/components/ContactCta";
+import { enVedaEspana } from "@/lib/veda";
 
 const CYAN = "#00A3C4";
 const WEB = "https://atlas-espana-29n.vercel.app";
@@ -31,6 +32,9 @@ const copy = {
       "Es el tercer caso de la serie, después de Brasil y California, y se va a medir con la misma vara: pronóstico contra resultado oficial del Ministerio del Interior, con post-mortem incluido.",
     captions: ["Probabilidad del favorito en cada circunscripción", "Las 52 contiendas: favorito, margen, intervalo y competitividad"],
     cta: "Ver la web del pronóstico",
+    vedaTitle: "Pronóstico en veda electoral",
+    vedaText:
+      "El artículo 69.7 de la LOREG prohíbe publicar y difundir sondeos en los cinco días anteriores a la votación. Las cifras del pronóstico vuelven tras el cierre de las urnas del 29 de noviembre (21:00, hora peninsular), junto con la comparación contra el resultado oficial.",
   },
   en: {
     eyebrow: "// Project · Spain 29-N",
@@ -54,6 +58,9 @@ const copy = {
       "It's the third case in the series, after Brazil and California, and it will be judged the same way: forecast versus the official Interior Ministry result, post-mortem included.",
     captions: ["Probability of the favourite in each constituency", "All 52 races: favourite, margin, interval and competitiveness"],
     cta: "See the forecast website",
+    vedaTitle: "Forecast under the electoral blackout",
+    vedaText:
+      "Article 69.7 of Spain's electoral law bans publishing or spreading polls in the five days before the vote. The forecast figures return after the polls close on 29 November (21:00 Madrid time), together with the comparison against the official result.",
   },
 } as const;
 
@@ -62,6 +69,7 @@ const mono = { fontFamily: "var(--font-mono)" } as const;
 export function PoliticsEspana({ locale }: { locale: string }) {
   const lang: Lang = locale === "en" ? "en" : "es";
   const t = copy[lang];
+  const veda = enVedaEspana();
 
   return (
     <section id="espana" className="pb-24 md:pb-32" style={{ backgroundColor: "#050505" }}>
@@ -86,6 +94,20 @@ export function PoliticsEspana({ locale }: { locale: string }) {
           {t.lead}
         </p>
 
+        {veda ? (
+          <div className="mb-12">
+            <div className="rounded-xl p-6 mb-4" style={{ border: "1px solid rgba(0,163,196,0.3)", background: "rgba(0,163,196,0.06)" }}>
+              <p style={{ fontSize: "18px", fontWeight: 600, color: "#FFFFFF", marginBottom: "8px" }}>{t.vedaTitle}</p>
+              <p style={{ fontSize: "15px", lineHeight: 1.65, color: "rgba(212,212,216,0.85)", maxWidth: "780px" }}>{t.vedaText}</p>
+            </div>
+            <div className="rounded-xl p-5 max-w-md" style={{ border: "1px solid rgba(0,163,196,0.18)", background: "rgba(0,163,196,0.04)" }}>
+              <p style={{ fontSize: "26px", fontWeight: 600, color: CYAN, lineHeight: 1, marginBottom: "10px", fontVariantNumeric: "tabular-nums" }}>{t.facts[2].k}</p>
+              <p style={{ fontSize: "16px", fontWeight: 600, color: "#FFFFFF", marginBottom: "6px" }}>{t.facts[2].t}</p>
+              <p style={{ fontSize: "14px", lineHeight: 1.6, color: "rgba(212,212,216,0.8)" }}>{t.facts[2].v}</p>
+            </div>
+          </div>
+        ) : (
+        <>
         <figure
           className="mx-auto max-w-[480px] md:max-w-none"
           style={{ borderRadius: "14px", overflow: "hidden", border: "1px solid rgba(255,255,255,0.08)", background: "#0b0b0b" }}
@@ -140,6 +162,9 @@ export function PoliticsEspana({ locale }: { locale: string }) {
             </figure>
           ))}
         </div>
+
+        </>
+        )}
 
         <p className="pl-4 mb-10" style={{ borderLeft: `2px solid ${CYAN}`, fontSize: "16px", lineHeight: 1.7, color: "rgba(230,230,235,0.9)", maxWidth: "860px" }}>
           {t.note}

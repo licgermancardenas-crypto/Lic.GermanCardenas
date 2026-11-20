@@ -30,6 +30,9 @@ export async function generateMetadata({
   });
 }
 
+// Se regenera cada 10 minutos para que la veda electoral de España se aplique y se levante sola.
+export const revalidate = 600;
+
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
 }
