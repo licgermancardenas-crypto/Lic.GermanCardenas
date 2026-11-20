@@ -15,8 +15,8 @@ export type Dashboard = {
   number: string;
   name: { es: string; en: string };
   tagline: { es: string; en: string };
-  /** "public" = dato abierto, "client" = operación real de cliente */
-  dataSource: "public" | "client";
+  /** "public" = dato abierto, "client" = operación real de cliente, "synthetic" = datos simulados */
+  dataSource: "public" | "client" | "synthetic";
   period: string;
   tags: string[];
   shots: DashboardShot[];
@@ -665,6 +665,59 @@ export const DASHBOARDS: Dashboard[] = [
         caption: {
           es: "Validación — cinco modelos contra 2019 y 2023; la regresión logística condicional, elegida por parsimonia",
           en: "Validation — five models against 2019 and 2023; conditional logistic regression chosen for parsimony",
+        },
+      },
+    ],
+  },
+  {
+    id: "tienda-mia",
+    number: "16",
+    name: {
+      es: "Tienda Mía · Ecommerce en Mercado Libre",
+      en: "Tienda Mía · Mercado Libre ecommerce",
+    },
+    tagline: {
+      es: "Analítica de punta a punta para un vendedor de Mercado Libre: de los datos crudos a un warehouse en capas, pronóstico, segmentación de clientes y un tablero web que filtra con SQL en el navegador. Con datos sintéticos de patrones realistas —estacionalidad, Hot Sale, elasticidad de precio, cuotas— y comisiones reales de 2026. El hallazgo: a 6 y 12 cuotas sin interés, el vendedor vende a pérdida.",
+      en: "End-to-end analytics for a Mercado Libre seller: from raw data to a layered warehouse, forecasting, customer segmentation and a web dashboard that filters with SQL in the browser. Built on synthetic data with realistic patterns — seasonality, Hot Sale, price elasticity, instalments — and real 2026 fees. The finding: at 6 and 12 interest-free instalments, the seller sells at a loss.",
+    },
+    dataSource: "synthetic",
+    period: "2023–2026",
+    tags: ["DuckDB", "DuckDB-WASM", "SARIMAX", "K-means", "Plotly"],
+    shots: [
+      {
+        src: "/perfiles/bi/dashboards/tienda-ventas.jpg",
+        width: 1600,
+        height: 900,
+        caption: {
+          es: "Ventas — 36 meses, GMV semanal y pronóstico a 12 semanas con SARIMAX e intervalo del 80%",
+          en: "Sales — 36 months, weekly GMV and a 12-week SARIMAX forecast with an 80% interval",
+        },
+      },
+      {
+        src: "/perfiles/bi/dashboards/tienda-cuotas.jpg",
+        width: 1600,
+        height: 940,
+        caption: {
+          es: "Pago y rentabilidad — el crédito es el 59% del GMV, pero a 6 y 12 cuotas el margen es negativo",
+          en: "Payments and profitability — credit is 59% of GMV, but at 6 and 12 instalments the margin turns negative",
+        },
+      },
+      {
+        src: "/perfiles/bi/dashboards/tienda-clientes.jpg",
+        width: 1600,
+        height: 900,
+        caption: {
+          es: "Clientes — segmentación RFM y clusters K-means: un cuarto de los clientes genera el 72% del GMV",
+          en: "Customers — RFM segmentation and K-means clusters: a quarter of customers drive 72% of GMV",
+        },
+      },
+      {
+        src: "/perfiles/bi/dashboards/tienda-marketing.jpg",
+        width: 1600,
+        height: 900,
+        caption: {
+          es: "Marketing — el ROAS incremental invierte el ranking: el canal con más presupuesto es el menos eficiente",
+          en: "Marketing — incremental ROAS flips the ranking: the biggest-budget channel is the least efficient",
         },
       },
     ],

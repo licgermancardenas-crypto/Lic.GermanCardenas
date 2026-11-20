@@ -242,18 +242,26 @@ export function BiDashboardGallery({ locale, veda = false }: { locale: string; v
                   border: `1px solid ${
                     d.dataSource === "public"
                       ? "rgba(16,185,129,0.35)"
-                      : "rgba(255,255,255,0.16)"
+                      : d.dataSource === "synthetic"
+                        ? "rgba(245,181,68,0.4)"
+                        : "rgba(255,255,255,0.16)"
                   }`,
                   color:
                     d.dataSource === "public"
                       ? EMERALD
-                      : "rgba(255,255,255,0.5)",
+                      : d.dataSource === "synthetic"
+                        ? "#F5B544"
+                        : "rgba(255,255,255,0.5)",
                 }}
               >
                 {d.dataSource === "public"
                   ? lang === "en"
                     ? "Open data"
                     : "Dato abierto"
+                  : d.dataSource === "synthetic"
+                    ? lang === "en"
+                      ? "Synthetic data"
+                      : "Datos sintéticos"
                   : lang === "en"
                     ? "Client operation"
                     : "Operación real"}

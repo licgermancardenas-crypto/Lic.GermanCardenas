@@ -19,7 +19,7 @@ const COPY = {
   es: {
     eyebrow: "Power BI y web · Galería de tableros",
     title: "Dashboards en producción",
-    lead: "Catorce tableros de Power BI y una plataforma web de inteligencia de mercado, construidos sobre datos reales de operación y fuentes públicas de Argentina, Brasil, Ecuador, España y EE.UU. Cada uno resuelve una pregunta de negocio concreta: dónde se pierde margen, qué se cobró de más, qué mercado se está enfriando.",
+    lead: "Catorce tableros de Power BI y dos tableros web —uno de inteligencia de mercado y uno de ecommerce—, construidos sobre datos reales de operación y fuentes públicas de Argentina, Brasil, Ecuador, España y EE.UU., más uno de ecommerce con datos sintéticos, marcado como tal. Cada uno resuelve una pregunta de negocio concreta: dónde se pierde margen, qué se cobró de más, qué mercado se está enfriando.",
     note: "Las capturas se muestran a su tamaño nativo, sin escalar ni recortar. Hacé clic en cualquiera para abrirla a 1:1.",
     back: "Volver a Corporate BI",
     stats: [
@@ -30,13 +30,13 @@ const COPY = {
     meta: {
       title: "Dashboards Power BI — Germán Cárdenas",
       description:
-        "Galería de 15 dashboards en producción, en Power BI y web: alcaldías de Ecuador, generales de España, gobernador de California, balotaje de Brasil, YPF y Vaca Muerta, puntualidad aérea de EE.UU., mercado yerbatero, exportaciones argentinas, patentamientos, conciliación de cobros con tarjeta, retail, mayorista y farmacia.",
+        "Galería de 16 dashboards en producción, en Power BI y web: ecommerce en Mercado Libre, alcaldías de Ecuador, generales de España, gobernador de California, balotaje de Brasil, YPF y Vaca Muerta, puntualidad aérea de EE.UU., mercado yerbatero, exportaciones argentinas, patentamientos, conciliación de cobros con tarjeta, retail, mayorista y farmacia.",
     },
   },
   en: {
     eyebrow: "Power BI & web · Dashboard gallery",
     title: "Dashboards in production",
-    lead: "Fourteen Power BI dashboards and one web market-intelligence platform, built on real operating data and Argentine, Brazilian, Ecuadorian, Spanish and US open data sources. Each one answers a concrete business question: where margin leaks, what was over-collected, which market is cooling down.",
+    lead: "Fourteen Power BI dashboards and two web dashboards — one for market intelligence, one for ecommerce — built on real operating data and Argentine, Brazilian, Ecuadorian, Spanish and US open data sources, plus one ecommerce dashboard on synthetic data, labelled as such. Each one answers a concrete business question: where margin leaks, what was over-collected, which market is cooling down.",
     note: "Screenshots are shown at their native size, never upscaled or cropped. Click any of them to open it at 1:1.",
     back: "Back to Corporate BI",
     stats: [
@@ -47,7 +47,7 @@ const COPY = {
     meta: {
       title: "Power BI Dashboards — Germán Cárdenas",
       description:
-        "A gallery of 15 production dashboards, in Power BI and on the web: Ecuador's mayoral races, Spain's general election, California's governor race, Brazil's runoff, YPF and Vaca Muerta, US airline punctuality, yerba mate market, Argentine exports, vehicle registrations, card settlement reconciliation, retail, wholesale and pharmacy.",
+        "A gallery of 16 production dashboards, in Power BI and on the web: Mercado Libre ecommerce, Ecuador's mayoral races, Spain's general election, California's governor race, Brazil's runoff, YPF and Vaca Muerta, US airline punctuality, yerba mate market, Argentine exports, vehicle registrations, card settlement reconciliation, retail, wholesale and pharmacy.",
     },
   },
 };

@@ -17,7 +17,7 @@ const COPY = {
     lead: `${DASHBOARD_STATS.dashboards} tableros —en Power BI y en web— sobre datos reales de operación y fuentes públicas de Argentina, Brasil, Ecuador, España y EE.UU.: Ecuador, España, California, balotaje de Brasil, YPF, vuelos de EE.UU., yerba mate, exportaciones, patentamientos, retail, mayorista, farmacia y conciliación de cobros con tarjeta.`,
     cta: `Ver los ${DASHBOARD_STATS.dashboards} tableros`,
     more: (n: number) =>
-      `Hay ${n} tableros más en la galería completa — Ecuador, España, California, Brasil, YPF, vuelos de EE.UU., patentamientos, kioscos, mayorista, forma de pago, créditos personales y farmacia`,
+      `Hay ${n} tableros más en la galería completa — ecommerce en Mercado Libre, Ecuador, España, California, Brasil, YPF, vuelos de EE.UU., patentamientos, kioscos, mayorista, forma de pago, créditos personales y farmacia`,
     moreCta: "Abrir galería completa",
   },
   en: {
@@ -26,7 +26,7 @@ const COPY = {
     lead: `${DASHBOARD_STATS.dashboards} dashboards —in Power BI and on the web— built on real operating data and Argentine, Brazilian, Ecuadorian, Spanish and US open data: Ecuador, Spain, California, Brazil's runoff, YPF, US flights, yerba mate, exports, vehicle registrations, retail, wholesale, pharmacy and card settlement reconciliation.`,
     cta: `See all ${DASHBOARD_STATS.dashboards} dashboards`,
     more: (n: number) =>
-      `${n} more dashboards in the full gallery — Ecuador, Spain, California, Brazil, YPF, US flights, vehicle registrations, convenience stores, wholesale, payment mix, personal credit and pharmacy`,
+      `${n} more dashboards in the full gallery — Mercado Libre ecommerce, Ecuador, Spain, California, Brazil, YPF, US flights, vehicle registrations, convenience stores, wholesale, payment mix, personal credit and pharmacy`,
     moreCta: "Open the full gallery",
   },
 };
