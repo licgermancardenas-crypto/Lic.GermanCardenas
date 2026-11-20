@@ -25,8 +25,8 @@ const COPY = {
   es: {
     available: "DISPONIBLE · REMOTO",
     h1: ["Construyo", "sistemas de", "inteligencia", "para decisiones", "de negocio."],
-    body: (y: number) =>
-      `${y}+ años traduciendo datos en decisiones que mueven millones en agroindustria, retail, real estate, fintech y servicios financieros.`,
+    body: (y: string) =>
+      `${y} años traduciendo datos en decisiones que mueven millones en agroindustria, retail, real estate, fintech y servicios financieros.`,
     remote: "Disponible para trabajo remoto",
     ctaCases: "Ver casos destacados",
     ctaTalk: "Hablemos",
@@ -44,8 +44,8 @@ const COPY = {
   en: {
     available: "AVAILABLE · REMOTE",
     h1: ["I build", "", "intelligence", "systems for", "business decisions."],
-    body: (y: number) =>
-      `${y}+ years turning data into decisions that move millions in agribusiness, retail, real estate, fintech and financial services.`,
+    body: (y: string) =>
+      `${y} years turning data into decisions that move millions in agribusiness, retail, real estate, fintech and financial services.`,
     remote: "Available for remote work",
     ctaCases: "See featured cases",
     ctaTalk: "Let's talk",

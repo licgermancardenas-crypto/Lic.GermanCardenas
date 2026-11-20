@@ -258,10 +258,15 @@ export const COMPANIES_COUNT = new Set(RAW.map((e) => e.company)).size;
 /** Inicio de la carrera: la fecha de inicio más antigua de la lista. */
 export const CAREER_START: YM = RAW.reduce((min, e) => (key(e.start) < key(min) ? e.start : min), RAW[0].start);
 
-/** Años completos de experiencia a la fecha (5 hasta dic-2026, 6 desde ene-2027). */
-export function yearsOfExperience(now: Date = new Date()): number {
-  const months = now.getFullYear() * 12 + now.getMonth() - key(CAREER_START);
-  return Math.max(0, Math.floor(months / 12));
+/**
+ * Años de experiencia como texto, redondeados al año más cercano:
+ * "6" mientras faltan meses para cumplirlos (5 años y 10 meses) y "6+" una vez cumplidos.
+ * Así el número nunca promete más de lo real.
+ */
+export function yearsOfExperience(now: Date = new Date()): string {
+  const months = Math.max(0, now.getFullYear() * 12 + now.getMonth() - key(CAREER_START));
+  const rounded = Math.round(months / 12);
+  return months >= rounded * 12 ? `${rounded}+` : `${rounded}`;
 }
 
 const MONTHS: Record<Lang, string[]> = {

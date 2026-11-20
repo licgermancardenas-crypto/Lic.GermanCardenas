@@ -56,7 +56,7 @@ const personJsonLd = {
   image: `${SITE_URL}/photo.jpg`,
   jobTitle: "Financial Analyst · Data Scientist · AI Engineer",
   description:
-    `Financial Analyst, Data Scientist & AI Engineer. ${yearsOfExperience()}+ años construyendo sistemas de inteligencia para decisiones de negocio en agroindustria, retail, real estate y fintech.`,
+    `Financial Analyst, Data Scientist & AI Engineer. ${yearsOfExperience()} años construyendo sistemas de inteligencia para decisiones de negocio en agroindustria, retail, real estate y fintech.`,
   address: {
     "@type": "PostalAddress",
     addressLocality: "Buenos Aires",

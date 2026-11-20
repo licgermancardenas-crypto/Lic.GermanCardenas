@@ -330,7 +330,7 @@ export function Experience() {
             {lang === "en" ? "─── Professional experience" : "─── Experiencia profesional"}
           </p>
           <h2 className="font-serif" style={{ fontSize: "clamp(36px, 4vw, 60px)", fontWeight: 600, color: "#F0F4FB", lineHeight: 1.05, letterSpacing: "-0.03em" }}>
-            {lang === "en" ? `${years}+ years.` : `${years}+ años.`}{" "}
+            {lang === "en" ? `${years} years.` : `${years} años.`}{" "}
             <span>{lang === "en" ? `${COMPANIES_COUNT} companies.` : `${COMPANIES_COUNT} empresas.`}</span>
           </h2>
         </div>
