@@ -1,7 +1,7 @@
 {
   "meta": {
     "title": "Germán Cárdenas | Financial Analyst & Data Scientist",
-    "description": "Portfolio of Germán Cárdenas — Financial Analyst, Data Scientist & AI Engineer based in Buenos Aires. 6+ years turning data into business decisions."
+    "description": "Portfolio of Germán Cárdenas — Financial Analyst, Data Scientist & AI Engineer based in Buenos Aires. {years}+ years turning data into business decisions."
   },
   "nav": {
     "projects": "Projects",
@@ -83,7 +83,7 @@
   "experience": {
     "label": "Experience",
     "title": "Professional journey",
-    "subtitle": "6+ years at the intersection of finance, data, and technology.",
+    "subtitle": "{years}+ years at the intersection of finance, data, and technology.",
     "present": "Present"
   },
   "education": {
@@ -96,7 +96,9 @@
     "intermediate": "Intermediate",
     "basic": "Basic",
     "certifications_title": "Certifications",
-    "certifications_count": "{count} certificates"
+    "certifications_count": "{count} certificates",
+    "certifications_all": "See all {count}",
+    "certifications_less": "See less"
   },
   "stack": {
     "label": "Tech Stack",

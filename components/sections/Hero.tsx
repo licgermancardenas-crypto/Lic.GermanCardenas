@@ -3,6 +3,9 @@
 import { useEffect } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
+import { useLocale } from "next-intl";
+import { COMPANIES_COUNT, yearsOfExperience } from "@/lib/experience-data";
+import { CASES_COUNT } from "@/components/sections/FeaturedCases";
 
 const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
@@ -16,16 +19,51 @@ const item = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: EASE } },
 };
 
-const metrics = [
-  { value: "4",    label: "plataformas\nen operación" },
-  { value: "1",    label: "hackathon\nganado" },
-  { value: "1M+",  label: "registros\nprocesados" },
-  { value: "24",   label: "provincias\ncubiertas" },
-  { value: "6",    label: "empresas\ntransformadas" },
-  { value: "4",    label: "idiomas\nprofesionales" },
-];
+const COPY = {
+  es: {
+    available: "DISPONIBLE · REMOTO",
+    h1: ["Construyo", "sistemas de", "inteligencia", "para decisiones", "de negocio."],
+    body: (y: number) =>
+      `${y}+ años traduciendo datos en decisiones que mueven millones en agroindustria, retail, real estate, fintech y servicios financieros.`,
+    remote: "Disponible para trabajo remoto",
+    ctaCases: "Ver casos destacados",
+    ctaTalk: "Hablemos",
+    ctaCv: "Descargar CV",
+    production: "─── EN PRODUCCIÓN",
+    metrics: [
+      { value: String(CASES_COUNT), label: "casos\npublicados" },
+      { value: "1", label: "hackathon\nganado" },
+      { value: "1M+", label: "registros\nprocesados" },
+      { value: "24", label: "provincias\ncubiertas" },
+      { value: String(COMPANIES_COUNT), label: "empresas\ntransformadas" },
+      { value: "4", label: "idiomas\nprofesionales" },
+    ],
+  },
+  en: {
+    available: "AVAILABLE · REMOTE",
+    h1: ["I build", "", "intelligence", "systems for", "business decisions."],
+    body: (y: number) =>
+      `${y}+ years turning data into decisions that move millions in agribusiness, retail, real estate, fintech and financial services.`,
+    remote: "Available for remote work",
+    ctaCases: "See featured cases",
+    ctaTalk: "Let's talk",
+    ctaCv: "Download CV",
+    production: "─── IN PRODUCTION",
+    metrics: [
+      { value: String(CASES_COUNT), label: "published\ncases" },
+      { value: "1", label: "hackathon\nwon" },
+      { value: "1M+", label: "records\nprocessed" },
+      { value: "24", label: "provinces\ncovered" },
+      { value: String(COMPANIES_COUNT), label: "companies\ntransformed" },
+      { value: "4", label: "professional\nlanguages" },
+    ],
+  },
+} as const;
 
 export function Hero() {
+  const t = COPY[useLocale() === "en" ? "en" : "es"];
+  const years = yearsOfExperience();
+  const metrics = t.metrics;
   useEffect(() => {
     console.log(
       "%cHola.",
@@ -143,7 +181,7 @@ export function Hero() {
                   animation: "pulse-dot 4s ease-in-out infinite 1s",
                 }}
               />
-              DISPONIBLE · REMOTO
+              {t.available}
             </span>
           </motion.div>
 
@@ -159,12 +197,12 @@ export function Hero() {
               letterSpacing: "-0.02em",
             }}
           >
-            Construyo<br />
-            sistemas de{" "}
-            <span>inteligencia</span>
+            {t.h1[0]}<br />
+            {t.h1[1] && <>{t.h1[1]}{" "}</>}
+            <span>{t.h1[2]}</span>
             <br />
-            para decisiones<br />
-            de negocio.
+            {t.h1[3]}<br />
+            {t.h1[4]}
           </motion.h1>
 
           {/* Subtitle */}
@@ -187,8 +225,7 @@ export function Hero() {
             variants={item}
             style={{ fontSize: "clamp(15px, 2vw, 19px)", color: "#C5CFE2", lineHeight: 1.6, maxWidth: "480px" }}
           >
-            6+ años traduciendo datos en decisiones que mueven millones en
-            agroindustria, retail, real estate, fintech y servicios financieros.
+            {t.body(years)}
           </motion.p>
 
           {/* Location */}
@@ -202,7 +239,7 @@ export function Hero() {
           >
             Buenos Aires, Argentina
             <span style={{ color: "#3F4A5F", margin: "0 12px" }}>|</span>
-            <span style={{ color: "#4A8BFF" }}>Disponible para trabajo remoto</span>
+            <span style={{ color: "#4A8BFF" }}>{t.remote}</span>
           </motion.p>
 
           {/* CTAs */}
@@ -228,7 +265,7 @@ export function Hero() {
                 (e.currentTarget as HTMLElement).style.boxShadow = "none";
               }}
             >
-              Ver casos destacados
+              {t.ctaCases}
             </button>
 
             <a
@@ -246,7 +283,7 @@ export function Hero() {
                 textDecoration: "none",
               }}
             >
-              Hablemos
+              {t.ctaTalk}
             </a>
 
             <a
@@ -275,7 +312,7 @@ export function Hero() {
                   "rgba(255,255,255,0.06)";
               }}
             >
-              Descargar CV
+              {t.ctaCv}
             </a>
           </motion.div>
         </motion.div>
@@ -297,7 +334,7 @@ export function Hero() {
               color: "#3F4A5F",
             }}
           >
-            ─── EN PRODUCCIÓN
+            {t.production}
           </p>
 
           <div className="grid grid-cols-3 sm:grid-cols-6 gap-x-4 sm:gap-x-8 lg:gap-x-16 gap-y-6 lg:gap-y-10">

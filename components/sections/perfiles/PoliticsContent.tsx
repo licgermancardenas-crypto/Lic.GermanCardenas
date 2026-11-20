@@ -83,7 +83,7 @@ const capabilities: Capability[] = [
   },
 ];
 
-function CapabilityBlock({ cap, index }: { cap: Capability; index: number }) {
+function CapabilityBlock({ cap }: { cap: Capability; index: number }) {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
 

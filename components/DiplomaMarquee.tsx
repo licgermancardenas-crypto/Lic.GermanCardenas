@@ -12,15 +12,22 @@ function DiplomaCard({
   diploma,
   index,
   onOpen,
+  hidden = false,
+  floating = true,
 }: {
   diploma: Diploma;
   index: number;
   onOpen: () => void;
+  /** Copia visual del loop: fuera del árbol de accesibilidad y del foco. */
+  hidden?: boolean;
+  floating?: boolean;
 }) {
   return (
     <button
       onClick={onOpen}
-      className="diploma-float group/card flex-shrink-0 w-64 sm:w-72 rounded-2xl overflow-hidden border border-[#1F2937] bg-[#0A0E1A] card-shadow text-left transition-transform duration-300 hover:-translate-y-1.5 hover:border-[#4F7CFF]/50"
+      tabIndex={hidden ? -1 : undefined}
+      aria-label={hidden ? undefined : `${diploma.title} — ${diploma.issuer}`}
+      className={`${floating ? "diploma-float " : ""}group/card flex-shrink-0 w-64 sm:w-72 rounded-2xl overflow-hidden border border-[#1F2937] bg-[#0A0E1A] card-shadow text-left transition-transform duration-300 hover:-translate-y-1.5 hover:border-[#4F7CFF]/50`}
       style={
         {
           "--tilt": `${TILTS[index % TILTS.length]}deg`,
@@ -31,7 +38,7 @@ function DiplomaCard({
       <div className="relative w-full aspect-[4/3] bg-white">
         <Image
           src={`/certificates/${diploma.file}`}
-          alt={diploma.title}
+          alt={hidden ? "" : diploma.title}
           fill
           className="object-cover object-[center_38%] transition-transform duration-500 group-hover/card:scale-105"
           sizes="288px"
@@ -59,6 +66,7 @@ function DiplomaLightbox({ diploma, onClose }: { diploma: Diploma; onClose: () =
     >
       <button
         onClick={onClose}
+        aria-label="Cerrar"
         className="absolute top-5 right-5 z-10 p-2.5 rounded-full text-white"
         style={{ background: "rgba(255,255,255,0.1)" }}
       >
@@ -92,9 +100,6 @@ function DiplomaLightbox({ diploma, onClose }: { diploma: Diploma; onClose: () =
 
 export function DiplomaMarquee({ diplomas }: { diplomas: Diploma[] }) {
   const [active, setActive] = useState<Diploma | null>(null);
-  const half = Math.ceil(diplomas.length / 2);
-  const rowA = diplomas.slice(0, half);
-  const rowB = diplomas.slice(half);
 
   return (
     <div
@@ -106,24 +111,39 @@ export function DiplomaMarquee({ diplomas }: { diplomas: Diploma[] }) {
           "linear-gradient(90deg, transparent 0, black 64px, black calc(100% - 64px), transparent 100%)",
       }}
     >
-      <div className="space-y-6 py-4">
+      <div className="py-4">
         <div className="group overflow-hidden">
           <div className="flex gap-5 w-max animate-marquee-left group-hover:[animation-play-state:paused]">
-            {[...rowA, ...rowA].map((d, i) => (
+            {/* Lista real: una sola vez en el árbol accesible. */}
+            {diplomas.map((d, i) => (
               <DiplomaCard key={`a-${i}`} diploma={d} index={i} onOpen={() => setActive(d)} />
             ))}
-          </div>
-        </div>
-        <div className="group overflow-hidden">
-          <div className="flex gap-5 w-max animate-marquee-right group-hover:[animation-play-state:paused]">
-            {[...rowB, ...rowB].map((d, i) => (
-              <DiplomaCard key={`b-${i}`} diploma={d} index={i + 3} onOpen={() => setActive(d)} />
-            ))}
+            {/* Copia solo visual para que el loop no tenga corte. */}
+            <div aria-hidden="true" className="flex gap-5">
+              {diplomas.map((d, i) => (
+                <DiplomaCard key={`c-${i}`} diploma={d} index={i} hidden onOpen={() => setActive(d)} />
+              ))}
+            </div>
           </div>
         </div>
       </div>
 
       {active && <DiplomaLightbox diploma={active} onClose={() => setActive(null)} />}
     </div>
+  );
+}
+
+/** Grilla con todas las certificaciones, sin animación. */
+export function DiplomaGrid({ diplomas }: { diplomas: Diploma[] }) {
+  const [active, setActive] = useState<Diploma | null>(null);
+  return (
+    <>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 [&>button]:w-full">
+        {diplomas.map((d, i) => (
+          <DiplomaCard key={d.file} diploma={d} index={i} floating={false} onOpen={() => setActive(d)} />
+        ))}
+      </div>
+      {active && <DiplomaLightbox diploma={active} onClose={() => setActive(null)} />}
+    </>
   );
 }

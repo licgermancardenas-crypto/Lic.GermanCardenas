@@ -200,7 +200,7 @@ export function Navigation() {
                             boxShadow: "0 20px 48px rgba(0,0,0,0.55)",
                           }}
                         >
-                          {PROFILES.map((p, i) => (
+                          {PROFILES.map((p) => (
                             <button
                               key={p.id}
                               onClick={() => handleProfileClick(p)}

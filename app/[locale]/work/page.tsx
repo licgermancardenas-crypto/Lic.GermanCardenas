@@ -57,7 +57,7 @@ const cases: Record<Locale, CaseCard[]> = {
     {
       slug: "atlas-nexus",
       number: "02",
-      category: "SaaS B2B · Hackathon Winner 🏆",
+      category: "SaaS B2B · Hackathon Winner",
       title: "Atlas Nexus",
       subtitle: "Plataforma de inteligencia comercial para comercios independientes con POS nativo.",
       accent: "#F59E0B",
@@ -158,7 +158,7 @@ const cases: Record<Locale, CaseCard[]> = {
     {
       slug: "atlas-nexus",
       number: "02",
-      category: "SaaS B2B · Hackathon Winner 🏆",
+      category: "SaaS B2B · Hackathon Winner",
       title: "Atlas Nexus",
       subtitle: "Commercial intelligence platform for independent retailers with native POS integration.",
       accent: "#F59E0B",

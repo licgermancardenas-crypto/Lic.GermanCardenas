@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { AnimatedSection } from "@/components/AnimatedSection";
-import { ExternalLink, Lock } from "lucide-react";
+import { ExternalLink, Lock, Sparkles } from "lucide-react";
 
 type Tier2Project = {
   id: string;
@@ -165,7 +165,7 @@ export function SelectedWork() {
                           background: "linear-gradient(135deg, #0A0F1A 0%, rgba(43,111,232,0.06) 100%)",
                         }}
                       >
-                        <span style={{ color: "#3F4A5F", fontSize: "32px" }}>✦</span>
+                        <Sparkles className="w-8 h-8" style={{ color: "#3F4A5F" }} aria-hidden="true" />
                       </div>
                     )}
                     <div

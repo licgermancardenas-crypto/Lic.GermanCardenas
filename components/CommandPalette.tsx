@@ -4,7 +4,6 @@ import { useState, useEffect, useRef, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Search, ArrowRight, Hash } from "lucide-react";
 import { useRouter } from "next/navigation";
-import { usePathname } from "next/navigation";
 
 type Command = {
   id: string;
@@ -19,7 +18,7 @@ const commands: Command[] = [
   { id: "inicio", label: "Inicio", description: "Volver al principio", type: "scroll", target: "hero", icon: "↑" },
   { id: "casos", label: "Casos destacados", description: "Atlas ERP, Nexus, AgroNova, LAPD, Yerba Mate, YPF, Sentinel, Phantom, Atlas Analytics, ZEUS, CABA", type: "scroll", target: "casos", icon: "⬡" },
   { id: "caso-erp", label: "Atlas One ERP", description: "Caso 01 · SaaS para comercios de cercanía", type: "scroll", target: "caso-01", icon: "01" },
-  { id: "caso-nexus", label: "Atlas Nexus", description: "Caso 02 · Hackathon Winner", type: "scroll", target: "caso-02", icon: "🏆" },
+  { id: "caso-nexus", label: "Atlas Nexus", description: "Caso 02 · Hackathon Winner", type: "scroll", target: "caso-02", icon: "02" },
   { id: "caso-agronova", label: "AgroNova", description: "Caso 03 · AgriTech · 24 provincias", type: "scroll", target: "caso-03", icon: "03" },
   { id: "caso-lapd", label: "LAPD Crime Analytics", description: "Caso 04 · Research · 1M+ registros", type: "scroll", target: "caso-04", icon: "04" },
   { id: "caso-yerba", label: "Yerba Mate Intelligence", description: "Caso 05 · Data Science · Freelance", type: "scroll", target: "caso-05", icon: "05" },
@@ -32,7 +31,7 @@ const commands: Command[] = [
   { id: "mas-trabajo", label: "Más proyectos", description: "RSI, Electoral, CIPE", type: "scroll", target: "projects", icon: "+" },
   { id: "experiencia", label: "Experiencia", description: "Timeline 2021–presente", type: "scroll", target: "experience", icon: "◎" },
   { id: "stack", label: "Tech Stack", description: "Herramientas y tecnologías", type: "scroll", target: "stack", icon: "⌘" },
-  { id: "contacto", label: "Contacto", description: "Hablemos", type: "scroll", target: "contact", icon: "✉" },
+  { id: "contacto", label: "Contacto", description: "Hablemos", type: "scroll", target: "contact", icon: "@" },
   { id: "work-erp", label: "Ver caso completo: Atlas ERP", type: "navigate", target: "/es/work/atlas-one-erp", icon: "→" },
   { id: "work-nexus", label: "Ver caso completo: Atlas Nexus", type: "navigate", target: "/es/work/atlas-nexus", icon: "→" },
   { id: "work-agronova", label: "Ver caso completo: AgroNova", type: "navigate", target: "/es/work/agronova", icon: "→" },
@@ -54,7 +53,6 @@ export function CommandPalette() {
   const [selected, setSelected] = useState(0);
   const inputRef = useRef<HTMLInputElement>(null);
   const router = useRouter();
-  const pathname = usePathname();
 
   const filtered = query
     ? commands.filter(
@@ -102,10 +100,6 @@ export function CommandPalette() {
     if (open) setTimeout(() => inputRef.current?.focus(), 50);
   }, [open]);
 
-  useEffect(() => {
-    setSelected(0);
-  }, [query]);
-
   function handleKeyDown(e: React.KeyboardEvent) {
     if (e.key === "ArrowDown") {
       e.preventDefault();
@@ -146,7 +140,10 @@ export function CommandPalette() {
                   <input
                     ref={inputRef}
                     value={query}
-                    onChange={(e) => setQuery(e.target.value)}
+                    onChange={(e) => {
+                  setQuery(e.target.value);
+                  setSelected(0);
+                }}
                     onKeyDown={handleKeyDown}
                     placeholder="Buscar sección o proyecto..."
                     className="flex-1 bg-transparent text-[#F5F7FA] placeholder-[#6B7689] text-sm outline-none"

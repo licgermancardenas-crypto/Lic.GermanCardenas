@@ -17,6 +17,7 @@ import {
   ChevronDown,
   X,
   ZoomIn,
+  Trophy,
 } from "lucide-react";
 
 const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
@@ -415,6 +416,9 @@ const cases: CaseData[] = [
     url: "https://atlas-caba-ciudad.vercel.app/gemelo/",
   },
 ];
+
+/** Cantidad de casos publicados (la usa el hero). */
+export const CASES_COUNT = cases.length;
 
 // ── Lightbox ──────────────────────────────────────────────────────────────────
 
@@ -938,7 +942,7 @@ export function FeaturedCases() {
                       }}
                     >
                       <div className="flex items-start gap-4">
-                        <span style={{ fontSize: "24px" }}>🏆</span>
+                        <Trophy className="w-6 h-6" style={{ color: "#F5B544" }} aria-hidden="true" />
                         <div>
                           <p
                             style={{

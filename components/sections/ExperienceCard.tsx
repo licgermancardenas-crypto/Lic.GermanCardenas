@@ -3,25 +3,41 @@
 import Image from "next/image";
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
+import { Calendar, MapPin, Users, Trophy, Brain, Rocket, Mic, Globe, BarChart3, type LucideIcon } from "lucide-react";
 
 const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
+
+type L = { es: string; en: string };
+export type Lang = "es" | "en";
+
+export type BadgeKey = "team" | "hackathon" | "ai" | "startup" | "speaker" | "gis" | "data";
+
+const BADGES: Record<BadgeKey, { icon: LucideIcon; label: L }> = {
+  team: { icon: Users, label: { es: "Equipo", en: "Team" } },
+  hackathon: { icon: Trophy, label: { es: "Hackathon", en: "Hackathon" } },
+  ai: { icon: Brain, label: { es: "IA", en: "AI" } },
+  startup: { icon: Rocket, label: { es: "Startup", en: "Startup" } },
+  speaker: { icon: Mic, label: { es: "Disertante", en: "Speaker" } },
+  gis: { icon: Globe, label: { es: "GIS", en: "GIS" } },
+  data: { icon: BarChart3, label: { es: "Datos", en: "Data" } },
+};
 
 export type ExperienceData = {
   id: string;
   number: string;
-  title: string;
+  title: L;
   date: string;
-  location: string;
-  role: string;
-  description: string;
-  learning: string;
+  location: L;
+  role: L;
+  description: L;
+  learning: L;
   image: string;
-  imageAlt: string;
-  badges: string[];
+  imageAlt: L;
+  badges: BadgeKey[];
   tech?: string[];
 };
 
-export function ExperienceCard({ exp, index }: { exp: ExperienceData; index: number }) {
+export function ExperienceCard({ exp, index, lang }: { exp: ExperienceData; index: number; lang: Lang }) {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-80px" });
   const photoLeft = index % 2 === 0;
@@ -62,7 +78,7 @@ export function ExperienceCard({ exp, index }: { exp: ExperienceData; index: num
           <div className="relative" style={{ aspectRatio: "4/3", overflow: "hidden" }}>
             <Image
               src={exp.image}
-              alt={exp.imageAlt}
+              alt={exp.imageAlt[lang]}
               fill
               className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
               sizes="(max-width: 1024px) 100vw, 50vw"
@@ -117,7 +133,7 @@ export function ExperienceCard({ exp, index }: { exp: ExperienceData; index: num
               color: "#4A8BFF",
             }}
           >
-            {exp.role}
+            {exp.role[lang]}
           </span>
         </div>
 
@@ -132,7 +148,7 @@ export function ExperienceCard({ exp, index }: { exp: ExperienceData; index: num
             letterSpacing: "-0.02em",
           }}
         >
-          {exp.title}
+          {exp.title[lang]}
         </h3>
 
         {/* Meta */}
@@ -145,13 +161,19 @@ export function ExperienceCard({ exp, index }: { exp: ExperienceData; index: num
             letterSpacing: "0.04em",
           }}
         >
-          <span>📅 {exp.date}</span>
-          <span>📍 {exp.location}</span>
+          <span className="inline-flex items-center gap-1.5">
+            <Calendar className="w-3.5 h-3.5" aria-hidden="true" />
+            {exp.date}
+          </span>
+          <span className="inline-flex items-center gap-1.5">
+            <MapPin className="w-3.5 h-3.5" aria-hidden="true" />
+            {exp.location[lang]}
+          </span>
         </div>
 
         {/* Description */}
         <p style={{ fontSize: "16px", lineHeight: 1.78, color: "#C5CFE2" }}>
-          {exp.description}
+          {exp.description[lang]}
         </p>
 
         {/* Learning block */}
@@ -174,7 +196,7 @@ export function ExperienceCard({ exp, index }: { exp: ExperienceData; index: num
               marginBottom: "8px",
             }}
           >
-            Aprendizaje clave
+            {lang === "en" ? "Key takeaway" : "Aprendizaje clave"}
           </p>
           <p
             style={{
@@ -184,15 +206,18 @@ export function ExperienceCard({ exp, index }: { exp: ExperienceData; index: num
               fontStyle: "italic",
             }}
           >
-            &ldquo;{exp.learning}&rdquo;
+            &ldquo;{exp.learning[lang]}&rdquo;
           </p>
         </div>
 
         {/* Badges */}
         <div className="flex flex-wrap gap-2">
-          {exp.badges.map((badge) => (
+          {exp.badges.map((badge) => {
+            const B = BADGES[badge];
+            return (
             <span
               key={badge}
+              className="inline-flex items-center gap-1.5"
               style={{
                 fontSize: "12px",
                 padding: "5px 12px",
@@ -203,9 +228,11 @@ export function ExperienceCard({ exp, index }: { exp: ExperienceData; index: num
                 backdropFilter: "blur(6px)",
               }}
             >
-              {badge}
+              <B.icon className="w-3.5 h-3.5" aria-hidden="true" />
+              {B.label[lang]}
             </span>
-          ))}
+            );
+          })}
         </div>
 
         {/* Tech */}

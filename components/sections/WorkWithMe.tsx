@@ -1,8 +1,46 @@
 "use client";
 
+import { useLocale } from "next-intl";
+import { MessageCircle } from "lucide-react";
 import { AnimatedSection } from "@/components/AnimatedSection";
 
+const COPY = {
+  es: {
+    title: "Hablemos.",
+    hiringEyebrow: "Estás reclutando",
+    hiringTitle: "Roles que me interesan",
+    availability: "Disponible ahora · Remoto o Buenos Aires",
+    cv: "Ver CV completo",
+    projectEyebrow: "Tenés un proyecto",
+    projectTitle: "Qué puedo hacer por vos",
+    services: ["Dashboard ejecutivo desde cero", "Modelo financiero o forecast", "Pipeline de datos + BI", "Plataforma web con IA integrada"],
+    method: "Trabajo en sprints cortos con entregables claros. Sin agencias, sin intermediarios. Directo con quien toma las decisiones.",
+    book: "Agendá 30 min",
+    email: "Email directo",
+    orWrite: "O simplemente escribime",
+    whatsapp: "Escribime por WhatsApp",
+    reply: "Respondo en menos de 24 h. Sin filtros, sin bots.",
+  },
+  en: {
+    title: "Let's talk.",
+    hiringEyebrow: "Hiring",
+    hiringTitle: "Roles I'm interested in",
+    availability: "Available now · Remote or Buenos Aires",
+    cv: "See full CV",
+    projectEyebrow: "Have a project",
+    projectTitle: "What I can do for you",
+    services: ["Executive dashboard from scratch", "Financial model or forecast", "Data pipeline + BI", "Web platform with built-in AI"],
+    method: "I work in short sprints with clear deliverables. No agencies, no middlemen. Straight with whoever makes the decisions.",
+    book: "Book 30 min",
+    email: "Email me",
+    orWrite: "Or just write to me",
+    whatsapp: "Message me on WhatsApp",
+    reply: "I reply within 24 h. No filters, no bots.",
+  },
+} as const;
+
 export function WorkWithMe() {
+  const t = COPY[useLocale() === "en" ? "en" : "es"];
   return (
     <section
       id="contact"
@@ -23,7 +61,7 @@ export function WorkWithMe() {
               letterSpacing: "-0.015em",
             }}
           >
-            Hablemos.
+            {t.title}
           </h2>
         </AnimatedSection>
 
@@ -62,7 +100,7 @@ export function WorkWithMe() {
                   marginBottom: "24px",
                 }}
               >
-                Estás reclutando
+                {t.hiringEyebrow}
               </p>
 
               <h3
@@ -75,7 +113,7 @@ export function WorkWithMe() {
                   lineHeight: 1.2,
                 }}
               >
-                Roles que me interesan
+                {t.hiringTitle}
               </h3>
 
               <div className="space-y-4 mb-10">
@@ -102,7 +140,7 @@ export function WorkWithMe() {
                   lineHeight: 1.6,
                 }}
               >
-                Disponible · Remoto o Buenos Aires · Enero 2026
+                {t.availability}
               </p>
 
               <div className="flex flex-col sm:flex-row gap-3">
@@ -120,7 +158,7 @@ export function WorkWithMe() {
                     textDecoration: "none",
                   }}
                 >
-                  Ver CV completo
+                  {t.cv}
                 </a>
                 <a
                   href="https://www.linkedin.com/in/german-cardenas-070118175/"
@@ -177,7 +215,7 @@ export function WorkWithMe() {
                   marginBottom: "24px",
                 }}
               >
-                Tenés un proyecto
+                {t.projectEyebrow}
               </p>
 
               <h3
@@ -190,16 +228,11 @@ export function WorkWithMe() {
                   lineHeight: 1.2,
                 }}
               >
-                Qué puedo hacer por vos
+                {t.projectTitle}
               </h3>
 
               <div className="space-y-4 mb-10">
-                {[
-                  "Dashboard ejecutivo desde cero",
-                  "Modelo financiero o forecast",
-                  "Pipeline de datos + BI",
-                  "Plataforma web con IA integrada",
-                ].map((service) => (
+                {t.services.map((service) => (
                   <div key={service} className="flex items-center gap-3">
                     <span style={{ color: "#4A8BFF", fontFamily: "var(--font-mono)", fontSize: "14px" }}>→</span>
                     <span style={{ fontSize: "16px", color: "#C5CFE2" }}>{service}</span>
@@ -215,7 +248,7 @@ export function WorkWithMe() {
                   marginBottom: "28px",
                 }}
               >
-                Trabajo en sprints cortos con entregables claros. Sin agencias, sin intermediarios. Directo con quien toma las decisiones.
+                {t.method}
               </p>
 
               <div className="flex flex-col sm:flex-row gap-3">
@@ -234,7 +267,7 @@ export function WorkWithMe() {
                     textDecoration: "none",
                   }}
                 >
-                  Agendá 30 min
+                  {t.book}
                 </a>
                 <a
                   href="mailto:lic.germancardenas@gmail.com"
@@ -250,7 +283,7 @@ export function WorkWithMe() {
                     textDecoration: "none",
                   }}
                 >
-                  Email directo
+                  {t.email}
                 </a>
               </div>
             </div>
@@ -266,7 +299,7 @@ export function WorkWithMe() {
               marginBottom: "20px",
             }}
           >
-            O simplemente escribime
+            {t.orWrite}
           </p>
 
           <a
@@ -288,15 +321,21 @@ export function WorkWithMe() {
             href="https://wa.me/5491158562766"
             target="_blank"
             rel="noopener noreferrer"
-            className="block transition-colors duration-200 hover:opacity-80"
+            className="inline-flex items-center justify-center gap-2 transition-all duration-200 hover:-translate-y-0.5"
             style={{
-              fontSize: "18px",
+              padding: "12px 24px",
+              borderRadius: "999px",
+              border: "1px solid rgba(74,222,128,0.35)",
+              background: "rgba(74,222,128,0.08)",
+              fontSize: "15px",
+              fontWeight: 500,
               color: "#4ADE80",
               textDecoration: "none",
               marginBottom: "28px",
             }}
           >
-            +54 11 5856-2766 (WhatsApp)
+            <MessageCircle className="w-4 h-4" aria-hidden="true" />
+            {t.whatsapp}
           </a>
 
           <p
@@ -307,7 +346,7 @@ export function WorkWithMe() {
               color: "#3F4A5F",
             }}
           >
-            Respondo en menos de 24 h. Sin filtros, sin bots.
+            {t.reply}
           </p>
         </AnimatedSection>
       </div>

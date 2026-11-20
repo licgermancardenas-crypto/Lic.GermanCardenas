@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { AnimatedSection } from "@/components/AnimatedSection";
+import { useLocale } from "next-intl";
 import { ExperienceCard, type ExperienceData } from "./ExperienceCard";
 
 const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
@@ -11,83 +11,122 @@ const experiences: ExperienceData[] = [
   {
     id: "exp-01",
     number: "01",
-    title: "Hackatones & Desarrollo Colaborativo",
+    title: { es: "Hackatones & Desarrollo Colaborativo", en: "Hackathons & Collaborative Development" },
     date: "2024 — 2025",
-    location: "Buenos Aires, Argentina",
-    role: "Desarrollador",
-    description:
-      "Participé en hackatones donde trabajé junto a equipos multidisciplinarios para diseñar soluciones tecnológicas en tiempos muy reducidos. Estas experiencias fortalecieron mi capacidad para colaborar, priorizar problemas, adaptarme rápidamente y transformar ideas en productos funcionales.",
-    learning:
-      "Las mejores soluciones surgen cuando distintas disciplinas trabajan con un mismo objetivo.",
+    location: { es: "Buenos Aires, Argentina", en: "Buenos Aires, Argentina" },
+    role: { es: "Desarrollador", en: "Developer" },
+    description: {
+      es: "Participé en hackatones donde trabajé junto a equipos multidisciplinarios para diseñar soluciones tecnológicas en tiempos muy reducidos. Estas experiencias fortalecieron mi capacidad para colaborar, priorizar problemas, adaptarme rápidamente y transformar ideas en productos funcionales.",
+      en: "I took part in hackathons, working with multidisciplinary teams to design tech solutions under very tight deadlines. These experiences sharpened my ability to collaborate, prioritise problems, adapt quickly and turn ideas into working products.",
+    },
+    learning: {
+      es: "Las mejores soluciones surgen cuando distintas disciplinas trabajan con un mismo objetivo.",
+      en: "The best solutions come from different disciplines working towards the same goal.",
+    },
     image: "/experiences/exp-01-hackathon-team.jpg",
-    imageAlt: "Equipo de hackathon — Buenos Aires 2025",
-    badges: ["👥 Equipo", "🏆 Hackathon", "🧠 IA", "🚀 Startup"],
+    imageAlt: { es: "Equipo de hackathon — Buenos Aires 2025", en: "Hackathon team — Buenos Aires 2025" },
+    badges: ["team", "hackathon", "ai", "startup"],
     tech: ["React", "FastAPI", "Python"],
   },
   {
     id: "exp-02",
     number: "02",
-    title: "Startup Weekend Córdoba",
+    title: { es: "Startup Weekend Córdoba", en: "Startup Weekend Córdoba" },
     date: "2025",
-    location: "Córdoba, Argentina",
-    role: "Participante",
-    description:
-      "Durante Startup Weekend colaboré en el desarrollo de un proyecto desde cero, validando una idea, diseñando un MVP y presentando una solución frente a mentores y jurados. Fue una experiencia intensa de innovación, emprendimiento y trabajo en equipo.",
-    learning:
-      "La importancia de validar problemas reales antes de construir tecnología.",
+    location: { es: "Córdoba, Argentina", en: "Córdoba, Argentina" },
+    role: { es: "Participante", en: "Participant" },
+    description: {
+      es: "Durante Startup Weekend colaboré en el desarrollo de un proyecto desde cero, validando una idea, diseñando un MVP y presentando una solución frente a mentores y jurados. Fue una experiencia intensa de innovación, emprendimiento y trabajo en equipo.",
+      en: "At Startup Weekend I helped build a project from scratch: validating an idea, designing an MVP and pitching a solution to mentors and judges. An intense experience in innovation, entrepreneurship and teamwork.",
+    },
+    learning: {
+      es: "La importancia de validar problemas reales antes de construir tecnología.",
+      en: "Validate real problems before building technology.",
+    },
     image: "/experiences/exp-02-startup-weekend.jpg",
-    imageAlt: "Germán Cárdenas presentando en Startup Weekend Argentina 26",
-    badges: ["🚀 Startup", "👥 Equipo", "🎤 Speaker"],
+    imageAlt: { es: "Germán Cárdenas presentando en Startup Weekend Argentina 26", en: "Germán Cárdenas pitching at Startup Weekend Argentina 26" },
+    badges: ["startup", "team", "speaker"],
   },
   {
     id: "exp-03",
     number: "03",
-    title: "Capacitación sobre IA para Exportadores",
+    title: { es: "Capacitación sobre IA para Exportadores", en: "AI Training for Exporters" },
     date: "2025",
-    location: "Buenos Aires, Argentina",
-    role: "Disertante",
-    description:
-      "Participé como expositor en una capacitación sobre inteligencia artificial aplicada al comercio internacional dirigida a empresas, gerentes y consorcios exportadores. Compartimos aplicaciones concretas de IA para optimizar procesos y apoyar la toma de decisiones.",
-    learning:
-      "Comunicar tecnología es tan importante como desarrollarla.",
+    location: { es: "Buenos Aires, Argentina", en: "Buenos Aires, Argentina" },
+    role: { es: "Disertante", en: "Speaker" },
+    description: {
+      es: "Participé como expositor en una capacitación sobre inteligencia artificial aplicada al comercio internacional dirigida a empresas, gerentes y consorcios exportadores. Compartimos aplicaciones concretas de IA para optimizar procesos y apoyar la toma de decisiones.",
+      en: "I spoke at a training session on artificial intelligence for international trade, aimed at companies, managers and export consortia. We shared concrete AI applications to streamline processes and support decision-making.",
+    },
+    learning: {
+      es: "Comunicar tecnología es tan importante como desarrollarla.",
+      en: "Communicating technology matters as much as building it.",
+    },
     image: "/experiences/exp-03-icbc-speaker.jpg",
-    imageAlt: "Germán Cárdenas disertante en ICBC Argentina",
-    badges: ["🎤 Speaker", "🧠 IA", "🌎 GIS", "📊 Datos"],
+    imageAlt: { es: "Germán Cárdenas disertante en ICBC Argentina", en: "Germán Cárdenas speaking at ICBC Argentina" },
+    badges: ["speaker", "ai", "gis", "data"],
     tech: ["AI", "Data Analytics"],
   },
   {
     id: "exp-04",
     number: "04",
-    title: "Innovación junto a empresas e instituciones",
+    title: { es: "Innovación junto a empresas e instituciones", en: "Innovation with companies and institutions" },
     date: "2024 — 2025",
-    location: "Buenos Aires, Argentina",
-    role: "Consultor / Desarrollador",
-    description:
-      "Participé en encuentros con organizaciones interesadas en incorporar inteligencia artificial, análisis de datos y tecnologías emergentes para resolver desafíos concretos y acelerar su transformación digital.",
-    learning:
-      "La tecnología genera verdadero impacto cuando responde a necesidades reales.",
+    location: { es: "Buenos Aires, Argentina", en: "Buenos Aires, Argentina" },
+    role: { es: "Consultor / Desarrollador", en: "Consultant / Developer" },
+    description: {
+      es: "Participé en encuentros con organizaciones interesadas en incorporar inteligencia artificial, análisis de datos y tecnologías emergentes para resolver desafíos concretos y acelerar su transformación digital.",
+      en: "I took part in meetings with organisations looking to adopt artificial intelligence, data analysis and emerging technologies to solve concrete challenges and speed up their digital transformation.",
+    },
+    learning: {
+      es: "La tecnología genera verdadero impacto cuando responde a necesidades reales.",
+      en: "Technology has real impact when it answers real needs.",
+    },
     image: "/experiences/exp-04-icbc-group.jpg",
-    imageAlt: "Encuentro con empresas e instituciones en ICBC",
-    badges: ["🧠 IA", "📊 Datos", "👥 Equipo"],
+    imageAlt: { es: "Encuentro con empresas e instituciones en ICBC", en: "Meeting with companies and institutions at ICBC" },
+    badges: ["ai", "data", "team"],
   },
   {
     id: "exp-05",
     number: "05",
-    title: "Construyendo comunidad",
+    title: { es: "Construyendo comunidad", en: "Building community" },
     date: "2024 — 2025",
-    location: "Buenos Aires, Argentina",
-    role: "Miembro de comunidades tecnológicas",
-    description:
-      "Participo activamente en espacios donde desarrolladores, emprendedores y profesionales comparten conocimientos, presentan proyectos y colaboran en nuevas ideas. Creo que el aprendizaje continuo también ocurre fuera del escritorio.",
-    learning:
-      "Cada conversación puede convertirse en una nueva oportunidad.",
+    location: { es: "Buenos Aires, Argentina", en: "Buenos Aires, Argentina" },
+    role: { es: "Miembro de comunidades tecnológicas", en: "Tech community member" },
+    description: {
+      es: "Participo activamente en espacios donde desarrolladores, emprendedores y profesionales comparten conocimientos, presentan proyectos y colaboran en nuevas ideas. Creo que el aprendizaje continuo también ocurre fuera del escritorio.",
+      en: "I'm active in spaces where developers, founders and professionals share knowledge, present projects and collaborate on new ideas. I believe continuous learning also happens away from the desk.",
+    },
+    learning: {
+      es: "Cada conversación puede convertirse en una nueva oportunidad.",
+      en: "Every conversation can become a new opportunity.",
+    },
     image: "/experiences/exp-05-fiserv-community.jpg",
-    imageAlt: "Comunidad tecnológica Fiserv Tech — Buenos Aires",
-    badges: ["👥 Equipo", "🧠 IA", "🚀 Startup"],
+    imageAlt: { es: "Comunidad tecnológica Fiserv Tech — Buenos Aires", en: "Fiserv Tech community — Buenos Aires" },
+    badges: ["team", "ai", "startup"],
   },
 ];
 
+const COPY = {
+  es: {
+    eyebrow: "─── Experiencias",
+    title: ["Donde las ideas", "toman forma."],
+    lead: "Los proyectos más importantes no nacen trabajando en solitario. Creo en el aprendizaje continuo, la colaboración y el intercambio de ideas como motores de la innovación. Por eso participo activamente en hackatones, eventos tecnológicos, comunidades de innovación, capacitaciones y encuentros donde la inteligencia artificial, los datos y el desarrollo de software se transforman en soluciones con impacto.",
+    sub: "Cada experiencia representa una oportunidad para aprender, compartir conocimiento, construir equipos y convertir ideas en proyectos reales.",
+    bgAlt: "Donde las ideas toman forma — espacio de trabajo de una hackathon",
+  },
+  en: {
+    eyebrow: "─── Experiences",
+    title: ["Where ideas", "take shape."],
+    lead: "The most important projects aren't built alone. I believe in continuous learning, collaboration and the exchange of ideas as engines of innovation. That's why I'm active in hackathons, tech events, innovation communities, training sessions and meetups where artificial intelligence, data and software development turn into solutions with impact.",
+    sub: "Every experience is a chance to learn, share knowledge, build teams and turn ideas into real projects.",
+    bgAlt: "Where ideas take shape — hackathon workspace",
+  },
+} as const;
+
 export function ExperienceSection() {
+  const lang = useLocale() === "en" ? "en" : "es";
+  const t = COPY[lang];
   return (
     <section
       id="experiencias"
@@ -99,7 +138,7 @@ export function ExperienceSection() {
         <div className="absolute inset-0">
           <Image
             src="/experiences/exp-header-bg.jpg"
-            alt="Donde las ideas toman forma — hackathon workspace"
+            alt={t.bgAlt}
             fill
             className="object-cover object-center"
             quality={90}
@@ -142,7 +181,7 @@ export function ExperienceSection() {
                 marginBottom: "28px",
               }}
             >
-              ─── Experiencias
+              {t.eyebrow}
             </p>
             <h2
               className="font-serif"
@@ -156,8 +195,8 @@ export function ExperienceSection() {
                 marginBottom: "24px",
               }}
             >
-              Donde las ideas{" "}
-              <span>toman forma.</span>
+              {t.title[0]}{" "}
+              <span>{t.title[1]}</span>
             </h2>
             <p
               style={{
@@ -168,13 +207,7 @@ export function ExperienceSection() {
                 marginBottom: "14px",
               }}
             >
-              Los proyectos más importantes no nacen trabajando en solitario. Creo
-              en el aprendizaje continuo, la colaboración y el intercambio de ideas
-              como motores de la innovación. Por eso participo activamente en
-              hackatones, eventos tecnológicos, comunidades de innovación,
-              capacitaciones y encuentros donde la inteligencia artificial, los
-              datos y el desarrollo de software se transforman en soluciones con
-              impacto.
+              {t.lead}
             </p>
             <p
               style={{
@@ -184,9 +217,7 @@ export function ExperienceSection() {
                 maxWidth: "560px",
               }}
             >
-              Cada experiencia representa una oportunidad para aprender, compartir
-              conocimiento, construir equipos y convertir ideas en proyectos
-              reales.
+              {t.sub}
             </p>
           </motion.div>
         </div>
@@ -196,7 +227,7 @@ export function ExperienceSection() {
       <div className="container-custom py-20 sm:py-28 lg:py-36">
         <div className="flex flex-col gap-20 sm:gap-28 lg:gap-36">
           {experiences.map((exp, index) => (
-            <ExperienceCard key={exp.id} exp={exp} index={index} />
+            <ExperienceCard key={exp.id} exp={exp} index={index} lang={lang} />
           ))}
         </div>
       </div>

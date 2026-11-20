@@ -147,7 +147,7 @@ export function DataScienceHero() {
               className="w-1.5 h-1.5 rounded-full animate-pulse"
               style={{ backgroundColor: BLUE, flexShrink: 0 }}
             />
-            // CORE MASTERY&nbsp;//&nbsp;PERFIL 03&nbsp;//&nbsp;APPLIED DATA SCIENCE
+            {"// CORE MASTERY // PERFIL 03 // APPLIED DATA SCIENCE"}
           </span>
         </motion.div>
 

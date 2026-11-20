@@ -1,3 +1,4 @@
+import { yearsOfExperience } from "@/lib/experience-data";
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { alternates, SITE_URL } from "@/lib/seo";
@@ -27,13 +28,13 @@ export async function generateMetadata({
 
   return {
     title: { absolute: t("title") },
-    description: t("description"),
+    description: t("description", { years: yearsOfExperience() }),
     alternates: alternates(locale, ""),
     openGraph: {
       type: "profile",
       url: `/${locale}`,
       title: t("title"),
-      description: t("description"),
+      description: t("description", { years: yearsOfExperience() }),
       siteName: "Germán Cárdenas",
       locale: locale === "en" ? "en_US" : "es_AR",
       alternateLocale: locale === "en" ? "es_AR" : "en_US",
@@ -41,7 +42,7 @@ export async function generateMetadata({
     twitter: {
       card: "summary_large_image",
       title: t("title"),
-      description: t("description"),
+      description: t("description", { years: yearsOfExperience() }),
     },
   };
 }
@@ -54,7 +55,7 @@ const personJsonLd = {
   image: `${SITE_URL}/photo.jpg`,
   jobTitle: "Financial Analyst · Data Scientist · AI Engineer",
   description:
-    "Financial Analyst, Data Scientist & AI Engineer. 6+ años construyendo sistemas de inteligencia para decisiones de negocio en agroindustria, retail, real estate y fintech.",
+    `Financial Analyst, Data Scientist & AI Engineer. ${yearsOfExperience()}+ años construyendo sistemas de inteligencia para decisiones de negocio en agroindustria, retail, real estate y fintech.`,
   address: {
     "@type": "PostalAddress",
     addressLocality: "Buenos Aires",

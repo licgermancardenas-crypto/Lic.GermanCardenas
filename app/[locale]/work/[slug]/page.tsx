@@ -5,7 +5,7 @@ import type { Metadata } from "next";
 import { pageMetadata } from "@/lib/seo";
 import { setRequestLocale } from "next-intl/server";
 import { routing } from "@/i18n/routing";
-import { ArrowLeft, ExternalLink, ArrowRight } from "lucide-react";
+import { ArrowLeft, ExternalLink, ArrowRight, Trophy } from "lucide-react";
 import { ScreenshotGallery } from "@/components/ScreenshotGallery";
 import { ContactCta } from "@/components/ContactCta";
 
@@ -173,7 +173,7 @@ const content: Record<Locale, Record<string, CaseStudy>> = {
     "atlas-nexus": {
       slug: "atlas-nexus",
       title: "Atlas Nexus",
-      category: "SaaS B2B · Hackathon Winner 🏆",
+      category: "SaaS B2B · Hackathon Winner",
       subtitle: "Plataforma de inteligencia comercial para comercios independientes con POS nativo.",
       accent: "#F59E0B",
       isHackathon: true,
@@ -753,7 +753,7 @@ const content: Record<Locale, Record<string, CaseStudy>> = {
     "atlas-nexus": {
       slug: "atlas-nexus",
       title: "Atlas Nexus",
-      category: "SaaS B2B · Hackathon Winner 🏆",
+      category: "SaaS B2B · Hackathon Winner",
       subtitle: "Commercial intelligence platform for independent retailers with native POS integration.",
       accent: "#F59E0B",
       isHackathon: true,
@@ -1401,7 +1401,7 @@ export default async function WorkPage({
               className="inline-flex items-center gap-3 mt-6 px-5 py-3 rounded-lg border"
               style={{ borderColor: "#F59E0B40", backgroundColor: "#F59E0B08", borderStyle: "dashed" }}
             >
-              <span>🏆</span>
+              <Trophy className="w-4 h-4" aria-hidden="true" />
               <span className="font-mono text-xs uppercase tracking-widest text-[#F59E0B]">
                 {t.awardWinning} · {c.hackathonName}
               </span>

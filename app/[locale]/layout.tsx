@@ -1,3 +1,4 @@
+import { yearsOfExperience } from "@/lib/experience-data";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages, getTranslations, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
@@ -34,7 +35,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       default: t("title"),
       template: "%s | Germán Cárdenas",
     },
-    description: t("description"),
+    description: t("description", { years: yearsOfExperience() }),
     authors: [{ name: "Germán Cárdenas", url: SITE_URL }],
     creator: "Germán Cárdenas",
     keywords: [

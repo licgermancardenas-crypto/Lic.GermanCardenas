@@ -55,7 +55,7 @@ const systems: System[] = [
   },
 ];
 
-function SystemRow({ system, index }: { system: System; index: number }) {
+function SystemRow({ system }: { system: System; index: number }) {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
 

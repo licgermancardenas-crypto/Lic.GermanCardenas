@@ -1,10 +1,11 @@
 "use client";
 
+import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { AnimatedSection } from "@/components/AnimatedSection";
 import { GraduationCap, Globe } from "lucide-react";
-import { DiplomaMarquee } from "@/components/DiplomaMarquee";
-import { diplomas } from "@/components/sections/diplomas-data";
+import { DiplomaMarquee, DiplomaGrid } from "@/components/DiplomaMarquee";
+import { diplomas, featuredDiplomas } from "@/components/sections/diplomas-data";
 
 const education = [
   {
@@ -34,6 +35,7 @@ const languages = [
 
 export function Education() {
   const t = useTranslations("education");
+  const [showAll, setShowAll] = useState(false);
 
   return (
     <section id="education" className="py-24 bg-[#0F1419] border-t border-[#1F2937]">
@@ -122,7 +124,17 @@ export function Education() {
               {t("certifications_count", { count: diplomas.length })}
             </span>
           </div>
-          <DiplomaMarquee diplomas={diplomas} />
+          {showAll ? <DiplomaGrid diplomas={diplomas} /> : <DiplomaMarquee diplomas={featuredDiplomas} />}
+          <div className="mt-6 flex justify-center">
+            <button
+              type="button"
+              onClick={() => setShowAll((v) => !v)}
+              aria-expanded={showAll}
+              className="inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-medium text-[#C5CFE2] border border-white/10 bg-white/[0.04] hover:border-[#4F7CFF]/50 transition-colors"
+            >
+              {showAll ? t("certifications_less") : t("certifications_all", { count: diplomas.length })}
+            </button>
+          </div>
         </AnimatedSection>
       </div>
     </section>
