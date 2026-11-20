@@ -299,14 +299,14 @@ const cases: CaseData[] = [
     subtitle: "Redes neuronales de grafos para encontrar lavado de activos que las reglas tradicionales no ven. Prueba de concepto con datos sintéticos.",
     meta: {
       rol: "Data Scientist & Full-stack",
-      escala: "75.000 cuentas · 1,5 M de transacciones",
+      escala: "75.000 cuentas · 11,2 M de transacciones",
       stack: "PyTorch Geometric · FastAPI · Next.js",
       estado: "Demo en vivo",
     },
     challenge:
       "Las reglas clásicas de prevención de lavado miran cada transacción por monto o frecuencia. Pero el pitufeo, los anillos y las redes de mulas reparten grandes sumas en movimientos chicos que, uno por uno, parecen normales: el patrón está en la red, no en la operación individual.",
     approach:
-      "Construí un banco simulado con 75.000 cuentas y 1,5 millones de transacciones sintéticas con ocho tipologías de lavado alineadas con GAFI, y comparé modelos tabulares contra redes neuronales de grafos (GraphSAGE y GAT), con explicabilidad por cuenta, calibración de probabilidades y rastreo hacia atrás hasta el origen del dinero. Encima, el módulo que usa un oficial de cumplimiento: alertas, casos, KYC, screening y reportes de operaciones sospechosas.",
+      "Construí un banco simulado con 75.000 cuentas y 11,2 millones de transacciones sintéticas con ocho tipologías de lavado alineadas con GAFI, y comparé modelos tabulares contra redes neuronales de grafos (GraphSAGE y GAT), con explicabilidad por cuenta, calibración de probabilidades y rastreo hacia atrás hasta el origen del dinero. Encima, el módulo que usa un oficial de cumplimiento: alertas, casos, KYC, screening y reportes de operaciones sospechosas.",
     impactLabel: "QUÉ DEMUESTRA",
     impact:
       "Con el grafo se escapa el 13% del fraude, contra el 21% del mejor modelo tabular: las mulas tienen un perfil crediticio normal y se delatan por con quién transaccionan. Y una limitación dicha a tiempo: el modelo encuentra a las mulas pero no a quien inyecta el dinero, así que se sumó una segunda pasada para llegar al origen.",

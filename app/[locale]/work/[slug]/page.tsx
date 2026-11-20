@@ -482,7 +482,7 @@ const content: Record<Locale, Record<string, CaseStudy>> = {
       role:
         "Proyecto propio de punta a punta: generador de datos sintéticos, análisis exploratorio del grafo, modelos tabulares y de grafos, explicabilidad, calibración, rastreo de origen, la API en FastAPI y la aplicación de compliance en Next.js.",
       approach:
-        "Un banco simulado con 75.000 cuentas y 1,5 millones de transacciones sintéticas con ocho tipologías de lavado alineadas con GAFI. Sobre ese grafo comparé una regresión logística, XGBoost, Node2Vec, GAT y GraphSAGE con las mismas métricas. El mejor modelo se calibró, se explica cuenta por cuenta con GNNExplainer y se completa con un rastreo hacia atrás que remonta el dinero hasta su origen.",
+        "Un banco simulado con 75.000 cuentas y 11,2 millones de transacciones sintéticas con ocho tipologías de lavado alineadas con GAFI. Sobre ese grafo comparé una regresión logística, XGBoost, Node2Vec, GAT y GraphSAGE con las mismas métricas. El mejor modelo se calibró, se explica cuenta por cuenta con GNNExplainer y se completa con un rastreo hacia atrás que remonta el dinero hasta su origen.",
       stack: [
         { name: "PyTorch Geometric", why: "GraphSAGE y GAT aprenden de cada cuenta y de sus vecinos a la vez: la señal del lavado está en las conexiones" },
         { name: "XGBoost + regresión logística", why: "Líneas de base tabulares contra las que medir cuánto aporta el grafo de verdad" },
@@ -898,7 +898,7 @@ const content: Record<Locale, Record<string, CaseStudy>> = {
       role:
         "Personal project end to end: synthetic data generator, exploratory graph analysis, tabular and graph models, explainability, calibration, source tracing, the FastAPI backend and the Next.js compliance application.",
       approach:
-        "A simulated bank with 75,000 accounts and 1.5 million synthetic transactions covering eight FATF-aligned laundering typologies. On that graph I compared logistic regression, XGBoost, Node2Vec, GAT and GraphSAGE on the same metrics. The best model was calibrated, explained account by account with GNNExplainer, and complemented with backward tracing that follows the money to its source.",
+        "A simulated bank with 75,000 accounts and 11.2 million synthetic transactions covering eight FATF-aligned laundering typologies. On that graph I compared logistic regression, XGBoost, Node2Vec, GAT and GraphSAGE on the same metrics. The best model was calibrated, explained account by account with GNNExplainer, and complemented with backward tracing that follows the money to its source.",
       stack: [
         { name: "PyTorch Geometric", why: "GraphSAGE and GAT learn from each account and its neighbours at once: the laundering signal lives in the connections" },
         { name: "XGBoost + logistic regression", why: "Tabular baselines to measure how much the graph really adds" },

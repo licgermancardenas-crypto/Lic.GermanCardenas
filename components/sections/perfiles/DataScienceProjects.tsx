@@ -32,7 +32,7 @@ const copy = {
     phantom: {
       tag: "Proyecto propio · Prevención de lavado · Datos sintéticos",
       title: "Phantom AI",
-      desc: "Detección de redes de lavado de activos con redes neuronales de grafos, en una prueba de concepto de punta a punta para un banco simulado: 75.000 cuentas y 1,5 millones de transacciones sintéticas con ocho tipologías de lavado alineadas con GAFI —anillos, pitufeo, mulas, sociedades pantalla, round-tripping— y el módulo que usa un oficial de cumplimiento: alertas, casos, KYC, screening y reportes de operaciones sospechosas.",
+      desc: "Detección de redes de lavado de activos con redes neuronales de grafos, en una prueba de concepto de punta a punta para un banco simulado: 75.000 cuentas y 11,2 millones de transacciones sintéticas con ocho tipologías de lavado alineadas con GAFI —anillos, pitufeo, mulas, sociedades pantalla, round-tripping— y el módulo que usa un oficial de cumplimiento: alertas, casos, KYC, screening y reportes de operaciones sospechosas.",
       metrics: [
         { k: "0,943", v: "de PR-AUC con GraphSAGE, contra 0,882 de XGBoost y 0,471 de una regresión logística" },
         { k: "90%", v: "del fraude detectado exigiendo que 9 de cada 10 alertas sean reales" },
@@ -93,7 +93,7 @@ const copy = {
     phantom: {
       tag: "Personal project · Anti-money laundering · Synthetic data",
       title: "Phantom AI",
-      desc: "Money-laundering network detection with graph neural networks, as an end-to-end proof of concept for a simulated bank: 75,000 accounts and 1.5 million synthetic transactions covering eight FATF-aligned laundering typologies — cycles, structuring, mules, shell companies, round-tripping — plus the module a compliance officer uses: alerts, cases, KYC, screening and suspicious activity reports.",
+      desc: "Money-laundering network detection with graph neural networks, as an end-to-end proof of concept for a simulated bank: 75,000 accounts and 11.2 million synthetic transactions covering eight FATF-aligned laundering typologies — cycles, structuring, mules, shell companies, round-tripping — plus the module a compliance officer uses: alerts, cases, KYC, screening and suspicious activity reports.",
       metrics: [
         { k: "0.943", v: "PR-AUC with GraphSAGE, versus 0.882 for XGBoost and 0.471 for logistic regression" },
         { k: "90%", v: "of fraud detected while requiring 9 in 10 alerts to be real" },
