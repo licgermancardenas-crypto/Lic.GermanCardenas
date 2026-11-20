@@ -6,6 +6,7 @@ import { setRequestLocale } from "next-intl/server";
 import { routing } from "@/i18n/routing";
 import { ArrowLeft, ExternalLink, ArrowRight } from "lucide-react";
 import { ScreenshotGallery } from "@/components/ScreenshotGallery";
+import { ContactCta } from "@/components/ContactCta";
 
 type Locale = "es" | "en";
 
@@ -985,6 +986,14 @@ export default async function WorkPage({
             </section>
           )}
         </div>
+
+        <ContactCta
+          locale={locale}
+          className="mt-16"
+          accent={c.accent}
+          title={locale === "en" ? "A project like this for your organization?" : "¿Un proyecto así para tu organización?"}
+          text={locale === "en" ? "Tell me the problem and we'll work out how to solve it with data." : "Contame el problema y vemos cómo resolverlo con datos."}
+        />
 
         {/* Next case */}
         <div className="mt-20 pt-10 border-t border-[#1F2937] flex flex-col sm:flex-row sm:items-center justify-between gap-6">

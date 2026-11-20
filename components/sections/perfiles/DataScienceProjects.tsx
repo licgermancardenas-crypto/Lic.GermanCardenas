@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
+import { ContactCta } from "@/components/ContactCta";
 
 const BLUE = "#00CFFF";
 
@@ -202,6 +203,15 @@ export function DataScienceProjects({ locale }: { locale: string }) {
             </Link>
           </div>
         </article>
+        <ContactCta
+          locale={lang}
+          variant="compact"
+          className="mt-8"
+          accent={BLUE}
+          onAccent="#050505"
+          title={lang === "en" ? "Need a model you can audit?" : "¿Necesitás un modelo que se pueda auditar?"}
+          text={lang === "en" ? "Real data, honest validation, and the results that didn't work out in plain sight too." : "Datos reales, validación honesta y los resultados que no salieron también a la vista."}
+        />
       </div>
     </section>
   );

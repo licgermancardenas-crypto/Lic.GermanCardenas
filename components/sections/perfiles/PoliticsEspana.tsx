@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { ExternalLink } from "lucide-react";
 import { ResponsiveVideo } from "@/components/ResponsiveVideo";
+import { ContactCta } from "@/components/ContactCta";
 
 const CYAN = "#00A3C4";
 const WEB = "https://atlas-espana-29n.vercel.app";
@@ -154,6 +155,15 @@ export function PoliticsEspana({ locale }: { locale: string }) {
           {t.cta}
           <ExternalLink className="w-4 h-4" />
         </a>
+        <ContactCta
+          locale={lang}
+          variant="full"
+          className="mt-12"
+          accent={CYAN}
+          onAccent="#050505"
+          title={lang === "en" ? "Want an open forecast for your election?" : "¿Querés un pronóstico abierto para tu elección?"}
+          text={lang === "en" ? "Published before the vote and measured afterwards against the official result: that's how you earn the reader's trust." : "Publicado antes del voto y medido después contra el resultado oficial: así se gana la confianza de quien lo lee."}
+        />
       </div>
     </section>
   );

@@ -7,6 +7,7 @@ import { BiDashboardGallery } from "@/components/sections/perfiles/BiDashboardGa
 import { DASHBOARD_STATS, dashboardLocale } from "@/lib/bi-dashboards";
 import { pageMetadata } from "@/lib/seo";
 import { routing } from "@/i18n/routing";
+import { ContactCta } from "@/components/ContactCta";
 
 const EMERALD = "#10b981";
 
@@ -193,6 +194,15 @@ export default async function BiDashboardsPage({
 
         <div className="container-custom pb-24">
           <BiDashboardGallery locale={locale} />
+          <ContactCta
+            locale={locale}
+            variant="full"
+            className="mt-16"
+            accent={EMERALD}
+            onAccent="#050505"
+            title={locale === "en" ? "Want a dashboard like these with your data?" : "¿Querés un tablero así con tus datos?"}
+            text={locale === "en" ? "Power BI or web, connected to your sources, with measures you can audit and a design that reads at a glance." : "En Power BI o en web, conectado a tus fuentes, con medidas que se pueden auditar y un diseño que se lee de un vistazo."}
+          />
         </div>
       </main>
       <Footer />

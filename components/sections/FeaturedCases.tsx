@@ -6,6 +6,8 @@ import { useRef, useState, useEffect, useCallback } from "react";
 import { createPortal } from "react-dom";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { AnimatedSection } from "@/components/AnimatedSection";
+import { ContactCta } from "@/components/ContactCta";
+import { useLocale } from "next-intl";
 import {
   ExternalLink,
   ArrowRight,
@@ -655,6 +657,7 @@ function PitchHero({
 // ── FeaturedCases ─────────────────────────────────────────────────────────────
 
 export function FeaturedCases() {
+  const locale = useLocale();
   return (
     <>
       {/* Section intro */}
@@ -982,6 +985,16 @@ export function FeaturedCases() {
           </div>
         );
       })}
+      <div className="container-custom pb-24" style={{ backgroundColor: "#06080D" }}>
+        <div className="max-w-5xl mx-auto">
+          <ContactCta
+            locale={locale}
+            variant="full"
+            title={locale === "en" ? "Got a similar data problem?" : "¿Tenés un problema de datos parecido?"}
+            text={locale === "en" ? "From raw data to a dashboard in production: ETL, models, maps and the website that tells the story." : "Del dato crudo al tablero en producción: ETL, modelos, mapas y la web que lo cuenta."}
+          />
+        </div>
+      </div>
     </>
   );
 }

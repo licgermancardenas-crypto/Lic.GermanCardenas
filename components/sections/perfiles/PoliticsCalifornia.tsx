@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { ResponsiveVideo } from "@/components/ResponsiveVideo";
+import { ContactCta } from "@/components/ContactCta";
 
 const CYAN = "#00A3C4";
 
@@ -177,6 +178,15 @@ export function PoliticsCalifornia({ locale }: { locale: string }) {
         <p className="pl-4" style={{ borderLeft: `2px solid ${CYAN}`, fontSize: "16px", lineHeight: 1.7, color: "rgba(230,230,235,0.9)", maxWidth: "860px" }}>
           {t.bridge}
         </p>
+        <ContactCta
+          locale={lang}
+          variant="compact"
+          className="mt-10"
+          accent={CYAN}
+          onAccent="#050505"
+          title={lang === "en" ? "Want a model like this for your district?" : "¿Querés un modelo así para tu distrito?"}
+          text={lang === "en" ? "From the whole territory down to the block, with data mining and live election-night tracking." : "Del territorio completo a la manzana, con minería de datos y noche electoral en vivo."}
+        />
       </div>
     </section>
   );

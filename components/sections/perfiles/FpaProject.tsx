@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, ExternalLink } from "lucide-react";
+import { ContactCta } from "@/components/ContactCta";
 
 const BLUE = "#4A8BFF";
 
@@ -137,6 +138,15 @@ export function FpaProject({ locale }: { locale: string }) {
             <ExternalLink className="w-3.5 h-3.5" />
           </a>
         </div>
+        <ContactCta
+          locale={lang}
+          variant="compact"
+          className="mt-10"
+          accent="#2B6FE8"
+          onAccent="#FFFFFF"
+          title={lang === "en" ? "Need an auditable financial model?" : "¿Necesitás un modelo financiero auditable?"}
+          text={lang === "en" ? "Financial statements turned into dashboards where every number comes from a formula you can check." : "Estados contables convertidos en tableros donde cada número sale de una fórmula que se puede revisar."}
+        />
       </div>
     </section>
   );

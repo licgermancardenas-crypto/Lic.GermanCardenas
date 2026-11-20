@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { ResponsiveVideo } from "@/components/ResponsiveVideo";
+import { ContactCta } from "@/components/ContactCta";
 
 const CYAN = "#00A3C4";
 
@@ -192,6 +193,15 @@ export function PoliticsProject({ locale }: { locale: string }) {
           {t.cta}
           <ArrowRight className="w-4 h-4" />
         </Link>
+        <ContactCta
+          locale={lang}
+          variant="compact"
+          className="mt-10"
+          accent={CYAN}
+          onAccent="#050505"
+          title={lang === "en" ? "Have an election coming up?" : "¿Tenés una elección por delante?"}
+          text={lang === "en" ? "A forecast with its margin of error in plain sight, and the post-mortem once the last vote is counted." : "Un pronóstico con su margen de error a la vista, y el post-mortem cuando se cuenta el último voto."}
+        />
       </div>
     </section>
   );
