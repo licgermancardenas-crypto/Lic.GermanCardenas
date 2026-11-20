@@ -47,6 +47,28 @@ const copy = {
       live: "Ver el tablero en vivo",
       api: "API en vivo",
     },
+    precios: {
+      tag: "Proyecto propio · Datos propios · Se actualiza todos los días",
+      title: "Atlas Precios",
+      desc: "Un robot que todos los días a las 6 de la mañana releva una canasta fija de 45 productos en Coto, Día, Carrefour y Jumbo, la guarda en una base histórica y la publica como datos abiertos. Con eso arma el Índice Canasta Atlas —un índice de precios de supermercado con resolución diaria—, un comparador entre cadenas producto por producto y un agente que responde preguntas sobre la base en lenguaje natural.",
+      metrics: [
+        { k: "125 días", v: "de relevamiento automático, sin intervención manual, desde julio de 2026" },
+        { k: "17.302", v: "precios guardados y publicados como datos abiertos (CC BY 4.0)" },
+        { k: "+5,9%", v: "subió la canasta desde julio, con un salto del 4% en septiembre" },
+        { k: "55%", v: "más caro el mismo producto según la cadena: huevos de 30 unidades, $5.990 contra $9.300" },
+      ],
+      finding:
+        "El primer índice daba +157% en una semana. No era inflación: una de las APIs devolvía el precio promocional multiplicado por 80. Desde entonces el índice usa solo precio de lista y tiene controles de sanidad en dos capas. Y una salvedad dicha en voz alta: la canasta no sigue al IPC mes a mes —en septiembre subió 4,07% contra 1,93%— porque mide 41 productos de supermercado, no toda la economía.",
+      stack: ["Python", "APIs VTEX y Constructor.io", "GitHub Actions", "SQLite", "Prophet", "Streamlit", "Claude (text-to-SQL)"],
+      captions: [
+        "El Índice Canasta Atlas, día por día desde julio (base 100)",
+        "Canasta contra IPC del INDEC, mes a mes: miden cosas distintas",
+        "El mismo producto, distinta cadena: la diferencia entre la más cara y la más barata",
+      ],
+      note: "Gráficos armados con los datos abiertos del proyecto al 20/11/2026. El tablero corre en Streamlit Cloud: si estuvo sin visitas, tarda unos segundos en despertar.",
+      live: "Ver el tablero en vivo",
+      data: "Datos abiertos y código",
+    },
     yerba: {
       tag: "Freelance · Agroindustria",
       title: "Yerba Mate Intelligence",
@@ -107,6 +129,28 @@ const copy = {
       note: "100% synthetic data: it's a proof of concept, not validated on a real bank's data.",
       live: "See the live dashboard",
       api: "Live API",
+    },
+    precios: {
+      tag: "Personal project · Own data · Updated every day",
+      title: "Atlas Precios",
+      desc: "A bot that every morning at 6 collects a fixed basket of 45 products from Coto, Día, Carrefour and Jumbo, stores it in a historical database and publishes it as open data. From that it builds the Atlas Basket Index — a supermarket price index with daily resolution —, a product-by-product comparison across chains and an agent that answers questions about the database in plain language.",
+      metrics: [
+        { k: "125 days", v: "of automated collection, with no manual intervention, since July 2026" },
+        { k: "17,302", v: "prices stored and published as open data (CC BY 4.0)" },
+        { k: "+5.9%", v: "rise in the basket since July, with a 4% jump in September" },
+        { k: "55%", v: "price gap for the same product across chains: a 30-egg tray, ARS 5,990 versus 9,300" },
+      ],
+      finding:
+        "The first index showed +157% in one week. It wasn't inflation: one of the APIs returned the promotional price multiplied by 80. Since then the index uses list prices only and has sanity checks at two levels. And a caveat stated up front: the basket doesn't track the CPI month by month — in September it rose 4.07% against 1.93% — because it measures 41 supermarket products, not the whole economy.",
+      stack: ["Python", "VTEX and Constructor.io APIs", "GitHub Actions", "SQLite", "Prophet", "Streamlit", "Claude (text-to-SQL)"],
+      captions: [
+        "The Atlas Basket Index, day by day since July (base 100)",
+        "Basket versus INDEC CPI, month by month: they measure different things",
+        "Same product, different chain: the gap between the most and least expensive",
+      ],
+      note: "Charts built from the project's open data as of 20/11/2026. The dashboard runs on Streamlit Cloud: if it hasn't had visitors, it takes a few seconds to wake up.",
+      live: "See the live dashboard",
+      data: "Open data and code",
     },
     yerba: {
       tag: "Freelance · Agribusiness",
@@ -324,6 +368,89 @@ export function DataScienceProjects({ locale }: { locale: string }) {
                 style={{ padding: "12px 24px", borderRadius: "8px", border: "1px solid rgba(255,255,255,0.15)", color: "rgba(230,230,235,0.9)", fontSize: "14px", fontWeight: 500 }}
               >
                 {t.phantom.api}
+                <ExternalLink className="w-4 h-4" />
+              </a>
+            </div>
+          </div>
+        </article>
+
+        {/* Atlas Precios */}
+        <article
+          className="rounded-2xl overflow-hidden mb-6"
+          style={{ border: "1px solid rgba(255,255,255,0.08)", background: "rgba(255,255,255,0.02)" }}
+        >
+          <figure style={{ background: "#0B0F17" }}>
+            <div className="relative w-full" style={{ aspectRatio: "1600 / 1000" }}>
+              <Image src="/screenshots/precios/indice.jpg" alt={t.precios.captions[0]} fill sizes="(max-width: 1200px) 100vw, 1100px" className="object-cover" />
+            </div>
+            <figcaption style={{ ...mono, fontSize: "11px", color: "rgba(255,255,255,0.4)", padding: "10px 16px" }}>{t.precios.captions[0]}</figcaption>
+          </figure>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-px" style={{ background: "rgba(255,255,255,0.06)" }}>
+            {["canasta-vs-ipc", "dispersion"].map((img, i) => (
+              <figure key={img} style={{ background: "#0B0F17" }}>
+                <div className="relative w-full" style={{ aspectRatio: "1600 / 1000" }}>
+                  <Image src={`/screenshots/precios/${img}.jpg`} alt={t.precios.captions[i + 1]} fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover" />
+                </div>
+                <figcaption style={{ ...mono, fontSize: "11px", color: "rgba(255,255,255,0.4)", padding: "10px 16px" }}>{t.precios.captions[i + 1]}</figcaption>
+              </figure>
+            ))}
+          </div>
+
+          <div className="p-6 md:p-10">
+            <p style={{ ...mono, fontSize: "11px", letterSpacing: "0.16em", textTransform: "uppercase", color: BLUE, marginBottom: "10px" }}>
+              {t.precios.tag}
+            </p>
+            <h3 style={{ fontSize: "clamp(24px, 3vw, 34px)", fontWeight: 600, color: "#FFFFFF", marginBottom: "12px", letterSpacing: "-0.01em" }}>
+              {t.precios.title}
+            </h3>
+            <p style={{ fontSize: "16px", lineHeight: 1.7, color: "rgba(212,212,216,0.85)", maxWidth: "780px", marginBottom: "28px" }}>
+              {t.precios.desc}
+            </p>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+              {t.precios.metrics.map((m) => (
+                <div key={m.k} className="rounded-xl p-4" style={{ border: "1px solid rgba(0,207,255,0.14)", background: "rgba(0,207,255,0.03)" }}>
+                  <p style={{ fontSize: "24px", fontWeight: 600, color: "#FFFFFF", lineHeight: 1.1, marginBottom: "8px", fontVariantNumeric: "tabular-nums" }}>
+                    {m.k}
+                  </p>
+                  <p style={{ fontSize: "13px", color: "rgba(212,212,216,0.65)", lineHeight: 1.45 }}>{m.v}</p>
+                </div>
+              ))}
+            </div>
+
+            <p className="pl-4 mb-6" style={{ borderLeft: `2px solid ${BLUE}`, fontSize: "15px", lineHeight: 1.65, color: "rgba(212,212,216,0.85)", maxWidth: "780px" }}>
+              {t.precios.finding}
+            </p>
+
+            <div className="flex flex-wrap gap-2 mb-5">
+              {t.precios.stack.map((x) => (
+                <span key={x} style={{ ...mono, fontSize: "11px", padding: "6px 11px", borderRadius: "999px", border: "1px solid rgba(255,255,255,0.12)", color: "rgba(230,230,235,0.8)" }}>
+                  {x}
+                </span>
+              ))}
+            </div>
+
+            <p style={{ ...mono, fontSize: "12px", color: "rgba(212,212,216,0.55)", marginBottom: "22px" }}>{t.precios.note}</p>
+
+            <div className="flex flex-wrap gap-3">
+              <a
+                href="https://preciosargentina2026-hzmu5aufmjjbsieqf7ek7d.streamlit.app"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 transition-all duration-200 hover:-translate-y-0.5"
+                style={{ padding: "12px 24px", borderRadius: "8px", background: BLUE, color: "#050505", fontSize: "14px", fontWeight: 600 }}
+              >
+                {t.precios.live}
+                <ExternalLink className="w-4 h-4" />
+              </a>
+              <a
+                href="https://github.com/licgermancardenas-crypto/precios_argentina2026"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 transition-all duration-200 hover:-translate-y-0.5"
+                style={{ padding: "12px 24px", borderRadius: "8px", border: "1px solid rgba(255,255,255,0.15)", color: "rgba(230,230,235,0.9)", fontSize: "14px", fontWeight: 500 }}
+              >
+                {t.precios.data}
                 <ExternalLink className="w-4 h-4" />
               </a>
             </div>
