@@ -43,6 +43,8 @@ type CaseData = {
   screenshots: string[];
   /** Sin url = proyecto de cliente sin link público: se oculta "Ver en producción". */
   url?: string;
+  /** Texto de la barra cuando no hay url pública (por defecto: proyecto para cliente). */
+  privateNote?: string;
   pitchPhoto?: string;
   pitchPhotoCaption?: string;
 };
@@ -346,6 +348,34 @@ const cases: CaseData[] = [
     screenshots: ["portadas.jpg", "apellidos.jpg", "reservas.jpg", "sitio.jpg"].map((f) => `/screenshots/atlas-analytics/${f}`),
     url: "https://www.atlas-analytics.site",
   },
+  {
+    id: "caso-10",
+    slug: "zeus",
+    number: "10",
+    category: "CIBERSEGURIDAD · DLP · PRODUCTO SAAS",
+    title: "ZEUS · Atlas Control",
+    subtitle: "Seguridad del endpoint y prevención de fuga de datos para empresas que manejan dinero: detecta ransomware, credenciales filtradas y pendrives sin leer lo que la gente escribe.",
+    meta: {
+      rol: "Fundador · Arquitectura y desarrollo",
+      escala: "Agente Go · tiempo real · multi-tenant",
+      stack: "Go · Node/TS · Next.js · Supabase",
+      estado: "MVP probado · buscando primer cliente",
+    },
+    challenge:
+      "Financieras, brokers y call centers tienen a 10 o 15 personas tocando dinero y datos de clientes todo el día. Las herramientas de seguridad empresariales son caras y pensadas para corporaciones; las baratas son spyware que el antivirus marca y que ningún regulador aceptaría.",
+    approach:
+      "Un agente de Windows en Go que corre como servicio, se comunica en tiempo real con una ingesta propia y alimenta una consola web multi-tenant. Detecta en el propio equipo: procesos de riesgo, persistencia, barridos de red, ráfagas de cifrado tipo ransomware, honeytokens, borrado de registros de Windows y anomalías de CPU o red aprendidas por equipo. La fuga de datos se detecta sin espiar: si alguien tipea una tarjeta o un CBU, el agente avisa con el valor enmascarado y nunca guarda ni envía el resto del texto.",
+    impactLabel: "QUÉ DEMUESTRA",
+    impact:
+      "Un producto de seguridad completo construido de punta a punta: probado entre redes distintas por internet, con aislamiento entre empresas por Row Level Security y una auditoría interna sin agujeros abiertos. Y una línea de diseño que lo hace vendible a empresas reguladas: discreto, pero nunca encubierto.",
+    metrics: [
+      { value: "8", label: "Detectores EDR en el agente" },
+      { value: "0", label: "Agujeros abiertos en la auditoría multi-tenant" },
+      { value: "2", label: "Modos: empresa y proctoring" },
+    ],
+    screenshots: ["resumen.jpg", "edr.jpg", "alertas.jpg", "en-vivo.jpg"].map((f) => `/screenshots/zeus/${f}`),
+    privateNote: "Producto propio · demo a pedido",
+  },
 ];
 
 // ── Lightbox ──────────────────────────────────────────────────────────────────
@@ -445,11 +475,13 @@ function ParallaxScreenshot({
   screenshots,
   alt,
   url,
+  privateNote,
   isHackathon,
 }: {
   screenshots: string[];
   alt: string;
   url?: string;
+  privateNote?: string;
   isHackathon?: boolean;
 }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -525,7 +557,7 @@ function ParallaxScreenshot({
                 color: "rgba(255,255,255,0.2)",
               }}
             >
-              {url ?? "Proyecto para cliente · acceso privado"}
+              {url ?? privateNote ?? "Proyecto para cliente · acceso privado"}
             </div>
             {multiple && (
               <span
@@ -769,8 +801,8 @@ export function FeaturedCases() {
                 letterSpacing: "0.02em",
               }}
             >
-              Nueve proyectos.{" "}
-              <span>Nueve historias.</span>
+              Diez proyectos.{" "}
+              <span>Diez historias.</span>
             </h2>
             <p
               style={{
@@ -1058,6 +1090,7 @@ export function FeaturedCases() {
                     screenshots={c.screenshots}
                     alt={`${c.title} dashboard`}
                     url={c.url}
+                    privateNote={c.privateNote}
                     isHackathon={c.isHackathon}
                   />
                 </AnimatedSection>

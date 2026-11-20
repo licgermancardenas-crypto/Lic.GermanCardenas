@@ -20,14 +20,14 @@ export async function generateMetadata({
         path: "/work",
         title: "Work — Germán Cárdenas",
         description:
-          "Full case studies: Atlas One ERP, Atlas Nexus, AgroNova, LAPD Crime Analytics, Yerba Mate Intelligence, ATLAS-YPF, ATLAS SENTINEL, Phantom AI, and Atlas Analytics.",
+          "Full case studies: Atlas One ERP, Atlas Nexus, AgroNova, LAPD Crime Analytics, Yerba Mate Intelligence, ATLAS-YPF, ATLAS SENTINEL, Phantom AI, Atlas Analytics, and ZEUS.",
       })
     : pageMetadata({
         locale,
         path: "/work",
         title: "Work — Germán Cárdenas",
         description:
-          "Casos de estudio completos: Atlas One ERP, Atlas Nexus, AgroNova, LAPD Crime Analytics, Yerba Mate Intelligence, ATLAS-YPF, ATLAS SENTINEL, Phantom AI y Atlas Analytics.",
+          "Casos de estudio completos: Atlas One ERP, Atlas Nexus, AgroNova, LAPD Crime Analytics, Yerba Mate Intelligence, ATLAS-YPF, ATLAS SENTINEL, Phantom AI, Atlas Analytics y ZEUS.",
       });
 }
 
@@ -126,6 +126,15 @@ const cases: Record<Locale, CaseCard[]> = {
       accent: "#8B2CF5",
       thumbnail: "/screenshots/atlas-analytics/portadas.jpg",
     },
+    {
+      slug: "zeus",
+      number: "10",
+      category: "Ciberseguridad · DLP · Producto SaaS",
+      title: "ZEUS · Atlas Control",
+      subtitle: "Seguridad del endpoint y prevención de fuga de datos para financieras y brokers, sin leer lo que la gente escribe.",
+      accent: "#6D5EF5",
+      thumbnail: "/screenshots/zeus/resumen.jpg",
+    },
   ],
   en: [
     {
@@ -208,6 +217,15 @@ const cases: Record<Locale, CaseCard[]> = {
       subtitle: "My data consultancy and the AI system that researches real sources: 41 carousels, zero made-up links.",
       accent: "#8B2CF5",
       thumbnail: "/screenshots/atlas-analytics/portadas.jpg",
+    },
+    {
+      slug: "zeus",
+      number: "10",
+      category: "Cybersecurity · DLP · SaaS product",
+      title: "ZEUS · Atlas Control",
+      subtitle: "Endpoint security and data-loss prevention for lenders and brokers, without reading what people type.",
+      accent: "#6D5EF5",
+      thumbnail: "/screenshots/zeus/resumen.jpg",
     },
   ],
 };

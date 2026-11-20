@@ -17,7 +17,7 @@ type Command = {
 
 const commands: Command[] = [
   { id: "inicio", label: "Inicio", description: "Volver al principio", type: "scroll", target: "hero", icon: "↑" },
-  { id: "casos", label: "Casos destacados", description: "Atlas ERP, Nexus, AgroNova, LAPD, Yerba Mate, YPF, Sentinel, Phantom, Atlas Analytics", type: "scroll", target: "casos", icon: "⬡" },
+  { id: "casos", label: "Casos destacados", description: "Atlas ERP, Nexus, AgroNova, LAPD, Yerba Mate, YPF, Sentinel, Phantom, Atlas Analytics, ZEUS", type: "scroll", target: "casos", icon: "⬡" },
   { id: "caso-erp", label: "Atlas One ERP", description: "Caso 01 · Enterprise SaaS B2B", type: "scroll", target: "caso-01", icon: "01" },
   { id: "caso-nexus", label: "Atlas Nexus", description: "Caso 02 · Hackathon Winner", type: "scroll", target: "caso-02", icon: "🏆" },
   { id: "caso-agronova", label: "AgroNova", description: "Caso 03 · AgriTech · 24 provincias", type: "scroll", target: "caso-03", icon: "03" },
@@ -27,6 +27,7 @@ const commands: Command[] = [
   { id: "caso-sentinel", label: "ATLAS SENTINEL", description: "Caso 07 · Data Science · Seguridad urbana", type: "scroll", target: "caso-07", icon: "07" },
   { id: "caso-phantom", label: "Phantom AI", description: "Caso 08 · Data Science · Prevención de lavado", type: "scroll", target: "caso-08", icon: "08" },
   { id: "caso-atlas-analytics", label: "Atlas Analytics", description: "Caso 09 · AI Engineering · Consultora", type: "scroll", target: "caso-09", icon: "09" },
+  { id: "caso-zeus", label: "ZEUS · Atlas Control", description: "Caso 10 · Ciberseguridad · DLP", type: "scroll", target: "caso-10", icon: "10" },
   { id: "mas-trabajo", label: "Más proyectos", description: "RSI, Electoral, CIPE", type: "scroll", target: "projects", icon: "+" },
   { id: "experiencia", label: "Experiencia", description: "Timeline 2021–presente", type: "scroll", target: "experience", icon: "◎" },
   { id: "stack", label: "Tech Stack", description: "Herramientas y tecnologías", type: "scroll", target: "stack", icon: "⌘" },
@@ -40,6 +41,7 @@ const commands: Command[] = [
   { id: "work-sentinel", label: "Ver caso completo: ATLAS SENTINEL", type: "navigate", target: "/es/work/atlas-sentinel", icon: "→" },
   { id: "work-phantom", label: "Ver caso completo: Phantom AI", type: "navigate", target: "/es/work/phantom-ai", icon: "→" },
   { id: "work-atlas-analytics", label: "Ver caso completo: Atlas Analytics", type: "navigate", target: "/es/work/atlas-analytics", icon: "→" },
+  { id: "work-zeus", label: "Ver caso completo: ZEUS", type: "navigate", target: "/es/work/zeus", icon: "→" },
   { id: "now", label: "¿Qué estoy haciendo ahora?", type: "navigate", target: "/es/now", icon: "●" },
   { id: "cv", label: "Descargar CV", type: "navigate", target: "/cv.pdf", icon: "↓" },
 ];

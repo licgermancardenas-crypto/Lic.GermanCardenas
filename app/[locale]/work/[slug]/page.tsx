@@ -55,6 +55,8 @@ const ERP_IMPACT_IMAGES: Record<Locale, { src: string; caption: string }[]> = {
   ],
 };
 
+const ZEUS_SHOTS = ["resumen.jpg", "edr.jpg", "alertas.jpg", "en-vivo.jpg"].map((f) => `/screenshots/zeus/${f}`);
+
 const AA_SHOTS = ["portadas.jpg", "apellidos.jpg", "reservas.jpg", "sitio.jpg"].map((f) => `/screenshots/atlas-analytics/${f}`);
 
 const PHANTOM_SHOTS = ["red.jpg", "anillos.jpg", "casos.jpg", "direccion.jpg"].map((f) => `/screenshots/phantom/${f}`);
@@ -93,6 +95,7 @@ type CaseStudy = {
   screenshots: string[];
   /** Sin url = proyecto de cliente sin link público */
   url?: string;
+  privateNote?: string;
   context: string;
   challenge: string;
   role: string;
@@ -574,6 +577,60 @@ const content: Record<Locale, Record<string, CaseStudy>> = {
         { value: "~300", description: "Series públicas por barrido del radar" },
         { value: "0", description: "Links escritos por el modelo" },
       ],
+      nextSlug: "zeus",
+      nextTitle: "ZEUS · Atlas Control →",
+    },
+    zeus: {
+      slug: "zeus",
+      title: "ZEUS · Atlas Control",
+      category: "Ciberseguridad · DLP · Producto SaaS",
+      subtitle: "Seguridad del endpoint y prevención de fuga de datos para empresas que manejan dinero: detecta ransomware, credenciales filtradas y pendrives sin leer lo que la gente escribe.",
+      accent: "#6D5EF5",
+      screenshots: ZEUS_SHOTS,
+      privateNote: "Producto propio · demo a pedido",
+      context:
+        "En una financiera, un broker o un call center, diez o quince personas tocan dinero y datos de clientes todo el día desde las computadoras de la empresa. Una tarjeta copiada, un pendrive o un ransomware alcanzan para un problema serio, y el regulador pregunta qué controles había.",
+      challenge:
+        "Dar a una empresa chica controles de seguridad de nivel corporativo sin el precio corporativo, y sin caer en el spyware: un agente que el antivirus marca como malware o que el empleado no sabe que existe no es vendible a una empresa regulada ni sirve como prueba.",
+      role:
+        "Producto propio, de punta a punta: el agente de Windows en Go, la ingesta en tiempo real, la consola web, el modelo de datos multi-tenant, el instalador, el monitoreo de la infraestructura y la auditoría de seguridad.",
+      approach:
+        "Tres piezas. El agente corre como servicio en cada equipo, sin ventana, y manda eventos y miniaturas por WebSocket seguro. La ingesta autentica cada equipo por su clave —nunca por lo que dice el mensaje—, retransmite en vivo y es la única que escribe en la base. La consola lee con Row Level Security: cada empresa ve solo lo suyo dentro de un mismo proyecto de Supabase. Las alertas críticas llegan por email y Telegram.",
+      stack: [
+        { name: "Go", why: "El agente: un binario de Windows sin dependencias, que corre como servicio y no se cae si falla la captura de un monitor" },
+        { name: "Node.js / TypeScript", why: "La ingesta por WebSocket: autentica equipos, retransmite en vivo y es la única con permiso de escritura" },
+        { name: "Next.js", why: "La consola ZEUS: resumen, pantallas, alertas, EDR, equipos y actividad" },
+        { name: "Supabase + RLS", why: "Postgres multi-tenant: el aislamiento entre empresas lo garantiza la base, no el código del panel" },
+        { name: "WMI y API de Windows", why: "Procesos, red, registro de eventos, dispositivos USB y recursos, leídos desde el sistema operativo" },
+        { name: "Render, Vercel y Better Stack", why: "Ingesta, consola y monitoreo de disponibilidad separados, con alertas si algo se cae" },
+      ],
+      decisions: [
+        {
+          decision: "Discreto, pero nunca encubierto",
+          reasoning: "El agente no muestra ícono ni ventana, y un empleado sin permisos de administrador no lo puede apagar. Pero figura con su nombre real en Servicios y en Programas, y el monitoreo se declara en el contrato. No oculta procesos ni evade el antivirus: eso lo convertiría en stalkerware, lo haría invendible a una empresa regulada y dejaría sin valor la evidencia.",
+        },
+        {
+          decision: "Detectar la fuga sin leer lo que se escribe",
+          reasoning: "La detección de credenciales tipeadas reconstruye el texto en memoria, lo clasifica y lo borra en el acto. Solo si era un secreto —una tarjeta, un CBU, un token— emite un aviso con el valor enmascarado y la aplicación donde se tipeó. No es un keylogger: el texto normal nunca sale del equipo.",
+        },
+        {
+          decision: "Detección en el propio equipo, sin tocar la base",
+          reasoning: "Los ocho detectores EDR —procesos de riesgo, persistencia, red, ransomware, honeytokens, registro de Windows, anomalías y recursos por proceso— corren en el agente y emiten eventos genéricos. Sumar un detector no requiere migrar la base de datos.",
+        },
+        {
+          decision: "Anomalías aprendidas por equipo, no umbrales fijos",
+          reasoning: "Cada agente aprende la línea de base de CPU y red de su propia máquina y solo avisa ante un desvío fuerte y sostenido. Mientras dura la anomalía no actualiza la línea de base, para que un ataque lento no se vuelva normal.",
+        },
+      ],
+      results:
+        "El MVP funciona de punta a punta: pantallas en vivo, eventos, alertas, EDR, DLP y un segundo modo de proctoring para entrevistas y exámenes virtuales que corre en el navegador del candidato, con su consentimiento. Se probó en una misma red y entre casas distintas por internet. La auditoría interna del aislamiento multi-tenant cerró sin agujeros abiertos. Hoy está en pausa, listo para el primer cliente; el próximo paso es la firma de código del instalador.",
+      learned:
+        "En seguridad, la línea ética es parte del producto: lo que separa una herramienta de control de un spyware es exactamente lo que la hace vendible a un cliente serio. Y un agente que corre 24/7 no puede morir por un frame: cada captura falla sola, sin tirar abajo al resto.",
+      metrics: [
+        { value: "8", description: "Detectores EDR corriendo en el agente" },
+        { value: "0", description: "Agujeros abiertos en la auditoría multi-tenant" },
+        { value: "2", description: "Modos: empresa y proctoring" },
+      ],
       nextSlug: "atlas-one-erp",
       nextTitle: "Atlas One ERP →",
     },
@@ -1044,6 +1101,60 @@ const content: Record<Locale, Record<string, CaseStudy>> = {
         { value: "~300", description: "Public series per radar sweep" },
         { value: "0", description: "Links written by the model" },
       ],
+      nextSlug: "zeus",
+      nextTitle: "ZEUS · Atlas Control →",
+    },
+    zeus: {
+      slug: "zeus",
+      title: "ZEUS · Atlas Control",
+      category: "Cybersecurity · DLP · SaaS product",
+      subtitle: "Endpoint security and data-loss prevention for companies that handle money: it detects ransomware, leaked credentials and USB drives without reading what people type.",
+      accent: "#6D5EF5",
+      screenshots: ZEUS_SHOTS,
+      privateNote: "Own product · demo on request",
+      context:
+        "At a lender, a broker or a call center, ten or fifteen people handle money and customer data all day on company computers. A copied card number, a USB drive or a ransomware attack is enough for serious trouble, and the regulator will ask which controls were in place.",
+      challenge:
+        "Giving a small company enterprise-grade security controls without the enterprise price, and without sliding into spyware: an agent that antivirus flags as malware, or that employees don't know exists, can't be sold to a regulated company and isn't usable as evidence.",
+      role:
+        "Own product, end to end: the Go Windows agent, real-time ingestion, the web console, the multi-tenant data model, the installer, infrastructure monitoring and the security audit.",
+      approach:
+        "Three pieces. The agent runs as a service on each machine, with no window, and sends events and thumbnails over secure WebSocket. The ingestion service authenticates each device by its key — never by what the message claims — relays live, and is the only component that writes to the database. The console reads through Row Level Security: each company sees only its own data inside a single Supabase project. Critical alerts go out by email and Telegram.",
+      stack: [
+        { name: "Go", why: "The agent: a dependency-free Windows binary that runs as a service and survives a failed monitor capture" },
+        { name: "Node.js / TypeScript", why: "WebSocket ingestion: authenticates devices, relays live and holds the only write access" },
+        { name: "Next.js", why: "The ZEUS console: overview, screens, alerts, EDR, fleet and activity" },
+        { name: "Supabase + RLS", why: "Multi-tenant Postgres: isolation between companies is enforced by the database, not by the panel's code" },
+        { name: "WMI and Windows APIs", why: "Processes, network, event log, USB devices and resources, read from the operating system" },
+        { name: "Render, Vercel and Better Stack", why: "Separate ingestion, console and uptime monitoring, with alerts if anything goes down" },
+      ],
+      decisions: [
+        {
+          decision: "Discreet, but never covert",
+          reasoning: "The agent shows no icon or window, and an employee without admin rights can't turn it off. But it appears under its real name in Services and installed programs, and monitoring is declared in the employment contract. It never hides processes or evades antivirus: that would make it stalkerware, unsellable to a regulated company, and would void the evidence.",
+        },
+        {
+          decision: "Detect leaks without reading what's typed",
+          reasoning: "Typed-credential detection rebuilds the text in memory, classifies it and wipes it immediately. Only if it was a secret — a card, a bank account number, a token — does it send an alert with the value masked and the app where it was typed. It's not a keylogger: ordinary text never leaves the machine.",
+        },
+        {
+          decision: "Detection on the endpoint, no schema changes",
+          reasoning: "The eight EDR detectors — risky processes, persistence, network, ransomware, honeytokens, Windows event log, anomalies and per-process resources — run in the agent and emit generic events. Adding a detector doesn't require a database migration.",
+        },
+        {
+          decision: "Anomalies learned per machine, not fixed thresholds",
+          reasoning: "Each agent learns its own machine's CPU and network baseline and only alerts on a strong, sustained deviation. While an anomaly lasts the baseline isn't updated, so a slow attack can't become the new normal.",
+        },
+      ],
+      results:
+        "The MVP works end to end: live screens, events, alerts, EDR, DLP, and a second proctoring mode for virtual interviews and exams that runs in the candidate's browser, with their consent. It was tested on the same network and across different homes over the internet. The internal audit of multi-tenant isolation closed with no open holes. It's now paused, ready for its first client; the next step is code-signing the installer.",
+      learned:
+        "In security, the ethical line is part of the product: what separates a control tool from spyware is exactly what makes it sellable to a serious client. And an agent that runs 24/7 can't die over a single frame: each capture fails on its own without taking the rest down.",
+      metrics: [
+        { value: "8", description: "EDR detectors running in the agent" },
+        { value: "0", description: "Open holes in the multi-tenant audit" },
+        { value: "2", description: "Modes: company and proctoring" },
+      ],
       nextSlug: "atlas-one-erp",
       nextTitle: "Atlas One ERP →",
     },
@@ -1186,7 +1297,7 @@ export default async function WorkPage({
           title={c.title}
           url={c.url}
           accent={c.accent}
-          privateLabel={locale === "en" ? "Client project · private access" : "Proyecto para cliente · acceso privado"}
+          privateLabel={c.privateNote ?? (locale === "en" ? "Client project · private access" : "Proyecto para cliente · acceso privado")}
         />
 
         {/* Metrics */}

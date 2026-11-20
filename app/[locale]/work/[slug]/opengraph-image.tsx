@@ -89,6 +89,15 @@ const CASES: Record<
     },
     chips: ["Agentes de IA", "Claude", "Next.js", "Datos públicos"],
   },
+  zeus: {
+    title: "ZEUS · Atlas Control",
+    accent: "#6D5EF5",
+    subtitle: {
+      es: "Seguridad del endpoint y prevención de fuga de datos",
+      en: "Endpoint security and data-loss prevention",
+    },
+    chips: ["Go", "EDR", "DLP", "Multi-tenant"],
+  },
 };
 
 export default async function Image({
